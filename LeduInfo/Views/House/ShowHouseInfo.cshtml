@@ -1,0 +1,32 @@
+﻿@model LeduInfo.Models.HouseInfo
+
+@{
+    ViewBag.Title = "ShowHouseInfo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>ShowHouseInfo</h2>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span2">
+      <!--Sidebar content-->
+ <ul class="nav nav-list">
+  <li class="nav-header">House Info</li>
+  <li class="active">@Html.ActionLink("House Details", "ShowHouseInfo", "House")</li>
+  <li>@Html.ActionLink("House Resource", "Index", "Home")</li>
+  <li><a href="#">House Details</a></li>
+  <li><a href="#">House Details</a></li>
+  <li><a href="#">House Details</a></li>
+  <li><a href="#">House Details</a></li>
+  <li><a href="#">House Details</a></li>
+  <li><a href="#">House Details</a></li>
+
+</ul>
+    </div>
+    <div class="span10">
+    <img src="" class="img-rounded">
+      <!--Body content-->
+    </div>
+  </div>
+</div>

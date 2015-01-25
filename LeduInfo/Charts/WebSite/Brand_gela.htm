@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link href="Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <script src="Scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
+        <script src="Scripts/bootstrap.min.js"type="text/javascript"></script>
+        <meta name="viewport" content="width=device-width" />
+		<meta charset=utf-8 />
+
+    </head>
+    <body>
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <a class="brand" href="index.htm">PBIDA</a>
+    <ul class="nav nav-pills">
+        <li class="span5"><a href=""></a></li>
+        <li><a href="Brand.htm">Brand 品牌</a></li>
+        <li><a href="Media.htm">Media 媒体</a></li>
+        <li><a href="Consumer.htm">Consumer 用户</a></li>
+        <li><a href="CloudTag.htm">TagCloud 热词云图</a></li>
+        <li><a href="SummaryReport.htm">Summary Report报表</a></li>
+    </ul>
+  </div>
+    </div>         
+                 
+<h2>Charts</h2>
+<div class="btn-group" >
+
+              <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                please select brand for display: 
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+
+               
+                <li><a href="Brand_baobo.htm">Blancpain 宝珀</a><li>
+                <li><a href="">Bvlgari 宝格丽</a><li>
+                <li><a href="">Hublot 宇舶</a><li>
+                <li><a href="Brand_wanguo.htm">IWC 万国</a><li>
+                <li><a href="Brand_jijia.htm">Jaeger-LeCoultre 积家</a><li>
+                <li><a href="Brand_gela.htm">Glashutte 格拉苏蒂</a><li>
+                <li><a href="Brand_kadia.htm">Cartier 卡地亚</a><li>
+                <li><a href="Brand_omiga.htm">Omega 欧米茄</a><li>
+                <li><a href="">Patek Philippe 百达翡丽</a><li>
+                <li><a href="">Piaget 伯爵</a><li>
+                <li><a href="">TAG Heuer 豪雅</a><li>
+                <li><a href="">Tiffany 蒂芙尼</a><li>
+                <li><a href="">VanCleef&Arpels 梵克雅宝</a><li>
+                <li><a href="Consumer_Compare.htm" >品牌数据对比</a></li>
+           </ul>
+            </div>
+
+        <script src="http://code.highcharts.com/highcharts.js" type="text/javascript"></script>
+        <script src="http://code.highcharts.com/highcharts-more.js"></script>
+        <script src="http://code.highcharts.com/modules/exporting.js" type="text/javascript"></script>
+        
+<div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+<span class="span7"></span><button id="analysis_btn" type="button" class="btn btn-success"> 分析 </button>
+<div id="textfield" style="min-width: 200px; height:200px; margin:0 auto; display:none;"><textarea rows="4" style="min-width:500px"></textarea></div>
+<span class="span3"></span>
+
+<span class="span4"></span><button id="suggest_btn" type="button" class="btn btn-success"> 建议 </button>
+<div id="suggest" style="min-width: 200px; height:200px; margin:0 auto; display:none;"><textarea rows="4" style="min-width:500px"></textarea></div>
+<div id="container1" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+
+<div id="container4" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+
+<script type="text/javascript" >
+  $("#analysis_btn").click(function() {
+     $("#textfield").toggle(1000);
+ });
+ $("#suggest_btn").click(function() {
+     $("#suggest").toggle(1000);
+ });
+//bubble chart
+
+//trends chart
+$(function () {
+        $('#container1').highcharts({
+            chart: {
+                type: 'spline'
+            },
+            title: {
+                text: 'Brand Customer Awareness品牌用户关注度'
+            },
+            
+            xAxis: {
+                type: 'datetime',
+                dateTimeLabelFormats: { // don't display the dummy year
+                    month: '%e. %b',
+                    year: '%b'
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'Click Rate'
+                },
+                min: 0
+                
+            },
+            tooltip: {
+                formatter: function() {
+                        return '<b>'+ this.series.name +'</b><br/>'+
+                        Highcharts.dateFormat('%e. %b', this.x) +': '+ this.y +' Rates';
+                }
+            },
+            
+            series: [{
+                name: 'Glashütte Original 格拉苏蒂指数 2012-2013',
+                // Define the data points. All series have a dummy year
+                // of 1970/71 in order to be compared on the same x axis. Note
+                // that in JavaScript, months start at 0 for January, 1 for February etc.
+                data: [
+                        [Date.UTC(2012,0,1),3886],
+                        [Date.UTC(2012,0,15),3825],
+                        [Date.UTC(2012,1,1),4169],
+                        [Date.UTC(2012,1,15),4264],
+                        [Date.UTC(2012,2,1),4578],
+                        [Date.UTC(2012,2,15),4623],
+                        [Date.UTC(2012,3,1),4842],
+                        [Date.UTC(2012,3,15),4556],
+                        [Date.UTC(2012,4,1),4819],
+                        [Date.UTC(2012,4,15),5232],
+                        [Date.UTC(2012,5,1),5080],
+                        [Date.UTC(2012,5,15),5250],
+                        [Date.UTC(2012,6,1),5099],
+                        [Date.UTC(2012,6,15),5716],
+                        [Date.UTC(2012,7,1),5829],
+                        [Date.UTC(2012,7,15),6128],
+                        [Date.UTC(2012,8,1),5701],
+                        [Date.UTC(2012,8,15),7773],
+                        [Date.UTC(2012,9,1),5498],
+                        [Date.UTC(2012,9,15),6031],
+                        [Date.UTC(2012,10,1),5081],
+                        [Date.UTC(2012,10,15),4690],
+                        [Date.UTC(2012,11,1),4791],
+                        [Date.UTC(2012,11,15),4713],
+                        [Date.UTC(2012,12,1),4451],
+                        [Date.UTC(2012,12,15),5079],
+                        [Date.UTC(2013,1,1),4359],
+                        [Date.UTC(2013,1,15),5023],
+                        [Date.UTC(2013,2,1),5187],
+                        [Date.UTC(2013,2,15),5121],
+                        [Date.UTC(2013,3,1),4904],
+                        [Date.UTC(2013,3,15),5307],
+                        [Date.UTC(2013,4,1),5219],
+                        [Date.UTC(2013,4,15),5870],
+                        [Date.UTC(2013,5,1),5539],
+                        [Date.UTC(2013,5,15),5559],
+                        [Date.UTC(2013,6,1),5617],
+                        [Date.UTC(2013,6,15),4619]
+
+                ]
+            }
+            
+            ]
+        });
+    });
+/*
+//Master Detail Chart
+$(function () {
+    var data = [
+   369,473,425,445,402,355,385,422,425,451,467,397,367,319,350,448,443,397,383,324,302,340,377,412,366,392,301,305,352,366,371,380,369,374,344,420,437,371,412,400,357,350,364,447,326,324,288,409,412,397,364,357,397,403,343,358,364,417,391,439,403,287,332,391,372,385,397,346,318,299,385,344,378,417,343,282,262,372,358,381,388,399,307,288,340,394,310,299,293,409,380,473,375,360,349,391,293,282,304,358,411,330,367,284,302,276,326,327,378,301,329,312,293,304,352,412,341,298,285,296,315,358,364,374,309,296,363,333,256,310,323,318,323,312,352,392,400,326,335,256,366,394,340,406,408,288,288,324,333,310,352,375,309,344,487,443,454,380,414,434,388,336,282,299,247,257,243,193,291,343,367,324,310,282,262,323,298,296,335,349,253,298,354,299,243,309,394,341,293,355,333,329,392,358,268,282,302,278,315,318,281,318,279,312,251,257,240,265,333,256,265,287,309,271,270,254,274,279,301,374,335,336,304,284,335,287,257,276,326,340,369,386,422,321,324,330,281,253,358,276,293,338,293,216,273,323,378,336,354,400,270,259,323,366,354,307,349,290,278,341,363,371,358,360,304,296,349,395,381,395,385,315,336,355,388,406,405,381,336,316,439,412,369,412,378,324,378,423,372,447,436,439,323,341,313,316,340,352,316,329,575,884,426,433,433,442,374,445,461,478,470,806,879,338,293,316,375,406,371,409,358,347,385,385,347,406,465,374,464,439,423,417,433,381,352,336,389,321,363,394,381,307,350,363,479,386,400,414,340,313,377,462,791,336,347,315,284,324,369,371,343,330,288,254,366,361,366,389,478,332,276,399,366,336,416,416,352,357,357,355,363,392,367,349,293,326,324,301,332,366,265,270,347,392,377,436,464,316,321,291,316,335,367,383,371,264,374,357,381,343,358,295,248,371,355,391,358,335,312,273,329,402,341,426,343,262,293,374,315,392,299,284,278,245,326,361,291,299,369,270,312,321,333,344,369,367,290,285,315,332,326,287,309,309,237,315,301,329,318,326,253,273,302,340,293,316,335,304,290,352,363,312,312,346,423,409,315,299,288,245,274,310,268,267,301,279,274,288,225,245,281,321,302,326,327,257,305,357,341,284,355,323,307,274,319,344,296,329,341,270,274,257,264,333,332,309,315,279,316,344,304,318,338,250,237,273,316,319,323,291,233,182,251,295,315,296,296,243,245,293,302,285,321,298,315,225,219,208,191,204,200,159,234,234,236,276,237,268,234,207,247,237,291,270,265,231,212,287,333,299,253,270,250
+    ];
+    
+    var masterChart,
+        detailChart;
+    
+    $(document).ready(function() {
+    
+    
+        // create the master chart
+        function createMaster() {
+            masterChart = $('#master-container').highcharts({
+                chart: {
+                    reflow: false,
+                    borderWidth: 0,
+                    backgroundColor: null,
+                    marginLeft: 50,
+                    marginRight: 20,
+                    zoomType: 'x',
+                    events: {
+    
+                        // listen to the selection event on the master chart to update the
+                        // extremes of the detail chart
+                        selection: function(event) {
+                            var extremesObject = event.xAxis[0],
+                                min = extremesObject.min,
+                                max = extremesObject.max,
+                                detailData = [],
+                                xAxis = this.xAxis[0];
+    
+                            // reverse engineer the last part of the data
+                            jQuery.each(this.series[0].data, function(i, point) {
+                                if (point.x > min && point.x < max) {
+                                    detailData.push({
+                                        x: point.x,
+                                        y: point.y
+                                    });
+                                }
+                            });
+    
+                            // move the plot bands to reflect the new detail span
+                            xAxis.removePlotBand('mask-before');
+                            xAxis.addPlotBand({
+                                id: 'mask-before',
+                                from: Date.UTC(2006, 0, 1),
+                                to: min,
+                                color: 'rgba(0, 0, 0, 0.2)'
+                            });
+    
+                            xAxis.removePlotBand('mask-after');
+                            xAxis.addPlotBand({
+                                id: 'mask-after',
+                                from: max,
+                                to: Date.UTC(2008, 11, 31),
+                                color: 'rgba(0, 0, 0, 0.2)'
+                            });
+    
+    
+                            detailChart.series[0].setData(detailData);
+    
+                            return false;
+                        }
+                    }
+                },
+                title: {
+                    text: null
+                },
+                xAxis: {
+                    type: 'datetime',
+                    showLastTickLabel: true,
+                    maxZoom: 14 * 24 * 3600000, // fourteen days
+                    plotBands: [{
+                        id: 'mask-before',
+                        from: Date.UTC(2012, 1, 1),
+                        to: Date.UTC(2013, 7, 31),
+                        color: 'rgba(0, 0, 0, 0.2)'
+                    }],
+                    title: {
+                        text: null
+                    }
+                },
+                yAxis: {
+                    gridLineWidth: 0,
+                    labels: {
+                        enabled: false
+                    },
+                    title: {
+                        text: null
+                    },
+                    min: 0.6,
+                    showFirstLabel: false
+                },
+                tooltip: {
+                    formatter: function() {
+                        return false;
+                    }
+                },
+                legend: {
+                    enabled: false
+                },
+                credits: {
+                    enabled: false
+                },
+                plotOptions: {
+                    series: {
+                        fillColor: {
+                            linearGradient: [0, 0, 0, 70],
+                            stops: [
+                                [0, '#4572A7'],
+                                [1, 'rgba(0,0,0,0)']
+                            ]
+                        },
+                        lineWidth: 1,
+                        marker: {
+                            enabled: false
+                        },
+                        shadow: false,
+                        states: {
+                            hover: {
+                                lineWidth: 1
+                            }
+                        },
+                        enableMouseTracking: false
+                    }
+                },
+    
+                series: [{
+                    type: 'area',
+                    name: 'Brand Customer Awareness 品牌用户关注度全年详细数据',
+                    pointInterval: 24 * 3600 * 1000,
+                    pointStart: Date.UTC(2012, 01, 01),
+                    data: data
+                }],
+    
+                exporting: {
+                    enabled: false
+                }
+    
+            }, function(masterChart) {
+                createDetail(masterChart)
+            })
+            .highcharts(); // return chart instance
+        }
+    
+        // create the detail chart
+        function createDetail(masterChart) {
+    
+            // prepare the detail chart
+            var detailData = [],
+                detailStart = Date.UTC(2013, 1, 1);
+    
+            jQuery.each(masterChart.series[0].data, function(i, point) {
+                if (point.x >= detailStart) {
+                    detailData.push(point.y);
+                }
+            });
+    
+            // create a detail chart referenced by a global variable
+            detailChart = $('#detail-container').highcharts({
+                chart: {
+                    marginBottom: 120,
+                    reflow: false,
+                    marginLeft: 50,
+                    marginRight: 20,
+                    style: {
+                        position: 'absolute'
+                    }
+                },
+                credits: {
+                    enabled: false
+                },
+                title: {
+                    text: 'Brand Popularity 品牌热度 2012-2013'
+                },
+                subtitle: {
+                    text: 'Select an area by dragging across the lower chart'
+                },
+                xAxis: {
+                    type: 'datetime'
+                },
+                yAxis: {
+                    title: {
+                        text: null
+                    },
+                    maxZoom: 0.1
+                },
+                tooltip: {
+                    formatter: function() {
+                        var point = this.points[0];
+                        return '<b>'+ point.series.name +'</b><br/>'+
+                            Highcharts.dateFormat('%A %B %e %Y', this.x) + ':<br/>'+
+                            '关注度： '+Highcharts.numberFormat(point.y, 2) +'';
+                    },
+                    shared: true
+                },
+                legend: {
+                    enabled: false
+                },
+                plotOptions: {
+                    series: {
+                        marker: {
+                            enabled: false,
+                            states: {
+                                hover: {
+                                    enabled: true,
+                                    radius: 3
+                                }
+                            }
+                        }
+                    }
+                },
+                series: [{
+                    name: 'Brand Customer Awareness品牌用户关注度',
+                    pointStart: detailStart,
+                    pointInterval: 24 * 3600 * 1000,
+                    data: detailData
+                }],
+    
+                exporting: {
+                    enabled: false
+                }
+    
+            }).highcharts(); // return chart
+        }
+    
+        // make the container smaller and add a second container for the master chart
+        var $container = $('#container2')
+            .css('position', 'relative');
+    
+        var $detailContainer = $('<div id="detail-container">')
+            .appendTo($container);
+    
+        var $masterContainer = $('<div id="master-container">')
+            .css({ position: 'absolute', top: 300, height: 80, width: '100%' })
+            .appendTo($container);
+    
+        // create master and in its callback, create the detail chart
+        createMaster();
+    });
+    
+});
+*/
+
+    //spider web chart
+$(function () {
+
+    $('#container').highcharts({
+                
+        chart: {
+            polar: true,
+            type: 'line'
+        },
+        
+        title: {
+            text: 'Brand Analysis 品牌自我定位',
+            x: -80
+        },
+        
+        pane: {
+            size: '80%'
+        },
+        
+        xAxis: {
+            categories: ['优雅','激情','运动','奢华','年轻','经典','创新'],
+            tickmarkPlacement: 'on',
+            lineWidth: 0
+        },
+            
+        yAxis: {
+            gridLineInterpolation: 'polygon',
+            lineWidth: 0,
+            min: 0
+        },
+        
+        tooltip: {
+            shared: true,
+            pointFormat: '<span style="color:{series.color}">{series.name}: <b>${point.y:,.0f}</b><br/>'
+        },
+        
+        legend: {
+            align: 'right',
+            verticalAlign: 'top',
+            y: 100,
+            layout: 'vertical'
+        },
+        
+        series: [{
+            name: '格拉苏蒂',
+            data: [109,9,30,152,20,269,63],
+            pointPlacement: 'on'
+        }]
+    
+    });
+});
+    
+    //动态图
+    $(function () {
+        $(document).ready(function () {
+            Highcharts.setOptions({
+                global: {
+                    useUTC: false
+                }
+            });
+
+            var chart;
+            $('#container4').highcharts({
+                chart: {
+                    type: 'spline',
+                    animation: Highcharts.svg, // don't animate in old IE
+                    marginRight: 10,
+                    events: {
+                        load: function () {
+
+                            // set up the updating of the chart each second
+                            var series = this.series[0];
+                            setInterval(function () {
+                                var x = (new Date()).getTime(), // current time
+                                    y = Math.random();
+                                series.addPoint([x, y], true, true);
+                            }, 1000);
+                        }
+                    }
+                },
+                title: {
+                    text: 'Live data for every band'
+                },
+                xAxis: {
+                    type: 'datetime',
+                    tickPixelInterval: 150
+                },
+                yAxis: {
+                    title: {
+                        text: 'Value'
+                    },
+                    plotLines: [{
+                        value: 0,
+                        width: 1,
+                        color: '#808080'
+                    }]
+                },
+                tooltip: {
+                    formatter: function () {
+                        return '<b>' + this.series.name + '</b><br/>' +
+                        Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
+                        Highcharts.numberFormat(this.y, 2);
+                    }
+                },
+                legend: {   
+                    enabled: false
+                },
+                exporting: {
+                    enabled: false
+                },
+                series: [{
+                    name: 'Random data',
+                    data: (function () {
+                        // generate an array of random data
+                        var data = [],
+                            time = (new Date()).getTime(),
+                            i;
+
+                        for (i = -19; i <= 0; i++) {
+                            data.push({
+                                x: time + i * 1000,
+                                y: Math.random()
+                            });
+                        }
+                        return data;
+                    })()
+                }]
+            });
+        });
+
+    });
+    
+
+
+
+</script>
+
+    </body>
+</html>

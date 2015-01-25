@@ -1,0 +1,147 @@
+﻿@{
+    @model  LeduInfo.Models.BlogPageModel
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript">  
+    var myDate = new Date();
+    var list = new Array(); 
+    myDate.toString("ss:mm")
+    $(document).ready(function () {
+
+        $('#line').load('@Url.Content("BlogCommentLoad")',list);
+        
+        $('#leaveComment').click(function () {
+            $('#appendcomments').after('<p>' + $('#commentsbox').val() + '</p>');
+            $('#appendcomments').after('<h3>Robin, Lu <small>' + myDate.toUTCString() + '</small></h3>');
+            var comments = $('#commentsbox').val();
+            $('#commentsbox').val('');
+
+            $.post(
+                
+            '@Url.Action("BlogCommentsCommit", new { @id = Url.RequestContext.RouteData.Values["id"].ToString() })',
+              {
+                     message:comments,
+              }
+        );
+
+        })
+    })
+</script>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <h1 class="page-header">Blog Post <small>A Sample Blog Post</small></h1>
+          <ol class="breadcrumb">
+            <li><a href="index.html">Home</a></li>
+            <li class="active">Blog Post</li>
+          </ol>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-lg-8">
+        
+          <!-- the actual blog post: title/author/date/content -->
+          <hr>
+          <p><i class="fa fa-clock-o"></i> Posted on @Model.Blogs.LastModified by @Html.ActionLink(Membership.GetUser().UserName,"AboutMe","Home")</p>
+          <hr>
+           
+          <h2>@Html.DisplayTextFor(m=>m.BlogTitles.Titles)</h2>
+            @*@Html.ActionLink("Click To Bulk", "BlogSqlBulk", "Blog");*@
+            @ViewBag.IMG
+            <hr>
+            @Html.DisplayTextFor(m=>m.BlogContents.Contents)
+          <p><strong>Placeholder text by:</strong></p>
+          <ul>
+              @if (Model.Tags.Tag !=null)
+              {
+                   char[] cones = { ',' };
+                   foreach (var item in Model.Tags.Tag.Split(cones, 40))
+                   {
+                    <li><a href="http://spaceipsum.com/">@item</a></li>
+                   }
+              }
+         
+          </ul>
+          <hr>
+
+          <!-- the comment box -->
+          <div id="message" class="well">
+            <h4>Leave a Comment:</h4>
+             
+           @*<form role="form">*@
+              <div class="form-group">
+                <textarea id="commentsbox" class="form-control" rows="3"></textarea>
+              </div>
+              <button id="leaveComment" type="submit" class="btn btn-primary">Submit</button>
+           @*</form>*@
+          </div>
+          <hr id="appendcomments">
+          <!-- the comments -->
+            @if (Model.Blogs.BlogComments != null)
+            {
+                foreach (var item in Model.Blogs.BlogComments)
+                {
+                    <h3>Start Bootstrap <small>@Html.Label(item.LastModifed.ToString())</small></h3>
+                    <p>@Html.Label(item.Comments)</p>
+                }
+            }
+
+        </div>
+        
+        <div class="col-lg-4">
+          <div class="well">
+            <h4>Blog Search</h4>
+            <div class="input-group">
+              <input type="text" class="form-control">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button"><i class="icon-search"></i></button>
+              </span>
+            </div><!-- /input-group -->
+          </div><!-- /well -->
+          <div class="well">
+            <h4>Popular Blog Categories</h4>
+              <div class="row">
+                <div class="col-lg-6">
+                  <ul class="list-unstyled">
+                     
+                          <li><a href="#dinosaurs">dinosaurs</a></li>
+                          <li><a href="#spaceships">Spaceships</a></li>
+                          <li><a href="#fried-foods">Fried Foods</a></li>
+                          <li><a href="#wild-animals">Wild Animals</a></li>
+                    
+                  </ul>
+                </div>
+                <div class="col-lg-6">
+                  <ul class="list-unstyled">
+                    <li><a href="#alien-abductions">Alien Abductions</a></li>
+                    <li><a href="#business-casual">Business Casual</a></li>
+                    <li><a href="#robots">Robots</a></li>
+                    <li><a href="#fireworks">Fireworks</a></li>
+                  </ul>
+                </div>
+              </div>
+          </div><!-- /well -->
+          <div class="well">
+            <h4>Side Widget Well</h4>
+            <p>Bootstrap's default well's work great for side widgets! What is a widget anyways...?</p>
+          </div><!-- /well -->
+        </div>
+      </div>
+
+    </div><!-- /.container -->
+
+    <div class="container">
+      <hr>
+      <footer>
+        <div class="row">
+          <div class="col-lg-12">
+            <p>Copyright &copy; Company 2014</p>
+          </div>
+        </div>
+      </footer>
+        </div>
+    <!-- /.container -->

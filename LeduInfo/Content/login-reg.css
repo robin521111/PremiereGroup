@@ -1,0 +1,21 @@
+﻿.form-signin
+{
+    background-color: #EBE9ED;
+    padding: 15px;
+    border-top-style: 1;
+    border-right-style: 1;
+    border-bottom-style: 1;
+    border-left-style: 1;
+    width: 40%;
+}
+.validation-summary-errors {
+    color: rgb(232, 12, 77);
+    font-weight: bold;
+    font-size: 1.1em;
+}
+.input-block-level input-validation-error
+{
+    color: rgb(232, 12, 77);
+    font-weight: bold;
+    font-size: 1.1em; 
+    }

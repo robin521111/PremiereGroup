@@ -1,0 +1,69 @@
+﻿@model LeduInfo.Models.LoginModel
+
+@{
+    ViewBag.Title = "Profilo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<html xmlns:wb="http://open.weibo.com/wb">
+<script src="@Url.Content("http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=")" type="text/javascript" charset="utf-8">
+    
+</script>
+<h2>@Membership.GetNumberOfUsersOnline() Online</h2>
+<div class="span3">
+<table class="table table-striped">
+
+	<tr>    
+		<td class="span1">昵称：@Html.ActionLink(@Membership.GetUser().ToString(), "Account/Profilo")</td>
+	</tr>
+	<tr>
+		<td>真实姓名: </td>
+	</tr>
+	<tr>
+		<td>所在地: </td>
+	</tr>
+	<tr>
+		<td>性  别:</td>
+		
+	</tr>
+    
+	<tr>
+		<td>性取向:</td>
+	</tr>
+    	<tr>
+		<td>感情状况:</td>
+		
+	</tr>	
+    <tr>
+		<td>生日:</td>
+		
+	</tr>
+    	<tr>
+		<td>血型:</td>
+		
+	</tr>
+    	<tr>
+		<td>博客地址:</td>
+		
+	</tr>
+    	<tr>
+		<td>个性域名:</td>
+		
+	</tr>
+    	<tr>
+		<td>简介:</td>
+		
+	</tr>
+    	<tr>
+	</tr>
+
+</table>
+</div>
+
+<div class="span3">
+
+</div>
+
+<div>
+<wb:share-button type="button" size="big" ></wb:share-button>
+</div>
+

@@ -1,0 +1,30 @@
+﻿@model LeduInfo.Models.SilverlightObject
+
+
+
+<form id="silverlightForm" runat="server" style="height:100%">
+  <div id="silverlightControlHost">
+    <object data="data:application/x-silverlight-2,"
+            type="application/x-silverlight-2"
+            width="@Html.Encode(Model.Size.Width)"
+            height="@Html.Encode(Model.Size.Height)">
+      <param name="source"
+             value="@Url.Content("~/ClientBin/" + Html.Encode(Model.XapName) + ".xap")"/>
+      <param name="onError"
+             value="@Html.Encode(Model.OnSilverlightError) " />
+      <param name="background"
+             value="@Html.Encode(Model.BackgroundColor.Name) " />
+      <param name="minRuntimeVersion"
+             value="@Html.Encode(Model.MinimumRuntimeVersion)" />
+      <param name="autoUpgrade"
+             value="@Html.Encode(Model.AutoUpgrade) " />
+
+        <a href="http://go.microsoft.com/fwlink/?LinkID=149156&v=3.0.40624.0" style="text-decoration:none">
+          <img src="http://go.microsoft.com/fwlink/?LinkId=108181"
+               alt="Get Microsoft Silverlight"
+               style="border-style:none"/>
+        </a>
+    </object>
+    <iframe id="slhistoryFrame" style="visibility:hidden;height:0px;width:0px;border:0px"></iframe>
+  </div>
+</form>

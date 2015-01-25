@@ -1,0 +1,53 @@
+﻿@model LeduInfo.Models.HouseInfo
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>HouseInfo</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Address)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Address)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ownerID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ownerID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.renterID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.renterID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.rented)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.rented)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.houseStyleID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.houseStyleID)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

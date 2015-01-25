@@ -1,0 +1,12 @@
+﻿@model LeduInfo.Models.UploadViewModel 
+
+@{
+    ViewBag.Title = "CommunityDesigner";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>CommunityDesigner</h2>
+<div class="span7">
+    @Html.Partial("Silverlight_Partical",Model.UploadControl)
+</div>
+

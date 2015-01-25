@@ -1,0 +1,31 @@
+﻿@model IEnumerable<LeduInfo.Models.JsonModel>
+
+
+
+@{
+    ViewBag.Title = "UploadPage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+
+
+<h2>Bands Data</h2>
+<table class="table-bordered">
+    <tbody>
+        <tr>
+            <th>Date</th>
+            <th>Value</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(m => item.Time)</td>
+                <td>@Html.DisplayFor(m => item.Value)</td>
+            </tr>
+        }
+
+
+    </tbody>
+
+</table>

@@ -1,0 +1,87 @@
+﻿@model LeduInfo.Models.BlogPageModel
+
+@{
+    ViewBag.Title = "BLogCreate";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+}
+<script src="@Url.Content("~/Scripts/ckeditor/ckeditor.js")">
+</script>
+<link href="@Url.Content("~/Content/jquery.tagsinput.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Scripts/jquery.pin.js")"></script>
+<script src="@Url.Content("~/Scripts/jquery.tagsinput.js")"></script>
+<script src="@Url.Content("~/Scripts/jquery.tagsinput.min.js")"></script>
+<link href="@Url.Content("~/Content/mdd_styles.css")" rel="stylesheet" />
+<div class="container">
+<div class="well">
+
+ 
+@using (Html.BeginForm("BlogSubmit", "Blog", FormMethod.Post))
+{   
+    <br />
+  <p class="text-warning">Blog Title</p>
+    <div class="span6">
+  @Html.TextBoxFor(m => m.BlogTitles.Titles, new { @class = "input-xxlarge", @placeholder="Your blog title is here",@style="width: 500px"})
+        </div>
+<br />
+ <br />
+ <br />   
+  <p class="text-warning">Blog Content</p>
+   
+   @Html.TextAreaFor(m => m.BlogContents.Contents, new { @id = "editor1" });
+    <div class="mdd_toolbar" >
+    </div>
+    @Html.TextAreaFor(m => m.BlogContents.Contents, new { @cols=50, @rows=10, @class = "mdd_editor" });
+    <div class="mdd_resizer"></div>
+    <div class="mdd_preview"></div>
+    <br />
+    @Html.DisplayTextFor(m=>m.BlogAuthors.AuthorName)
+    <br />
+    @Html.HiddenFor(m=>m.Blogs.LastModified)
+    @Html.HiddenFor(m=>m.BlogAuthors.AuthorName)
+    <p>@Html.TextBoxFor(m => m.Tags.Tag, new { @id = "tag" })</p>
+<button type="submit" id="submit_btn" class="btn btn-success">Submit Blog</button>
+}
+
+
+</div>
+    </div> 
+<script src="@Url.Content("~/Scripts/MarkdownDeepEditor.min.js")"></script>
+<script src="@Url.Content("~/Scripts/MarkdownDeep.min.js")"></script>
+<script src="@Url.Content("~/Scripts/MarkdownDeepEditorUI.min.js")"></script>
+<script type="text/javascript" >
+    
+    CKEDITOR.replace("editor1");
+    
+    $(document).ready(function () {
+        
+        $('#tag').tagsInput({});
+        if ($('#tag').val().length>0) {
+
+        }
+
+        var content = CKEDITOR.instances.editor1.getData();
+        var md = MarkdownDeep.Markdown();
+        var output= md.Transform(content);
+
+    @*    $('#submit_btn').click(function () {
+            var tag_data = $('#tag').val();
+
+            $.post('@Url.Action("BlogTagSave")',
+                      {
+                          tags: tag_data,
+                      }
+              );
+          });*@
+ 
+        
+    });
+  
+    $(".mdd_editor").MarkdownDeep({
+        help_location: "~/Views/Blog/mdd_help.htm",
+        disableTabHandling: true
+
+    });
+</script>
+    
+

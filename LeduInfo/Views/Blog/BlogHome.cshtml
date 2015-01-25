@@ -1,0 +1,170 @@
+﻿@model  IEnumerable<LeduInfo.Models.BlogPageModel> 
+@using Infrustructure.Blog
+@{
+    
+    ViewBag.Title = "BlogHome";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Blog Home 2 - Modern Business - Start Bootstrap Template</title>
+
+
+</head>
+
+<body>
+
+   
+    <div class="container">
+
+          <div class="row">
+
+            <div class="col-lg-12">
+                <h1 class="page-header">Blog Home 
+                    <small>Blog Homepage</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li>@Html.ActionLink("Home","Index")
+                    </li>
+                    <li>@Html.ActionLink("Home 2", "BlogHome", new { @class = "active"})</li>
+                </ol>
+            </div>
+
+        </div>
+
+
+        <div class="row">
+           @foreach (var BlogItem in Model)
+           {
+                <div class="col-md-1">
+                <p><i class="fa fa-camera fa-4x"></i>
+                </p>
+                <p>@BlogItem.Blogs.LastModified</p>
+            </div>
+               if (BlogItem.BlogContents.Contents.Contains("<img"))
+               {
+                   int place = BlogItem.BlogContents.Contents.IndexOf("http");
+                   int endplace = BlogItem.BlogContents.Contents.LastIndexOf("jpg");
+                   int endimg=BlogItem.BlogContents.Contents.IndexOf("/>");
+                   string imgPath = BlogItem.BlogContents.Contents.Substring(place, endplace+3 - place);
+                   //imgPath += "class='img-responsive' >";
+               
+                <div class="col-md-5">
+                <a href="blog/bloghome">
+                    <img src="@imgPath" class="img-responsive">
+                </a>
+            </div>            
+               
+               <div class="col-md-6">
+                <h3><a href="blog-post.html">@BlogItem.BlogTitles.Titles</a>
+                </h3>
+                <p>by <a href="#">@BlogItem.BlogAuthors.AuthorName</a>
+                </p>
+                   @Html.Raw(BlogItem.BlogContents.Contents.Substring(endimg+2))
+                   @*@Html.Display(BlogItem.BlogContents.Contents)
+                @BlogItem.BlogContents.Contents.Substring(endplace+3)*@
+                   <a class="btn btn-primary" href="@Url.Action("BlogPost", new { @id= BlogItem.Blogs.BlogID})">Read More <i class="icon-angle-right"></i></a>
+            </div>
+               }  
+           }
+        </div>
+
+        <hr>
+
+        <div class="row">
+
+            <div class="col-md-1">
+                <p><i class="fa fa-film fa-4x"></i>
+                </p>
+                <p>May 24, 2013</p>
+            </div>
+            <div class="col-md-5">
+                <a href="blog-post.html">
+                    <img src="http://placehold.it/600x300" class="img-responsive">
+                </a>
+            </div>
+            <div class="col-md-6">
+                <h3><a href="blog-post.html">A Blog Home Template for Bootstrap 3</a>
+                </h3>
+                <p>by <a href="#">Start Bootstrap</a>
+                </p>
+                <p>This is a very basic starter template for a blog homepage. It makes use of Font Awesome icons that are built into the 'Modern Business' template, and it makes use of the Bootstrap 3 pager at the bottom of the page.</p>
+                <a class="btn btn-primary" href="blog-post.html">Read More <i class="fa fa-angle-right"></i></a>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+
+            <div class="col-md-1">
+                <p><i class="fa fa-file-text fa-4x"></i>
+                </p>
+                <p>May 24, 2013</p>
+            </div>
+            <div class="col-md-5">
+                <a href="blog-post.html">
+                    <img src="http://placehold.it/600x300" class="img-responsive">
+                </a>
+            </div>
+            <div class="col-md-6">
+                <h3><a href="blog-post.html">A Blog Home Template for Bootstrap 3</a>
+                </h3>
+                <p>by <a href="#">Start Bootstrap</a>
+                </p>
+                <p>This is a very basic starter template for a blog homepage. It makes use of Font Awesome icons that are built into the 'Modern Business' template, and it makes use of the Bootstrap 3 pager at the bottom of the page.</p>
+                <a class="btn btn-primary" href="blog-post.html">Read More <i class="fa fa-angle-right"></i></a>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+
+            <ul class="pager">
+                <li class="previous"><a href="#">&larr; Older</a>
+                </li>
+                <li class="next"><a href="#">Newer &rarr;</a>
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+    <!-- /.container -->
+
+    <div class="container">
+
+        <hr>
+
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Company 2013</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- JavaScript -->
+    <script src="@Url.Content("~/Scripts/jquery.goup.min.js")"></script>
+    <script>
+        $(document).ready(function () {
+            $.goup();
+        });
+    </script>
+</body>
+
+</html>
+

@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link href="Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <script src="Scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
+        <script src="Scripts/bootstrap.min.js"type="text/javascript"></script>
+        <script src="Scripts/tags.js"type="text/javascript"></script>        
+        <script src="http://code.highcharts.com/highcharts.js" type="text/javascript"></script>
+        <script src="http://code.highcharts.com/highcharts-more.js"></script>
+        <script src="http://code.highcharts.com/modules/exporting.js" type="text/javascript"></script>
+        <script src="http://code.highcharts.com/stock/highstock.js"></script>
+
+        <meta name="viewport" content="width=device-width" />
+		<meta charset=utf-8 />
+
+    </head>
+    <body>
+      <div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <a class="brand" href="index.htm">PBIDA</a>
+    <ul class="nav nav-pills">
+        <li class="span5"><a href=""></a></li>
+        <li><a href="Brand.htm">Brand 品牌</a></li>
+        <li><a href="Media.htm">Media 媒体</a></li>
+        <li><a href="Consumer.htm">Consumer 用户</a></li>
+        <li><a href="CloudTag.htm">TagCloud 热词云图</a></li>
+        <li><a href="SummaryReport.htm">Summary Report报表</a></li>
+    </ul>
+  </div>
+    </div>
+<div id="placeholder" style="min-width: 200px; height: 100px; margin: 0 auto"></div>
+
+<div id="body">
+<div id="container_btn" style="height: 100px; margin: 0 auto; text-align:center">
+
+    <button  id="baobo" type="button" class="btn btn-primary" >宝珀</button>
+    <button id="wanguo" type="button" class="btn btn-success">万国</button>
+    <button id="gela"type="button" class="btn btn-warning">格拉苏蒂</button>
+    <button id="jijia" type="button" class="btn btn-info">积家</button>
+    <button id="kadia" type="button" class="btn btn-success">卡地亚</button>
+    <button id="Omiga" type="button" class="btn btn-warning">欧米茄</button>
+</div>
+<span class="span2"></span>
+
+<div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+ <div id="container9" style="min-width: 400px; height: 100px; margin: 0 auto"></div>
+
+<div id="container_btn1" style="height: 100px; margin: 0 auto; text-align:center">
+
+    <button  id="baobo1" type="button" class="btn btn-primary">宝珀</button>
+    <button id="wanguo1" type="button" class="btn btn-success">万国</button>
+    <button id="gela1"type="button" class="btn btn-warning">格拉苏蒂</button>
+    <button id="jijia1" type="button" class="btn btn-info">积家</button>
+    <button id="kadia1" type="button" class="btn btn-success">卡地亚</button>
+    <button id="Omiga1" type="button" class="btn btn-warning">欧米茄</button>
+
+</div>
+<div id="container1" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+
+<script type="text/javascript" >
+
+
+//testing
+$(function () {
+        $('#container').highcharts({
+            chart: {
+                type: 'spline'
+            },
+            title: {
+                text: 'Brand Customer Awareness品牌用户关注度'
+            },
+            
+            xAxis: {
+                type: 'datetime',
+                dateTimeLabelFormats: { // don't display the dummy year
+                    month: '%e. %b',
+                    year: '%b'
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'Click Rate'
+                },
+                min: 0
+                
+            },
+            tooltip: {
+                formatter: function() {
+                        return '<b>'+ this.series.name +'</b><br/>'+
+                        Highcharts.dateFormat('%e. %b', this.x) +': '+ this.y +' Rates';
+                }
+            },
+            
+            series: [{
+                name: 'Jaeger-LeCoultre 积家 2012-2013',
+                // Define the data points. All series have a dummy year
+                // of 1970/71 in order to be compared on the same x axis. Note
+                // that in JavaScript, months start at 0 for January, 1 for February etc.
+                data: [
+                    
+                        [Date.UTC(2012,0,1),7261],
+                        [Date.UTC(2012,0,15),7297],
+                        [Date.UTC(2012,1,1),10047],
+                        [Date.UTC(2012,1,15),8206],
+                        [Date.UTC(2012,2,1),8362],
+                        [Date.UTC(2012,2,15),8915],
+                        [Date.UTC(2012,3,1),7930],
+                        [Date.UTC(2012,3,15),8056],
+                        [Date.UTC(2012,4,1),7554],
+                        [Date.UTC(2012,4,15),8346],
+                        [Date.UTC(2012,5,1),9370],
+                        [Date.UTC(2012,5,15),14483],
+                        [Date.UTC(2012,6,1),9588],
+                        [Date.UTC(2012,6,15),11462],
+                        [Date.UTC(2012,7,1),9105],
+                        [Date.UTC(2012,7,15),10464],
+                        [Date.UTC(2012,8,1),11641],
+                        [Date.UTC(2012,8,15),10976],
+                        [Date.UTC(2012,9,1),9710],
+                        [Date.UTC(2012,9,15),10877],
+                        [Date.UTC(2012,10,1),9645],
+                        [Date.UTC(2012,10,15),7955],
+                        [Date.UTC(2012,11,1),7937],
+                        [Date.UTC(2012,11,15),9103],
+                        [Date.UTC(2012,12,1),7237],
+                        [Date.UTC(2012,12,15),9117],
+                        [Date.UTC(2013,1,1),7138],
+                        [Date.UTC(2013,1,15),8482],
+                        [Date.UTC(2013,2,1),9754],
+                        [Date.UTC(2013,2,15),10368],
+                        [Date.UTC(2013,3,1),10233],
+                        [Date.UTC(2013,3,15),10791],
+                        [Date.UTC(2013,4,1),11279],
+                        [Date.UTC(2013,4,15),13170],
+                        [Date.UTC(2013,5,1),12601],
+                        [Date.UTC(2013,5,15),13571],
+                        [Date.UTC(2013,6,1),12634],
+                        [Date.UTC(2013,6,15),9262],
+                ]
+            }
+            
+            ],
+        });
+    });
+
+    // the button handler
+    $('#baobo').click(function() {
+        var chart = $('#container').highcharts();
+        if (chart.series.length != 0) {
+            chart.addSeries({
+                data: [
+                    [Date.UTC(2012,0,1),2448],
+                    [Date.UTC(2012,0,15),2442],
+                    [Date.UTC(2012,1,1),2624],
+                    [Date.UTC(2012,1,15),2496],
+                    [Date.UTC(2012,2,1),2913],
+                    [Date.UTC(2012,2,15),3109],
+                    [Date.UTC(2012,3,1),2909],
+                    [Date.UTC(2012,3,15),3276],
+                    [Date.UTC(2012,4,1),3072],
+                    [Date.UTC(2012,4,15),3338],
+                    [Date.UTC(2012,5,1),3206],
+                    [Date.UTC(2012,5,15),3046],
+                    [Date.UTC(2012,6,1),3219],
+                    [Date.UTC(2012,6,15),3578],
+                    [Date.UTC(2012,7,1),3585],
+                    [Date.UTC(2012,7,15),3738],
+                    [Date.UTC(2012,8,1),3986],
+                    [Date.UTC(2012,8,15),3421],
+                    [Date.UTC(2012,9,1),3184],
+                    [Date.UTC(2012,9,15),3981],
+                    [Date.UTC(2012,10,1),3370],
+                    [Date.UTC(2012,10,15),3133],
+                    [Date.UTC(2012,11,1),3036],
+                    [Date.UTC(2012,11,15),3307],
+                    [Date.UTC(2012,12,1),2783],
+                    [Date.UTC(2012,12,15),3229],
+                    [Date.UTC(2013,1,1),2921],
+                    [Date.UTC(2013,1,15),3139],
+                    [Date.UTC(2013,2,1),3481],
+                    [Date.UTC(2013,2,15),3515],
+                    [Date.UTC(2013,3,1),3229],
+                    [Date.UTC(2013,3,15),3451],
+                    [Date.UTC(2013,4,1),3599],
+                    [Date.UTC(2013,4,15),4199],
+                    [Date.UTC(2013,5,1),4285],
+                    [Date.UTC(2013,5,15),3796],
+                    [Date.UTC(2013,6,1),4134],
+                    [Date.UTC(2013,6,15),3040]
+                    ],
+                        name:"Blancpain 宝珀 2012-2013"
+            });
+        }
+    });
+
+    $('#gela').click(function() {
+        var chart = $('#container').highcharts();
+        if (chart.series.length != 0) {
+            chart.addSeries({
+                data: [[Date.UTC(2012,0,1),3886],
+                        [Date.UTC(2012,0,15),3825],
+                        [Date.UTC(2012,1,1),4169],
+                        [Date.UTC(2012,1,15),4264],
+                        [Date.UTC(2012,2,1),4578],
+                        [Date.UTC(2012,2,15),4623],
+                        [Date.UTC(2012,3,1),4842],
+                        [Date.UTC(2012,3,15),4556],
+                        [Date.UTC(2012,4,1),4819],
+                        [Date.UTC(2012,4,15),5232],
+                        [Date.UTC(2012,5,1),5080],
+                        [Date.UTC(2012,5,15),5250],
+                        [Date.UTC(2012,6,1),5099],
+                        [Date.UTC(2012,6,15),5716],
+                        [Date.UTC(2012,7,1),5829],
+                        [Date.UTC(2012,7,15),6128],
+                        [Date.UTC(2012,8,1),5701],
+                        [Date.UTC(2012,8,15),7773],
+                        [Date.UTC(2012,9,1),5498],
+                        [Date.UTC(2012,9,15),6031],
+                        [Date.UTC(2012,10,1),5081],
+                        [Date.UTC(2012,10,15),4690],
+                        [Date.UTC(2012,11,1),4791],
+                        [Date.UTC(2012,11,15),4713],
+                        [Date.UTC(2012,12,1),4451],
+                        [Date.UTC(2012,12,15),5079],
+                        [Date.UTC(2013,1,1),4359],
+                        [Date.UTC(2013,1,15),5023],
+                        [Date.UTC(2013,2,1),5187],
+                        [Date.UTC(2013,2,15),5121],
+                        [Date.UTC(2013,3,1),4904],
+                        [Date.UTC(2013,3,15),5307],
+                        [Date.UTC(2013,4,1),5219],
+                        [Date.UTC(2013,4,15),5870],
+                        [Date.UTC(2013,5,1),5539],
+                        [Date.UTC(2013,5,15),5559],
+                        [Date.UTC(2013,6,1),5617],
+                        [Date.UTC(2013,6,15),4619]],
+                        name:"Glashütte Original 格拉苏蒂指数 2012-2013"
+            });
+        }
+    });
+
+    $('#wanguo').click(function() {
+        var chart = $('#container').highcharts();
+        if (chart.series.length != 0) {
+            chart.addSeries({
+                data: [[Date.UTC(2012,0,1),0],
+                    [Date.UTC(2012,0,15),0],
+                    [Date.UTC(2012,1,1),0],
+                    [Date.UTC(2012,1,15),0],
+                    [Date.UTC(2012,2,1),0],
+                    [Date.UTC(2012,2,15),0],
+                    [Date.UTC(2012,3,1),0],
+                    [Date.UTC(2012,3,15),0],
+                    [Date.UTC(2012,4,1),0],
+                    [Date.UTC(2012,4,15),0],
+                    [Date.UTC(2012,5,1),0],
+                    [Date.UTC(2012,5,15),0],
+                    [Date.UTC(2012,6,1),0],
+                    [Date.UTC(2012,6,15),0],
+                    [Date.UTC(2012,7,1),0],
+                    [Date.UTC(2012,7,15),0],
+                    [Date.UTC(2012,8,1),0],
+                    [Date.UTC(2012,8,15),0],
+                    [Date.UTC(2012,9,1),0],
+                    [Date.UTC(2012,9,15),0],
+                    [Date.UTC(2012,10,1),0],
+                    [Date.UTC(2012,10,15),0],
+                    [Date.UTC(2012,11,1),0],
+                    [Date.UTC(2012,11,15),2614],
+                    [Date.UTC(2012,12,1),6747],
+                    [Date.UTC(2012,12,15),7718],
+                    [Date.UTC(2013,1,1),5692],
+                    [Date.UTC(2013,1,15),6470],
+                    [Date.UTC(2013,2,1),7551],
+                    [Date.UTC(2013,2,15),8268],
+                    [Date.UTC(2013,3,1),7556],
+                    [Date.UTC(2013,3,15),7454],
+                    [Date.UTC(2013,4,1),8600],
+                    [Date.UTC(2013,4,15),9968],
+                    [Date.UTC(2013,5,1),8813],
+                    [Date.UTC(2013,5,15),8447],
+                    [Date.UTC(2013,6,1),9134],
+                    [Date.UTC(2013,6,15),10422]],
+                    name:"IWC万国 2012-2013"
+            });
+        }
+    });
+
+    $('#Omiga').click(function() {
+        var chart = $('#container').highcharts();
+        if (chart.series.length !=0) {
+            chart.addSeries({
+                data: [[Date.UTC(2012,0,1),20259],
+                        [Date.UTC(2012,0,15),19338],
+                        [Date.UTC(2012,1,1),25263],
+                        [Date.UTC(2012,1,15),26337],
+                        [Date.UTC(2012,2,1),27539],
+                        [Date.UTC(2012,2,15),24474],
+                        [Date.UTC(2012,3,1),22666],
+                        [Date.UTC(2012,3,15),24990],
+                        [Date.UTC(2012,4,1),26803],
+                        [Date.UTC(2012,4,15),29408],
+                        [Date.UTC(2012,5,1),27760],
+                        [Date.UTC(2012,5,15),25229],
+                        [Date.UTC(2012,6,1),26280],
+                        [Date.UTC(2012,6,15),33708],
+                        [Date.UTC(2012,7,1),44140],
+                        [Date.UTC(2012,7,15),53613],
+                        [Date.UTC(2012,8,1),48286],
+                        [Date.UTC(2012,8,15),41910],
+                        [Date.UTC(2012,9,1),39920],
+                        [Date.UTC(2012,9,15),36705],
+                        [Date.UTC(2012,10,1),29086],
+                        [Date.UTC(2012,10,15),26039],
+                        [Date.UTC(2012,11,1),24909],
+                        [Date.UTC(2012,11,15),21315],
+                        [Date.UTC(2012,12,1),18814],
+                        [Date.UTC(2012,12,15),26042],
+                        [Date.UTC(2013,1,1),19521],
+                        [Date.UTC(2013,1,15),20145],
+                        [Date.UTC(2013,2,1),25367],
+                        [Date.UTC(2013,2,15),23217],
+                        [Date.UTC(2013,3,1),28286],
+                        [Date.UTC(2013,3,15),36478],
+                        [Date.UTC(2013,4,1),35926],
+                        [Date.UTC(2013,4,15),27937],
+                        [Date.UTC(2013,5,1),33901],
+                        [Date.UTC(2013,5,15),33890],
+                        [Date.UTC(2013,6,1),29250],
+                        [Date.UTC(2013,6,15),20580]],
+                        name:"Omega 欧米茄 2012-2013"
+            });
+        }
+    });
+
+    $('#kadia').click(function() {
+        var chart = $('#container').highcharts();
+        if (chart.series.length !=0) {
+            chart.addSeries({
+                data: [[Date.UTC(2012,0,1),41883],
+                        [Date.UTC(2012,0,15),39046],
+                        [Date.UTC(2012,1,1),58157],
+                        [Date.UTC(2012,1,15),44607],
+                        [Date.UTC(2012,2,1),52359],
+                        [Date.UTC(2012,2,15),48433],
+                        [Date.UTC(2012,3,1),42079],
+                        [Date.UTC(2012,3,15),45955],
+                        [Date.UTC(2012,4,1),46549],
+                        [Date.UTC(2012,4,15),49512],
+                        [Date.UTC(2012,5,1),43721],
+                        [Date.UTC(2012,5,15),37221],
+                        [Date.UTC(2012,6,1),44585],
+                        [Date.UTC(2012,6,15),48233],
+                        [Date.UTC(2012,7,1),50851],
+                        [Date.UTC(2012,7,15),55124],
+                        [Date.UTC(2012,8,1),41982],
+                        [Date.UTC(2012,8,15),39349],
+                        [Date.UTC(2012,9,1),36926],
+                        [Date.UTC(2012,9,15),45852],
+                        [Date.UTC(2012,10,1),39581],
+                        [Date.UTC(2012,10,15),36948],
+                        [Date.UTC(2012,11,1),35278],
+                        [Date.UTC(2012,11,15),37231],
+                        [Date.UTC(2012,12,1),40367],
+                        [Date.UTC(2012,12,15),47167],
+                        [Date.UTC(2013,1,1),34918],
+                        [Date.UTC(2013,1,15),41903],
+                        [Date.UTC(2013,2,1),42275],
+                        [Date.UTC(2013,2,15),43529],
+                        [Date.UTC(2013,3,1),42021],
+                        [Date.UTC(2013,3,15),45070],
+                        [Date.UTC(2013,4,1),42921],
+                        [Date.UTC(2013,4,15),50553],
+                        [Date.UTC(2013,5,1),44201],
+                        [Date.UTC(2013,5,15),44372],
+                        [Date.UTC(2013,6,1),50413],
+                        [Date.UTC(2013,6,15),40481]],
+                        name:"Cartier 卡地亚 2012-2013"
+            });
+        }
+    });
+
+
+//spider compare
+
+$(function () {
+
+    $('#container1').highcharts({
+                
+        chart: {
+            polar: true,
+            type: 'line'
+        },
+        
+        title: {
+            text: 'Brand Analysis 品牌自我定位',
+            x: -80
+        },
+        
+        pane: {
+            size: '80%'
+        },
+        
+        xAxis: {
+            categories: ['优雅','激情','运动','奢华','年轻','经典','创新'],
+            tickmarkPlacement: 'on',
+            lineWidth: 0
+        },
+            
+        yAxis: {
+            gridLineInterpolation: 'polygon',
+            lineWidth: 0,
+            min: 0
+        },
+        
+        tooltip: {
+            shared: true,
+            pointFormat: '<span style="color:{series.color}">{series.name}: <b>${point.y:,.0f}</b><br/>'
+        },
+        
+        legend: {
+            align: 'right',
+            verticalAlign: 'top',
+            y: 100,
+            layout: 'vertical'
+        },
+        
+        series: [{
+            name: 'Jaeger-LeCoultre 积家',
+            data: [237,56,123,205,68,385,263],
+            pointPlacement: 'on'
+        }]
+    
+    });
+});
+
+
+    $('#baobo1').click(function() {
+        var chart = $('#container1').highcharts();
+        if (chart.series.length != 0) {
+            chart.addSeries({
+                data: [250,60,484,232,16,597,208],
+                        name:"Blancpain 宝珀 2012-2013"
+            });
+        }
+    });
+
+    $('#gela1').click(function() {
+        var chart = $('#container1').highcharts();
+        if (chart.series.length != 0) {
+            chart.addSeries({
+                data: [109,9,30,152,20,269,63],
+                        name:"Glashütte Original 格拉苏蒂指数 2012-2013"
+            });
+        }
+    });
+
+    $('#wanguo1').click(function() {
+        var chart = $('#container1').highcharts();
+        if (chart.series.length != 0) {
+            chart.addSeries({
+                data: [88,36,459,47,20,171,152],
+                    name:"IWC万国 2012-2013"
+            });
+        }
+    });
+
+    $('#Omiga1').click(function() {
+        var chart = $('#container1').highcharts();
+        if (chart.series.length !=0) {
+            chart.addSeries({
+                data: [228,192,514,239,40,202,259],
+                        name:"Omega 欧米茄 2012-2013"
+            });
+        }
+    });
+
+    $('#kadia1').click(function() {
+        var chart = $('#container1').highcharts();
+        if (chart.series.length !=0) {
+            chart.addSeries({
+                data: [221,183,58,556,57,310,135],
+                        name:"Cartier 卡地亚 2012-2013"
+            });
+        }
+    });
+
+//could be used
+
+</script>
+
+    </body>
+</html>

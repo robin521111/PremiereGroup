@@ -1,0 +1,373 @@
+﻿@{
+    ViewBag.Title = "Charts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Charts</h2>
+
+@*        <script src="@Url.Content("http://github.highcharts.com/v3.0Beta/highcharts.js")" type="text/javascript"></script>*@
+        <script src="@Url.Content("http://code.highcharts.com/highcharts.js")" type="text/javascript"></script>
+        @*<script src="@Url.Content("~/Scripts/jquery-1.9.1.min.js")" type="text/javascript"></script>*@
+        <script src="@Url.Content("http://code.highcharts.com/modules/exporting.js")" type="text/javascript"></script>
+        
+
+        @*<div id="container" style="height: 300px"></div>*@
+
+<div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+<div id="container1" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+<div id="container2" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+
+<script type="text/javascript" >
+    $(function () {
+        $('#container').highcharts({
+            chart: {
+                type: 'spline'
+            },
+            title: {
+                text: 'Snow depth in the Vikjafjellet mountain, Norway'
+            },
+            subtitle: {
+                text: 'An example of irregular time data in Highcharts JS'
+            },
+            xAxis: {
+                type: 'datetime',
+                dateTimeLabelFormats: { // don't display the dummy year
+                    month: '%e. %b',
+                    year: '%b'
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'Click Rate '
+                },
+                min: 0
+            },
+            tooltip: {
+                formatter: function () {
+                    return '<b>' + this.series.name + '</b><br/>' +
+                    Highcharts.dateFormat('%e. %b', this.x) + ': ' + this.y + ' m';
+                }
+            },
+
+            series: [{
+                name: '积家',
+                // Define the data points. All series have a dummy year
+                // of 1970/71 in order to be compared on the same x axis. Note
+                // that in JavaScript, months start at 0 for January, 1 for February etc.
+                data: [
+                    [Date.UTC(1970, 9, 27), 0],
+                    [Date.UTC(1970, 10, 10), 0.6],
+                    [Date.UTC(1970, 10, 18), 0.7],
+                    [Date.UTC(1970, 11, 2), 0.8],
+                    [Date.UTC(1970, 11, 9), 0.6],
+                    [Date.UTC(1970, 11, 16), 0.6],
+                    [Date.UTC(1970, 11, 28), 0.67],
+                    [Date.UTC(1971, 0, 1), 0.81],
+                    [Date.UTC(1971, 0, 8), 0.78],
+                    [Date.UTC(1971, 0, 12), 0.98],
+                    [Date.UTC(1971, 0, 27), 1.84],
+                    [Date.UTC(1971, 1, 10), 1.80],
+                    [Date.UTC(1971, 1, 18), 1.80],
+                    [Date.UTC(1971, 1, 24), 1.92],
+                    [Date.UTC(1971, 2, 4), 2.49],
+                    [Date.UTC(1971, 2, 11), 2.79],
+                    [Date.UTC(1971, 2, 15), 2.73],
+                    [Date.UTC(1971, 2, 25), 2.61],
+                    [Date.UTC(1971, 3, 2), 2.76],
+                    [Date.UTC(1971, 3, 6), 2.82],
+                    [Date.UTC(1971, 3, 13), 2.8],
+                    [Date.UTC(1971, 4, 3), 2.1],
+                    [Date.UTC(1971, 4, 26), 1.1],
+                    [Date.UTC(1971, 5, 9), 0.25],
+                    [Date.UTC(1971, 5, 12), 0]
+                ]
+            }, {
+                name: '宝珀',
+                data: [
+                    [Date.UTC(1970, 9, 18), 0],
+                    [Date.UTC(1970, 9, 26), 0.2],
+                    [Date.UTC(1970, 11, 1), 0.47],
+                    [Date.UTC(1970, 11, 11), 0.55],
+                    [Date.UTC(1970, 11, 25), 1.38],
+                    [Date.UTC(1971, 0, 8), 1.38],
+                    [Date.UTC(1971, 0, 15), 1.38],
+                    [Date.UTC(1971, 1, 1), 1.38],
+                    [Date.UTC(1971, 1, 8), 1.48],
+                    [Date.UTC(1971, 1, 21), 1.5],
+                    [Date.UTC(1971, 2, 12), 1.89],
+                    [Date.UTC(1971, 2, 25), 2.0],
+                    [Date.UTC(1971, 3, 4), 1.94],
+                    [Date.UTC(1971, 3, 9), 1.91],
+                    [Date.UTC(1971, 3, 13), 1.75],
+                    [Date.UTC(1971, 3, 19), 1.6],
+                    [Date.UTC(1971, 4, 25), 0.6],
+                    [Date.UTC(1971, 4, 31), 0.35],
+                    [Date.UTC(1971, 5, 7), 0]
+                ]
+            }, {
+                name: '格拉苏蒂',
+                data: [
+                    [Date.UTC(1970, 9, 9), 1],
+                    [Date.UTC(1970, 9, 14), 1.15],
+                    [Date.UTC(1970, 10, 28), 1.35],
+                    [Date.UTC(1970, 11, 12), 1.46],
+                    [Date.UTC(1971, 0, 1), 1.59],
+                    [Date.UTC(1971, 0, 24), 0.7],
+                    [Date.UTC(1971, 1, 1), 0.8],
+                    [Date.UTC(1971, 1, 7), 0.5],
+                    [Date.UTC(1971, 1, 23), 0.22],
+                    [Date.UTC(1971, 2, 8), 0.45],
+                    [Date.UTC(1971, 2, 14), 0.76],
+                    [Date.UTC(1971, 2, 24), 0.85],
+                    [Date.UTC(1971, 3, 4), 0.81],
+                    [Date.UTC(1971, 3, 18), 0.95],
+                    [Date.UTC(1971, 3, 24), 0.57],
+                    [Date.UTC(1971, 4, 16), 0.89],
+                    [Date.UTC(1971, 4, 21), 0]
+                ]
+            },
+             {
+                 name: '万国',
+                 data: [
+                     [Date.UTC(1970, 9, 9), 0],
+                    [Date.UTC(1970, 9, 14), 0.15],
+                    [Date.UTC(1970, 10, 28), 0.35],
+                    [Date.UTC(1970, 11, 12), 0.46],
+                    [Date.UTC(1971, 0, 1), 0.59],
+                    [Date.UTC(1971, 0, 24), 0.58],
+                    [Date.UTC(1971, 1, 1), 0.62],
+                    [Date.UTC(1971, 1, 7), 0.65],
+                    [Date.UTC(1971, 1, 23), 0.77],
+                    [Date.UTC(1971, 2, 8), 0.77],
+                    [Date.UTC(1971, 2, 14), 0.79],
+                    [Date.UTC(1971, 2, 24), 0.86],
+                    [Date.UTC(1971, 3, 4), 0.8],
+                    [Date.UTC(1971, 3, 18), 0.94],
+                    [Date.UTC(1971, 3, 24), 0.9],
+                    [Date.UTC(1971, 4, 16), 0.39],
+                    [Date.UTC(1971, 4, 21), 0]
+                 ]
+             },
+            {
+                name: '卡地亚',
+                data: [
+                    [Date.UTC(1970, 9, 9), 0],
+                    [Date.UTC(1970, 9, 14), 0.15],
+                    [Date.UTC(1970, 10, 28), 0.35],
+                    [Date.UTC(1970, 11, 12), 0.46],
+                    [Date.UTC(1971, 0, 1), 0.59],
+                    [Date.UTC(1971, 0, 24), 0.58],
+                    [Date.UTC(1971, 1, 1), 0.62],
+                    [Date.UTC(1971, 1, 7), 0.65],
+                    [Date.UTC(1971, 1, 23), 0.77],
+                    [Date.UTC(1971, 2, 8), 0.77],
+                    [Date.UTC(1971, 2, 14), 0.79],
+                    [Date.UTC(1971, 2, 24), 0.86],
+                    [Date.UTC(1971, 3, 4), 0.8],
+                    [Date.UTC(1971, 3, 18), 0.94],
+                    [Date.UTC(1971, 3, 24), 0.9],
+                    [Date.UTC(1971, 4, 16), 0.39],
+                    [Date.UTC(1971, 4, 21), 0]
+                ]
+            },
+                {
+                    name: '欧米茄',
+                    data: [
+                        [Date.UTC(1970, 9, 9), 0],
+                    [Date.UTC(1970, 9, 14), 0.15],
+                    [Date.UTC(1970, 10, 28), 0.35],
+                    [Date.UTC(1970, 11, 12), 0.46],
+                    [Date.UTC(1971, 0, 1), 0.59],
+                    [Date.UTC(1971, 0, 24), 0.58],
+                    [Date.UTC(1971, 1, 1), 0.62],
+                    [Date.UTC(1971, 1, 7), 0.65],
+                    [Date.UTC(1971, 1, 23), 0.77],
+                    [Date.UTC(1971, 2, 8), 0.77],
+                    [Date.UTC(1971, 2, 14), 0.79],
+                    [Date.UTC(1971, 2, 24), 0.86],
+                    [Date.UTC(1971, 3, 4), 0.8],
+                    [Date.UTC(1971, 3, 18), 0.94],
+                    [Date.UTC(1971, 3, 24), 0.9],
+                    [Date.UTC(1971, 4, 16), 0.39],
+                    [Date.UTC(1971, 4, 21), 0]
+                    ]
+                }
+            ]
+        });
+    });
+
+    //饼状图
+    $(function () {
+        
+        // Radialize the colors
+        Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function (color) {
+            return {
+                radialGradient: { cx: 0.5, cy: 0.3, r: 0.7 },
+                stops: [
+		            [0, color],
+		            [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
+                ]
+            };
+        });
+
+        // Build the chart
+        $('#container1').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: 'Browser market shares at a specific website, 2010'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        color: '#000000',
+                        connectorColor: '#000000',
+                        formatter: function () {
+                            return '<b>' + this.point.name + '</b>: ' + this.percentage + ' %';
+                        }
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'Browser share',
+                data: [
+                    ['积家', 45.0],
+                    ['宝珀', 26.8],
+                    {
+                        name: '万国',
+                        y: 12.8,
+                        sliced: true,
+                        selected: true
+                    },
+                    ['卡地亚', 8.5],
+                    ['格拉苏蒂', 6.2],
+                    ['欧米茄', 0.7]
+                ]
+            }]
+        });
+    });
+
+    //动态图
+    $(function () {
+        $(document).ready(function () {
+            Highcharts.setOptions({
+                global: {
+                    useUTC: false
+                }
+            });
+
+            var chart;
+            $('#container2').highcharts({
+                chart: {
+                    type: 'spline',
+                    animation: Highcharts.svg, // don't animate in old IE
+                    marginRight: 10,
+                    events: {
+                        load: function () {
+
+                            // set up the updating of the chart each second
+                            var series = this.series[0];
+                            setInterval(function () {
+                                var x = (new Date()).getTime(), // current time
+                                    y = Math.random();
+                                series.addPoint([x, y], true, true);
+                            }, 1000);
+                        }
+                    }
+                },
+                title: {
+                    text: 'Live random data'
+                },
+                xAxis: {
+                    type: 'datetime',
+                    tickPixelInterval: 150
+                },
+                yAxis: {
+                    title: {
+                        text: 'Value'
+                    },
+                    plotLines: [{
+                        value: 0,
+                        width: 1,
+                        color: '#808080'
+                    }]
+                },
+                tooltip: {
+                    formatter: function () {
+                        return '<b>' + this.series.name + '</b><br/>' +
+                        Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
+                        Highcharts.numberFormat(this.y, 2);
+                    }
+                },
+                legend: {
+                    enabled: false
+                },
+                exporting: {
+                    enabled: false
+                },
+                series: [{
+                    name: 'Random data',
+                    data: (function () {
+                        // generate an array of random data
+                        var data = [],
+                            time = (new Date()).getTime(),
+                            i;
+
+                        for (i = -19; i <= 0; i++) {
+                            data.push({
+                                x: time + i * 1000,
+                                y: Math.random()
+                            });
+                        }
+                        return data;
+                    })()
+                }]
+            });
+        });
+
+    });
+</script>
+
+
+
+
+<div class="tabbable"> <!-- Only required for left/right tabs -->
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#tab1" data-toggle="tab">积家</a></li>
+    <li><a href="#tab2" data-toggle="tab">宝珀</a></li>
+    <li ><a href="#tab3" data-toggle="tab">万国</a></li>
+    <li><a href="#tab4" data-toggle="tab">卡地亚</a></li>
+     <li ><a href="#tab5" data-toggle="tab">格拉苏蒂</a></li>
+    <li><a href="#tab6" data-toggle="tab">欧米茄</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="tab1">
+      <p> <iframe src="http://index.baidu.com/export/get_search_news_data.php?q=%E7%A7%AF%E5%AE%B6&len=m&rg=0&w=458&h=270&chk=a8c1b2977a1fb2e9d3028a0f7ca0da09" frameborder="0" width="488" height="330" scrolling="no"></iframe></p>
+    </div>
+    <div class="tab-pane" id="tab2">
+      <p><iframe src="http://index.baidu.com/export/get_search_news_data.php?q=%E5%AE%9D%E7%8F%80&len=m&rg=0&w=458&h=270&chk=2a74fa5cff9ca3be3af1138b998e479d" frameborder="0" width="488" height="330" scrolling="no"></iframe></p>
+    </div>
+        <div class="tab-pane" id="tab3">
+      <p><iframe src="http://index.baidu.com/export/get_search_news_data.php?q=%E4%B8%87%E5%9B%BD&len=m&rg=0&w=458&h=270&chk=5601134b75760934c37e65b2b10a28db" frameborder="0" width="488" height="330" scrolling="no"></iframe></p>
+    </div>
+        <div class="tab-pane" id="tab4">
+      <p><iframe src="http://index.baidu.com/export/get_search_news_data.php?q=%E5%AE%9D%E7%8F%80&len=m&rg=0&w=458&h=270&chk=2a74fa5cff9ca3be3af1138b998e479d" frameborder="0" width="488" height="330" scrolling="no"></iframe></p>
+    </div>
+        <div class="tab-pane" id="tab5">
+      <p><iframe src="http://index.baidu.com/export/get_search_news_data.php?q=%E5%AE%9D%E7%8F%80&len=m&rg=0&w=458&h=270&chk=2a74fa5cff9ca3be3af1138b998e479d" frameborder="0" width="488" height="330" scrolling="no"></iframe></p>
+    </div>
+        <div class="tab-pane" id="tab6">
+      <p><iframe src="http://index.baidu.com/export/get_search_news_data.php?q=%E5%AE%9D%E7%8F%80&len=m&rg=0&w=458&h=270&chk=2a74fa5cff9ca3be3af1138b998e479d" frameborder="0" width="488" height="330" scrolling="no"></iframe></p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,48 @@
+﻿@model IEnumerable<LeduInfo.Models.HouseInfo>
+
+@{
+    ViewBag.Title = "HouseList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>HouseList</h2>
+
+
+<table class="table table-hover">
+<caption></caption>
+  <thead>
+    <tr>
+      <th>Rented or Not</th>
+      <th>House Style</th>
+      <th>Address</th>
+    </tr>
+  </thead>
+ 
+<tbody>
+@foreach (var item in Model)
+{
+    <tr>
+ <div class="btn-toolbar">
+ 
+</div>
+<td>
+<a class="btn btn-large" href="#"><i class="icon-star"></i></a>
+@Html.DisplayFor(model => item.rented)
+</td>
+<td>
+@Html.DisplayFor(model => item.houseStyleID )
+</td>
+<td>
+<address>
+@Html.DisplayFor(model => item.Address)
+</address>
+
+</td>
+</tr>
+}
+
+  </tbody>
+
+  
+</table>
+<p>@Html.ActionLink("Add a new one", "AddNewInfo", null, "House") <span class="span1">     </span> @Html.ActionLink("Back to Home", "BackToHome", null, "House")</p>

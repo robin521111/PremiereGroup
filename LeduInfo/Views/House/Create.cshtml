@@ -1,0 +1,67 @@
+﻿@model LeduInfo.Models.HouseInfo
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>HouseInfo</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Address)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Address)
+            @Html.ValidationMessageFor(model => model.Address)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ownerID)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ownerID)
+            @Html.ValidationMessageFor(model => model.ownerID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.renterID)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.renterID)
+            @Html.ValidationMessageFor(model => model.renterID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.rented)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.rented)
+            @Html.ValidationMessageFor(model => model.rented)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.houseStyleID)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.houseStyleID)
+            @Html.ValidationMessageFor(model => model.houseStyleID)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Script.Render("~/bundles/jqueryval")
+}

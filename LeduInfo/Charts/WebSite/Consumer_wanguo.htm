@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link href="Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <script src="Scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
+        <script src="Scripts/bootstrap.min.js"type="text/javascript"></script>
+        <script src="http://code.highcharts.com/highcharts.js" type="text/javascript"></script>
+        <script src="http://code.highcharts.com/highcharts-more.js"></script>
+        <script src="http://code.highcharts.com/modules/exporting.js" type="text/javascript"></script>
+        <meta name="viewport" content="width=device-width" />
+		<meta charset=utf-8 />
+
+    </head>
+    <body>
+      <div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <a class="brand" href="index.htm">PBIDA</a>
+    <ul class="nav nav-pills">
+        <li class="span5"><a href=""></a></li>
+        <li><a href="Brand.htm">Brand 品牌</a></li>
+        <li><a href="Media.htm">Media 媒体</a></li>
+        <li><a href="Consumer.htm">Consumer 用户</a></li>
+        <li><a href="CloudTag.htm">TagCloud 热词云图</a></li>
+        <li><a href="SummaryReport.htm">Summary Report报表</a></li>
+    </ul>
+  </div>
+    </div>
+<div id="placeholder" style="min-width: 200px; height: 100px; margin: 0 auto"></div>
+
+<div id="body">
+ 
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">select brands you want to compare</h3>
+  </div>
+  <div class="modal-body">
+    <div class="btn-group" data-toggle="buttons-checkbox">
+    <span class="span2"><button type="button" class="btn btn-primary">Left</button></span>
+    <span class="span2"><button type="button" class="btn btn-success">Left</button></span>
+    <span class="span2"><button type="button" class="btn btn-warning">Left</button></span>
+</br>
+    <span class="span2"><button type="button" class="btn btn-info">Left</button></span>
+    <span class="span2"><button type="button" class="btn btn-success">Left</button></span>
+    <span class="span2"><button type="button" class="btn btn-warning">Left</button></span>
+</br>
+    <span class="span2"><button type="button" class="btn btn-danger">Left</button></span>
+</div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <button class="btn btn-primary">Load data</button>
+  </div>
+</div>
+</div>
+            <div class="btn-group" >
+
+              <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                please select your data for display: 
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+				<li><a href="Consumer_baobo.htm">Blancpain 宝珀</a><li>
+                <li><a href="">Bvlgari 宝格丽</a><li>
+                <li><a href="">Hublot 宇舶</a><li>
+                <li><a href="Consumer_wanguo.htm">IWC 万国</a><li>
+                <li><a href="Consumer_jijia.htm">Jaeger-LeCoultre 积家</a><li>
+                <li><a href="Consumer_gela.htm">Glashutte 格拉苏蒂</a><li>
+                <li><a href="Consumer_kadia.htm">Cartier 卡地亚</a><li>
+                <li><a href="Consumer_omiga.htm">Omega 欧米茄</a><li>
+                <li><a href="">Patek Philippe 百达翡丽</a><li>
+                <li><a href="">Piaget 伯爵</a><li>
+                <li><a href="">TAG Heuer 豪雅</a><li>
+                <li><a href="">Tiffany 蒂芙尼</a><li>
+                <li><a href="">VanCleef&Arpels 梵克雅宝</a><li>
+                <li><a href="Consumer_Compare.htm" >品牌数据对比</a></li>
+
+           </ul>
+            </div>
+<div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+
+<div id="container2" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+<div id="container3" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+<div id="container4" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+<div id="container5" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+
+        
+
+ 
+<style type="text/css">
+
+#tagsList {position:relative; width:100px; height:100px;   margin: 100px auto 0; }
+
+#tagsList a {position:absolute; top:0px; left:0px; font-family: Microsoft YaHei; color:D1D8EA; font-weight:bold; text-decoration:none; padding: 3px 6px; }
+
+#tagsList a:hover { color:#FF0000; letter-spacing:2px;}
+
+ li .active {
+    padding-left: 200px;
+ }
+    
+</style>
+
+
+<script type="text/javascript" >
+ //spider column
+
+
+
+$(function () {
+        $('#container').highcharts({
+            chart: {
+                type: 'column',
+                margin: [ 50, 50, 100, 80]
+            },
+            title: {
+                text: 'Location地区分布'
+            },
+            xAxis: {
+                categories: [
+                            '北京',
+                            '上海',
+                            '广东',
+                            '其他',
+                            '海外',
+                            '浙江',
+                            '江苏',
+                            '福建',
+                            '四川',
+                            '香港',
+                            '山东',
+                            '辽宁',
+                            '天津',
+                            '湖北',
+                            '安徽',
+                            '湖南',
+                            '河南',
+                            '陕西',
+                            '河北',
+                            '黑龙江',
+                            '云南',
+                            '广西',
+                            '重庆',
+                            '吉林',
+                            '山西',
+                            '内蒙',
+                            '甘肃',
+                            '江西',
+                            '贵州',
+                            '新疆',
+                            '澳门',
+                            '海南',
+                            '台湾',
+                            '宁夏',
+                            '西藏',
+                            '青海',
+                ],
+                labels: {
+                    rotation: -45,
+                    align: 'right',
+                    style: {
+                        fontSize: '13px',
+                        fontFamily: 'Verdana, sans-serif'
+                    }
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Population (millions)'
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            tooltip: {
+                pointFormat: 'Population in 2008: <b>{point.y:.1f} millions</b>',
+            },
+            series: [{
+                name: 'Population',
+                data: [12.64,11.98,11.64,8.65,8.25,5.72,4.92,3.19,3.06,2.73,2.59,2.46,2.46,2.20,1.60,1.53,1.40,1.40,1.33,1.20,1.20,1.06,0.86,0.73,0.73,0.67,0.60,0.60,0.53,0.47,0.40,0.33,0.33,0.20,0.20,0.13],
+                dataLabels: {
+                    enabled: true,
+                    rotation: -90,
+                    color: '#FFFFFF',
+                    align: 'right',
+                    x: 4,
+                    y: 10,
+                    style: {
+                        fontSize: '13px',
+                        fontFamily: 'Verdana, sans-serif',
+                        textShadow: '0 0 3px black'
+                    }
+                }
+            }]
+        });
+    });
+
+
+
+/*
+//Customer Analysis 用户分析
+
+ $(function () { 
+        
+        // Build the chart 
+        $('#container1').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: 'Customer Analysis 用户分析'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        color: '#000000',
+                        connectorColor: '#000000',
+                        formatter: function () {
+                            return '<b>' + this.point.name + '</b>: ' + this.percentage + ' %';
+                        }
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'Marketing share',
+                data: [
+                   
+                    {
+                        name: '女性用户比重',
+                        y: 34.49,
+                        sliced: true,
+                        selected: true
+                    },
+                    
+                    ['男性用户比重', 65.51]
+                ]
+            }]
+        });
+    });
+*/
+//Gender性别
+    $(function () { 
+        
+        // Build the chart 
+        $('#container2').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: 'Gender性别'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        color: '#000000',
+                        connectorColor: '#000000',
+                        formatter: function () {
+                            return '<b>' + this.point.name + '</b>: ' + this.percentage + ' %';
+                        }
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'Marketing share',
+                data: [
+                   
+                    {
+                        name: '女性用户比重',
+                        y: 30.30,
+                        sliced: true,
+                        selected: true
+                    },
+                    
+                    ['男性用户比重', 69.70]
+                ]
+            }]
+        });
+    });
+
+    //年龄
+    $(function () {
+     
+        // Build the chart 
+        $('#container3').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: 'Age年龄'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        color: '#000000',
+                        connectorColor: '#000000',
+                        formatter: function () {
+                            return '<b>' + this.point.name + '</b>: ' + this.percentage + ' %';
+                        }
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'Marketing share',
+                data: [
+                    ['10-19', 4.02],
+                    ['20-29', 25.29],
+                    {
+                        name: '30-39',
+                        y:57.47,
+                        sliced: true,
+                        selected: true
+                    },
+                    ['40-49',9.77],
+                    ['50-59', 3.45],
+                    
+                ]
+            }]
+        });
+    });
+
+    //Education教育
+    $(function () {
+     
+        // Build the chart 
+        $('#container4').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: 'Education教育'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        color: '#000000',
+                        connectorColor: '#000000',
+                        formatter: function () {
+                            return '<b>' + this.point.name + '</b>: ' + this.percentage + ' %';
+                        }
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'Marketing share',
+                data: [
+                    ['小学', 11.57],
+                    ['大专', 21.90],
+                    {
+                        name: '初中',
+                        y: 6.20,
+                        sliced: true,
+                        selected: true
+                    },
+                    ['高中', 19.01],
+                    ['本科及以上',41.32]
+                  
+                ]
+            }]
+        });
+    });
+
+    //职业
+    $(function () {
+        
+        // Radialize the colors
+      
+        // Build the chart 
+        $('#container5').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: 'Industry行业'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        color: '#000000',
+                        connectorColor: '#000000',
+                        formatter: function () {
+                            return '<b>' + this.point.name + '</b>: ' + this.percentage + ' %';
+                        }
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'Marketing share',
+                data: [
+                    ['汽车',6.14],
+                    ['电信/网络', 8.18],
+                    {
+                        name: '传媒/娱乐',
+                        y:5.91,
+                        sliced: true,
+                        selected: true
+                    },
+                    ['能源/采矿',5.91],
+                    ['政府/公共服务', 13.63],
+                    ['IT', 22.73],
+                    ['其它',7.73],
+                    ['建筑',13.64],
+                    ['金融/房产',16.14]
+                  
+                ]
+            }]
+        });
+    });
+
+   
+//pie chart no.1 
+
+
+</script>
+
+    </body>
+</html>

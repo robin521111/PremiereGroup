@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link href="Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <script src="Scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
+        <script src="Scripts/bootstrap.min.js"type="text/javascript"></script>
+        <script src="Scripts/tags.js"type="text/javascript"></script>
+        <meta name="viewport" content="width=device-width" />
+		<meta charset=utf-8 />
+
+    </head>
+    <body>
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <a class="brand" href="index.htm">PBIDA</a>
+    <ul class="nav nav-pills">
+        <li class="span5"><a href=""></a></li>
+        <li><a href="Brand.htm">Brand 品牌</a></li>
+        <li><a href="Media.htm">Media 媒体</a></li>
+        <li><a href="Consumer.htm">Consumer 用户</a></li>
+        <li><a href="CloudTag.htm">TagCloud 热词云图</a></li>
+        <li><a href="SummaryReport.htm">Summary Report报表</a></li>
+    </ul>
+  </div>
+    </div>         
+                 
+<h2>Charts</h2>
+            <div class="btn-group" >
+              <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                 please select brand for display:
+                <span class="caret"></span>
+              </a>
+             <ul class="dropdown-menu">
+
+                <li><a href="Media_baobo.htm">Blancpain 宝珀</a><li>
+                <li><a href="">Bvlgari 宝格丽</a><li>
+                <li><a href="">Hublot 宇舶</a><li>
+                <li><a href="Media_wanguo.htm">IWC 万国</a><li>
+                <li><a href="Media_jijia.htm">Jaeger-LeCoultre 积家</a><li>
+                <li><a href="Media_gela.htm">Glashutte 格拉苏蒂</a><li>
+                <li><a href="Media_kadia.htm">Cartier 卡地亚</a><li>
+                <li><a href="Media_omiga.htm">Omega 欧米茄</a><li>
+                <li><a href="">Patek Philippe 百达翡丽</a><li>
+                <li><a href="">Piaget 伯爵</a><li>
+                <li><a href="">TAG Heuer 豪雅</a><li>
+                <li><a href="">Tiffany 蒂芙尼</a><li>
+                <li><a href="">VanCleef&Arpels 梵克雅宝</a><li>
+             <li><a href="Consumer_Compare.htm" >品牌数据对比</a></li>
+
+           </ul>
+            </div>
+
+        <script src="http://code.highcharts.com/highcharts.js" type="text/javascript"></script>
+        <script src="http://code.highcharts.com/highcharts-more.js"></script>
+        <script src="http://code.highcharts.com/modules/exporting.js" type="text/javascript"></script>
+        
+    
+        <div id="container1" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+       
+        
+
+
+
+<script type="text/javascript" >
+ 
+//bubble chart
+
+//trends chart
+$(function () {
+        $('#container1').highcharts({
+            chart: {
+                type: 'spline'
+            },
+            title: {
+                text: 'Media Awareness 媒体关注度'
+            },
+            
+            xAxis: {
+                type: 'datetime',
+                dateTimeLabelFormats: { // don't display the dummy year
+                    month: '%e. %b',
+                    year: '%b'
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'Click Rate'
+                },
+                min: 0
+                
+            },
+            tooltip: {
+                formatter: function() {
+                        return '<b>'+ this.series.name +'</b><br/>'+
+                        Highcharts.dateFormat('%e. %b', this.x) +': '+ this.y +' m';
+                }
+            },
+            
+            series: [{
+                name: 'Cartier 卡地亚 2012-2013',
+                // Define the data points. All series have a dummy year
+                // of 1970/71 in order to be compared on the same x axis. Note
+                // that in JavaScript, months start at 0 for January, 1 for February etc.
+                data: [
+                    
+                       [Date.UTC(2012,0,1),27],
+                        [Date.UTC(2012,0,15),25],
+                        [Date.UTC(2012,1,1),26],
+                        [Date.UTC(2012,1,15),52],
+                        [Date.UTC(2012,2,1),70],
+                        [Date.UTC(2012,2,15),73],
+                        [Date.UTC(2012,3,1),108],
+                        [Date.UTC(2012,3,15),66],
+                        [Date.UTC(2012,4,1),63],
+                        [Date.UTC(2012,4,15),30],
+                        [Date.UTC(2012,5,1),42],
+                        [Date.UTC(2012,5,15),37],
+                        [Date.UTC(2012,6,1),129],
+                        [Date.UTC(2012,6,15),77],
+                        [Date.UTC(2012,7,1),42],
+                        [Date.UTC(2012,7,15),119],
+                        [Date.UTC(2012,8,1),61],
+                        [Date.UTC(2012,8,15),31],
+                        [Date.UTC(2012,9,1),36],
+                        [Date.UTC(2012,9,15),69],
+                        [Date.UTC(2012,10,1),39],
+                        [Date.UTC(2012,10,15),42],
+                        [Date.UTC(2012,11,1),28],
+                        [Date.UTC(2012,11,15),38],
+                        [Date.UTC(2012,12,1),34],
+                        [Date.UTC(2012,12,15),42],
+                        [Date.UTC(2013,1,1),31],
+                        [Date.UTC(2013,1,15),36],
+                        [Date.UTC(2013,2,1),26],
+                        [Date.UTC(2013,2,15),29],
+                        [Date.UTC(2013,3,1),42],
+                        [Date.UTC(2013,3,15),48],
+                        [Date.UTC(2013,4,1),39],
+                        [Date.UTC(2013,4,15),90],
+                        [Date.UTC(2013,5,1),33],
+                        [Date.UTC(2013,5,15),59],
+                        [Date.UTC(2013,6,1),45],
+                        [Date.UTC(2013,6,15),52]
+                ]
+            }
+            ]
+        });
+    });
+
+
+$(function () {
+    var data = [
+   3778,4014,3778,3705,3778,2882,3077,3670,3896,3928,3975,4052,3037,2933,3532,3556,3600,3675,3531,2820,2644,3288,3643,3312,3301,3489,2746,2675,3092,3289,3156,3201,3286,2604,2755,2812,3014,3025,3107,3109,2501,2604,3140,3350,2556,2457,2395,2917,2999,3163,3010,3164,3152,3436,2839,3019,3883,4234,3557,3587,3939,3077,2602,3021,3023,2843,2938,3163,2451,2490,2799,2946,3165,2995,2807,2078,2136,2706,2998,3263,3080,3548,2691,2635,3078,3427,2314,2493,2568,4125,3380,2916,2828,3015,3207,3284,2518,2541,3038,2956,3140,3061,3080,2506,2468,2796,4209,3201,2795,2960,2814,2246,2437,2305,2539,2670,2995,2434,2401,2418,2623,2666,2753,2954,2489,2365,2693,2735,3053,3410,3322,2801,2412,2612,2781,2785,2956,3094,2623,2552,2647,2880,3070,2810,2970,2610,2780,3105,3154,3091,3089,3271,2570,2520,3020,3235,3415,4093,3547,3536,3362,2537,2607,2286,1935,1841,3008,1147,1950,2207,2447,2718,2883,2400,2249,2703,3021,2939,3067,3105,2339,2458,2653,3742,2677,2939,3267,2408,2639,2841,4129,2943,2880,3008,2244,2250,2716,3079,5175,3695,2433,2275,2486,2597,2118,1870,1541,1887,1869,1917,2138,2231,2574,2553,2472,2103,2072,2351,2427,2472,2832,2944,2389,2167,2464,2611,1752,2147,2781,2150,2031,2458,2427,2522,2541,2889,2227,2111,2429,2491,2488,2513,2748,2196,2023,2552,2596,2562,2748,2692,2026,2102,2782,2460,2486,2640,2790,2275,2215,2772,2844,2832,2939,2930,2389,2364,2686,2959,3475,3141,3434,2648,3139,3593,2854,2749,2779,2868,2311,2027,2509,2606,2744,2975,3155,2407,2257,2768,2833,3213,2882,3107,2384,2318,2118,2044,1846,1814,1780,1569,1527,2067,2541,2613,2619,3232,2496,2506,2748,2984,3185,3644,3244,2374,2257,2604,2811,3036,3190,3248,2643,2458,2877,2977,2874,2945,3103,2551,2408,2960,3147,3214,3164,3585,2666,2782,3728,3986,3832,3884,4399,3303,2946,3602,3926,3525,3968,3844,2923,2875,3410,3605,3752,3713,3691,2751,2858,3476,3440,3020,3003,2970,2314,2296,2916,3044,3042,3275,3289,2614,2528,3286,3243,3381,3502,3530,2672,2749,3158,3247,3452,3607,4029,3206,2732,2930,2988,2797,2608,2660,1750,1872,2515,2730,2634,2875,2869,2160,2212,2079,2397,2617,2684,2835,2401,2341,3140,3016,2691,2890,3064,2425,2376,3034,3101,3240,3109,3327,2711,2528,3069,3160,3152,3197,3351,2686,2688,3224,3450,3450,3264,3442,2623,2645,2968,3127,3085,3128,3442,2708,2857,3070,2955,3075,3404,3391,2753,2732,3271,3384,3492,2887,2362,2251,2645,2962,3088,3234,3401,3504,2821,2850,3656,3647,3144,3167,3223,2498,2416,2883,3076,2767,2931,2913,2330,2505,2970,3307,2919,2813,2887,2864,2790,3209,3153,2847,2927,3022,2463,2459,2903,3184,3179,3092,3569,3091,3051,3494,3061,3499,4501,3579,2811,3011,3797,3866,3818,3937,4131,3538,2773,2922,3115,3120,3039,3210,2647,2860,3321,3271,3229,3291,3649,2857,2958,3412,3743,4280,4628,5026,3552,3482,4408,4010,3637,3849,3972,3105,3039,3663,3710,3796,3563,3511,3355,2356,2090,1968,1903,1895,1692,1398,2027,2363,2517,2567,2791,3050,2626,2826,3900,8255,2898,2622,2499,2018,1979,2049,2186,2376,2098,1878,1673
+    ];
+    
+    var masterChart,
+        detailChart;
+    
+    $(document).ready(function() {
+    
+    
+        // create the master chart
+        function createMaster() {
+            masterChart = $('#master-container').highcharts({
+                chart: {
+                    reflow: false,
+                    borderWidth: 0,
+                    backgroundColor: null,
+                    marginLeft: 50,
+                    marginRight: 20,
+                    zoomType: 'x',
+                    events: {
+    
+                        // listen to the selection event on the master chart to update the
+                        // extremes of the detail chart
+                        selection: function(event) {
+                            var extremesObject = event.xAxis[0],
+                                min = extremesObject.min,
+                                max = extremesObject.max,
+                                detailData = [],
+                                xAxis = this.xAxis[0];
+    
+                            // reverse engineer the last part of the data
+                            jQuery.each(this.series[0].data, function(i, point) {
+                                if (point.x > min && point.x < max) {
+                                    detailData.push({
+                                        x: point.x,
+                                        y: point.y
+                                    });
+                                }
+                            });
+    
+                            // move the plot bands to reflect the new detail span
+                            xAxis.removePlotBand('mask-before');
+                            xAxis.addPlotBand({
+                                id: 'mask-before',
+                                from: Date.UTC(2006, 0, 1),
+                                to: min,
+                                color: 'rgba(0, 0, 0, 0.2)'
+                            });
+    
+                            xAxis.removePlotBand('mask-after');
+                            xAxis.addPlotBand({
+                                id: 'mask-after',
+                                from: max,
+                                to: Date.UTC(2008, 11, 31),
+                                color: 'rgba(0, 0, 0, 0.2)'
+                            });
+    
+    
+                            detailChart.series[0].setData(detailData);
+    
+                            return false;
+                        }
+                    }
+                },
+                title: {
+                    text: null
+                },
+                xAxis: {
+                    type: 'datetime',
+                    showLastTickLabel: true,
+                    maxZoom: 14 * 24 * 3600000, // fourteen days
+                    plotBands: [{
+                        id: 'mask-before',
+                        from: Date.UTC(2012, 1, 1),
+                        to: Date.UTC(2013, 7, 31),
+                        color: 'rgba(0, 0, 0, 0.2)'
+                    }],
+                    title: {
+                        text: null
+                    }
+                },
+                yAxis: {
+                    gridLineWidth: 0,
+                    labels: {
+                        enabled: false
+                    },
+                    title: {
+                        text: null
+                    },
+                    min: 0.6,
+                    showFirstLabel: false
+                },
+                tooltip: {
+                    formatter: function() {
+                        return false;
+                    }
+                },
+                legend: {
+                    enabled: false
+                },
+                credits: {
+                    enabled: false
+                },
+                plotOptions: {
+                    series: {
+                        fillColor: {
+                            linearGradient: [0, 0, 0, 70],
+                            stops: [
+                                [0, '#4572A7'],
+                                [1, 'rgba(0,0,0,0)']
+                            ]
+                        },
+                        lineWidth: 1,
+                        marker: {
+                            enabled: false
+                        },
+                        shadow: false,
+                        states: {
+                            hover: {
+                                lineWidth: 1
+                            }
+                        },
+                        enableMouseTracking: false
+                    }
+                },
+    
+                series: [{
+                    type: 'area',
+                    name: 'Brand Customer Awareness 品牌用户关注度',
+                    pointInterval: 24 * 3600 * 1000,
+                    pointStart: Date.UTC(2012, 01, 01),
+                    data: data
+                }],
+    
+                exporting: {
+                    enabled: false
+                }
+    
+            }, function(masterChart) {
+                createDetail(masterChart)
+            })
+            .highcharts(); // return chart instance
+        }
+    
+        // create the detail chart
+        function createDetail(masterChart) {
+    
+            // prepare the detail chart
+            var detailData = [],
+                detailStart = Date.UTC(2013, 1, 1);
+    
+            jQuery.each(masterChart.series[0].data, function(i, point) {
+                if (point.x >= detailStart) {
+                    detailData.push(point.y);
+                }
+            });
+    
+            // create a detail chart referenced by a global variable
+            detailChart = $('#detail-container').highcharts({
+                chart: {
+                    marginBottom: 120,
+                    reflow: false,
+                    marginLeft: 50,
+                    marginRight: 20,
+                    style: {
+                        position: 'absolute'
+                    }
+                },
+                credits: {
+                    enabled: false
+                },
+                title: {
+                    text: 'Brand Popularity 品牌热度 2012-2013'
+                },
+                subtitle: {
+                    text: 'Select an area by dragging across the lower chart'
+                },
+                xAxis: {
+                    type: 'datetime'
+                },
+                yAxis: {
+                    title: {
+                        text: null
+                    },
+                    maxZoom: 0.1
+                },
+                tooltip: {
+                    formatter: function() {
+                        var point = this.points[0];
+                        return '<b>'+ point.series.name +'</b><br/>'+
+                            Highcharts.dateFormat('%A %B %e %Y', this.x) + ':<br/>'+
+                            '关注度： '+Highcharts.numberFormat(point.y, 2) +'';
+                    },
+                    shared: true
+                },
+                legend: {
+                    enabled: false
+                },
+                plotOptions: {
+                    series: {
+                        marker: {
+                            enabled: false,
+                            states: {
+                                hover: {
+                                    enabled: true,
+                                    radius: 3
+                                }
+                            }
+                        }
+                    }
+                },
+                series: [{
+                    name: 'Brand Customer Awareness品牌用户关注度',
+                    pointStart: detailStart,
+                    pointInterval: 24 * 3600 * 1000,
+                    data: detailData
+                }],
+    
+                exporting: {
+                    enabled: false
+                }
+    
+            }).highcharts(); // return chart
+        }
+    
+        // make the container smaller and add a second container for the master chart
+        var $container = $('#container2')
+            .css('position', 'relative');
+    
+        var $detailContainer = $('<div id="detail-container">')
+            .appendTo($container);
+    
+        var $masterContainer = $('<div id="master-container">')
+            .css({ position: 'absolute', top: 300, height: 80, width: '100%' })
+            .appendTo($container);
+    
+        // create master and in its callback, create the detail chart
+        createMaster();
+    });
+    
+});
+
+
+
+
+</script>
+
+    </body>
+</html>

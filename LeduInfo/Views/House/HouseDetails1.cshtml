@@ -1,0 +1,40 @@
+﻿@model LeduInfo.Models.HouseInfo
+
+@{
+    ViewBag.Title = "DetailsOfHouse";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<table class="table table-hover">
+<caption>HouseInfo</caption>
+  <thead>
+    <tr>
+      <th>Rented or Not</th>
+      <th>House Style</th>
+      <th>Address</th>
+    </tr>
+  </thead>
+ 
+<tbody>
+<tr>
+         
+<td>
+@Html.DisplayNameFor(model => model.rented)
+</td>
+<td>
+@Html.DisplayNameFor(model => model.HouseStyle)
+</td>
+<td>
+@Html.DisplayNameFor(model => model.Address)
+</td>
+</tr>
+  </tbody>
+  
+  
+</table>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.houseID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
