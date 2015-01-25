@@ -58,30 +58,41 @@
                         <div id="errorresult"></div>
                         <div class="control-group">
                             <div class="form-group">
-                            <label class="control-label" for="inputEmail">User Name</label>
-                            <div class="controls">
-                                @Html.TextBoxFor(m => m.UserName, new { @name = "inputUser", @class = "form-control", @id = "inputUser", @placeholder = "User Name" })
-                                @Html.ValidationMessageFor(m => m.UserName)
-                            </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label class="control-label" for="inputEmail">User Name</label>
+                                        <div class="controls">
+
+                                            @Html.TextBoxFor(m => m.UserName, new { @name = "inputUser", @class = "form-control", @id = "inputUser", @placeholder = "User Name" })
+                                            @Html.ValidationMessageFor(m => m.UserName)
+                                        </div>
+                                    </div>
                                 </div>
+                            </div>
+
                         </div>
                         <div class="control-group">
                             <div class="form-group">
-                            <label class="control-label" for="inputPassword">Password</label>
-                            <div class="controls">
-                                @Html.TextBoxFor(m => m.Password, new { @name = "inputPassword", @class = "form-control", @id = "inputPassword", @placeholder = "Password", @type = "password" })
-                                @Html.ValidationMessageFor(m => m.Password)
-                            </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label class="control-label" for="inputPassword">Password</label>
+                                        <div class="controls">
+                                            @Html.TextBoxFor(m => m.Password, new { @name = "inputPassword", @class = "form-control", @id = "inputPassword", @placeholder = "Password", @type = "password" })
+                                            @Html.ValidationMessageFor(m => m.Password)
+                                        </div>
+                                    </div>
+                                </div>
                                 </div>
                         </div>
                             <div class="controls">
-                                <label class="checkbox">
-                                    Remember me @Html.CheckBoxFor(m => m.RememberMe, new { @id = "rememberMe" })
-                                    <span class="span9">@Html.ActionLink("Register", "Register", "Account")   </span>
-                                </label>
-                                <button type="submit" id="submit_btn" class="btn btn-primary">sign in</button>
+                                    <label class="checkbox">
+                                            Remember me  @Html.CheckBoxFor(m => m.RememberMe, new { @id = "rememberMe", @class = "col-md-1" })
+                                        <br />
+                                           @Html.ActionLink("Register", "Register", "Account")   
+                                    </label>
+                                </div>
+                                <button type="submit" id="submit_btn" class="btn btn-primary">Sign In</button>
 
-                            </div>
                         
                     }
 
@@ -96,7 +107,6 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
-
 
 <script type="text/javascript">
 
