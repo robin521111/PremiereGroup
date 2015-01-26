@@ -78,7 +78,7 @@ namespace LeduInfo.Controllers
 
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+            return RedirectToAction("LoginError","Error");
         }
         [HttpPost]
         public ActionResult AjaxLogin(string UserName, string Password, bool RememberMe)

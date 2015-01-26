@@ -23,7 +23,6 @@ namespace LeduInfo.Models
         public string FileName { get; set; }
         public string LastModified { get; set; }
         public List<string> FilePaths { get; set; }
-        Image img = new Image();
         PremiereDB DB = new PremiereDB();
         #endregion
 

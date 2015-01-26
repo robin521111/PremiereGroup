@@ -13,7 +13,6 @@ namespace LeduInfo.Controllers
     {
         PremiereDB DB = new PremiereDB();
         Infrustructure.Blog.MicroBlog microblog = new Infrustructure.Blog.MicroBlog();
-        Image image = new Image();
 
         public ActionResult Index(string userName = "")
         {
@@ -114,8 +113,6 @@ namespace LeduInfo.Controllers
 
         public ActionResult MakeThumbnail()
         {
-            Infrustructure.Image image = new Image();
-            image.MakeThumbnail("");
             return View();
         }
 

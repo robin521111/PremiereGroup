@@ -16,5 +16,10 @@ namespace LeduInfo.Controllers
             return View();
         }
 
+        public ActionResult LoginError()
+        {
+            return View();
+        }
+
     }
 }

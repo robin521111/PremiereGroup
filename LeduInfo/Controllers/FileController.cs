@@ -13,7 +13,6 @@ namespace LeduInfo.Controllers
         //
         // GET: /File/
         LeduInfo.Models.PremiereDB db = new Models.PremiereDB();
-        Infrustructure.Image image = new Image();
         public ActionResult Index()
         {
             return View();
