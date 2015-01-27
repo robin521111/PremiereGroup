@@ -9,7 +9,7 @@ using System.Web.Routing;
 using System.Data.Entity;
 using LeduInfo.Models;
 using System.Text;
-
+using LeduInfo.App_Start;
 
 namespace LeduInfo
 {
@@ -52,9 +52,12 @@ namespace LeduInfo
             //JsonParser.JsonParser_Liner(Server.MapPath("/ChartData/"));
             
             //RouteTable.Routes.MapHubs();
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
+            BackloadConfig.Initialize();
             AreaRegistration.RegisterAllAreas();
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
+            
             // BundleTable.Bundles.RegisterTemplateBundles();
             //Database.SetInitializer<leduInfoDB>(new LeduInfo.Models.DAL.LeduInfoDBInitializer());
             //picpicker.imgPicker();
