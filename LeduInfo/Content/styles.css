@@ -1,0 +1,81 @@
+﻿@charset "UTF-8";
+/*
+ * jQuery File Upload Plugin CSS Example 1.1.1
+ * https://github.com/blueimp/jQuery-File-Upload
+ *
+ * Copyright 2012, Sebastian Tschan
+ * https://blueimp.net
+ *
+ * Licensed under the MIT license:
+ * http://www.opensource.org/licenses/MIT
+ */
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+  width: 960px;
+  margin: 50px auto;
+  background-color:#fff;
+  color:#d0d0d0
+}
+
+/* Example page JQuery file upload plugin styles */
+#demo-fup-table {
+    border-collapse:collapse;
+}
+tbody.files td.preview {
+  text-align:center;
+}
+tbody.files td.delete {
+  white-space: nowrap;
+}
+tbody.files td.name {
+    min-width: 300px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+tbody.files td.size {
+    min-width: 80px;
+    text-align:right;
+    padding-left:10px; 
+    padding-right:10px;
+}
+tbody.files td.action {
+    min-width:120px; 
+    padding-left:10px; 
+    padding-right:10px;
+}
+tbody.files .progress {
+  width: 155px;
+}
+.files .ui-progressbar-value, 
+.fileupload-buttonbar .ui-progressbar-value {
+  background: url(FileUpload/img/progressblue.gif);
+}
+.fileupload-progress {
+  margin-left:75px;
+}
+.progress-extended {
+    margin-top:2px;
+    font-size:10px;
+  color:#b0b0b0
+}
+
+
+/* Fix for IE 7: */
+* + html .nav-collapse,
+* + html ul.nav,
+* + html ul.nav li {
+  display: inline;
+}
+* + html .navbar-fixed-top {
+  margin-bottom: 35px;
+}
+
+@media (max-width: 979px) {
+  body {
+    width: auto;
+    padding: 10px;
+  }
+}
