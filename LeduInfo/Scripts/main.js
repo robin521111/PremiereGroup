@@ -18,7 +18,7 @@ $(function () {
     // In this example we do NOT use the builtin file upload handler.
     // var fileUploadUrl = "/Backload/UploadHandler";
 
-    var fileUploadUrl = "/FileHandler.ashx";
+    var fileUploadUrl = "Services/uploadHandler.ashx";
 
 
     // Initialize the jQuery File Upload widget:
@@ -26,7 +26,7 @@ $(function () {
         url: fileUploadUrl,
         previewMaxWidth: 80,
         previewMaxHeight: 60,
-        acceptFileTypes: /(jpg)|(jpeg)|(png)|(gif)|(pdf)|(doc)|(docx)$/i // Allowed file types
+        acceptFileTypes: /(jpg)|(jpeg)|(png)|(gif)|(json)|(doc)|(docx)$/i // Allowed file types
     });
 
 
