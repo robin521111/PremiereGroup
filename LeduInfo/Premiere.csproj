@@ -757,7 +757,6 @@
     <Content Include="Content\less\sb-admin-2.less" />
     <Content Include="Content\less\variables.less" />
     <Content Include="Content\bootstrap.css.map" />
-    <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.11.js" />
@@ -1010,6 +1009,7 @@
     <None Include="Properties\PublishProfiles\LeduInfo.pubxml" />
     <Content Include="Views\Vote\VotePage1.cshtml" />
     <Content Include="Views\Vote\Vote.cshtml" />
+    <None Include="Scripts\jquery-1.9.1.intellisense.js" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Infrustructure\Infrustructure.csproj">
