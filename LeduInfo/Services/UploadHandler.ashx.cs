@@ -5,11 +5,14 @@ using System.Web;
 using System.Web.Script.Serialization;
 using LeduInfo.Helper;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Schema;
 using System.Web.Mvc;
 using Backload.Plugin.Handler;
 using System.Threading.Tasks;
 using Backload;
 using System;
+using LeduInfo.Models;
+
 
 namespace LeduInfo.Services
 {
@@ -19,6 +22,7 @@ namespace LeduInfo.Services
     public class UploadHandler : IHttpHandler
     {
         private readonly JavaScriptSerializer js;
+        private LeduInfo.Models.PremiereDB DB = new PremiereDB();
 
         private string StorageRoot
         {
@@ -104,6 +108,7 @@ namespace LeduInfo.Services
             }
 
             WriteJsonIframeSafe(context, statuses);
+     
         }
 
         // Upload partial file
@@ -132,6 +137,7 @@ namespace LeduInfo.Services
         // Upload entire file
         private void UploadWholeFile(HttpContext context, List<FilesStatus> statuses)
         {
+
             for (int i = 0; i < context.Request.Files.Count; i++)
             {
                 var file = context.Request.Files[i];
@@ -139,10 +145,44 @@ namespace LeduInfo.Services
                 var fullPath = StorageRoot + Path.GetFileName(file.FileName);
 
                 file.SaveAs(fullPath);
-
                 string fullName = Path.GetFileName(file.FileName);
-                statuses.Add(new FilesStatus(fullName, file.ContentLength, fullPath));
+                FilesStatus status = new FilesStatus(fullName,file.ContentLength,fullPath);
+
+                DB.UploadHandlertbl.Add(new UploadHandlerModel{
+                    FileName=status.name,
+                    FileType=status.type,
+                    Size=status.size,
+                    URL=status.url,
+                    Delete_Type=status.delete_type,
+                    Delete_Url= status.delete_url,
+                    Error = status.error,
+                    Progress= status.progress,
+                    Thumbnail_Url = status.thumbnail_url
+                });
+
+                string path = Path.GetFullPath(fullPath);
+
+                //path = "@"+path;
+                ValidateJson(path);
+                
+                //statuses.Add(new FilesStatus(fullName, file.ContentLength, fullPath));
+             
             }
+
+            DB.SaveChanges();
+        }
+
+        private bool ValidateJson(string path)
+        {
+            using (StreamReader file = File.OpenText(@"E:\CodeForFun\github\PremiereGroup\LeduInfo\Upload\ChartData\news.txt"))
+            
+            using (JsonTextReader reader = new JsonTextReader(file))
+             {
+                //validate JSON
+
+                 JsonSchema schema = JsonSchema.Read(reader);
+            }
+            return true;
         }
 
         private void WriteJsonIframeSafe(HttpContext context, List<FilesStatus> statuses)

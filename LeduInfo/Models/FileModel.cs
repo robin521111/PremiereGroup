@@ -9,7 +9,10 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.IO.IsolatedStorage;
 using System.Security.Permissions;
+using System.Web.Security;
 using System.Security.AccessControl;
+using System.ComponentModel.DataAnnotations;
+
 
 
 namespace LeduInfo.Models
@@ -81,13 +84,15 @@ namespace LeduInfo.Models
     [FileIOPermission(SecurityAction.Demand, AllLocalFiles=FileIOPermissionAccess.AllAccess)]
     public class UploadHandlerModel
     {
+        [Required]
+        [Key]
         public int FileID { get; set; }
 
         public string FileName { get; set; }
 
         public string FileType { get; set; }
 
-        public string Size { get; set; }
+        public int Size { get; set; }
 
         public string Progress { get; set; }
 

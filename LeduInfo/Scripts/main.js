@@ -18,7 +18,7 @@ $(function () {
     // In this example we do NOT use the builtin file upload handler.
     // var fileUploadUrl = "/Backload/UploadHandler";
 
-    var fileUploadUrl = "Services/uploadHandler.ashx";
+    var fileUploadUrl = "Services/UploadHandler.ashx";
 
 
     // Initialize the jQuery File Upload widget:
@@ -26,9 +26,8 @@ $(function () {
         url: fileUploadUrl,
         previewMaxWidth: 80,
         previewMaxHeight: 60,
-        acceptFileTypes: /(jpg)|(jpeg)|(png)|(gif)|(json)|(doc)|(docx)$/i // Allowed file types
+        acceptFileTypes: /(json)|(txt)|(xml)$/i // Allowed file types
     });
-
 
 
     // Optional: Initial ajax request to load already existing files.
@@ -59,14 +58,14 @@ $("document").ready(function () {
         })
         
         // You do not need the following.
-        //.bind('fileuploaddestroy', function (e, data) {
-        //    var s = data.url.split("?");                                // Split and replace is way faster than RegEx here
-        //    s[1] = s[1].replace("fileName=", "").replace(".", ",");     // Make the url RESTful compliant and remove dots 
-        //                                                                // because otherwise IIS treats this as a path to a file
-        //                                                                // and it will not be routed by the Web API
-        //    data.url = s[0] + s[1];                                     // Note: Server side we must add the file manually to the 
-        //                                                                // e.Param.BackloadValues.FileName property in the IncomingRequestStarted event handler
-        //});
+        .bind('fileuploaddestroy', function (e, data) {
+            var s = data.url.split("?");                                // Split and replace is way faster than RegEx here
+            s[1] = s[1].replace("fileName=", "").replace(".", ",");     // Make the url RESTful compliant and remove dots 
+                                                                        // because otherwise IIS treats this as a path to a file
+                                                                        // and it will not be routed by the Web API
+            data.url = s[0] + s[1];                                     // Note: Server side we must add the file manually to the 
+                                                                        // e.Param.BackloadValues.FileName property in the IncomingRequestStarted event handler
+        });
         
 
 });

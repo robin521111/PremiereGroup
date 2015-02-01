@@ -1,10 +1,12 @@
 ﻿using System;
 using System.IO;
+using LeduInfo.Models;
 
 namespace LeduInfo.Helper
 {
     public class FilesStatus
     {
+        private PremiereDB DB = new PremiereDB();
         public const string HandlerPath = "/Upload/";
 
         public string group { get; set; }
@@ -39,11 +41,18 @@ namespace LeduInfo.Helper
             var fileSize = ConvertBytesToMegabytes(new FileInfo(fullPath).Length);
             if (fileSize > 3 || !IsImage(ext)) thumbnail_url = "/Content/img/generalFile.png";
             else thumbnail_url = @"data:image/png;base64," + EncodeFile(fullPath);
+            
         }
 
         private bool IsImage(string ext)
         {
             return ext == ".gif" || ext == ".jpg" || ext == ".png";
+        }
+
+
+        private bool IsJson(string ext)
+        {
+            return ext == ".json";
         }
 
         private string EncodeFile(string fileName)

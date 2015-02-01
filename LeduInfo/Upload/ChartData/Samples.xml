@@ -1,0 +1,24 @@
+<CodeSamples>
+  <CodeSample Name="App-settings-sample-1f762f49" Title="App settings sample" Supports="Visual Studio 2013" LastUpdated="2013/11/26" GallertURL="https://code.msdn.microsoft.com/App-settings-sample-1f762f49" Rating="3.4" Raters="45" Downloads="77836" Affiliation="">
+    <Author DisplayName="Official Windows platform sample" Link="https://code.msdn.microsoft.com/site/profile?userName=Official%20Windows%20platform%20sample" />
+    <License Title="MSLPL" Link="https://code.msdn.microsoft.com/site/App-settings-sample-1f762f49/eula?licenseType=MSLPL" />
+    <ProgrammingLanguages>
+      <ProgrammingLanguage>C#</ProgrammingLanguage>
+      <ProgrammingLanguage>VB.NET</ProgrammingLanguage>
+      <ProgrammingLanguage>C++</ProgrammingLanguage>
+      <ProgrammingLanguage>JavaScript</ProgrammingLanguage>
+    </ProgrammingLanguages>
+    <Platforms>
+      <Platform>Windows Store apps</Platform>
+    </Platforms>
+    <Summary>This sample demonstrates how to use the application settings API and settings flyouts to integrate an app's settings UI with the Settings charm.</Summary>
+    <Technologies>
+      <Technology>XAML</Technology>
+      <Technology>HTML5</Technology>
+      <Technology>Windows Runtime</Technology>
+    </Technologies>
+    <SamplePackages>
+      <SamplePackage LastUpdated="2014/11/9" DownloadLink="https://code.msdn.microsoft.com/App-settings-sample-1f762f49/file/50851/43/App%20settings%20sample.zip" ProgrammingLanguage="C#" EntryFile="E:\CodeForFun\Visual Studio 2013\App-settings-sample-1f762f49\C#\ApplicationSettings.sln" />
+    </SamplePackages>
+  </CodeSample>
+</CodeSamples>

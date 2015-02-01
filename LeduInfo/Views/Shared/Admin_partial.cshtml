@@ -15,26 +15,23 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" />
+    <title>Premiere Group Data Importing Admin</title>
 
     <!-- MetisMenu CSS -->
     <link href="@Url.Content("~/Content/plugins/metisMenu/metisMenu.min.css")" rel="stylesheet" />
-
+    @System.Web.Optimization.Styles.Render("~/Content/themes/base/css")
+    @System.Web.Optimization.Scripts.Render("~/bundles/modernizr")
+    @System.Web.Optimization.Styles.Render("~/bundles/fileupload/bootstrap/BasicPlusUI/css")
+    <link href="@Url.Content("~/Content/ColorBox/colorbox.css")" rel="stylesheet" />
+    <noscript><link href="@Url.Content("~/Content/FileUpload/css/jquery.fileupload-ui-noscript.css")" rel="stylesheet" /></noscript>
+    <!-- Bootstrap Core CSS -->
+    <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" />
     <!-- Custom CSS -->
     <link href="@Url.Content("~/Content/sb-admin-2.css")" rel="stylesheet" />
-
     <!-- Custom Fonts -->
     <link href="@Url.Content("~/Content/font-awesome/css/font-awesome.min.css")" rel="stylesheet" />
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+        
 
 </head>
 
@@ -378,17 +375,17 @@
     </div>
     <!-- /#wrapper -->
 
-    <!-- jQuery Version 1.11.0 -->
-    <script src="@Url.Content("~/Scripts/jquery-1.11.0.js")"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="@Url.Content("~/Scripts/bootstrap.min.js")"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="@Url.Content("~/Scripts/plugins/metisMenu/metisMenu.min.js")"></script>
 
     <!-- Custom Theme JavaScript -->
+    @System.Web.Optimization.Scripts.Render("~/bundles/jquery")
+    @System.Web.Optimization.Scripts.Render("~/bundles/jqueryui")
+    @System.Web.Optimization.Scripts.Render("~/bundles/fileupload/bootstrap/BasicPlusUI/js")
     <script src="@Url.Content("~/Scripts/sb-admin-2.js")"></script>
+    <script src="@Url.Content("~/Scripts/plugins/metisMenu/metisMenu.min.js")"></script>
+    <script src="@Url.Content("Scripts/ColorBox/jquery.colorbox-min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("Scripts/main.js")"></script>
 
 </body>
 

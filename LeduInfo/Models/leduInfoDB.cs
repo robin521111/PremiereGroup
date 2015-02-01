@@ -12,7 +12,7 @@ namespace LeduInfo.Models
         public PremiereDB()
             : base("PremiereDB")
         {
-
+            Database.CreateIfNotExists();
         }
         //public DbSet<OwnerInfo> OwnerInfotbl { get; set; }
         //public DbSet<RenterInfo> RenterInfotbl { get; set; }

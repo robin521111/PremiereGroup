@@ -25,11 +25,7 @@
 <link href="@Url.Content("~/Content/bootstrap-image-gallery.min.css")" rel="stylesheet" />
 <link href="@Url.Content("~/Content/jquery.fileupload-ui.css")" rel="stylesheet" />*@
 
-    @System.Web.Optimization.Styles.Render("~/Content/themes/base/css")
-    @System.Web.Optimization.Scripts.Render("~/bundles/modernizr")
-    @System.Web.Optimization.Styles.Render("~/bundles/fileupload/bootstrap/BasicPlusUI/css")
-    <link href="@Url.Content("~/Content/ColorBox/colorbox.css")" rel="stylesheet" />
-    <noscript><link href="@Url.Content("~/Content/FileUpload/css/jquery.fileupload-ui-noscript.css")" rel="stylesheet" /></noscript>
+  
 
 
 
@@ -91,7 +87,8 @@
                     <!-- The table listing the files available for upload/download -->
                     <table role="presentation" class="table table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody></table>
                 </form>
-
+                    </div>
+                </div>
 
                 <!-- The template to display files available for upload -->
                 <script id="template-upload" type="text/x-tmpl">
@@ -162,7 +159,7 @@
                     </tr>
                 {% } %}
 </script> 
-
+                    
 
 @*<script src="@Url.Content("~/Scripts/jquery-1.9.1.min.js")"></script>
 <script src="@Url.Content("~/Scripts/jquery-ui-1.8.11.min.js")"></script>
@@ -182,12 +179,7 @@
 <script src="@Url.Content("~/Scripts/main.js")"></script>
 <script src="@Url.Content("~/Scripts/bootstrap-image-gallery.min.js")"></script>*@
 
-@System.Web.Optimization.Scripts.Render("~/bundles/jquery")
-@System.Web.Optimization.Scripts.Render("~/bundles/jqueryui")
-@System.Web.Optimization.Scripts.Render("~/bundles/fileupload/bootstrap/BasicPlusUI/js")
 
-<script src="@Url.Content("Scripts/ColorBox/jquery.colorbox-min.js")"></script>
-<script type="text/javascript" src="@Url.Content("Scripts/main.js")"></script>
                 </div>
             <!-- /.row -->
             </div>

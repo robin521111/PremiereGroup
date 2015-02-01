@@ -31,6 +31,7 @@
         );
     }
 }(function ($, tmpl, loadImage) {
+
     'use strict';
 
     // The UI version extends the file upload widget
@@ -54,7 +55,7 @@
             acceptFileTypes:  /.+$/i,
             // The regular expression to define for which files a preview
             // image is shown, matched against the file type:
-            previewSourceFileTypes: /^image\/(gif|jpeg|png)$/,
+            previewSourceFileTypes: /^image\/(gif|jpeg|png|Json|txt)$/,
             // The maximum file size of images that are to be displayed as preview:
             previewSourceMaxFileSize: 5000000, // 5MB
             // The maximum width of the preview images:
