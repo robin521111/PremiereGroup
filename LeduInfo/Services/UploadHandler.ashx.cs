@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Script.Serialization;
 using LeduInfo.Helper;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Schema;
 using System.Web.Mvc;
 using Backload.Plugin.Handler;
@@ -12,7 +13,6 @@ using System.Threading.Tasks;
 using Backload;
 using System;
 using LeduInfo.Models;
-
 
 namespace LeduInfo.Services
 {
@@ -143,15 +143,27 @@ namespace LeduInfo.Services
                 var file = context.Request.Files[i];
 
                 var fullPath = StorageRoot + Path.GetFileName(file.FileName);
-
+                var ext = Path.GetExtension(fullPath);
                 file.SaveAs(fullPath);
                 string fullName = Path.GetFileName(file.FileName);
                 FilesStatus status = new FilesStatus(fullName,file.ContentLength,fullPath);
+                string path = Path.GetFullPath(fullPath);
+
+                //path = "@"+path;
+                if (ext.ToString() == ".json")
+                {
+                    ReadJson(path);
+                }
+                else if (ext.ToString() == ".txt")
+                {
+                    status.content = ReadFile(path);
+                }
 
                 DB.UploadHandlertbl.Add(new UploadHandlerModel{
                     FileName=status.name,
                     FileType=status.type,
                     Size=status.size,
+                    Content=status.content,
                     URL=status.url,
                     Delete_Type=status.delete_type,
                     Delete_Url= status.delete_url,
@@ -160,11 +172,8 @@ namespace LeduInfo.Services
                     Thumbnail_Url = status.thumbnail_url
                 });
 
-                string path = Path.GetFullPath(fullPath);
 
-                //path = "@"+path;
-                ValidateJson(path);
-                
+                DB.SaveChanges();
                 //statuses.Add(new FilesStatus(fullName, file.ContentLength, fullPath));
              
             }
@@ -172,17 +181,23 @@ namespace LeduInfo.Services
             DB.SaveChanges();
         }
 
-        private bool ValidateJson(string path)
+        private string ReadFile(string path)
         {
-            using (StreamReader file = File.OpenText(@"E:\CodeForFun\github\PremiereGroup\LeduInfo\Upload\ChartData\news.txt"))
-            
-            using (JsonTextReader reader = new JsonTextReader(file))
-             {
-                //validate JSON
+              string text = File.ReadAllText(path);
+             return text;
+        }
 
-                 JsonSchema schema = JsonSchema.Read(reader);
-            }
-            return true;
+        private void ReadJson(string path)
+        {
+         //JObject obj = JObject.Parse(File.ReadAllText(path));
+                //read Json from file
+
+          using (StreamReader file = File.OpenText(path))
+          using (JsonTextReader reader = new JsonTextReader(file))
+          {
+
+          }
+                
         }
 
         private void WriteJsonIframeSafe(HttpContext context, List<FilesStatus> statuses)
@@ -256,8 +271,8 @@ namespace LeduInfo.Services
             FileUploadHandler handler = new FileUploadHandler(request, null);       // Get an instance of the handler class
             handler.IncomingRequestStarted += handler_IncomingRequestStarted;       // Register event handler for demo purposes
 
-            var jsonResult = (JsonResult)handler.HandleRequest();                   // Call the handler method
-            JQueryFileUpload result = (JQueryFileUpload)jsonResult.Data;            // JsonResult.Data is of type object and must be casted 
+            var jsonResult = handler.HandleRequestAsync();                   // Call the handler method
+            var result = jsonResult.Result;            // JsonResult.Data is of type object and must be casted 
 
             context.Response.Write(JsonConvert.SerializeObject(result));            // Serialize the JQueryFileUpload object to a Json string
         }

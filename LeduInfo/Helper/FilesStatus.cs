@@ -19,6 +19,7 @@ namespace LeduInfo.Helper
         public string delete_url { get; set; }
         public string delete_type { get; set; }
         public string error { get; set; }
+        public string content { get; set; }
 
         public FilesStatus() { }
 
@@ -29,19 +30,19 @@ namespace LeduInfo.Helper
         private void SetValues(string fileName, int fileLength, string fullPath)
         {
             name = fileName;
-            type = "image/png";
+            type = "json/txt";
             size = fileLength;
             progress = "1.0";
             url = HandlerPath + "UploadHandler.ashx?f=" + fileName;
             delete_url = HandlerPath + "UploadHandler.ashx?f=" + fileName;
             delete_type = "DELETE";
+            content = "";
 
             var ext = Path.GetExtension(fullPath);
             
             var fileSize = ConvertBytesToMegabytes(new FileInfo(fullPath).Length);
-            if (fileSize > 3 || !IsImage(ext)) thumbnail_url = "/Content/img/generalFile.png";
+            if (IsJson(ext)) thumbnail_url = "/Content/Backload/content-types/128/Text.png";
             else thumbnail_url = @"data:image/png;base64," + EncodeFile(fullPath);
-            
         }
 
         private bool IsImage(string ext)
@@ -49,10 +50,9 @@ namespace LeduInfo.Helper
             return ext == ".gif" || ext == ".jpg" || ext == ".png";
         }
 
-
         private bool IsJson(string ext)
         {
-            return ext == ".json";
+            return ext == ".json" || ext == ".txt";
         }
 
         private string EncodeFile(string fileName)

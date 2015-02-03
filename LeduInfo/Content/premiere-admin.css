@@ -1,0 +1,8 @@
+﻿.navbar .nav>li{
+    float:none;
+}
+
+.input-group .form-control{
+    float:none;
+    height:100%;
+}

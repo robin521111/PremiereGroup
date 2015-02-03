@@ -94,6 +94,8 @@ namespace LeduInfo.Models
 
         public int Size { get; set; }
 
+        public string Content { get; set; }
+
         public string Progress { get; set; }
 
         public string URL { get; set; }
@@ -105,5 +107,8 @@ namespace LeduInfo.Models
         public string Delete_Type { get; set; }
 
         public string Error { get; set; }
+
     }
+
+  
 }

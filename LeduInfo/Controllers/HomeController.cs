@@ -64,6 +64,11 @@ namespace LeduInfo.Controllers
             ViewBag.Message = "Vote for your topic!";
             return View();
         }
+
+        public ActionResult GraphicData()
+        {
+            return View();
+        }
         
         public ActionResult Chat()
         {
