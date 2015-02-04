@@ -428,7 +428,7 @@
 
         _renderPreviews: function (data) {
             data.context.find('.preview').each(function (index, elm) {
-                $(elm).append(data.files[index].preview);
+                $(elm).append('<img src="../../Content/Backload/content-types/72/Text.png" alt="" />');
             });
         },
 
