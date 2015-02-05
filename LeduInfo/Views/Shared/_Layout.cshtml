@@ -4,8 +4,10 @@
 }
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK" />
+
 @System.Web.Optimization.Scripts.Render("~/bundles/jquery")
 <link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />
 <link href="@Url.Content("~/Content/font-awesome.min.css")" rel="stylesheet" />
@@ -176,7 +178,7 @@
         </script>*@
 
         
-        <script>
+        @*<script type="text/javascript">
             $(document).ready(function () {
                 $('#loginform').bootstrapValidator({
                     message: 'This value is not valid',
@@ -216,7 +218,7 @@
                     }
                 });
             })
-        </script>
+        </script>*@
         <div id="body">
             @RenderSection("script",required:false)
             @RenderSection("featured", required: false)

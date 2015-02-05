@@ -45,14 +45,20 @@ namespace LeduInfo.Controllers
         {
             return View();
         }
-          
+
+
+
+        public ActionResult BrandAwareness()
+        {
+            return View();
+        }
 
         //DONT USE THIS IF YOU NEED TO ALLOW LARGE FILES UPLOADS
         [HttpGet]
         public void Delete(string id)
         {
             var filename = id;
-            var filePath = Path.Combine(Server.MapPath("~/Upload/ChartData"), filename);
+            var filePath = Path.Combine(Server.MapPath("~/Upload/ChartData/"), filename);
 
             if (System.IO.File.Exists(filePath))
             {
@@ -65,7 +71,7 @@ namespace LeduInfo.Controllers
         public void Download(string id)
         {
             var filename = id;
-            var filePath = Path.Combine(Server.MapPath("~/Upload/ChartData"), filename);
+            var filePath = Path.Combine(Server.MapPath("~/Upload/ChartData/"), filename);
 
             var context = HttpContext;
 

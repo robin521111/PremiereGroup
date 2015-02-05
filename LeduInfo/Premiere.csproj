@@ -593,6 +593,16 @@
     <Content Include="Images\ui-icons_454545_256x240.png" />
     <Content Include="Images\ui-icons_888888_256x240.png" />
     <Content Include="Images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Scripts\BaiduIndexJs\bds_s_v2.js" />
+    <Content Include="Scripts\BaiduIndexJs\funs.js" />
+    <Content Include="Scripts\BaiduIndexJs\GraphData.js" />
+    <Content Include="Scripts\BaiduIndexJs\h.js" />
+    <Content Include="Scripts\BaiduIndexJs\intrt.js" />
+    <Content Include="Scripts\BaiduIndexJs\logger.js" />
+    <Content Include="Scripts\BaiduIndexJs\magic.js" />
+    <Content Include="Scripts\BaiduIndexJs\raphael.js" />
+    <Content Include="Scripts\BaiduIndexJs\shell_v2.js" />
+    <Content Include="Scripts\BaiduIndexJs\tangram.js" />
     <Content Include="Scripts\bootstrap-image-gallery.min.js" />
     <Content Include="Scripts\bootstrapValidator.js" />
     <Content Include="Scripts\bootstrapValidator.min.js" />
@@ -1179,8 +1189,8 @@
     <Content Include="Services\UploadHandler.ashx" />
     <Content Include="Views\Error\LoginError.cshtml" />
     <Content Include="Scripts\jquery-2.0.3.min.map" />
-    <Content Include="Views\Home\GraphicData.cshtml" />
     <Content Include="Scripts\static\JsonData.json" />
+    <Content Include="Views\Home\GraphicData.cshtml" />
     <None Include="Web.Backload.Default.config" />
     <None Include="Web.Backload.xsd">
       <SubType>Designer</SubType>
@@ -1212,12 +1222,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\House\Delete.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\House\HouseDetails1.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\House\HouseDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\House\HouseList.cshtml" />

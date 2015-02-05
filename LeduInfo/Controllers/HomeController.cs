@@ -16,22 +16,19 @@ namespace LeduInfo.Controllers
 
         public ActionResult Index(string userName = "")
         {
-            
-           // FileModel fileModel = new FileModel();
-           // fileModel.SaveFilePath();
-            
             ViewBag.Message = userName;
-
-            //fileModel.FilePaths = DB.FileResourcetbl.Select(f => f.Path).ToList();
 
             return View();
         }
-        /// action for About view
-        /// 
         public ActionResult About()
         {
             ViewBag.Message = "Your quintessential app description page.";
 
+            return View();
+        }
+
+        public ActionResult GraphicData()
+        {
             return View();
         }
         
@@ -48,66 +45,39 @@ namespace LeduInfo.Controllers
             return View();
         }
 
-        public ActionResult InfoPage()
-        {
-            ViewBag.Message = "This is the info page for user to search!";
-            return View();
-        }
-        public ActionResult Charts()
-        {
-            ViewBag.Charts = " This is a Chart for demo ";
-            return View();
-        }
+        //public ActionResult InfoPage()
+        //{
+        //    ViewBag.Message = "This is the info page for user to search!";
+        //    return View();
+        //}
+        //public ActionResult Charts()
+        //{
+        //    ViewBag.Charts = " This is a Chart for demo ";
+        //    return View();
+        //}
 
-        public ActionResult Vote()
-        {
-            ViewBag.Message = "Vote for your topic!";
-            return View();
-        }
+        //public ActionResult Vote()
+        //{
+        //    ViewBag.Message = "Vote for your topic!";
+        //    return View();
+        //}
 
-        public ActionResult GraphicData()
-        {
-            return View();
-        }
-        
-        public ActionResult Chat()
-        {
-            return View();
-        }
-
-        public ActionResult RnD()
-        {
-
-            return View();
-        }
-
-        
-
-        public ActionResult Redirect()
-        {
-            Response.RedirectToRoute("Default");
-            return View();
-        }
+        //public ActionResult Redirect()
+        //{
+        //    Response.RedirectToRoute("Default");
+        //    return View();
+        //}
 
         public ActionResult AboutMe()
         {
             return View();
         }
 
-        //public ActionResult Services()
+        
+        //public ActionResult Blog()
         //{
-        //    var image1 = DB.FileResourcetbl.Find(1);
-        //    var image = (from p in DB.FileResourcetbl
-        //                 orderby p.FileTypeID
-        //                 select p.Path).Take(1);
-        //    //ViewBag.HeaderImage = image1.Path.ToString();
-
         //    return View();
         //}
-        public ActionResult Blog()
-        {
-            return View();
-        }
 
         //public ActionResult BlogPost()
         //{

@@ -12,6 +12,7 @@ using System.Security.Permissions;
 using System.Web.Security;
 using System.Security.AccessControl;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 
 
@@ -82,6 +83,7 @@ namespace LeduInfo.Models
 
 
     [FileIOPermission(SecurityAction.Demand, AllLocalFiles=FileIOPermissionAccess.AllAccess)]
+    [Table("UploadedDataTbl")]
     public class UploadHandlerModel
     {
         [Required]
@@ -110,5 +112,4 @@ namespace LeduInfo.Models
 
     }
 
-  
 }
