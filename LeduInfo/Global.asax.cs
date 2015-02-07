@@ -49,18 +49,14 @@ namespace LeduInfo
 
         protected void Application_Start()
         {
-            //JsonParser.JsonParser_Liner(Server.MapPath("/ChartData/"));
             
-            //RouteTable.Routes.MapHubs();
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             BackloadConfig.Initialize();
             AreaRegistration.RegisterAllAreas();
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
             
-            // BundleTable.Bundles.RegisterTemplateBundles();
-            //Database.SetInitializer<leduInfoDB>(new LeduInfo.Models.DAL.LeduInfoDBInitializer());
-            //picpicker.imgPicker();
+       
 
         }
 
