@@ -16,18 +16,12 @@
     <meta name="author" content="">
 
     <title>Premiere Group Data Importing Page</title>
-@*<link href="@Url.Content("~/Content/jquery.fileupload-ui-noscript.css")" rel="stylesheet" />
-<link href="@Url.Content("~/Content/jquery.fileupload-noscript.css")" rel="stylesheet" />
-<link href="@Url.Content("~/Content/jquery.fileupload.css")" rel="stylesheet" />
-<link href="@Url.Content("~/Content/bootstrap-responsive.min.css")" rel="stylesheet" />
-<link href="@Url.Content("~/Content/bootstrap-theme.min.css")" rel="stylesheet" />
-<link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" />
-<link href="@Url.Content("~/Content/bootstrap-image-gallery.min.css")" rel="stylesheet" />
-<link href="@Url.Content("~/Content/jquery.fileupload-ui.css")" rel="stylesheet" />*@
-
-  
-
-
+    <!-- Bootstrap Core CSS -->
+    <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" />
+    <!-- Custom CSS -->
+    <link href="@Url.Content("~/Content/sb-admin-2.css")" rel="stylesheet" />
+    <!-- MetisMenu CSS -->
+    <link href="@Url.Content("~/Content/plugins/metisMenu/metisMenu.min.css")" rel="stylesheet" />
 
 </head>
 <body>
@@ -161,24 +155,6 @@
 </script> 
                     
 
-@*<script src="@Url.Content("~/Scripts/jquery-1.9.1.min.js")"></script>
-<script src="@Url.Content("~/Scripts/jquery-ui-1.8.11.min.js")"></script>
-<script src="@Url.Content("~/Scripts/jquery.ui.widget.js")"></script>
-<script src="@Url.Content("~/Scripts/jquery.iframe-transport.js")"></script>
-<script src="@Url.Content("~/Scripts/bootstrap.min.js")"></script>
-<script src="@Url.Content("~/Scripts/bootstrap-image-gallery.min.js")"></script>
-<script src="@Url.Content("~/Scripts/bootstrapValidator.min.js")"></script>
-<script src="@Url.Content("~/Scripts/tmpl.min.js")"></script>
-<script src="@Url.Content("~/Scripts/canvas-to-blob.min.js")"></script>
-<script src="@Url.Content("~/Scripts/load-image.min.js")"></script>
-<script src="@Url.Content("~/Scripts/bootstrap-image-gallery.min.js")"></script>
-<script src="@Url.Content("~/Scripts/jquery.fileupload.js")"></script>
-<script src="@Url.Content("~/Scripts/jquery.fileupload-ip.js")"></script>
-<script src="@Url.Content("~/Scripts/jquery.fileupload-ui.js")"></script>
-<script src="@Url.Content("~/Scripts/locale.js")"></script>
-<script src="@Url.Content("~/Scripts/main.js")"></script>
-<script src="@Url.Content("~/Scripts/bootstrap-image-gallery.min.js")"></script>*@
-
 
                 </div>
             <!-- /.row -->
@@ -188,21 +164,8 @@
     <!-- /#wrapper -->
         
 
-   @* </script>
-        <script type="text/javascript">
-            $(function () {
-                $('#fileupload').fileupload({
-                    dataType: 'json',
-                    add: function (e, data) {
-                        data.context = $('<p/>').text('Uploading...').appendTo(document.body);
-                        data.submit();
-                    },
-                    done: function (e, data) {
-                        data.context.text('Upload finished.');
-                    }
-                });
-            });
-            </script>*@
+  <script src="@Url.Content("~/Scripts/sb-admin-2.js")"></script>
+    <script src="@Url.Content("~/Scripts/plugins/metisMenu/metisMenu.min.js")"></script>
 
 </body>
 

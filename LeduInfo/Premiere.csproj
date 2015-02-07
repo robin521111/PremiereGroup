@@ -66,10 +66,12 @@
     <Reference Include="Backload, Version=1.9.3.0, Culture=neutral, PublicKeyToken=02eaf42ab375d363, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Backload.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Backload.Contracts, Version=1.9.3.0, Culture=neutral, PublicKeyToken=079b4834180abdf7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Backload.Contracts.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DotNetOpenAuth.AspNet, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -195,7 +197,7 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Owin">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
@@ -455,8 +457,10 @@
     <Content Include="Content\font-awesome\css\font-awesome-ie7.min.css" />
     <Content Include="Content\font-awesome\css\font-awesome.css" />
     <Content Include="Content\font-awesome\css\font-awesome.min.css" />
+    <Content Include="Content\graphicdata.css" />
     <Content Include="Content\jquery.fileupload-noscript.css" />
     <Content Include="Content\jquery.fileupload.css" />
+    <Content Include="Content\premiere-admin.css" />
     <Content Include="Content\styles.css" />
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -551,6 +555,7 @@
     <Content Include="Content\themes\jquery.ui.tabs.css" />
     <Content Include="Content\themes\jquery.ui.theme.css" />
     <Content Include="Images\generalFile.png" />
+    <Content Include="Images\hm.gif" />
     <Content Include="Images\loading.gif" />
     <Content Include="Images\map-marker.png" />
     <Content Include="Images\mdd_ajax_loader.gif" />
@@ -591,6 +596,16 @@
     <Content Include="Images\ui-icons_454545_256x240.png" />
     <Content Include="Images\ui-icons_888888_256x240.png" />
     <Content Include="Images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Scripts\BaiduIndexJs\bds_s_v2.js" />
+    <Content Include="Scripts\BaiduIndexJs\funs.js" />
+    <Content Include="Scripts\BaiduIndexJs\GraphData.js" />
+    <Content Include="Scripts\BaiduIndexJs\h.js" />
+    <Content Include="Scripts\BaiduIndexJs\intrt.js" />
+    <Content Include="Scripts\BaiduIndexJs\logger.js" />
+    <Content Include="Scripts\BaiduIndexJs\magic.js" />
+    <Content Include="Scripts\BaiduIndexJs\raphael.js" />
+    <Content Include="Scripts\BaiduIndexJs\shell_v2.js" />
+    <Content Include="Scripts\BaiduIndexJs\tangram.js" />
     <Content Include="Scripts\bootstrap-image-gallery.min.js" />
     <Content Include="Scripts\bootstrapValidator.js" />
     <Content Include="Scripts\bootstrapValidator.min.js" />
@@ -957,6 +972,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <None Include="Properties\PublishProfiles\Premiere.pubxml" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.0.3.js" />
     <Content Include="Scripts\jquery-2.0.3.min.js" />
@@ -1048,6 +1064,19 @@
     <Content Include="Scripts\Sco\sco.tab.js" />
     <Content Include="Scripts\Sco\sco.tooltip.js" />
     <Content Include="Scripts\Sco\sco.valid.js" />
+    <Content Include="Scripts\static\baidu指数的访问过程.txt" />
+    <Content Include="Scripts\static\css\styles.css" />
+    <Content Include="Scripts\static\GraphData.js" />
+    <Content Include="Scripts\static\imgs\hm.gif" />
+    <Content Include="Scripts\static\Js\bds_s_v2.js" />
+    <Content Include="Scripts\static\Js\funs.js" />
+    <Content Include="Scripts\static\Js\h.js" />
+    <Content Include="Scripts\static\Js\intrt.js" />
+    <Content Include="Scripts\static\Js\logger.js" />
+    <Content Include="Scripts\static\Js\magic.js" />
+    <Content Include="Scripts\static\Js\raphael.js" />
+    <Content Include="Scripts\static\Js\shell_v2.js" />
+    <Content Include="Scripts\static\Js\tangram.js" />
     <Content Include="Scripts\tables.js" />
     <Content Include="Scripts\tmpl.min.js" />
     <Content Include="Scripts\unslider.min.js" />
@@ -1160,6 +1189,8 @@
     <Content Include="Services\UploadHandler.ashx" />
     <Content Include="Views\Error\LoginError.cshtml" />
     <Content Include="Scripts\jquery-2.0.3.min.map" />
+    <Content Include="Scripts\static\JsonData.json" />
+    <Content Include="Views\Home\GraphicData.cshtml" />
     <None Include="Web.Backload.Default.config" />
     <None Include="Web.Backload.xsd">
       <SubType>Designer</SubType>
@@ -1191,12 +1222,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\House\Delete.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\House\HouseDetails1.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\House\HouseDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\House\HouseList.cshtml" />

@@ -17,24 +17,16 @@
 
     <title>Premiere Group Data Importing Admin</title>
 
-    <!-- MetisMenu CSS -->
-    <link href="@Url.Content("~/Content/plugins/metisMenu/metisMenu.min.css")" rel="stylesheet" />
-    @System.Web.Optimization.Styles.Render("~/Content/themes/base/css")
+
+</head>
+       @System.Web.Optimization.Styles.Render("~/Content/themes/base/css")
     @System.Web.Optimization.Scripts.Render("~/bundles/modernizr")
     @System.Web.Optimization.Styles.Render("~/bundles/fileupload/bootstrap/BasicPlusUI/css")
     <link href="@Url.Content("~/Content/ColorBox/colorbox.css")" rel="stylesheet" />
-    <noscript><link href="@Url.Content("~/Content/FileUpload/css/jquery.fileupload-ui-noscript.css")" rel="stylesheet" /></noscript>
-    <!-- Bootstrap Core CSS -->
-    <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" />
-    <!-- Custom CSS -->
-    <link href="@Url.Content("~/Content/sb-admin-2.css")" rel="stylesheet" />
+    
     <!-- Custom Fonts -->
     <link href="@Url.Content("~/Content/font-awesome/css/font-awesome.min.css")" rel="stylesheet" />
-
-        
-
-</head>
-
+    <link href="@Url.Content("~/Content/premiere-admin.css")" rel="stylesheet" />
 <body>
 
     <div id="wrapper">
@@ -266,27 +258,16 @@
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                        <li class="sidebar-search">
-                            <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search...">
-                                <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                            </div>
-                            <!-- /input-group -->
-                        </li>
+                     
                         <li>
                             @Html.IconActionLink("DashBoard","DashBoard",null,"fa fa-dashboard fa-fw",false,null)
-                            
                         </li>
                         <li>
-                            
                             @Html.IconActionLink("Charts","Charts",null,"fa fa-bar-chart-o fa-fw",true,null)
                             @*<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>*@
                             <ul class="nav nav-second-level">
                                 <li>
+                                    
                                     <a href="flot.html">Chart Data Import</a>
                                 </li>
                                 <li>
@@ -382,8 +363,7 @@
     @System.Web.Optimization.Scripts.Render("~/bundles/jquery")
     @System.Web.Optimization.Scripts.Render("~/bundles/jqueryui")
     @System.Web.Optimization.Scripts.Render("~/bundles/fileupload/bootstrap/BasicPlusUI/js")
-    <script src="@Url.Content("~/Scripts/sb-admin-2.js")"></script>
-    <script src="@Url.Content("~/Scripts/plugins/metisMenu/metisMenu.min.js")"></script>
+   
     <script src="@Url.Content("Scripts/ColorBox/jquery.colorbox-min.js")"></script>
     <script type="text/javascript" src="@Url.Content("Scripts/main.js")"></script>
 

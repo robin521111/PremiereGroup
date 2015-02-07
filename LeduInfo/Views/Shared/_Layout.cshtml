@@ -4,8 +4,10 @@
 }
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK" />
+
 @System.Web.Optimization.Scripts.Render("~/bundles/jquery")
 <link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />
 <link href="@Url.Content("~/Content/font-awesome.min.css")" rel="stylesheet" />
@@ -49,6 +51,7 @@
           <ul class="nav navbar-nav navbar-right">
             <li>@Html.ActionLink("Services","Services","Home")</li>
             <li>@Html.ActionLink("Contact","Contact","Home")</li>
+              <li>@Html.ActionLink("Data Analysis","DataAnalysis","Home")</li>
               @if (Request.IsAuthenticated)
               {
                   <li class="span3">
@@ -175,7 +178,7 @@
         </script>*@
 
         
-        <script>
+        @*<script type="text/javascript">
             $(document).ready(function () {
                 $('#loginform').bootstrapValidator({
                     message: 'This value is not valid',
@@ -215,7 +218,7 @@
                     }
                 });
             })
-        </script>
+        </script>*@
         <div id="body">
             @RenderSection("script",required:false)
             @RenderSection("featured", required: false)
