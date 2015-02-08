@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 
-namespace LeduInfo.Models
+namespace Premiere.Models
 {
     public class bloggingModel
     {

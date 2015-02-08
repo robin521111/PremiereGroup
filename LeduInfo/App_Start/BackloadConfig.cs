@@ -6,7 +6,7 @@ using System.Web.Optimization;
 using System.Web.Mvc;
 using Backload.Configuration;
 
-namespace LeduInfo.App_Start
+namespace Premiere.App_Start
 {
     public static class BackloadConfig
     {
@@ -67,12 +67,16 @@ namespace LeduInfo.App_Start
                 clientFiles.Scripts + "jquery.fileupload-audio.js",
                 clientFiles.Scripts + "jquery.fileupload-video.js",
                 clientFiles.Scripts + "jquery.fileupload-validate.js",
-                clientFiles.Scripts + "jquery.fileupload-ui.js")
+                clientFiles.Scripts + "jquery.fileupload-ui.js"
+                
+                )
             );
             bundles.Add(new StyleBundle("~/bundles/fileupload/bootstrap/BasicPlusUI/css").Include(
-                clientFiles.Styles + "bootstrap/bootstrap.debug.css",
-                clientFiles.Styles + "bootstrap/bootstrap-responsive.debug.css",
-                clientFiles.Styles + "bootstrap/bootstrap-image-gallery.debug.css",
+                //clientFiles.Styles + "bootstrap/bootstrap.debug.css",
+                "~/Content/bootstrap.min.css",
+                "~/Content/bootstrap-responsive.min.css",
+                //clientFiles.Styles + "bootstrap/bootstrap-responsive.debug.css",
+                "~/Content/bootstrap-image-gallery.debug.css",
                 clientFiles.Styles + "jquery.fileupload-ui.css")
             );
 

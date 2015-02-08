@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.Design;
-namespace LeduInfo.Models
+namespace Premiere.Models
 {
     
         public class HouseInfo

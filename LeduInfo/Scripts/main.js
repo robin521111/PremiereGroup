@@ -19,7 +19,7 @@ $(function () {
     // var fileUploadUrl = "/Backload/UploadHandler";
 
     var fileUploadUrl = "Services/UploadHandler.ashx";
-
+    var context = $('#fileupload')[0];
 
     // Initialize the jQuery File Upload widget:
     $('#fileupload').fileupload({
@@ -28,7 +28,22 @@ $(function () {
         previewMaxHeight: 60,
         acceptFileTypes: /(json)|(txt)|(xml)$/i // Allowed file types
     });
+    
 
+    $('#fileupload').bind('fileuploadprogress', function (e, data) {
+        var progress = parseInt(data.loaded / data.total * 100, 10);
+        console.log(progress + '%');
+        data.context.find('.progress')
+        .attr('aria-valuenow', progress)
+        .find('.bar').css(
+                        'width',
+                        progress + '%'
+        );
+    })
+    //$('#fileupload').bind('fileuploadprogress', function (e, data) {
+    //    // Log the current bitrate for this upload:
+    //    console.log(data);
+    //});
 
     // Optional: Initial ajax request to load already existing files.
     $.ajax({
@@ -36,16 +51,20 @@ $(function () {
         dataType: 'json',
         context: $('#fileupload')[0]
     })
-    .done(function (result) {
-        $(this).fileupload('option', 'done')
-            .call(this, null, { result: result });
+    .done(function (e, data) {
+        $('#fileupload').fileupload('option', {
+            progressall: function (e, data) {
+                
+            }
+        });
         // Attach the Colorbox plugin to the image files to preview them in a modal window. Other file types (e.g. pdf) will show up in a 
         // new browser window.
-        $(".files tr[data-type=image] a").colorbox();
+        //$(".files tr[data-type=image] a").colorbox();
     });
 
-});
 
+   
+});
 
 $("document").ready(function () {
     // The Colorbox plugin needs to be informed on new uploaded files in the template in order to bind a handler to it. 
@@ -54,6 +73,7 @@ $("document").ready(function () {
     // newly created template item, and then call colorbox manually.
     $('#fileupload')
         .bind('fileuploaddone', function (e, data) {
+
             setTimeout(function () { $(".files tr[data-type=image] a").colorbox() }, 1000);
         })
         

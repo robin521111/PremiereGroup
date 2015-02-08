@@ -1,4 +1,4 @@
-namespace LeduInfo.Migrations
+namespace Premiere.Migrations
 {
     using System;
     
@@ -6,7 +6,7 @@ namespace LeduInfo.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<LeduInfo.Models.PremiereDB>
+    internal sealed class Configuration : DbMigrationsConfiguration<Premiere.Models.PremiereDB>
     {
         public Configuration()
         {
@@ -14,7 +14,7 @@ namespace LeduInfo.Migrations
             
         }
 
-        protected override void Seed(LeduInfo.Models.PremiereDB context)
+        protected override void Seed(Premiere.Models.PremiereDB context)
         {
             //  This method will be called after migrating to the latest version.
 

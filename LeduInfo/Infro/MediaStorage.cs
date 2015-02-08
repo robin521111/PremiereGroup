@@ -7,7 +7,7 @@ using System.Configuration;
 using System.Data;
 using System.Globalization;
 
-namespace LeduInfo.Infro
+namespace Premiere.Infro
 {
     public class MediaStorage:IMediaStorage
     {

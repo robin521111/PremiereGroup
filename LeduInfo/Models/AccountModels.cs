@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Web.Security;
-namespace LeduInfo.Models
+namespace Premiere.Models
 {
     
     public class ChangePasswordModel

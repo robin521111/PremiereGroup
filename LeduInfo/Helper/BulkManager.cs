@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using System.Data.SqlClient;
 using System.Configuration;
 
-namespace LeduInfo.Models
+namespace Premiere.Models
 {
     public class BulkManager 
     {
@@ -25,7 +25,7 @@ namespace LeduInfo.Models
                 SqlDataReader Reader= Comm.ExecuteReader();
                 string Constr = string.Empty;
 
-                SqlBulkCopy bulk = new SqlBulkCopy(ConfigurationManager.ConnectionStrings["leduInfo"].ConnectionString);
+                SqlBulkCopy bulk = new SqlBulkCopy(ConfigurationManager.ConnectionStrings["Premiere"].ConnectionString);
                 bulk.DestinationTableName = "dbo.LoginModels";
                 bulk.ColumnMappings.Add("FirstName", "UserName");
                 bulk.ColumnMappings.Add("rowguid", "rowguid");

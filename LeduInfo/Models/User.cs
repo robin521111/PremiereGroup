@@ -6,7 +6,7 @@ using System.ComponentModel.Design;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel;
-namespace LeduInfo.Models
+namespace Premiere.Models
 {
     public class User
     {

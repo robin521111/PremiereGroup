@@ -6,10 +6,10 @@ using System.Web;
 using System.Web.Mvc;
 using System.IO;
 using System.Configuration;
-using LeduInfo.Models;
+using Premiere.Models;
 using System.Web.Security;
 
-namespace LeduInfo.Controllers
+namespace Premiere.Controllers
 {
     public class AdminController : Controller
     {

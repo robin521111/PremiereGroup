@@ -5,7 +5,7 @@ using System.Web;
 using System.Data.Entity;
 
 
-namespace LeduInfo.Models
+namespace Premiere.Models
 {
     public class PremiereDB:DbContext
     {

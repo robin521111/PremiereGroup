@@ -5,7 +5,7 @@ using System.Web;
 using System.Security;
 
 
-namespace LeduInfo.App_Start
+namespace Premiere.App_Start
 {
     public static class AuthConfig
     {

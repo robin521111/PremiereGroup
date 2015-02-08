@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using LeduInfo.Models;
-namespace LeduInfo.Models
+using Premiere.Models;
+namespace Premiere.Models
 {
     public class DataBaseModel
     {

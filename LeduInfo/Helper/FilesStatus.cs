@@ -1,8 +1,8 @@
 ﻿using System;
 using System.IO;
-using LeduInfo.Models;
+using Premiere.Models;
 
-namespace LeduInfo.Helper
+namespace Premiere.Helper
 {
     public class FilesStatus
     {

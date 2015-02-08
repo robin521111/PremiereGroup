@@ -4,14 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity;
 
-namespace LeduInfo.Models
+namespace Premiere.Models
 {
     public class DAL
     {
 
-        public class LeduInfoDBInitializer : CreateDatabaseIfNotExists<PremiereDB>
+        public class PremiereDBInitializer : CreateDatabaseIfNotExists<PremiereDB>
         {
-            public LeduInfoDBInitializer()
+            public PremiereDBInitializer()
             {
                 using (var db = new PremiereDB())
                 {

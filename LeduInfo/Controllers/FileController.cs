@@ -6,13 +6,13 @@ using System.Web.Mvc;
 using Infrustructure;
 using System.Configuration;
 
-namespace LeduInfo.Controllers
+namespace Premiere.Controllers
 {
     public class FileController : Controller
     {
         //
         // GET: /File/
-        LeduInfo.Models.PremiereDB db = new Models.PremiereDB();
+        Premiere.Models.PremiereDB db = new Models.PremiereDB();
         public ActionResult Index()
         {
             return View();

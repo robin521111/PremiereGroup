@@ -217,3 +217,11 @@ pip-log.txt
 #Mr Developer
 .mr.developer.cfg
 *.csproj
+*.nupkg
+*.psm1
+*.transform
+*.xml
+*.txt
+*.ps1
+*.exe
+*.psd1

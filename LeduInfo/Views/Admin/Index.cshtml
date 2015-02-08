@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 
-@using LeduInfo.HTMLHelper
+@using Premiere.Helper
     @{
     ViewBag.Title = "Index";
     Layout = null;
@@ -16,12 +16,12 @@
     <meta name="author" content="">
 
     <title>Premiere Group Data Importing Page</title>
-    <!-- Bootstrap Core CSS -->
+    @*<!-- Bootstrap Core CSS -->
     <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" />
     <!-- Custom CSS -->
     <link href="@Url.Content("~/Content/sb-admin-2.css")" rel="stylesheet" />
     <!-- MetisMenu CSS -->
-    <link href="@Url.Content("~/Content/plugins/metisMenu/metisMenu.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/plugins/metisMenu/metisMenu.min.css")" rel="stylesheet" />*@
 
 </head>
 <body>
@@ -30,7 +30,7 @@
 
         <!-- Navigation -->
         @{Html.RenderPartial("Admin_partial", null);}
-
+        @{Html.RenderPartial("sidebar", null);}
         <!-- Page Content -->
         <div id="page-wrapper">
             <div class="row">
@@ -164,8 +164,11 @@
     <!-- /#wrapper -->
         
 
-  <script src="@Url.Content("~/Scripts/sb-admin-2.js")"></script>
-    <script src="@Url.Content("~/Scripts/plugins/metisMenu/metisMenu.min.js")"></script>
+    <script type="text/javascript">
+        $('#side-menu').metisMenu();
+    </script>
+  @*<script src="@Url.Content("~/Scripts/sb-admin-2.js")"></script>
+    <script src="@Url.Content("~/Scripts/plugins/metisMenu/metisMenu.min.js")"></script>*@
 
 </body>
 

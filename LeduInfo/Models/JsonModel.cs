@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Web;
 using System.Web.Security;
 
-namespace LeduInfo.Models
+namespace Premiere.Models
 {
     public class JsonModel
     {

@@ -16,7 +16,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 
 
-namespace LeduInfo.Models
+namespace Premiere.Models
 {
     [FileIOPermission(SecurityAction.Demand, AllLocalFiles=FileIOPermissionAccess.AllAccess)]
     public class FileModel
@@ -37,7 +37,7 @@ namespace LeduInfo.Models
         //public FileModel()
         //{
         //    FileIOPermission f = new FileIOPermission(FileIOPermissionAccess.Write, ConfigurationManager.AppSettings["ImgBasePath"].ToString());
-        //    f.AddPathList(FileIOPermissionAccess.AllAccess, "C:\\CodeForFun\\InforwebMvc4\\LeduInfo\\Images\\ImgFolder");
+        //    f.AddPathList(FileIOPermissionAccess.AllAccess, "C:\\CodeForFun\\InforwebMvc4\\Premiere\\Images\\ImgFolder");
         //    f.Demand();
         //    if (Directory.GetDirectories(ConfigurationManager.AppSettings["ImgBasePath"]).Length > 0 || Directory.GetFiles(ConfigurationManager.AppSettings["ImgBasePath"]).Length > 0)
         //    {

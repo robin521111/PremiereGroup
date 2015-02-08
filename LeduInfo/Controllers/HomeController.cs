@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using LeduInfo.Models;
+using Premiere.Models;
 using Infrustructure;
 using System.Security;
 
-namespace LeduInfo.Controllers
+namespace Premiere.Controllers
 {
     public class HomeController : Controller
     {

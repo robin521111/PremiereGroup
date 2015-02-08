@@ -3,7 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Script.Serialization;
-using LeduInfo.Helper;
+using Premiere.Helper;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Schema;
@@ -12,9 +12,9 @@ using Backload.Plugin.Handler;
 using System.Threading.Tasks;
 using Backload;
 using System;
-using LeduInfo.Models;
+using Premiere.Models;
 
-namespace LeduInfo.Services
+namespace Premiere.Services
 {
     /// <summary>
     /// Summary description for UploadHandler
@@ -22,7 +22,7 @@ namespace LeduInfo.Services
     public class UploadHandler : IHttpHandler
     {
         private readonly JavaScriptSerializer js;
-        private LeduInfo.Models.PremiereDB DB = new PremiereDB();
+        private Premiere.Models.PremiereDB DB = new PremiereDB();
 
         private string StorageRoot
         {
@@ -271,8 +271,8 @@ namespace LeduInfo.Services
             FileUploadHandler handler = new FileUploadHandler(request, null);       // Get an instance of the handler class
             handler.IncomingRequestStarted += handler_IncomingRequestStarted;       // Register event handler for demo purposes
 
-            var jsonResult = handler.HandleRequestAsync();                   // Call the handler method
-            var result = jsonResult.Result;            // JsonResult.Data is of type object and must be casted 
+            var jsonResult = handler.HandleRequest();                   // Call the handler method
+            var result = jsonResult;            // JsonResult.Data is of type object and must be casted 
 
             context.Response.Write(JsonConvert.SerializeObject(result));            // Serialize the JQueryFileUpload object to a Json string
         }

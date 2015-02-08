@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Drawing;
 
-namespace LeduInfo.Models
+namespace Premiere.Models
 {
     public class SilverlightObject
     {

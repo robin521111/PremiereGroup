@@ -7,11 +7,11 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using System.Data.Entity;
-using LeduInfo.Models;
+using Premiere.Models;
 using System.Text;
-using LeduInfo.App_Start;
+using Premiere.App_Start;
 
-namespace LeduInfo
+namespace Premiere
 {
 
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
