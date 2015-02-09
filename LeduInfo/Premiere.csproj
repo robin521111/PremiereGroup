@@ -549,6 +549,7 @@
     <Content Include="Content\themes\jquery.ui.slider.css" />
     <Content Include="Content\themes\jquery.ui.tabs.css" />
     <Content Include="Content\themes\jquery.ui.theme.css" />
+    <Content Include="Images\default_thumb.jpg" />
     <Content Include="Images\generalFile.png" />
     <Content Include="Images\hm.gif" />
     <Content Include="Images\loading.gif" />

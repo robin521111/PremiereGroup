@@ -430,8 +430,7 @@
             data.context.find('.preview').each(function (index, elm) {
                 //data.files[index].preview
                 
-                $(elm).append('<img src="../../Content/Backload/content-types/72/Text.png" alt="" />');
-
+                $(elm).append('<img src="../Images/default_thumb.jpg" alt="" />');
             });
         },
 
