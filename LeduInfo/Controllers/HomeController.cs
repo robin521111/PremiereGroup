@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Premiere.Models;
 using Infrustructure;
 using System.Security;
+using Premiere.Helper;
 
 namespace Premiere.Controllers
 {
@@ -45,6 +46,13 @@ namespace Premiere.Controllers
             return View();
         }
 
+        public ActionResult ReturnDataContext(HttpContext context)
+        {
+            FilesStatus fs = new FilesStatus();
+
+
+            return View();
+        }
         //public ActionResult InfoPage()
         //{
         //    ViewBag.Message = "This is the info page for user to search!";

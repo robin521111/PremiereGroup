@@ -31,6 +31,7 @@ $(function () {
     });
     
 
+
     $('#fileupload').bind('fileuploadprogress', function (e, data) {
         var progress = parseInt(data.loaded / data.total * 100, 10);
         console.log(progress + '%');
@@ -46,6 +47,7 @@ $(function () {
     //    console.log(data);
     //});
 
+
     // Optional: Initial ajax request to load already existing files.
     $.ajax({
         url: fileUploadUrl,
@@ -53,18 +55,11 @@ $(function () {
         context: $('#fileupload')[0]
     })
     .done(function (e, data) {
-        $('#fileupload').fileupload('option', {
-            progressall: function (e, data) {
-                
-            }
-        });
+     
         // Attach the Colorbox plugin to the image files to preview them in a modal window. Other file types (e.g. pdf) will show up in a 
         // new browser window.
         //$(".files tr[data-type=image] a").colorbox();
     });
-
-
-   
 });
 
 $("document").ready(function () {
@@ -74,18 +69,38 @@ $("document").ready(function () {
     // newly created template item, and then call colorbox manually.
     $('#fileupload')
         .bind('fileuploaddone', function (e, data) {
-
-            setTimeout(function () { $(".files tr[data-type=image] a").colorbox() }, 1000);
+            //setTimeout(function () { $(".files tr[data-type=image] a").colorbox() }, 1000);
+           
         })
+
         
         // You do not need the following.
         .bind('fileuploaddestroy', function (e, data) {
-            var s = data.url.split("?");                                // Split and replace is way faster than RegEx here
-            s[1] = s[1].replace("fileName=", "").replace(".", ",");     // Make the url RESTful compliant and remove dots 
-                                                                        // because otherwise IIS treats this as a path to a file
-                                                                        // and it will not be routed by the Web API
-            data.url = s[0] + s[1];                                     // Note: Server side we must add the file manually to the 
-                                                                        // e.Param.BackloadValues.FileName property in the IncomingRequestStarted event handler
+            $.ajax({
+                type:"DELETE",
+                url: "Services/UploadHandler.ashx?f="+ data.context.find('a').attr('title'),
+                dataType: "xml"
+                
+            })
+            .success(function (e, data) {
+                data.context.remove();
+                console.log('done');
+            })
+            .done(function (e, data) {
+                data.context.remove();
+                console.log('done with success');
+            })
+            .fail(function (e, data) {
+                console.log('error!!');
+            })
+           
+
+            //var s = data.url.split("?");                                // Split and replace is way faster than RegEx here
+            //s[1] = s[1].replace("fileName=", "").replace(".", ",");     // Make the url RESTful compliant and remove dots 
+            //                                                            // because otherwise IIS treats this as a path to a file
+            //                                                            // and it will not be routed by the Web API
+            //data.url = s[0] + s[1];                                     // Note: Server side we must add the file manually to the 
+            //                                                            // e.Param.BackloadValues.FileName property in the IncomingRequestStarted event handler
         });
         
 
