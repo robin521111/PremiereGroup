@@ -88,7 +88,7 @@ namespace Premiere.Models
     {
         [Required]
         [Key]
-        public int FileID { get; set; }
+        public int FileID { get; set; } 
 
         public string FileName { get; set; }
 
@@ -109,6 +109,10 @@ namespace Premiere.Models
         public string Delete_Type { get; set; }
 
         public string Error { get; set; }
+
+        public DateTime LastModified { get; set; }
+
+        public string LastModifiedBy { get; set; }
 
     }
 
