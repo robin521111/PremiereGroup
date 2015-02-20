@@ -13,7 +13,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Premiere</RootNamespace>
     <AssemblyName>Premiere</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <SilverlightApplicationList>
@@ -318,6 +318,7 @@
     <Compile Include="Models\bloggingModel.cs" />
     <Compile Include="Helper\BulkManager.cs" />
     <Compile Include="Helper\DAL.cs" />
+    <Compile Include="Models\ChartsModel.cs" />
     <Compile Include="Models\DataBaseModel.cs" />
     <Compile Include="Models\FileModel.cs" />
     <Compile Include="Models\House.cs" />

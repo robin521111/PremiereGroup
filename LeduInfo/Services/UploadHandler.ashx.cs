@@ -12,6 +12,7 @@ using Backload.Plugin.Handler;
 using System.Threading.Tasks;
 using Backload;
 using System;
+using System.Web.Security;
 using Premiere.Models;
 
 namespace Premiere.Services
@@ -41,12 +42,12 @@ namespace Premiere.Services
         {
             context.Response.AddHeader("Pragma", "no-cache");
             context.Response.AddHeader("Cache-Control", "private, no-cache");
-
-            HandleMethod(context);
+            string path = context.Request.QueryString["title"];
+            HandleMethod(context,path);
         }
 
-        // Handle request based on method
-        private void HandleMethod(HttpContext context)
+        // Handle request based on methods
+        private void HandleMethod(HttpContext context, string path)
         {
             switch (context.Request.HttpMethod)
             {
@@ -169,7 +170,9 @@ namespace Premiere.Services
                     Delete_Url= status.delete_url,
                     Error = status.error,
                     Progress= status.progress,
-                    Thumbnail_Url = status.thumbnail_url
+                    Thumbnail_Url = status.thumbnail_url,
+                    LastModified= DateTime.Now,
+                    LastModifiedBy=Membership.GetUser().ToString()
                 });
 
 
@@ -271,7 +274,7 @@ namespace Premiere.Services
             FileUploadHandler handler = new FileUploadHandler(request, null);       // Get an instance of the handler class
             handler.IncomingRequestStarted += handler_IncomingRequestStarted;       // Register event handler for demo purposes
 
-            var jsonResult = handler.HandleRequestAsync();                   // Call the handler method
+            var jsonResult = handler.HandleRequest();                   // Call the handler method
             var result = jsonResult;            // JsonResult.Data is of type object and must be casted 
 
             context.Response.Write(JsonConvert.SerializeObject(result));            // Serialize the JQueryFileUpload object to a Json string

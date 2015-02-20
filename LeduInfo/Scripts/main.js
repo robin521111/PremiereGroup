@@ -94,7 +94,7 @@ $("document").ready(function () {
                 console.log('error!!');
             })
            
-
+            data.context.remove();
             //var s = data.url.split("?");                                // Split and replace is way faster than RegEx here
             //s[1] = s[1].replace("fileName=", "").replace(".", ",");     // Make the url RESTful compliant and remove dots 
             //                                                            // because otherwise IIS treats this as a path to a file
