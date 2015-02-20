@@ -18,11 +18,26 @@
                 @*<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>*@
                 <ul class="nav nav-second-level">
                     <li>
-
-                        <a href="flot.html">Chart Data Import</a>
+                        @Html.ActionLink("品牌曝光度分析", "index", new { @title = "品牌曝光度分析" }, null)
                     </li>
                     <li>
-
+                        @Html.ActionLink("品牌传播图谱","index",new { @title = "品牌传播图谱" },null)
+                    </li>
+                    <li>
+                        @Html.ActionLink("品牌形象分析图","index",new { @title = "品牌形象分析图" },null)
+                    </li>
+                    <li>
+                        @Html.ActionLink("设计感（外形/工艺）与功能性（复杂）分析图", "index", new { @title = "设计感（外形/工艺）与功能性（复杂）分析图" }, null)
+                    </li>
+                    <li>
+                        @Html.ActionLink("男女比例分析图","index",new { @title = "男女比例分析图" },null)
+                    </li>
+                    <li>
+                        @Html.ActionLink("品牌关注点分析图","index",new { @title = "品牌关注点分析图" },null)
+                    </li>
+                    <li>
+                        @Html.ActionLink("媒体关注度分析图谱","index",new { @title = "媒体关注度分析图谱" },null)
+                        
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->

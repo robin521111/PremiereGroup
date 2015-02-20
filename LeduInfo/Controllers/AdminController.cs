@@ -41,8 +41,9 @@ namespace Premiere.Controllers
             return View();
         }
 
-        public ActionResult Index()
+        public ActionResult Index(string title)
         {
+            ViewBag.Title = title;
             return View();
         }
 
@@ -60,7 +61,7 @@ namespace Premiere.Controllers
             var filename = id;
             var filePath = Path.Combine(Server.MapPath("~/Upload/ChartData/"), filename);
 
-            if (System.IO.File.Exists(filePath))
+           if (System.IO.File.Exists(filePath))
             {
                 System.IO.File.Delete(filePath);
             }
