@@ -42,12 +42,13 @@ namespace Premiere.Services
         {
             context.Response.AddHeader("Pragma", "no-cache");
             context.Response.AddHeader("Cache-Control", "private, no-cache");
-            string path = context.Request.QueryString["title"];
-            HandleMethod(context,path);
+            
+            string folderName = context.Request.QueryString["title"];
+            HandleMethod(context,folderName);
         }
 
         // Handle request based on methods
-        private void HandleMethod(HttpContext context, string path)
+        private void HandleMethod(HttpContext context, string folderName)
         {
             switch (context.Request.HttpMethod)
             {
@@ -59,7 +60,7 @@ namespace Premiere.Services
 
                 case "POST":
                 case "PUT":
-                    UploadFile(context);
+                    UploadFile(context,folderName);
                     break;
 
                 case "DELETE":
@@ -94,14 +95,14 @@ namespace Premiere.Services
         }
 
         // Upload file to the server
-        private void UploadFile(HttpContext context)
+        private void UploadFile(HttpContext context, string folderName)
         {
             var statuses = new List<FilesStatus>();
             var headers = context.Request.Headers;
 
             if (string.IsNullOrEmpty(headers["X-File-Name"]))
             {
-                UploadWholeFile(context, statuses);
+                UploadWholeFile(context, statuses,folderName);
             }
             else
             {
@@ -136,20 +137,25 @@ namespace Premiere.Services
         }
 
         // Upload entire file
-        private void UploadWholeFile(HttpContext context, List<FilesStatus> statuses)
+        private void UploadWholeFile(HttpContext context, List<FilesStatus> statuses, string folderName)
         {
 
             for (int i = 0; i < context.Request.Files.Count; i++)
             {
                 var file = context.Request.Files[i];
+                var fullPath = StorageRoot +folderName+'_'+ Path.GetFileName(file.FileName);
+                var folderPath = StorageRoot + folderName ;
+                
+                if (!File.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
 
-                var fullPath = StorageRoot + Path.GetFileName(file.FileName);
                 var ext = Path.GetExtension(fullPath);
                 file.SaveAs(fullPath);
                 string fullName = Path.GetFileName(file.FileName);
                 FilesStatus status = new FilesStatus(fullName,file.ContentLength,fullPath);
                 string path = Path.GetFullPath(fullPath);
-
                 //path = "@"+path;
                 if (ext.ToString() == ".json")
                 {
@@ -175,7 +181,7 @@ namespace Premiere.Services
                     LastModifiedBy=Membership.GetUser().ToString()
                 });
 
-
+                
                 DB.SaveChanges();
                 //statuses.Add(new FilesStatus(fullName, file.ContentLength, fullPath));
              
@@ -274,7 +280,7 @@ namespace Premiere.Services
             FileUploadHandler handler = new FileUploadHandler(request, null);       // Get an instance of the handler class
             handler.IncomingRequestStarted += handler_IncomingRequestStarted;       // Register event handler for demo purposes
 
-            var jsonResult = handler.HandleRequest();                   // Call the handler method
+            var jsonResult = handler.HandleRequestAsync();                   // Call the handler method
             var result = jsonResult;            // JsonResult.Data is of type object and must be casted 
 
             context.Response.Write(JsonConvert.SerializeObject(result));            // Serialize the JQueryFileUpload object to a Json string

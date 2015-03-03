@@ -18,8 +18,8 @@ $(function () {
 
     // In this example we do NOT use the builtin file upload handler.
     // var fileUploadUrl = "/Backload/UploadHandler";
-
-    var fileUploadUrl = "Services/UploadHandler.ashx";
+    var title = $('.page-header').html();
+    var fileUploadUrl = "Services/UploadHandler.ashx?title="+title;
     var context = $('#fileupload')[0];
 
     // Initialize the jQuery File Upload widget:
@@ -31,7 +31,7 @@ $(function () {
     });
     
 
-
+    //Initialize the jQuery file upload progress bar
     $('#fileupload').bind('fileuploadprogress', function (e, data) {
         var progress = parseInt(data.loaded / data.total * 100, 10);
         console.log(progress + '%');
@@ -59,6 +59,7 @@ $(function () {
         // Attach the Colorbox plugin to the image files to preview them in a modal window. Other file types (e.g. pdf) will show up in a 
         // new browser window.
         //$(".files tr[data-type=image] a").colorbox();
+
     });
 });
 
