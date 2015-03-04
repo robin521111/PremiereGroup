@@ -1,6 +1,8 @@
 ﻿
     @model Premiere.Models.FileModel
-    
+    @{
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
 
 <!DOCTYPE html>
 <html>
@@ -10,6 +12,7 @@
 </head>
 
 <body>
+
 <div id="myCarousel" class="carousel slide" style="height:200px">
       <!-- Indicators -->
         <ol class="carousel-indicators">
@@ -40,7 +43,10 @@
           </div>
         </div>
            </div>
-
+    @if (Request.IsAuthenticated)
+    {
+        Html.RenderPartial("Home_sidebar");
+    }
 
         <div class="section">
 
@@ -187,7 +193,13 @@
           <span class="icon-next"></span>
         </a>
     </div>
-
+   
+    <script type="text/javascript">
+                
+        $('#side-menu').metisMenu();
+    </script>
+    <script src="@Url.Content("~/Scripts/sb-admin-2.js")"></script>
+    <script src="@Url.Content("~/Scripts/plugins/metisMenu/metisMenu.min.js")"></script>
     @*<script src="@Url.Content("../../Scripts/jquery-1.8.2.js")" type="text/javascript"></script>*@
     @*<script src="@Url.Content("../../Scripts/bootstrap.js")" type="text/javascript"></script>*@
    @* <script src="@Url.Content("../../Scripts/jquery-1.8.2-vsdoc.js")" type="text/javascript"></script>*@

@@ -1,0 +1,37 @@
+﻿@using Premiere.Helper
+
+
+
+
+
+<!-- /.navbar-static-side -->
+
+<div class="navbar-default sidebar" role="navigation">
+    <div class="sidebar-nav navbar-collapse">
+                <ul id="side-menu" class="nav nav-second-level">
+                    <li>
+                        @Html.ActionLink("品牌曝光分析", "BrandExposure_line", "Charts", new { @title = "品牌曝光分析数据导入" }, null)
+                    </li>
+                    <li>
+                        @Html.ActionLink("品牌传播图谱", "Index", "Admin", new { @title = "品牌传播图谱数据导入" }, null)
+                    </li>
+                    <li>
+                        @Html.ActionLink("品牌形象分析图", "Index", "Admin", new { @title = "品牌形象分析图数据导入" }, null)
+                    </li>
+                    <li>
+                        @Html.ActionLink("设计感（外形/工艺）与功能性（复杂）分析图", "Index", "Admin", new { @title = "设计感（外形/工艺）与功能性（复杂）分析图数据导入" }, null)
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+    </div>
+    <!-- /.sidebar-collapse -->
+</div>
+
+
+
+<script src="@Url.Content("~/Scripts/jquery.sidebar.js")"></script>
+<link href="@Url.Content("~/Content/sidebar.css")" rel="stylesheet" />
+<script type="text/javascript" src="@Url.Content("http://code.jquery.com/ui/1.8.13/jquery-ui.min.js")"></script>
+<script>
+    $("ul#side-menu").sidebar();
+</script>

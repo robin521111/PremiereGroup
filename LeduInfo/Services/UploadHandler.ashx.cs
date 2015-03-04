@@ -153,7 +153,7 @@ namespace Premiere.Services
                 //path = "@"+path;
                 if (ext.ToString() == ".json")
                 {
-                    ReadJson(path);
+                     ReadJson(path);
                 }
                 else if (ext.ToString() == ".txt")
                 {
