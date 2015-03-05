@@ -1232,6 +1232,7 @@
     <Content Include="Views\Shared\Home_sidebar.cshtml" />
     <Content Include="Views\Charts\BrandExposure_line.cshtml" />
     <Content Include="Views\Charts\BrandExposure_bubble.cshtml" />
+    <Content Include="Views\Charts\BrandExposure_map.cshtml" />
     <None Include="Web.Backload.Default.config" />
     <None Include="Web.Backload.xsd">
       <SubType>Designer</SubType>
