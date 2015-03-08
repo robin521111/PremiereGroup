@@ -41,8 +41,10 @@ namespace Premiere.Controllers
             return View();
         }
 
-        public ActionResult Index()
+        public ActionResult Index(string title)
         {
+            ViewBag.Title = title;
+
             return View();
         }
 

@@ -19,7 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataFacade", "DataFacade\Da
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrustructure", "Infrustructure\Infrustructure.csproj", "{AEE1A581-5FB4-48DF-9EA6-A970BB9A838B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Premiere", "LeduInfo\Premiere.csproj", "{A1D9643F-E43B-4CE4-9372-69BCC5E2771C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Premiere", "Premiere\Premiere.csproj", "{A1D9643F-E43B-4CE4-9372-69BCC5E2771C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

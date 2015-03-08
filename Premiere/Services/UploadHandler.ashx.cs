@@ -25,6 +25,7 @@ namespace Premiere.Services
         private readonly JavaScriptSerializer js;
         private Premiere.Models.PremiereDB DB = new PremiereDB();
 
+
         private string StorageRoot
         {
             get { return Path.Combine(System.Web.HttpContext.Current.Server.MapPath("~/Upload/ChartData/")); } //Path should! always end with '/'
@@ -64,7 +65,7 @@ namespace Premiere.Services
                     break;
 
                 case "DELETE":
-                    DeleteFile(context);
+                    DeleteFile(context, folderName);
                     break;
 
                 case "OPTIONS":
@@ -85,9 +86,9 @@ namespace Premiere.Services
         }
 
         // Delete file from the server
-        private void DeleteFile(HttpContext context)
+        private void DeleteFile(HttpContext context, string folderName)
         {
-            var filePath = StorageRoot + context.Request["f"];
+            var filePath = StorageRoot +folderName+"\\" +folderName+'_'+ context.Request["f"];
             if (File.Exists(filePath))
             {
                 File.Delete(filePath);
@@ -143,7 +144,7 @@ namespace Premiere.Services
             for (int i = 0; i < context.Request.Files.Count; i++)
             {
                 var file = context.Request.Files[i];
-                var fullPath = StorageRoot +folderName+'_'+ Path.GetFileName(file.FileName);
+                var fullPath = StorageRoot + folderName+ "\\"+ folderName+'_'+ Path.GetFileName(file.FileName);
                 var folderPath = StorageRoot + folderName ;
                 
                 if (!File.Exists(folderPath))
@@ -166,6 +167,16 @@ namespace Premiere.Services
                     status.content = ReadFile(path);
                 }
 
+                if (folderName.ToString() == "品牌曝光度分析")
+                {
+                    DB.BrandExposuretbl.Add(new BrandExposure
+                    {
+                        ChartID = 1,
+                        Content = status.content,
+                        LastModified = DateTime.Now,
+                        LastModifiedBy = Membership.GetUser().UserName.ToString()
+                    });
+                }
                 DB.UploadHandlertbl.Add(new UploadHandlerModel{
                     FileName=status.name,
                     FileType=status.type,
@@ -177,8 +188,9 @@ namespace Premiere.Services
                     Error = status.error,
                     Progress= status.progress,
                     Thumbnail_Url = status.thumbnail_url,
-                    LastModified= DateTime.Now,
-                    LastModifiedBy=Membership.GetUser().ToString()
+                    LastModified=DateTime.Now,
+                    LastModifiedBy = Membership.GetUser().UserName.ToString()
+                  
                 });
 
                 
@@ -280,7 +292,7 @@ namespace Premiere.Services
             FileUploadHandler handler = new FileUploadHandler(request, null);       // Get an instance of the handler class
             handler.IncomingRequestStarted += handler_IncomingRequestStarted;       // Register event handler for demo purposes
 
-            var jsonResult = handler.HandleRequestAsync();                   // Call the handler method
+            var jsonResult = handler.HandleRequest();               // Call the handler method
             var result = jsonResult;            // JsonResult.Data is of type object and must be casted 
 
             context.Response.Write(JsonConvert.SerializeObject(result));            // Serialize the JQueryFileUpload object to a Json string

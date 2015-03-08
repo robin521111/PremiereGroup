@@ -35,12 +35,15 @@ $(function () {
     $('#fileupload').bind('fileuploadprogress', function (e, data) {
         var progress = parseInt(data.loaded / data.total * 100, 10);
         console.log(progress + '%');
-        data.context.find('.progress')
-        .attr('aria-valuenow', progress)
-        .find('.bar').css(
-                        'width',
-                        progress + '%'
-        );
+        data.context.find('.progress-bar')
+       .css('width',progress + '%')
+        //.attr('aria-valuenow', progress)
+        //.html(progress)
+        //.attr('style',"width:"+progress + "%;")
+        //.find('.bar').css(
+        //                'width',
+        //                progress + '%'
+        //);
     })
     //$('#fileupload').bind('fileuploadprogress', function (e, data) {
     //    // Log the current bitrate for this upload:
@@ -75,11 +78,11 @@ $("document").ready(function () {
         })
 
         
-        // You do not need the following.
+        // Delete File on server
         .bind('fileuploaddestroy', function (e, data) {
             $.ajax({
                 type:"DELETE",
-                url: "Services/UploadHandler.ashx?f="+ data.context.find('a').attr('title'),
+                url: "Services/UploadHandler.ashx?f=" + data.context.find('a').attr('title')+"&title=" + $('.page-header').html(),
                 dataType: "xml"
                 
             })
