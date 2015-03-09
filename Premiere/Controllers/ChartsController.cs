@@ -30,5 +30,10 @@ namespace Premiere.Controllers
         {
             return View();
         }
+
+        public ActionResult GraphicData()
+        {
+            return View();
+        }
     }
 }
