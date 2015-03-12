@@ -16,10 +16,16 @@
                         @Html.ActionLink("品牌传播图谱", "GraphicData", "Charts", new { @title = "" }, null)
                     </li>
                     <li>
-                        @Html.ActionLink("品牌形象分析图", "Index", "Admin", new { @title = "品牌形象分析图数据导入" }, null)
+                        @Html.ActionLink("品牌形象分析图", "BrandImage", "Charts", new { @title = "品牌形象分析图数据导入" }, null)
                     </li>
                     <li>
-                        @Html.ActionLink("设计感（外形/工艺）与功能性（复杂）分析图", "Index", "Admin", new { @title = "设计感（外形/工艺）与功能性（复杂）分析图数据导入" }, null)
+                        @Html.ActionLink("设计感（外形/工艺）与功能性（复杂）分析图", "DesignSense", "Charts", new { @title = "设计感（外形/工艺）与功能性（复杂）分析图数据导入" }, null)
+                    </li>
+                    <li>
+                        @Html.ActionLink("男女比例分析图", "SexRatio", "Charts", new { @title = "男女比例分析图" }, null)
+                    </li>
+                      <li>
+                        @Html.ActionLink("品牌关注点分析图", "BrandFocus", "Charts", new { @title = "品牌关注点分析图" }, null)
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->
