@@ -28,8 +28,8 @@ namespace Premiere.Models
     }
 
 
-    [Table("BrandExposuretbl")]
-    public class BrandExposure
+    [Table("BrandExposureLinetbl")]
+    public class BrandExposureLine
     {
         [Key]
         public int ID { get; set; }
@@ -38,5 +38,24 @@ namespace Premiere.Models
         public string LastModifiedBy { get; set; }
         public DateTime LastModified { get; set; }
 
+    }
+
+    [Table("BrandExposureBubbletbl")]
+    public class BrandExposureBubble
+    {
+        [Key]
+        public int ID { get; set; }
+        public DateTime Time { get; set; }
+        public int MediaExplosure { get; set; }
+        public int UserExplosure { get; set; }
+    }
+
+    public class BrandSpreadMap
+    {
+        [Key]
+        public int ID { get; set; }
+        public string Content { get; set; }
+        public string LastModifiedBy { get; set; }
+        public DateTime LastModified { get; set; }
     }
 }

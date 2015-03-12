@@ -18,7 +18,8 @@ namespace Premiere.Models
 
         public DbSet<UploadHandlerModel> UploadHandlertbl { get; set; }
         public DbSet<ChartsModel> Chartstbl { get; set; }
-        public DbSet<BrandExposure> BrandExposuretbl { get; set; }
+        public DbSet<BrandExposureLine> BrandExposureLinetbl { get; set; }
+        public DbSet<BrandExposureBubble> BrandExposureBubbletbl { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -167,16 +167,7 @@ namespace Premiere.Services
                     status.content = ReadFile(path);
                 }
 
-                if (folderName.ToString() == "品牌曝光度分析")
-                {
-                    DB.BrandExposuretbl.Add(new BrandExposure
-                    {
-                        ChartID = 1,
-                        Content = status.content,
-                        LastModified = DateTime.Now,
-                        LastModifiedBy = Membership.GetUser().UserName.ToString()
-                    });
-                }
+                
                 DB.UploadHandlertbl.Add(new UploadHandlerModel{
                     FileName=status.name,
                     FileType=status.type,
@@ -193,8 +184,7 @@ namespace Premiere.Services
                   
                 });
 
-                
-                DB.SaveChanges();
+                DataSync(folderName, status);
                 //statuses.Add(new FilesStatus(fullName, file.ContentLength, fullPath));
              
             }
@@ -202,6 +192,38 @@ namespace Premiere.Services
             DB.SaveChanges();
         }
 
+
+
+        private void DataSync(string folderName, FilesStatus status)
+        {
+            switch (folderName)
+            {
+                case  "品牌曝光度分析":
+
+                    DB.BrandExposureLinetbl.Add(new BrandExposureLine
+                    {
+                        ChartID = 1,
+                        Content = status.content,
+                        LastModified = DateTime.Now,
+                        LastModifiedBy = Membership.GetUser().UserName.ToString()
+                    });
+                    break;
+                case "品牌传播图谱":
+                    break;
+                case "品牌形象分析图":
+                    break;
+                case "设计感与功能性分析图":
+                    break;
+                case "男女比例分析图":
+                    break;
+                case "品牌关注点分析图":
+                    break;
+                case "媒体关注度分析图谱":
+                    break;
+                default:
+                    break;
+            }
+        }
         private string ReadFile(string path)
         {
               string text = File.ReadAllText(path);
