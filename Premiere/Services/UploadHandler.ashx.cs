@@ -314,7 +314,7 @@ namespace Premiere.Services
             FileUploadHandler handler = new FileUploadHandler(request, null);       // Get an instance of the handler class
             handler.IncomingRequestStarted += handler_IncomingRequestStarted;       // Register event handler for demo purposes
 
-            var jsonResult = handler.HandleRequest();               // Call the handler method
+            var jsonResult = handler.HandleRequestAsync();               // Call the handler method
             var result = jsonResult;            // JsonResult.Data is of type object and must be casted 
 
             context.Response.Write(JsonConvert.SerializeObject(result));            // Serialize the JQueryFileUpload object to a Json string

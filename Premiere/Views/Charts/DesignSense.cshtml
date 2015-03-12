@@ -1,0 +1,219 @@
+﻿@{
+    ViewBag.Title = "DesignSense";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="@Url.Content("~/Content/simple-sidebar.css")" rel="stylesheet" />
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Simple Sidebar - Start Bootstrap Template</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/simple-sidebar.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    @*[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]*@
+</head>
+<body>
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                        Premiere Group
+                    </a>
+                </li>
+                <li>
+                    @Html.ActionLink("设计感（外形/工艺）与功能性（复杂）分析图","DesignSense","Charts",null,null)
+                </li>
+                
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+
+            <div class="jumbotron">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1>品牌曝光度分析 - 气泡图</h1>
+                            <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
+                            <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
+                            <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">收回菜单</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+        </div>
+        <!-- /#page-content-wrapper -->
+    </div>
+
+    <!-- /#wrapper -->
+    <!-- HightChart -->
+    <script src="@Url.Content("~/Scripts/HighChart/modules/exporting.js")"></script>
+    <script src="@Url.Content("~/Scripts/HighChart/highcharts.js")"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+    $(function () {
+        $('#container').highcharts({
+            chart: {
+                type: 'spline'
+            },
+            title: {
+                text: 'Wind speed during two days'
+            },
+            subtitle: {
+                text: 'October 6th and 7th 2009 at two locations in Vik i Sogn, Norway'
+            },
+            xAxis: {
+                type: 'datetime',
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'Wind speed (m/s)'
+                },
+                min: 0,
+                minorGridLineWidth: 0,
+                gridLineWidth: 0,
+                alternateGridColor: null,
+                plotBands: [{ // Light air
+                    from: 0.3,
+                    to: 1.5,
+                    color: 'rgba(68, 170, 213, 0.1)',
+                    label: {
+                        text: 'Light air',
+                        style: {
+                            color: '#606060'
+                        }
+                    }
+                }, { // Light breeze
+                    from: 1.5,
+                    to: 3.3,
+                    color: 'rgba(0, 0, 0, 0)',
+                    label: {
+                        text: 'Light breeze',
+                        style: {
+                            color: '#606060'
+                        }
+                    }
+                }, { // Gentle breeze
+                    from: 3.3,
+                    to: 5.5,
+                    color: 'rgba(68, 170, 213, 0.1)',
+                    label: {
+                        text: 'Gentle breeze',
+                        style: {
+                            color: '#606060'
+                        }
+                    }
+                }, { // Moderate breeze
+                    from: 5.5,
+                    to: 8,
+                    color: 'rgba(0, 0, 0, 0)',
+                    label: {
+                        text: 'Moderate breeze',
+                        style: {
+                            color: '#606060'
+                        }
+                    }
+                }, { // Fresh breeze
+                    from: 8,
+                    to: 11,
+                    color: 'rgba(68, 170, 213, 0.1)',
+                    label: {
+                        text: 'Fresh breeze',
+                        style: {
+                            color: '#606060'
+                        }
+                    }
+                }, { // Strong breeze
+                    from: 11,
+                    to: 14,
+                    color: 'rgba(0, 0, 0, 0)',
+                    label: {
+                        text: 'Strong breeze',
+                        style: {
+                            color: '#606060'
+                        }
+                    }
+                }, { // High wind
+                    from: 14,
+                    to: 15,
+                    color: 'rgba(68, 170, 213, 0.1)',
+                    label: {
+                        text: 'High wind',
+                        style: {
+                            color: '#606060'
+                        }
+                    }
+                }]
+            },
+            tooltip: {
+                valueSuffix: ' m/s'
+            },
+            plotOptions: {
+                spline: {
+                    lineWidth: 4,
+                    states: {
+                        hover: {
+                            lineWidth: 5
+                        }
+                    },
+                    marker: {
+                        enabled: false
+                    },
+                    pointInterval: 3600000, // one hour
+                    pointStart: Date.UTC(2009, 9, 6, 0, 0, 0)
+                }
+            },
+            series: [{
+                name: 'Hestavollane',
+                data: [4.3, 5.1, 4.3, 5.2, 5.4, 4.7, 3.5, 4.1, 5.6, 7.4, 6.9, 7.1,
+                    7.9, 7.9, 7.5, 6.7, 7.7, 7.7, 7.4, 7.0, 7.1, 5.8, 5.9, 7.4,
+                    8.2, 8.5, 9.4, 8.1, 10.9, 10.4, 10.9, 12.4, 12.1, 9.5, 7.5,
+                    7.1, 7.5, 8.1, 6.8, 3.4, 2.1, 1.9, 2.8, 2.9, 1.3, 4.4, 4.2,
+                    3.0, 3.0]
+
+            }, {
+                name: 'Voll',
+                data: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.1, 0.0, 0.3, 0.0,
+                    0.0, 0.4, 0.0, 0.1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                    0.0, 0.6, 1.2, 1.7, 0.7, 2.9, 4.1, 2.6, 3.7, 3.9, 1.7, 2.3,
+                    3.0, 3.3, 4.8, 5.0, 4.8, 5.0, 3.2, 2.0, 0.9, 0.4, 0.3, 0.5, 0.4]
+            }],
+            navigation: {
+                menuItemStyle: {
+                    fontSize: '10px'
+                }
+            }
+        });
+    });
+    </script>
+</body>
+</html>

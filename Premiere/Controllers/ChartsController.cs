@@ -30,5 +30,29 @@ namespace Premiere.Controllers
         {
             return View();
         }
+
+        public ActionResult GraphicData()
+        {
+            return View();
+        }
+
+        public ActionResult BrandImage()
+        {
+            return View();
+        }
+
+        public ActionResult DesignSense()
+        {
+            return View();
+        }
+        public ActionResult SexRatio()
+        {
+            return View();
+        }
+        public ActionResult BrandFocus()
+        {
+            return View();
+        }
+
     }
 }
