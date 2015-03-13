@@ -49,7 +49,7 @@ namespace Premiere.Models
         public int MediaExplosure { get; set; }
         public int UserExplosure { get; set; }
     }
-
+    [Table("BrandSpreadMaptbl")]
     public class BrandSpreadMap
     {
         [Key]
@@ -58,4 +58,6 @@ namespace Premiere.Models
         public string LastModifiedBy { get; set; }
         public DateTime LastModified { get; set; }
     }
+
+
 }

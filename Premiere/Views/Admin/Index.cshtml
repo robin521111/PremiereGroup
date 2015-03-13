@@ -8,7 +8,7 @@
 }
 @if (ViewBag.Title == null)
 {
-    ViewBag.Title = "品牌曝光度分析";
+    ViewBag.Title = "品牌曝光度分析每日";
 }
 <head>
     <meta charset="utf-8">
@@ -43,7 +43,7 @@
 
     </h1>
 
-    <h5>  @if (ViewBag.Title=="品牌曝光度分析")
+    <h5>  @if (ViewBag.Title=="品牌曝光度分析每日")
         {
             <div class="btn-group btn-group-justified" role="group" aria-label="...">
                 <div class="btn-group" role="group">
@@ -191,13 +191,14 @@
 
     <script type="text/javascript">
         $('#side-menu').metisMenu();
+        $('#monthlyData').click(function () {
+            $('.page-header').html("品牌曝光度分析每月数据导入");
+        });
+        $('#dailyData').click(function () {
+            $('.page-header').html("品牌曝光度分析-[每日数据导入]");
+        });
         $(document).ready(function () {
-            $('#monthlyData').click(function () {
-                $('.page-header').html("品牌曝光度分析-[每月数据导入]");
-            });
-            $('#dailyData').click(function () {
-                $('.page-header').html("品牌曝光度分析-[每日数据导入]");
-            });
+            
         });
        
     </script>

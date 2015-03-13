@@ -22,14 +22,20 @@ $(function () {
     var fileUploadUrl = "Services/UploadHandler.ashx?title="+title;
     var context = $('#fileupload')[0];
 
+
+    
     // Initialize the jQuery File Upload widget:
     $('#fileupload').fileupload({
-        url: fileUploadUrl,
+        url: "Services/UploadHandler.ashx?title=" + $('.page-header').html(),
         previewMaxWidth: 80,
         previewMaxHeight: 60,
         acceptFileTypes: /(json)|(txt)|(xml)$/i // Allowed file types
     });
-    
+    $('#fileupload').bind('fileuploadadd', function (e, data) {
+        //setTimeout(function () { $(".files tr[data-type=image] a").colorbox() }, 1000);
+        title = $('.page-header').html();
+        fileUploadUrl = "Services/UploadHandler.ashx?title=" + title;
+    })
 
     //Initialize the jQuery file upload progress bar
     $('#fileupload').bind('fileuploadprogress', function (e, data) {
@@ -72,7 +78,7 @@ $("document").ready(function () {
     // A more elegant solution would be to use jQuery's delegated .on method, which automatically binds to the anchors in a
     // newly created template item, and then call colorbox manually.
     $('#fileupload')
-        .bind('fileuploaddone', function (e, data) {
+        .bind('fileuploadsubmit', function (e, data) {
             //setTimeout(function () { $(".files tr[data-type=image] a").colorbox() }, 1000);
            
         })
@@ -87,11 +93,11 @@ $("document").ready(function () {
                 
             })
             .success(function (e, data) {
-                data.context.remove();
+                //data.context.remove();
                 console.log('done');
             })
             .done(function (e, data) {
-                data.context.remove();
+                //data.context.remove();
                 console.log('done with success');
             })
             .fail(function (e, data) {
