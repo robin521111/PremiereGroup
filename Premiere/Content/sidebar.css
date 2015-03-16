@@ -13,8 +13,8 @@
 }
 
 div.sidebar-container {
-    width : 20%;
-    height : 30%;
+    width : 40%;
+    height : 60%;
     position:fixed;
     background-color:#000000;
     filter: alpha(opacity=87);
@@ -109,7 +109,7 @@ div.sidebar-body {
 }
 
 ul.sidebar-menu {
-    font-size:12pt;
+    font-size:20pt;
     font-weight:bold;
     list-style:none;
     text-decoration:none;
@@ -117,7 +117,7 @@ ul.sidebar-menu {
 }
 
 ul.sidebar-menu li{
-    line-height:1.5em;
+    line-height:3.0em;
 }
 
 a,a:visited {

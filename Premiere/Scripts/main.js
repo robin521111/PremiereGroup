@@ -22,20 +22,17 @@ $(function () {
     var fileUploadUrl = "Services/UploadHandler.ashx?title="+title;
     var context = $('#fileupload')[0];
 
-
+    
     
     // Initialize the jQuery File Upload widget:
     $('#fileupload').fileupload({
-        url: "Services/UploadHandler.ashx?title=" + $('.page-header').html(),
+        url: fileUploadUrl,
         previewMaxWidth: 80,
         previewMaxHeight: 60,
         acceptFileTypes: /(json)|(txt)|(xml)$/i // Allowed file types
     });
-    $('#fileupload').bind('fileuploadadd', function (e, data) {
-        //setTimeout(function () { $(".files tr[data-type=image] a").colorbox() }, 1000);
-        title = $('.page-header').html();
-        fileUploadUrl = "Services/UploadHandler.ashx?title=" + title;
-    })
+    
+
 
     //Initialize the jQuery file upload progress bar
     $('#fileupload').bind('fileuploadprogress', function (e, data) {

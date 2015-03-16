@@ -59,5 +59,10 @@ namespace Premiere.Models
         public DateTime LastModified { get; set; }
     }
 
+    public class MyClass
+    {
+        
+    }
+
 
 }
