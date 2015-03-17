@@ -1,25 +1,54 @@
-﻿
+﻿@using Premiere.Helper
 <link href="@Url.Content("~/Content/simple-sidebar.css")" rel="stylesheet" />
 
 <div id="wrapper">
     <!-- Sidebar -->
     <div id="sidebar-wrapper">
-        <ul class="sidebar-nav">
-            <li class="sidebar-brand">
-               @Html.ActionLink("Premiere Group", "Index", "Home");
+        <div class="navbar-default sidebar" role="navigation">
+            <div class="sidebar-nav navbar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li class="active">
+                        @Html.IconActionLink("Charts", "Charts", null, "fa fa-bar-chart-o fa-fw", true, null)
+                        @*<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>*@
+                        <ul class="nav nav-second-level">
+                            <li>
+                                @Html.IconActionLink("index", "品牌曝光度分析", null, "fa fa-bar-chart-o fa-fw", true, new { @title = "品牌曝光度分析" })
+                                <ul class="nav nav-third-level">
+                                    <li>
+                                        @Html.ActionLink("每日数据导入", "index", new { @title = "品牌曝光度分析-每日数据导入" }, null)
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("每月数据导入", "index", new { @title = "品牌曝光度分析-每月数据导入" }, null)
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                @Html.ActionLink("品牌传播图谱", "index", new { @title = "品牌传播图谱" }, null)
+                            </li>
+                            <li>
+                                @Html.ActionLink("品牌形象分析图", "index", new { @title = "品牌形象分析图" }, null)
+                            </li>
+                            <li>
+                                @Html.ActionLink("设计感与功能性分析图", "index", new { @title = "设计感与功能性分析图" }, null)
+                            </li>
+                            <li>
+                                @Html.ActionLink("男女比例分析图", "index", new { @title = "男女比例分析图" }, null)
+                            </li>
+                            <li>
+                                @Html.ActionLink("品牌关注点分析图", "index", new { @title = "品牌关注点分析图" }, null)
+                            </li>
+                            <li>
+                                @Html.ActionLink("媒体关注度分析图谱", "index", new { @title = "媒体关注度分析图谱" }, null)
 
-            </li>
-            @Html.ActionLink("品牌曝光度分析","BrandExposuer_line","Charts",null,null)
-                <ul>
-            <li>
-        @Html.ActionLink("品牌曝光度分析-曲线图", "BrandExposure_line", "Charts", null, null)
-    </li>
-    <li>
-        @Html.ActionLink("品牌曝光度分析-气泡图", "BrandExposure_bubble", "Charts", null, null)
-    </li>
+                            </li>
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
+                   
                 </ul>
-            
-        </ul>
+            </div>
+            <!-- /.sidebar-collapse -->
+        </div>
     </div>
     <!-- /#sidebar-wrapper -->
     <!-- Page Content -->
@@ -39,7 +68,21 @@
         </div>
     </div>
     <div class="container-fluid">
-        <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+        <div id="container" style="min-width: 410px; height: 400px; margin: 0 auto">
+            
+
+
+        </div>
     </div>
     <!-- /#page-content-wrapper -->
 </div>
+
+ <!-- Bootstrap Core CSS -->
+<!-- Custom CSS -->
+<!-- MetisMenu CSS -->
+<link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" />
+<link href="@Url.Content("~/Content/chart-metismenu.css")" rel="stylesheet" />
+
+<link href="@Url.Content("~/Content/plugins/metisMenu/metisMenu.min.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Scripts/plugins/metisMenu/metisMenu.min.js")"></script>
+<script src="@Url.Content("~/Scripts/bootstrap.min.js")"></script>
