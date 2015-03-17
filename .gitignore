@@ -216,7 +216,7 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
-*.csproj
+
 *.nupkg
 *.psm1
 *.transform
