@@ -53,56 +53,56 @@ namespace LeduInfo.Models
         
         
 
-        public static StringBuilder JsonParser_linerMonthly(string path)
-        {
-            var db = new leduInfoDB();
-            StreamReader reader = new StreamReader(path);
-            JsonTextReader Json_reader = new JsonTextReader(reader);
-            JArray JsonRoot = JArray.Load(Json_reader);
-            StringBuilder sb = new StringBuilder();
-            //List<JToken> JsonList=new List<JToken>();
-            //var time =from timevalue in JsonRoot
-            //               orderby timevalue["time"]
-            //               select timevalue["time"] ;
+        //public static StringBuilder JsonParser_linerMonthly(string path)
+        //{
+        //    var db = new Premiere.Models.PremiereDB();
+        //    StreamReader reader = new StreamReader(path);
+        //    JsonTextReader Json_reader = new JsonTextReader(reader);
+        //    JArray JsonRoot = JArray.Load(Json_reader);
+        //    StringBuilder sb = new StringBuilder();
+        //    //List<JToken> JsonList=new List<JToken>();
+        //    //var time =from timevalue in JsonRoot
+        //    //               orderby timevalue["time"]
+        //    //               select timevalue["time"] ;
 
-            //foreach (var item in time.ToArray())
-            //{
-            //    sb.Append("[" + item["time"] + "] "+ "</br>");
-            //}
+        //    //foreach (var item in time.ToArray())
+        //    //{
+        //    //    sb.Append("[" + item["time"] + "] "+ "</br>");
+        //    //}
 
-            foreach (JObject item in JsonRoot)
-	        {
-                var Time = item["time"].ToString();
-                var Value = Convert.ToInt32(item["value"]);
+        //    //foreach (JObject item in JsonRoot)
+        //    //{
+        //    //    var Time = item["time"].ToString();
+        //    //    var Value = Convert.ToInt32(item["value"]);
 
-                var time = from model in db.JsonModeltbl
-                                    where model.Time == Time
-                                    select model.Time;
+        //    //    var time = from model in db.JsonModeltbl
+        //    //                        where model.Time == Time
+        //    //                        select model.Time;
 
 
-                var value = from model in db.JsonModeltbl
-                                    where model.Value == Value
-                                    select model.Value;
+        //    //    var value = from model in db.JsonModeltbl
+        //    //                        where model.Value == Value
+        //    //                        select model.Value;
 
-                //List<string> time= (from model in db.JsonModel
-                //                    select model.Time).ToList();
+        //    //    //List<string> time= (from model in db.JsonModel
+        //    //    //                    select model.Time).ToList();
 
-                //List<string> value = (from model in db.JsonModel
-                //                      select model.Value).ToList();
+        //    //    //List<string> value = (from model in db.JsonModel
+        //    //    //                      select model.Value).ToList();
 
-                db.JsonModeltbl.Add(new JsonModel { Time = Time, Value = Value });
-                db.SaveChanges();             
+        //    //    db.JsonModeltbl.Add(new JsonModel { Time = Time, Value = Value });
+        //    //    db.SaveChanges();             
                              
-            for (int i = 1; i < 12; i++)
-            {
+        //    for (int i = 1; i < 12; i++)
+        //    {
                
-            }
-            }
-            return sb;
+        //    }
+        //    }
+        //    return sb;
             
             
 
         }
 
     }
-}
+

@@ -164,7 +164,8 @@ namespace Premiere.Services
                 }
                 else if (ext.ToString() == ".txt")
                 {
-                    status.content = ReadFile(path);
+                    ReadJson(path);
+                    //status.content = ReadFile(path);
                 }
 
                 
@@ -237,7 +238,8 @@ namespace Premiere.Services
             var text  = File.ReadAllText(path);
             //JsonTextReader reader = new JsonTextReader(new StringReader(text));
             JObject obj = JObject.Parse(text);
-            IList<JToken> result = obj["series"].Children().ToList();
+            //IList<JToken> result = obj["data"].Children().ToList();
+            var result = obj["data"];
 
             
                  //while (reader.Read())
@@ -324,7 +326,7 @@ namespace Premiere.Services
             FileUploadHandler handler = new FileUploadHandler(request, null);       // Get an instance of the handler class
             handler.IncomingRequestStarted += handler_IncomingRequestStarted;       // Register event handler for demo purposes
 
-            var jsonResult = handler.HandleRequest();               // Call the handler method
+            var jsonResult = handler.HandleRequestAsync();               // Call the handler method
             var result = jsonResult;            // JsonResult.Data is of type object and must be casted 
 
             context.Response.Write(JsonConvert.SerializeObject(result));            // Serialize the JQueryFileUpload object to a Json string

@@ -1,5 +1,4 @@
 ﻿@using Premiere.Helper
-<link href="@Url.Content("~/Content/simple-sidebar.css")" rel="stylesheet" />
 
 <div id="wrapper">
     <!-- Sidebar -->
@@ -82,7 +81,10 @@
 <!-- MetisMenu CSS -->
 <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" />
 <link href="@Url.Content("~/Content/chart-metismenu.css")" rel="stylesheet" />
-
+<link href="@Url.Content("~/Content/simple-sidebar.css")" rel="stylesheet" />
 <link href="@Url.Content("~/Content/plugins/metisMenu/metisMenu.min.css")" rel="stylesheet" />
 <script src="@Url.Content("~/Scripts/plugins/metisMenu/metisMenu.min.js")"></script>
 <script src="@Url.Content("~/Scripts/bootstrap.min.js")"></script>
+<script>
+    $('#side-menu').metisMenu();
+</script>
