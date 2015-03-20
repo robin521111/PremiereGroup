@@ -98,8 +98,6 @@ namespace Premiere.Models
 
         public int Size { get; set; }
 
-        public string Content { get; set; }
-
         public string Progress { get; set; }
 
         public string URL { get; set; }

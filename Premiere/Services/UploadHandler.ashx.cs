@@ -173,7 +173,6 @@ namespace Premiere.Services
                     FileName=status.name,
                     FileType=status.type,
                     Size=status.size,
-                    Content=status.content,
                     URL=status.url,
                     Delete_Type=status.delete_type,
                     Delete_Url= status.delete_url,
@@ -185,7 +184,7 @@ namespace Premiere.Services
                   
                 });
 
-                DataSync(folderName, status);
+                DataSync(folderName, status, path);
                 //statuses.Add(new FilesStatus(fullName, file.ContentLength, fullPath));
              
             }
@@ -195,19 +194,28 @@ namespace Premiere.Services
 
 
 
-        private void DataSync(string folderName, FilesStatus status)
+        private void DataSync(string folderName, FilesStatus status, string path)
         {
             switch (folderName)
             {
-                case  "品牌曝光度分析":
+                case  "品牌曝光度分析-每日数据导入":
+                    var text = File.ReadAllText(path);
+                    JObject obj = JObject.Parse(text);
+                    string data = obj["series"].ToString();
+                    string xAxis = obj["xAxis"].ToString();
 
                     DB.BrandExposureLinetbl.Add(new BrandExposureLine
                     {
                         ChartID = 1,
-                        Content = status.content,
+                        BrandName=status.name,
+                        Series= data,
+                        xAxis=xAxis,
                         LastModified = DateTime.Now,
-                        LastModifiedBy = Membership.GetUser().UserName.ToString()
+                        LastModifiedBy = Membership.GetUser().UserName.ToString(),
                     });
+                    break;
+                case "品牌曝光度分析-每月数据导入":
+
                     break;
                 case "品牌传播图谱":
                     break;

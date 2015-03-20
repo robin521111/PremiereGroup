@@ -1,5 +1,7 @@
-﻿@{
+﻿@model  IEnumerable<Premiere.Models.BrandList>
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    
 }
 
 <!DOCTYPE html>
@@ -21,9 +23,11 @@
     <![endif]*@
 </head>
 <body>
+   
     @{Html.RenderPartial("Charts_sidebar");}
    
     <!-- /#wrapper -->
+    
     <!-- HightChart -->
     <script src="@Url.Content("~/Scripts/HighChart/highcharts.js")"></script>
 
@@ -34,6 +38,7 @@
         $("#wrapper").toggleClass("toggled");
     });
     $('#side-menu').metisMenu();
+
     $(function () {
         $('#container').highcharts({
             title: {
@@ -43,10 +48,6 @@
             subtitle: {
                 text: '',
                 x: -20
-            },
-            xAxis: {
-                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-                    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
             },
             yAxis: {
                 title: {

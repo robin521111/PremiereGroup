@@ -13,44 +13,59 @@ namespace Premiere.Controllers
         // GET: /Charts/
         PremiereDB DB = new PremiereDB();
         
-        public ActionResult BrandExposure_line()
+        public ActionResult BrandExposure_line(string title)
         {
-            //var lineData = from uploaded in DB.UploadHandlertbl
-            //               where uploaded.Content !=null
-            //               select uploaded.Content;
+            ViewBag.Title = title;
+            List<BrandList> list = new List<BrandList>();
+            IEnumerable<BrandList> brandlist = from b in DB.BrandExposureLinetbl
+                                               where b.BrandName != null
+                                               select new BrandList { brandlist = b.BrandName };
+
+
+            foreach (var item in brandlist)
+            {
+                list.Add(item);
+            }
+            return View(list.ToList());
+        }
+
+        public ActionResult BrandExposure_bubble(string title)
+        {
+            ViewBag.Title = title;
             return View();
         }
 
-        public ActionResult BrandExposure_bubble()
+        public ActionResult BrandExposure_map(string title)
         {
+            ViewBag.Title = title;
             return View();
         }
 
-        public ActionResult BrandExposure_map()
+        public ActionResult GraphicData(string title)
         {
+            ViewBag.Title = title;
             return View();
         }
 
-        public ActionResult GraphicData()
+        public ActionResult BrandImage(string title)
         {
+            ViewBag.Title = title;
             return View();
         }
 
-        public ActionResult BrandImage()
+        public ActionResult DesignSense(string title)
         {
+            ViewBag.Title = title;
             return View();
         }
-
-        public ActionResult DesignSense()
+        public ActionResult SexRatio(string title)
         {
+            ViewBag.Title = title;
             return View();
         }
-        public ActionResult SexRatio()
+        public ActionResult BrandFocus(string title)
         {
-            return View();
-        }
-        public ActionResult BrandFocus()
-        {
+            ViewBag.Title = title;
             return View();
         }
 

@@ -1,5 +1,5 @@
 ﻿@using Premiere.Helper
-
+@model  IEnumerable<Premiere.Models.BrandList>
 <div id="wrapper">
     <!-- Sidebar -->
     <div id="sidebar-wrapper">
@@ -14,31 +14,30 @@
                                 @Html.IconActionLink("index", "品牌曝光度分析", null, "fa fa-bar-chart-o fa-fw", true, new { @title = "品牌曝光度分析" })
                                 <ul class="nav nav-third-level">
                                     <li>
-                                        @Html.ActionLink("每日数据导入", "index", new { @title = "品牌曝光度分析-每日数据导入" }, null)
+                                        @Html.ActionLink("每日数据分析", "BrandExposure_line", new { @title = "品牌曝光度分析-每日数据导入" }, null)
                                     </li>
                                     <li>
-                                        @Html.ActionLink("每月数据导入", "index", new { @title = "品牌曝光度分析-每月数据导入" }, null)
+                                        @Html.ActionLink("每月数据分析", "BrandExposure_bubble", new { @title = "品牌曝光度分析-每月数据导入" }, null)
                                     </li>
                                 </ul>
                             </li>
                             <li>
-                                @Html.ActionLink("品牌传播图谱", "index", new { @title = "品牌传播图谱" }, null)
+                                @Html.ActionLink("品牌传播图谱", "BrandExposure_map", new { @title = "品牌传播图谱" }, null)
                             </li>
                             <li>
-                                @Html.ActionLink("品牌形象分析图", "index", new { @title = "品牌形象分析图" }, null)
+                                @Html.ActionLink("品牌形象分析图", "BrandFocus", new { @title = "品牌形象分析图" }, null)
                             </li>
                             <li>
-                                @Html.ActionLink("设计感与功能性分析图", "index", new { @title = "设计感与功能性分析图" }, null)
+                                @Html.ActionLink("设计感与功能性分析图", "BrandImage", new { @title = "设计感与功能性分析图" }, null)
                             </li>
                             <li>
-                                @Html.ActionLink("男女比例分析图", "index", new { @title = "男女比例分析图" }, null)
+                                @Html.ActionLink("男女比例分析图", "SexRatio", new { @title = "男女比例分析图" }, null)
                             </li>
                             <li>
                                 @Html.ActionLink("品牌关注点分析图", "index", new { @title = "品牌关注点分析图" }, null)
                             </li>
                             <li>
                                 @Html.ActionLink("媒体关注度分析图谱", "index", new { @title = "媒体关注度分析图谱" }, null)
-
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
@@ -50,6 +49,7 @@
         </div>
     </div>
     <!-- /#sidebar-wrapper -->
+
     <!-- Page Content -->
     <div id="page-content-wrapper">
 
@@ -57,7 +57,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1>品牌曝光度分析 - 气泡图</h1>
+                        <h1>@ViewBag.Title</h1>
                         <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
                         <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
                         <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">收回菜单</a>

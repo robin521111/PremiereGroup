@@ -33,8 +33,11 @@ namespace Premiere.Models
     {
         [Key]
         public int ID { get; set; }
+
         public int ChartID { get; set; }
-        public string Content { get; set; }
+        public string BrandName { get; set; }
+        public string Series { get; set; }
+        public string xAxis { get; set; }
         public string LastModifiedBy { get; set; }
         public DateTime LastModified { get; set; }
 
@@ -59,7 +62,11 @@ namespace Premiere.Models
         public DateTime LastModified { get; set; }
     }
 
-    
 
+    public class BrandList
+    {
+        public string brandlist { get; set; }
+
+    }
 
 }

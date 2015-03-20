@@ -56,8 +56,6 @@ namespace Premiere
             AreaRegistration.RegisterAllAreas();
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
-            
-       
 
         }
 
