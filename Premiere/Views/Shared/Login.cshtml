@@ -1,37 +1,3 @@
-@*@model Premiere.Models.LoginModel
-
-
-<script src="@Url.Content("~/Scripts/jquery.validate.min.js")"></script>
-<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")"></script>
-<link href="@Url.Content("../../Content/login-reg.css")" rel="stylesheet" type="text/css" />
-<div class="container">
-
-     @using (Html.BeginForm((string)ViewBag.FormAction, "Account", FormMethod.Post, new { @class = "form-signin" }))
-     { 
-        @Html.ValidationSummary(true)
-        <h2 class="form-signin-heading">Please sign in</h2>
-        <ul class="unstyled">
-         <li>
-         @Html.ValidationMessageFor(m => m.UserName)
-         @Html.TextBoxFor(m => m.UserName, new { @class = "input-block-level" ,@placeholder="Email address"})
-         </li>
-         <li>
-         @Html.ValidationMessageFor(m => m.Password)
-         @Html.TextBoxFor(m => m.Password, new { @class = "input-block-level" ,@placeholder="Password",@type="password"})
-         
-         </li>
-         </ul>
-         <label class="checkbox"/>
-         @Html.LabelFor(m=>m.RememberMe)
-         <input class="btn btn-primary" type="submit" />
-     }
-   
-    <p>
-        @Html.ActionLink("Register", "Register") if you don't have an account.
-    </p>
-</div>*@
-
-
 @model Premiere.Models.LoginModel
 
 
@@ -47,8 +13,6 @@
             <div class="container">
                 <div class="modal-body" id="signinForm">
 
-                    @* @using (Html.BeginForm("Login", "Account",FormMethod.Post, new { @id = "targetForm" }))
-                        {*@
 
                     @using (Ajax.BeginForm("Login", "Account", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "signinForm" }))
                     {
@@ -92,10 +56,7 @@
                             </label>
                         </div>
                         <button type="submit" id="submit_btn" class="btn btn-primary">Sign In</button>
-
-
                     }
-
 
 
                 </div>
@@ -112,28 +73,7 @@
 
     $('#submit_btn').click(function (event) {
         //event.preventDefault();
-@*        $.post("@Url.Action("Login","Account")", $('#targetForm').serialize(), function (data) {
-            $('#errorresult').html(data)
 
-
-        });*@
-
-        @*        $.ajax({
-            url: '@Url.Action("AjaxLogin","Account")',
-            type: 'POST',
-            dataType: 'json',
-            data: {
-                userName: $('#targetForm #inputUser').val(),
-                passWord: $('#targetForm #inputPassword').val()
-                
-            },
-            success: function (data) {
-                $('#errorresult').html(data);
-            }
-            
-        });
-           
-});*@
         var targetForm = $('#targetForm').serialize();
        var newtargetForm= targetForm.replace(/&/g, "?");
         $.post("@Url.Action("AjaxLogin", "Account")?"+ newtargetForm, {
@@ -146,100 +86,6 @@
         })
 
     })
-    //alert($('#inputPassword').val());
-    /*
-    $.post('http://path/to/post', 
-       $('#myForm').serialize(), 
-       function(data, status, xhr){
-          do something here with response;
-       });
-    */
-
-
-    //     $('input:text:visible:first').focus(); 
-
+   
 </script>
 
-
-@*<script type="text/ecmascript">
-
-    $('#submit_btn').click(function () {
-        $('#myModal').modal({
-            backdrop: 'static',
-            show: false
-        })
-    });
-
-
-
-</script>*@
-
-@*<script type="text/javascript">
-    // Setup form validation on the #register-form element
-    $('#submit_btn').click(function () {
-        var form = $('#singinForm');
-        $("#signinForm").validate({
-
-            // Specify the validation rules
-            rules: {
-                inputUser: "required",
-                password: {
-                    required: true,
-                    minlength: 6
-                }
-            },
-
-
-            // Specify the validation error messages
-            messages: {
-                inputUser: "Please enter your first name",
-                password: {
-                    required: "Please provide a password",
-                    minlength: "Your password must be at least {0} characters long"
-                },
-            },
-
-            submitHandler: function (form) {
-
-                form.submit();
-                $('#signinForm').find("#submit_btn").attr("disabled", true).attr("value", "Submitting...");
-            }
-        });
-
-
-        var validate = $("#signinForm").validate();
-        if (validate) {
-            $('#submit_btn').on('click', function (e) {
-                e.preventDefault();
-                $.scojs_message('This is an info message', $.scojs_message.TYPE_OK);
-            });
-            $('#signinForm').submit();
-        }
-        else {
-            $('#submit_btn').on('click', function (e) {
-                e.preventDefault();
-                $.scojs_message('This is an error message', $.scojs_message.TYPE_ERROR);
-                
-            });
-
-
-        }
-    });
-
-
-
-
-
-
-
-
-    //$('#message_trigger_ok').on('click', function (e) {
-    //      e.preventDefault();
-    //      $.scojs_message('This is an info message', $.scojs_message.TYPE_OK);
-    //  });
-    //$('#message_trigger_error').on('click', function (e) {
-    //    e.preventDefault();
-    //    $.scojs_message('This is an error message', $.scojs_message.TYPE_ERROR);
-    //});
-
-</script>*@

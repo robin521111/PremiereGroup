@@ -65,8 +65,8 @@ namespace Premiere.Models
 
     public class BrandList
     {
-        public string brandlist { get; set; }
-
+        public string brandNameList { get; set; }
+        public string MyProperty { get; set; }
     }
 
 }

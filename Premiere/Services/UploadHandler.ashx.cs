@@ -157,17 +157,7 @@ namespace Premiere.Services
                 string fullName = Path.GetFileName(file.FileName);
                 FilesStatus status = new FilesStatus(fullName,file.ContentLength,fullPath);
                 string path = Path.GetFullPath(fullPath);
-                //path = "@"+path;
-                if (ext.ToString() == ".json")
-                {
-                     ReadJson(path);
-                }
-                else if (ext.ToString() == ".txt")
-                {
-                    ReadJson(path);
-                    //status.content = ReadFile(path);
-                }
-
+                
                 
                 DB.UploadHandlertbl.Add(new UploadHandlerModel{
                     FileName=status.name,
@@ -193,26 +183,27 @@ namespace Premiere.Services
         }
 
 
-
         private void DataSync(string folderName, FilesStatus status, string path)
         {
             switch (folderName)
             {
                 case  "品牌曝光度分析-每日数据导入":
-                    var text = File.ReadAllText(path);
+                    var text = File.ReadAllText(path,System.Text.Encoding.Default);
                     JObject obj = JObject.Parse(text);
                     string data = obj["series"].ToString();
                     string xAxis = obj["xAxis"].ToString();
 
+                    string file_name = status.name.Replace(".txt", "");
                     DB.BrandExposureLinetbl.Add(new BrandExposureLine
                     {
                         ChartID = 1,
-                        BrandName=status.name,
+                        BrandName=file_name,
                         Series= data,
                         xAxis=xAxis,
                         LastModified = DateTime.Now,
                         LastModifiedBy = Membership.GetUser().UserName.ToString(),
                     });
+
                     break;
                 case "品牌曝光度分析-每月数据导入":
 
@@ -248,15 +239,7 @@ namespace Premiere.Services
             JObject obj = JObject.Parse(text);
             //IList<JToken> result = obj["data"].Children().ToList();
             var result = obj["data"];
-
             
-                 //while (reader.Read())
-                 //           {
-                 //               if (reader.Value !=null)
-                 //               {
-                                    
-                 //               }
-                 //           }
             
            
          
@@ -334,7 +317,7 @@ namespace Premiere.Services
             FileUploadHandler handler = new FileUploadHandler(request, null);       // Get an instance of the handler class
             handler.IncomingRequestStarted += handler_IncomingRequestStarted;       // Register event handler for demo purposes
 
-            var jsonResult = handler.HandleRequestAsync();               // Call the handler method
+            var jsonResult = handler.HandleRequest();               // Call the handler method
             var result = jsonResult;            // JsonResult.Data is of type object and must be casted 
 
             context.Response.Write(JsonConvert.SerializeObject(result));            // Serialize the JQueryFileUpload object to a Json string
