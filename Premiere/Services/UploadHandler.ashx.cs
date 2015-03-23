@@ -303,40 +303,40 @@ namespace Premiere.Services
 
     }
 
-    public class FileHandler : IHttpHandler
-    {
+    //public class FileHandler : IHttpHandler
+    //{
 
-        public void ProcessRequest(HttpContext context)
-        {
-            HttpRequestBase request = new HttpRequestWrapper(context.Request);      // Wrap the request into a HttpRequestBase type
-            context.Response.ContentType = "application/json; charset=utf-8";
+    //    //public void ProcessRequest(HttpContext context)
+    //    //{
+    //    //    HttpRequestBase request = new HttpRequestWrapper(context.Request);      // Wrap the request into a HttpRequestBase type
+    //    //    context.Response.ContentType = "application/json; charset=utf-8";
 
-            // Important note: we reference the .NET 4.0 assembly here, 
-            // not the .NET 4.5 version! If you use the NuGet package, make sure
-            // to set the correct reference
-            FileUploadHandler handler = new FileUploadHandler(request, null);       // Get an instance of the handler class
-            handler.IncomingRequestStarted += handler_IncomingRequestStarted;       // Register event handler for demo purposes
+    //    //    // Important note: we reference the .NET 4.0 assembly here, 
+    //    //    // not the .NET 4.5 version! If you use the NuGet package, make sure
+    //    //    // to set the correct reference
+    //    //    FileUploadHandler handler = new FileUploadHandler(request, null);       // Get an instance of the handler class
+    //    //    handler.IncomingRequestStarted += handler_IncomingRequestStarted;       // Register event handler for demo purposes
 
-            var jsonResult = handler.HandleRequest();               // Call the handler method
-            var result = jsonResult;            // JsonResult.Data is of type object and must be casted 
+    //    //    var jsonResult = handler.HandleRequestAsync();               // Call the handler method
+    //    //    var result = jsonResult;            // JsonResult.Data is of type object and must be casted 
 
-            context.Response.Write(JsonConvert.SerializeObject(result));            // Serialize the JQueryFileUpload object to a Json string
-        }
+    //    //    context.Response.Write(JsonConvert.SerializeObject(result));            // Serialize the JQueryFileUpload object to a Json string
+    //    //}
 
-        // Event handler for demo purposes
-        void handler_IncomingRequestStarted(object sender, Backload.Eventing.Args.IncomingRequestEventArgs e)
-        {
-            var values = e.Param.BackloadValues;
-        }
+    //    // Event handler for demo purposes
+    //    void handler_IncomingRequestStarted(object sender, Backload.Eventing.Args.IncomingRequestEventArgs e)
+    //    {
+    //        var values = e.Param.BackloadValues;
+    //    }
 
 
 
-        public bool IsReusable
-        {
-            get
-            {
-                return false;
-            }
-        }
-    }
+    //    public bool IsReusable
+    //    {
+    //        get
+    //        {
+    //            return false;
+    //        }
+    //    }
+    //}
 }
