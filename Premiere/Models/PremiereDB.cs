@@ -13,13 +13,16 @@ namespace Premiere.Models
             : base("PremiereDB")
         {
             Database.CreateIfNotExists();
-            Database.Initialize(true);
+            //Database.Initialize(true);
         }
 
         public DbSet<UploadHandlerModel> UploadHandlertbl { get; set; }
         public DbSet<ChartsModel> Chartstbl { get; set; }
         public DbSet<BrandExposureLine> BrandExposureLinetbl { get; set; }
         public DbSet<BrandExposureBubble> BrandExposureBubbletbl { get; set; }
+        public DbSet<BrandFocus> BrandFocustbl { get; set; }
+        public DbSet<DesignSense> DesignSensetbl { get; set; }
+        public DbSet<SexRatio> SexRatiotbl { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

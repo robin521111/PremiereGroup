@@ -38,6 +38,7 @@ namespace Premiere.Models
         public string BrandName { get; set; }
         public string Series { get; set; }
         public string xAxis { get; set; }
+        public string Month { get; set; }
         public string LastModifiedBy { get; set; }
         public DateTime LastModified { get; set; }
 
@@ -48,9 +49,24 @@ namespace Premiere.Models
     {
         [Key]
         public int ID { get; set; }
-        public DateTime Time { get; set; }
-        public int MediaExplosure { get; set; }
-        public int UserExplosure { get; set; }
+        public int ChartID { get; set; }
+        public string BrandName { get; set; }
+        public string Series { get; set; }
+        public string Month { get; set; }
+        public string LastModifiedBy { get; set; }
+        public DateTime LastModified { get; set; }
+    }
+    [Table("BrandFocustbl")]
+    public class BrandFocus
+    {
+        [Key]
+        public int ID { get; set; }
+        public int ChartID { get; set; }
+        public string BrandName { get; set; }
+        public string Series { get; set; }
+        public string xAxis { get; set; }
+        public string LastModifiedBy { get; set; }
+        public DateTime LastModified { get; set; }
     }
     [Table("BrandSpreadMaptbl")]
     public class BrandSpreadMap
@@ -61,7 +77,30 @@ namespace Premiere.Models
         public string LastModifiedBy { get; set; }
         public DateTime LastModified { get; set; }
     }
+    [Table("DesignSensetbl")]
+    public class DesignSense
+    {
+        [Key]
+        public int ID { get; set; }
+        public int ChartID { get; set; }
+        public string BrandName { get; set; }
+        public string Series { get; set; }
+        public string xAxis { get; set; }
+        public string LastModifiedBy { get; set; }
+        public DateTime LastModified { get; set; }
+    }
 
+    [Table("SexRatiotbl")]
+    public class SexRatio
+    {
+        [Key]
+        public int ID { get; set; }
+        public int ChartID { get; set; }
+        public string BrandName { get; set; }
+        public string Series { get; set; }
+        public string LastModifiedBy { get; set; }
+        public DateTime LastModifed { get; set; }
+    }
 
     public class BrandList
     {
