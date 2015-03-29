@@ -1,4 +1,8 @@
-﻿@{
+﻿@model IEnumerable<Premiere.Models.DesignSense>
+@using System.Text
+@using Newtonsoft.Json.Linq
+@using Premiere.Helper
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -12,9 +16,7 @@
     <meta name="author" content="">
     <title>Simple Sidebar - Start Bootstrap Template</title>
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="css/simple-sidebar.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     @*[if lt IE 9]>
@@ -23,10 +25,122 @@
         <![endif]*@
 </head>
 <body>
-    @{Html.RenderPartial("Charts_sidebar");}
+  <div id="wrapper">
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <div class="navbar-default sidebar" role="navigation">
+            <div class="sidebar-nav navbar-collapse">
+                <ul class="nav" id="side-menu">
+                    
+                    <li class="active">
+                        @Html.IconActionLink("Charts", "图表导航", null, "fa fa-bar-chart-o fa-fw", true, null)
+                        @*<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>*@
+                        <ul class="nav nav-second-level">
+                            <li>
+                                @Html.IconActionLink("index", "品牌曝光度分析", null, ".glyphicon-asterisk", true, new { @title = "品牌曝光度分析", @class = "icon-th-list" })
+                                <ul class="nav nav-third-level">
+                                    <li>
+                                        @Html.ActionLink("每日数据分析", "BrandExposure_line", new { @title = "品牌曝光度分析-每日数据导入" }, null)
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("每月数据分析", "BrandExposure_bubble", new { @title = "品牌曝光度分析-每月数据导入" }, null)
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                @Html.ActionLink("品牌传播图谱", "BrandExposure_map", new { @title = "品牌传播图谱" }, null)
+                            </li>
+                            <li>
+                                @Html.ActionLink("品牌形象分析图", "BrandFocus", new { @title = "品牌形象分析图" }, null)
+                            </li>
+                            <li>
+                                @Html.ActionLink("设计感与功能性分析图", "DesignSense", new { @title = "设计感与功能性分析图" }, null)
+                            </li>
+                            <li>
+                                @Html.ActionLink("男女比例分析图", "SexRatio", new { @title = "男女比例分析图" }, null)
+                            </li>
+                            <li>
+                                @Html.ActionLink("品牌关注点分析图", "index", new { @title = "品牌关注点分析图" }, null)
+                            </li>
+                            <li>
+                                @Html.ActionLink("媒体关注度分析图谱", "index", new { @title = "媒体关注度分析图谱" }, null)
+                            </li>
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
+                   
+                </ul>
+            </div>
+            <!-- /.sidebar-collapse -->
+        </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+        <div class="jumbotron">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>@ViewBag.Title</h1>
+                       
+                       <br />
+                        <p>以下品牌是已成功导入数据库的品牌数据: </p>
+                       
+
+                        <div class="row">
+                            
+                             
+                            <div class="col-md-2">
+                                <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-expanded="true">
+                                品牌选取
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenuDivider">
+                                @foreach (var item in Model)
+                                {
+                                    <li role="presentation"><button class="btn-block" id="@item.ID">@item.BrandName</button></li>
+                                    
+                                }
+                                <li role="presentation" class="divider"></li>
+                                
+
+                                <li role="presentation"><button class="btn-block" id="btn_clean">清除比较数据</button></li>
+                            </ul>
+                        </div>
+                            </div>
+                            <div class="co-md-2">
+                                <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">菜单收放</a>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div id="container" style="min-width: 410px; height: 400px; margin: 0 auto">
+            
 
 
+        </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+</div>
 
+
+<link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />
+<link href="@Url.Content("~/Content/chart-metismenu.css")" rel="stylesheet" />
+<link href="@Url.Content("~/Content/bootstrap-theme.min.css")" rel="stylesheet" />
+<link href="@Url.Content("~/Content/simple-sidebar.css")" rel="stylesheet" />
+<link href="@Url.Content("~/Content/plugins/metisMenu/metisMenu.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Scripts/plugins/metisMenu/metisMenu.min.js")"></script>
+<script>
+    $('#side-menu').metisMenu();
+</script>
 
     <!-- /#wrapper -->
     <!-- HightChart -->
@@ -43,141 +157,110 @@
 
     $(function () {
         $('#container').highcharts({
-            chart: {
-                type: 'spline'
-            },
             title: {
-                text: 'Wind speed during two days'
+                text: '设计感与功能性分析图',
+                x: -20 //center
             },
             subtitle: {
-                text: 'October 6th and 7th 2009 at two locations in Vik i Sogn, Norway'
-            },
-            xAxis: {
-                type: 'datetime',
-                labels: {
-                    overflow: 'justify'
-                }
+                text: '',
+                x: -20
             },
             yAxis: {
                 title: {
-                    text: 'Wind speed (m/s)'
+                    text: '数据量'
                 },
-                min: 0,
-                minorGridLineWidth: 0,
-                gridLineWidth: 0,
-                alternateGridColor: null,
-                plotBands: [{ // Light air
-                    from: 0.3,
-                    to: 1.5,
-                    color: 'rgba(68, 170, 213, 0.1)',
-                    label: {
-                        text: 'Light air',
-                        style: {
-                            color: '#606060'
-                        }
-                    }
-                }, { // Light breeze
-                    from: 1.5,
-                    to: 3.3,
-                    color: 'rgba(0, 0, 0, 0)',
-                    label: {
-                        text: 'Light breeze',
-                        style: {
-                            color: '#606060'
-                        }
-                    }
-                }, { // Gentle breeze
-                    from: 3.3,
-                    to: 5.5,
-                    color: 'rgba(68, 170, 213, 0.1)',
-                    label: {
-                        text: 'Gentle breeze',
-                        style: {
-                            color: '#606060'
-                        }
-                    }
-                }, { // Moderate breeze
-                    from: 5.5,
-                    to: 8,
-                    color: 'rgba(0, 0, 0, 0)',
-                    label: {
-                        text: 'Moderate breeze',
-                        style: {
-                            color: '#606060'
-                        }
-                    }
-                }, { // Fresh breeze
-                    from: 8,
-                    to: 11,
-                    color: 'rgba(68, 170, 213, 0.1)',
-                    label: {
-                        text: 'Fresh breeze',
-                        style: {
-                            color: '#606060'
-                        }
-                    }
-                }, { // Strong breeze
-                    from: 11,
-                    to: 14,
-                    color: 'rgba(0, 0, 0, 0)',
-                    label: {
-                        text: 'Strong breeze',
-                        style: {
-                            color: '#606060'
-                        }
-                    }
-                }, { // High wind
-                    from: 14,
-                    to: 15,
-                    color: 'rgba(68, 170, 213, 0.1)',
-                    label: {
-                        text: 'High wind',
-                        style: {
-                            color: '#606060'
-                        }
-                    }
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
                 }]
             },
             tooltip: {
-                valueSuffix: ' m/s'
+                valueSuffix: ''
             },
-            plotOptions: {
-                spline: {
-                    lineWidth: 4,
-                    states: {
-                        hover: {
-                            lineWidth: 5
-                        }
-                    },
-                    marker: {
-                        enabled: false
-                    },
-                    pointInterval: 3600000, // one hour
-                    pointStart: Date.UTC(2009, 9, 6, 0, 0, 0)
-                }
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0
             },
-            series: [{
-                name: 'Hestavollane',
-                data: [4.3, 5.1, 4.3, 5.2, 5.4, 4.7, 3.5, 4.1, 5.6, 7.4, 6.9, 7.1,
-                    7.9, 7.9, 7.5, 6.7, 7.7, 7.7, 7.4, 7.0, 7.1, 5.8, 5.9, 7.4,
-                    8.2, 8.5, 9.4, 8.1, 10.9, 10.4, 10.9, 12.4, 12.1, 9.5, 7.5,
-                    7.1, 7.5, 8.1, 6.8, 3.4, 2.1, 1.9, 2.8, 2.9, 1.3, 4.4, 4.2,
-                    3.0, 3.0]
-
-            }, {
-                name: 'Voll',
-                data: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.1, 0.0, 0.3, 0.0,
-                    0.0, 0.4, 0.0, 0.1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-                    0.0, 0.6, 1.2, 1.7, 0.7, 2.9, 4.1, 2.6, 3.7, 3.9, 1.7, 2.3,
-                    3.0, 3.3, 4.8, 5.0, 4.8, 5.0, 3.2, 2.0, 0.9, 0.4, 0.3, 0.5, 0.4]
-            }],
-            navigation: {
-                menuItemStyle: {
-                    fontSize: '10px'
+            series: [
+                {
+                    
                 }
-            }
+            ],
+            xAxis: { categories: [] }
         });
     });
+
+
+    $(document).ready(function () {
+        @foreach (var item in Model)
+	{
+            
+            JArray obj = JArray.Parse(item.Series);
+            //var data = obj.Children().Value<Array>();
+            //List<string> data = obj["data"].Select(m=>(string)m).ToList();
+            //JArray data1 = obj["data"].Values<string>().ToArray();
+            //string data2 = string.Join(",",data1);
+            JObject axis = JObject.Parse(item.xAxis);
+
+            JToken category = axis["categories"];
+            JToken data = obj[0]["data"];
+            JToken name = obj[0]["name"];
+            JToken data1 =obj[1]["data"];
+            JToken name1 =obj[1]["name"]; 
+               
+           <text>
+
+        $("#@item.ID").click(function () {
+            var chart = $('#container').highcharts();
+            if (chart.series.length < 4) {
+                chart.addSeries(
+                    {
+
+                        data: @data,
+                        name: "@name"
+
+                    }
+                    );
+                chart.addSeries(
+                    {
+                        data: @data1,
+                        name: "@name1"
+                    }
+                    );
+                chart.xAxis.join(
+                        {
+                            categories:@Html.Raw(category)
+
+                        }
+                    );
+            }
+        });
+
+        $("#btn_clean").click(function () {
+            var chart = $('#container').highcharts();
+            if (chart.series.length) {
+                chart.series[0].remove();
+            }
+        });
+
+
+    
+
+
+        </text>
+	}
+        //get data from server, but will be retired
+ @*        function getData() {
+            $.get("@Url.Action("ReturnJson","Charts",new {@ID = @item.ID})", function (data, status) {
+                return @obj;
+            });
+
+        }*@
+    });
+
     </script>
 </body>
 </html>

@@ -50,7 +50,7 @@ namespace Premiere
         protected void Application_Start()
         {
             
-            Database.SetInitializer<Premiere.Models.PremiereDB>(null);
+            //Database.SetInitializer<Premiere.Models.PremiereDB>(null);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             BackloadConfig.Initialize();
             AreaRegistration.RegisterAllAreas();

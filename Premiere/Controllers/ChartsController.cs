@@ -39,13 +39,13 @@ namespace Premiere.Controllers
            var json = from d in DB.BrandExposureLinetbl
                             where d.ID == ID
                             select (string)d.Series;
-            
             return Json(json,JsonRequestBehavior.AllowGet);
         }
         public ActionResult BrandExposure_bubble(string title)
         {
             ViewBag.Title = title;
-            return View();
+            IEnumerable<BrandExposureBubble> model =DB.BrandExposureBubbletbl.ToList();
+            return View(model);
         }
 
         public ActionResult BrandExposure_map(string title)
@@ -69,17 +69,20 @@ namespace Premiere.Controllers
         public ActionResult DesignSense(string title)
         {
             ViewBag.Title = title;
-            return View();
+            var model = DB.DesignSensetbl.ToList();
+            return View(model);
         }
         public ActionResult SexRatio(string title)
         {
             ViewBag.Title = title;
-            return View();
+            var model = DB.SexRatiotbl.ToList();
+            return View(model);
         }
         public ActionResult BrandFocus(string title)
         {
             ViewBag.Title = title;
-            return View();
+            var model = DB.BrandFocustbl.ToList();
+            return View(model);
         }
 
     }

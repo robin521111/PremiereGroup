@@ -1,4 +1,9 @@
-﻿@{
+﻿@using Premiere.Helper
+@using System.Text
+@using Newtonsoft.Json.Linq
+
+@model  IEnumerable<Premiere.Models.BrandFocus>
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -10,11 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Simple Sidebar - Start Bootstrap Template</title>
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="css/simple-sidebar.css" rel="stylesheet">
+    <title>Premiere Group</title>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     @*[if lt IE 9]>
@@ -23,10 +24,127 @@
         <![endif]*@
 </head>
 <body>
-    @{Html.RenderPartial("Charts_sidebar");}
+
+<div id="wrapper">
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <div class="navbar-default sidebar" role="navigation">
+            <div class="sidebar-nav navbar-collapse">
+                <ul class="nav" id="side-menu">
+                    
+                    <li class="active">
+                        @Html.IconActionLink("Charts", "图表导航", null, "fa fa-bar-chart-o fa-fw", true, null)
+                        @*<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>*@
+                        <ul class="nav nav-second-level">
+                            <li>
+                                @Html.IconActionLink("index", "品牌曝光度分析", null, ".glyphicon-asterisk", true, new { @title = "品牌曝光度分析", @class = "icon-th-list" })
+                                <ul class="nav nav-third-level">
+                                    <li>
+                                        @Html.ActionLink("每日数据分析", "BrandExposure_line", new { @title = "品牌曝光度分析-每日数据导入" }, null)
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("每月数据分析", "BrandExposure_bubble", new { @title = "品牌曝光度分析-每月数据导入" }, null)
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                @Html.ActionLink("品牌传播图谱", "BrandExposure_map", new { @title = "品牌传播图谱" }, null)
+                            </li>
+                            <li>
+                                @Html.ActionLink("品牌形象分析图", "BrandFocus", new { @title = "品牌形象分析图" }, null)
+                            </li>
+                            <li>
+                                @Html.ActionLink("设计感与功能性分析图", "DesignSense", new { @title = "设计感与功能性分析图" }, null)
+                            </li>
+                            <li>
+                                @Html.ActionLink("男女比例分析图", "SexRatio", new { @title = "男女比例分析图" }, null)
+                            </li>
+                            <li>
+                                @Html.ActionLink("品牌关注点分析图", "index", new { @title = "品牌关注点分析图" }, null)
+                            </li>
+                            <li>
+                                @Html.ActionLink("媒体关注度分析图谱", "index", new { @title = "媒体关注度分析图谱" }, null)
+                            </li>
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
+                   
+                </ul>
+            </div>
+            <!-- /.sidebar-collapse -->
+        </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+        <div class="jumbotron">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>@ViewBag.Title</h1>
+                       
+                       <br />
+                        <p>以下品牌是已成功导入数据库的品牌数据: </p>
+                       
+
+                        <div class="row">
+                            
+                             
+                            <div class="col-md-2">
+                                <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-expanded="true">
+                                品牌选取
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenuDivider">
+                                @foreach (var item in Model)
+                                {
+                                    <li role="presentation"><button class="btn-block" id="@item.ID">@item.BrandName</button></li>
+                                    
+                                }
+                                <li role="presentation" class="divider"></li>
+                                
+
+                                <li role="presentation"><button class="btn-block" id="btn_clean">清除比较数据</button></li>
+                            </ul>
+                        </div>
+                            </div>
+                            <div class="co-md-2">
+                                <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">菜单收放</a>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div id="container" style="min-width: 410px; height: 400px; margin: 0 auto">
+            
 
 
-    <!-- /#wrapper -->
+        </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+</div>
+
+
+<!-- Bootstrap Core CSS -->
+<link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />
+<link href="@Url.Content("~/Content/chart-metismenu.css")" rel="stylesheet" />
+<link href="@Url.Content("~/Content/bootstrap-theme.min.css")" rel="stylesheet" />
+<!-- Custom CSS -->
+<link href="@Url.Content("~/Content/simple-sidebar.css")" rel="stylesheet" />
+<!-- MetisMenu CSS -->
+<link href="@Url.Content("~/Content/plugins/metisMenu/metisMenu.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Scripts/plugins/metisMenu/metisMenu.min.js")"></script>
+<script>
+    $('#side-menu').metisMenu();
+</script>
+
     <!-- HightChart -->
     <script src="@Url.Content("~/Scripts/HighChart/modules/exporting.js")"></script>
     <script src="@Url.Content("~/Scripts/HighChart/highcharts.js")"></script>
@@ -51,7 +169,7 @@
             },
 
             title: {
-                text: 'Budget vs spending',
+                text: '品牌形象分析图',
                 x: -80
             },
 
@@ -60,8 +178,7 @@
             },
 
             xAxis: {
-                categories: ['Sales', 'Marketing', 'Development', 'Customer Support',
-                        'Information Technology', 'Administration'],
+                categories: ["创新", "经典", "亲民", "奢华", "时尚", "优雅"],
                 tickmarkPlacement: 'on',
                 lineWidth: 0
             },
@@ -84,19 +201,65 @@
                 layout: 'vertical'
             },
 
-            series: [{
-                name: 'Allocated Budget',
-                data: [43000, 19000, 60000, 35000, 17000, 10000],
-                pointPlacement: 'on'
-            }, {
-                name: 'Actual Spending',
-                data: [50000, 39000, 42000, 31000, 26000, 14000],
-                pointPlacement: 'on'
-            }]
+            series: []
 
         });
     });
+    $(document).ready(function () {
+        @foreach (var item in Model)
+        {
+            JObject obj = JObject.Parse(item.Series);
+            StringBuilder sb = new StringBuilder();
+            obj.ToString(Newtonsoft.Json.Formatting.None);
+            //var data = obj.Children().Value<Array>();
+            //List<string> data = obj["data"].Select(m=>(string)m).ToList();
+            IEnumerable<double> data = obj["data"].Values<double>().ToArray();
+            //data1 = obj["data"].Values<string>().ToArray();
+            //string data2 = string.Join(",", data1);
+            foreach (var item1 in data)
+            {
+                sb.Append(item1);
+                sb.Append(",");
+            }
 
+            string name = obj["name"].Value<string>();    
+           <text>
+
+             $("#@item.ID").click(function () {
+                 var chart = $('#container').highcharts();
+                 if (chart.series.length < 4) {
+                     chart.addSeries(
+                         {
+
+                             data: [@sb],
+                             name: "@name",
+                             "pointPlacement":"on"
+
+                          }
+                    );
+                  }
+              });
+
+             $("#btn_clean").click(function () {
+                 var chart = $('#container').highcharts();
+                 if (chart.series.length) {
+                     chart.series[0].remove();
+                 }
+             });
+
+
+             //get data from server, but will be retired
+             @* function getData() {
+            $.get("@Url.Action("ReturnJson","Charts",new {@ID = @item.ID})", function (data, status) {
+                return @obj;
+            });
+
+        }*@
+
+
+             </text>
+	}
+         });
     </script>
 </body>
 </html>

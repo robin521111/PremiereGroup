@@ -192,7 +192,7 @@ namespace Premiere.Services
                     JObject obj = JObject.Parse(text);
                     string data = obj["series"].ToString();
                     string xAxis = obj["xAxis"].ToString();
-
+                    string month = obj["month"].ToString();
                     string file_name = status.name.Replace(".txt", "");
                     DB.BrandExposureLinetbl.Add(new BrandExposureLine
                     {
@@ -200,21 +200,78 @@ namespace Premiere.Services
                         BrandName=file_name,
                         Series= data,
                         xAxis=xAxis,
+                        Month=month,
                         LastModified = DateTime.Now,
                         LastModifiedBy = Membership.GetUser().UserName.ToString(),
                     });
 
                     break;
                 case "品牌曝光度分析-每月数据导入":
+                    text = File.ReadAllText(path, System.Text.Encoding.Default);
+                    obj = JObject.Parse(text);
+                    file_name = status.name.Replace(".txt", "");
+                    data = obj["series"].ToString();
+                    month = obj["month"].ToString();
+                    DB.BrandExposureBubbletbl.Add(new BrandExposureBubble
+                    {
+                        ChartID=2,
+                        BrandName=file_name,
+                        Series=data,
+                        Month=month,
+                        LastModified=DateTime.Now,
+                        LastModifiedBy=Membership.GetUser().UserName.ToString(),
+                    });
 
                     break;
                 case "品牌传播图谱":
                     break;
                 case "品牌形象分析图":
+                    text = File.ReadAllText(path, System.Text.Encoding.Default);
+                    obj = JObject.Parse(text);
+                    file_name = status.name.Replace(".txt", "");
+                    data = obj["series"].ToString();
+                    xAxis = obj["xAxis"].ToString();
+
+                    DB.BrandFocustbl.Add(new BrandFocus
+                    {
+                        ChartID = 3,
+                        BrandName = file_name,
+                        Series = data,
+                        xAxis = xAxis,
+                        LastModified = DateTime.Now,
+                        LastModifiedBy = Membership.GetUser().UserName.ToString(),
+                    });
+
                     break;
                 case "设计感与功能性分析图":
+                    text = File.ReadAllText(path, System.Text.Encoding.Default);
+                    obj = JObject.Parse(text);
+                    file_name = status.name.Replace(".txt", "");
+                    data = obj["series"].ToString();
+                    xAxis = obj["xAxis"].ToString();
+
+                    DB.DesignSensetbl.Add(new DesignSense
+                    {
+                        ChartID=3,
+                        BrandName=file_name,
+                        Series=data,
+                        xAxis=xAxis,
+                        LastModified=DateTime.Now,
+                        LastModifiedBy=Membership.GetUser().UserName.ToString(),
+                    });
                     break;
                 case "男女比例分析图":
+                    text = File.ReadAllText(path, System.Text.Encoding.Default);
+                    obj = JObject.Parse(text);
+                    file_name = status.name.Replace(".txt", "");
+                    data = obj["series"].ToString();
+                    DB.SexRatiotbl.Add(new SexRatio { 
+                         ChartID=4,
+                         BrandName=file_name,
+                         Series=data,
+                         LastModifed=DateTime.Now,
+                         LastModifiedBy=Membership.GetUser().UserName.ToString(),
+                    });
                     break;
                 case "品牌关注点分析图":
                     break;
@@ -303,40 +360,40 @@ namespace Premiere.Services
 
     }
 
-    public class FileHandler : IHttpHandler
-    {
+    //public class FileHandler : IHttpHandler
+    //{
 
-        public void ProcessRequest(HttpContext context)
-        {
-            HttpRequestBase request = new HttpRequestWrapper(context.Request);      // Wrap the request into a HttpRequestBase type
-            context.Response.ContentType = "application/json; charset=utf-8";
+    //    //public void ProcessRequest(HttpContext context)
+    //    //{
+    //    //    HttpRequestBase request = new HttpRequestWrapper(context.Request);      // Wrap the request into a HttpRequestBase type
+    //    //    context.Response.ContentType = "application/json; charset=utf-8";
 
-            // Important note: we reference the .NET 4.0 assembly here, 
-            // not the .NET 4.5 version! If you use the NuGet package, make sure
-            // to set the correct reference
-            FileUploadHandler handler = new FileUploadHandler(request, null);       // Get an instance of the handler class
-            handler.IncomingRequestStarted += handler_IncomingRequestStarted;       // Register event handler for demo purposes
+    //    //    // Important note: we reference the .NET 4.0 assembly here, 
+    //    //    // not the .NET 4.5 version! If you use the NuGet package, make sure
+    //    //    // to set the correct reference
+    //    //    FileUploadHandler handler = new FileUploadHandler(request, null);       // Get an instance of the handler class
+    //    //    handler.IncomingRequestStarted += handler_IncomingRequestStarted;       // Register event handler for demo purposes
 
-            var jsonResult = handler.HandleRequest();               // Call the handler method
-            var result = jsonResult;            // JsonResult.Data is of type object and must be casted 
+    //    //    var jsonResult = handler.HandleRequestAsync();               // Call the handler method
+    //    //    var result = jsonResult;            // JsonResult.Data is of type object and must be casted 
 
-            context.Response.Write(JsonConvert.SerializeObject(result));            // Serialize the JQueryFileUpload object to a Json string
-        }
+    //    //    context.Response.Write(JsonConvert.SerializeObject(result));            // Serialize the JQueryFileUpload object to a Json string
+    //    //}
 
-        // Event handler for demo purposes
-        void handler_IncomingRequestStarted(object sender, Backload.Eventing.Args.IncomingRequestEventArgs e)
-        {
-            var values = e.Param.BackloadValues;
-        }
+    //    // Event handler for demo purposes
+    //    void handler_IncomingRequestStarted(object sender, Backload.Eventing.Args.IncomingRequestEventArgs e)
+    //    {
+    //        var values = e.Param.BackloadValues;
+    //    }
 
 
 
-        public bool IsReusable
-        {
-            get
-            {
-                return false;
-            }
-        }
-    }
+    //    public bool IsReusable
+    //    {
+    //        get
+    //        {
+    //            return false;
+    //        }
+    //    }
+    //}
 }
