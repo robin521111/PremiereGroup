@@ -15,9 +15,7 @@
     <meta name="author" content="">
     <title>Simple Sidebar - Start Bootstrap Template</title>
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="css/simple-sidebar.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 
@@ -134,7 +132,6 @@
 <script src="@Url.Content("~/Scripts/plugins/metisMenu/metisMenu.min.js")"></script>
     <!-- /#wrapper -->
     <!-- HightChart -->
-    <script src="@Url.Content("~/Scripts/HighChart/modules/exporting.js")"></script>
     <script src="@Url.Content("~/Scripts/HighChart/highcharts.js")"></script>
 
     <!-- Menu Toggle Script -->
@@ -171,51 +168,41 @@
                     }
                 }
             },
-            series: [{
-                type: 'pie',
-                name: 'Browser share',
-                data: [
-                    ['Firefox', 45.0],
-                    ['IE', 26.8],
-                    {
-                        name: 'Chrome',
-                        y: 12.8,
-                        sliced: true,
-                        selected: true
-                    },
-                    ['Safari', 8.5],
-                    ['Opera', 6.2],
-                    ['Others', 0.7]
-                ]
-            }]
+            series: []
         });
     });
     $(document).ready(function () {
         @foreach (var item in Model)
 	{
-        string[] data1;
+             StringBuilder sb = new StringBuilder();
+             //Array data1;
              JObject obj = JObject.Parse(item.Series);
             //var data = obj.Children().Value<Array>();
              //List<string> data = obj["data"].Select(m=>(string)m).ToList();
-             var data = obj["data"].Values<JToken>().ToArray();
-            data1 = obj["data"].Values<string>().ToArray();
-            string data2 = string.Join(",",data1);
+             var data = obj["data"].Values<JArray>();
+            //data1 = obj["data"].Values<JToken>().ToArray();
+
+             string data1 = string.Join(",", data);
+            sb.Replace(':', ',');
+            
             string name = obj["name"].Value<string>();    
-            string type = obj["type"].Value<string>();
+            //string type = obj["type"].Value<string>();
            <text>
 
              $("#@item.ID").click(function () {
                  var chart = $('#container').highcharts();
-                 if (chart.series.length < 4) {
+                 if (chart.series.length <1) {
                      chart.addSeries(
                          {
-
-                             data: [@data2],
+                             data: [@Html.Raw(data1)],
                              name: "@name",
-                             type: "@type"
+                             type: "pie"
                     }
                     );
-            }
+                 }
+                 else if (chart.series.length>1) {
+                     chart.series[0].remove();
+                 }
         });
 
              $("#btn_clean").click(function () {

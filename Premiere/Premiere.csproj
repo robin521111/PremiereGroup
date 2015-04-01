@@ -466,6 +466,7 @@
     <Content Include="Content\master.css" />
     <Content Include="Content\premiere-admin.css" />
     <Content Include="Content\sidebar.css" />
+    <Content Include="Content\signin.css" />
     <Content Include="Content\simple-sidebar.css" />
     <Content Include="Content\style.css" />
     <Content Include="Content\styles.css" />
@@ -1337,7 +1338,9 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>1924</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:1924/</IISUrl>
+          <IISUrl>http://localhost:1926/</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost:1926/</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
