@@ -1240,7 +1240,6 @@
     <Content Include="Views\Error\LoginError.cshtml" />
     <Content Include="Scripts\jquery-2.0.3.min.map" />
     <Content Include="Scripts\static\JsonData.json" />
-    <Content Include="Views\Home\GraphicData.cshtml" />
     <Content Include="Views\Shared\Charts_sidebar.cshtml" />
     <Content Include="Views\Shared\Admin_sidebar.cshtml" />
     <Content Include="Views\Shared\Home_sidebar.cshtml" />
