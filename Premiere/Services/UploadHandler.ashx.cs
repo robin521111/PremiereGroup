@@ -224,6 +224,10 @@ namespace Premiere.Services
 
                     break;
                 case "品牌传播图谱":
+                    text = File.ReadAllText(path, System.Text.Encoding.Default);
+                    obj = JObject.Parse(text);
+                    file_name = status.name.Replace(".txt", "");
+                    string features = obj["features"].ToString();
                     break;
                 case "品牌形象分析图":
                     text = File.ReadAllText(path, System.Text.Encoding.Default);
@@ -232,7 +236,7 @@ namespace Premiere.Services
                     data = obj["series"].ToString();
                     xAxis = obj["xAxis"].ToString();
 
-                    DB.BrandFocustbl.Add(new BrandFocus
+                    DB.BrandImagetbl.Add(new BrandImage
                     {
                         ChartID = 3,
                         BrandName = file_name,
@@ -274,6 +278,22 @@ namespace Premiere.Services
                     });
                     break;
                 case "品牌关注点分析图":
+                    text = File.ReadAllText(path, System.Text.Encoding.Default);
+                    obj = JObject.Parse(text);
+                    file_name = status.name.Replace(".txt", "");
+                    data = obj["series"].ToString();
+                    xAxis = obj["xAxis"].ToString();
+                    DB.BrandFocustbl.Add(new BrandFocus {
+                        ChartID = 3,
+                        BrandName = file_name,
+                        Series = data,
+                        xAxis = xAxis,
+                        LastModified = DateTime.Now,
+                        LastModifiedBy = Membership.GetUser().UserName.ToString(),
+                    
+                    });
+
+
                     break;
                 case "媒体关注度分析图谱":
                     break;
