@@ -83,81 +83,13 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1>@ViewBag.Title</h1>
+                        <h3>@ViewBag.Title</h3>
                        
                        <br />
                         <p>以下品牌是已成功导入数据库的品牌数据: </p>
                        
 
                         <div class="row">
-                            
-                                 @*@if (Request.QueryString["title"].ToString()=="品牌曝光度分析-每月数据导入")
-                                    {
-                                     <div class="col-md-2">
-                                         <div class="dropdown">
-                                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-                                                月份选取
-                                                <span class="caret"></span>
-                                            </button>
-                                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenuDivider">
-                                                @foreach (var item in Model)
-                                                {
-                                                    if (item.Month=="一月")
-                                                    {
-                                                        <li role="presentation"><button class="btn-block" id="Jan">一月</button></li>
-                                                    }
-                                                    if (item.Month == "二月")
-                                                    {
-                                                        <li role="presentation"><button class="btn-block" id="Feb">二月</button></li>
-                                                    }
-                                                    if (item.Month == "三月")
-                                                    {
-                                                        <li role="presentation"><button class="btn-block" id="Mar">三月</button></li>
-                                                    }
-                                                    if (item.Month == "四月")
-                                                    {
-                                                        <li role="presentation"><button class="btn-block" id="Apr">四月</button></li>
-                                                    }
-                                                    if (item.Month == "五月")
-                                                    {
-                                                        <li role="presentation"><button class="btn-block" id="May">五月</button></li>
-                                                    }
-                                                    if (item.Month == "六月")
-                                                    {
-                                                        <li role="presentation"><button class="btn-block" id="Jun">六月</button></li>
-                                                    }
-                                                    if (item.Month=="七月")
-                                                    {
-                                                        <li role="presentation"><button class="btn-block" id="Jul">七月</button></li>
-                                                    }
-                                                    if (item.Month == "八月")
-                                                    {
-                                                        <li role="presentation"><button class="btn-block" id="Aug">八月</button></li>
-                                                    }
-                                                    if (item.Month == "九月")
-                                                    {
-                                                        <li role="presentation"><button class="btn-block" id="Sep">九月</button></li>
-                                                    }
-                                                    if (item.Month == "十月")
-                                                    {
-                                                        <li role="presentation"><button class="btn-block" id="Oct">十月</button></li>
-                                                    }
-                                                    if (item.Month == "十一月")
-                                                    {
-                                                        <li role="presentation"><button class="btn-block" id="Nov">十一月</button></li>
-                                                    }
-                                                    if (item.Month == "十二月")
-                                                    {
-                                                        <li role="presentation"><button class="btn-block" id="Dec">十一月</button></li>
-                                                    }
-
-
-                                                }    
-
-                                            </ul>
-                                            </div>
-                                        </div>
-                                    }*@
                             <div class="col-md-2">
                                 <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-expanded="true">
