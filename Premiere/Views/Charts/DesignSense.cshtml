@@ -22,7 +22,7 @@
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]*@
-    
+   
 </head>
 <body>
   <div id="wrapper">
@@ -37,13 +37,13 @@
                         @*<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>*@
                         <ul class="nav nav-second-level">
                             <li>
-                                @Html.IconActionLink("index", "品牌曝光度分析", null, "glyphicon glyphicon-triangle-right", new { @title = "品牌曝光度分析" })
-                                <ul class="nav nav-third-level">
+                                @Html.IconActionLink("index", "品牌曝光度分析", null, "glyphicon glyphicon-triangle-right", new { @title = "品牌曝光度分析",@id="mutiple_level" })
+                                <ul class="nav nav-fourth-level">
                                     <li>
-                                        @Html.ActionLink("每日数据分析", "BrandExposure_line", new { @title = "品牌曝光度分析-每日数据导入" }, null)
+                                        @Html.ActionLink("-->每日数据分析", "BrandExposure_line", new { @title = "品牌曝光度分析" }, null)
                                     </li>
                                     <li>
-                                        @Html.ActionLink("每月数据分析", "BrandExposure_bubble", new { @title = "品牌曝光度分析-每月数据导入" }, null)
+                                        @Html.ActionLink("-->每月数据分析", "BrandExposure_bubble", new { @title = "品牌曝光度分析" }, null)
                                     </li>
                                 </ul>
                             </li>
@@ -256,10 +256,7 @@
             });
 
         }*@
-        $('li').click(function(){
-            console.log('clicked');
-            $('li a span').Attr("class",'.glyphicon glyphicon-triangle-bottom');
-        });
+        
 
     });
 

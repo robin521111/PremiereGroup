@@ -37,13 +37,14 @@
                         @*<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>*@
                         <ul class="nav nav-second-level">
                             <li>
-                                @Html.IconActionLink("index", "品牌曝光度分析", null, ".glyphicon-asterisk", true, new { @title = "品牌曝光度分析", @class = "icon-th-list" })
+
+                                @Html.IconActionLink("index", "品牌曝光度分析", null, "glyphicon glyphicon-triangle-right", new { @title = "品牌曝光度分析",@id="mutiple_level" })
                                 <ul class="nav nav-third-level">
                                     <li>
-                                        @Html.ActionLink("每日数据分析", "BrandExposure_line", new { @title = "品牌曝光度分析-每日数据导入" }, null)
+                                        @Html.ActionLink("-->每日数据分析", "BrandExposure_line", new { @title = "品牌曝光度分析-每日数据导入" }, null)
                                     </li>
                                     <li>
-                                        @Html.ActionLink("每月数据分析", "BrandExposure_bubble", new { @title = "品牌曝光度分析-每月数据导入" }, null)
+                                        @Html.ActionLink("-->每月数据分析", "BrandExposure_bubble", new { @title = "品牌曝光度分析-每月数据导入" }, null)
                                     </li>
                                 </ul>
                             </li>

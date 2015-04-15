@@ -86,7 +86,7 @@ namespace Premiere.Helper
 
             builder.MergeAttribute("href", urlhelper.Action(action, routeValues));
             builder.InnerHtml += text;
-            string spanstr = "<span class= '" + spanClass + "'>     </span>";
+            string spanstr = "<span class= '" + spanClass + "'>                     </span>";
             builder.InnerHtml += spanstr;
 
             string IconLinkHtml = builder.ToString(TagRenderMode.Normal);

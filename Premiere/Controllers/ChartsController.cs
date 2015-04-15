@@ -19,7 +19,6 @@ namespace Premiere.Controllers
             ViewBag.Title = title;
             //List<BrandExposureLine> list = new List<BrandExposureLine>();
             IEnumerable<BrandExposureLine> model = DB.BrandExposureLinetbl.ToList();
-
             return View(DB.BrandExposureLinetbl.ToList());
         }
 
@@ -51,7 +50,8 @@ namespace Premiere.Controllers
         public ActionResult BrandExposure_map(string title)
         {
             ViewBag.Title = title;
-            return View();
+            var model = DB.BrandSpreadMaptbl.ToList();
+            return View(model);
         }
 
         public ActionResult GraphicData(string title)
@@ -63,7 +63,8 @@ namespace Premiere.Controllers
         public ActionResult BrandImage(string title)
         {
             ViewBag.Title = title;
-            return View();
+            var model = DB.BrandImagetbl.ToList();
+            return View(model);
         }
 
         public ActionResult DesignSense(string title)

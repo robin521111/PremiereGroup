@@ -228,6 +228,14 @@ namespace Premiere.Services
                     obj = JObject.Parse(text);
                     file_name = status.name.Replace(".txt", "");
                     string features = obj["features"].ToString();
+
+                    DB.BrandSpreadMaptbl.Add(new BrandSpreadMap 
+                    { 
+                        Content=features,
+                        BrandName=file_name,
+                        LastModified=DateTime.Now,
+                        LastModifiedBy=Membership.GetUser().UserName.ToString(),
+                    });
                     break;
                 case "品牌形象分析图":
                     text = File.ReadAllText(path, System.Text.Encoding.Default);
@@ -316,10 +324,6 @@ namespace Premiere.Services
             JObject obj = JObject.Parse(text);
             //IList<JToken> result = obj["data"].Children().ToList();
             var result = obj["data"];
-            
-            
-           
-         
                 
         }
 

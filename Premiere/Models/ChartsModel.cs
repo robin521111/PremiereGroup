@@ -87,6 +87,7 @@ namespace Premiere.Models
     {
         [Key]
         public int ID { get; set; }
+        public string BrandName { get; set; }
         public string Content { get; set; }
         public string LastModifiedBy { get; set; }
         public DateTime LastModified { get; set; }
