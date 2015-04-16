@@ -227,7 +227,19 @@ namespace Premiere.Services
                     text = File.ReadAllText(path, System.Text.Encoding.Default);
                     obj = JObject.Parse(text);
                     file_name = status.name.Replace(".txt", "");
-                    string features = obj["features"].ToString();
+                    string content = obj.ToString();
+                    data = obj["data"].ToString();
+
+                    DB.BrandSpreadMaptbl.Add(new BrandSpreadMap
+                    {
+                        ChartID = 5,
+                        BrandName = file_name,
+                        Content = content,
+                        LastModified = DateTime.Now,
+                        LastModifiedBy = Membership.GetUser().UserName.ToString()
+                    });
+                    
+
                     break;
                 case "品牌形象分析图":
                     text = File.ReadAllText(path, System.Text.Encoding.Default);

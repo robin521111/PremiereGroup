@@ -1,1 +1,155 @@
-﻿{"data":{"wordgraph":[{"key":"淘宝","period":"20150127-20150202","features":[{"feature":"新浪  ","ratio":"49","value":"915","value_r":"915"},{"feature":"名表论坛","ratio":"340","value":"800","value_r":"800"},{"feature":"天涯社区","ratio":"420","value":"167","value_r":"167"},{"feature":"腕表之家","ratio":"182","value":"125","value_r":"125"},{"feature":"Neeu.com 优网","ratio":"892","value":"104","value_r":"104"},{"feature":"时迹网","ratio":"414","value":"61","value_r":"61"},{"feature":"MSN中国","ratio":"859","value":"59","value_r":"59"},{"feature":"中吴网","ratio":"324","value":"53","value_r":"53"},{"feature":"百度","ratio":"728","value":"51","value_r":"51"},{"feature":"大河网","ratio":"878","value":"50","value_r":"50"},{"feature":"爱表族","ratio":"116","value":"29","value_r":"29"},{"feature":"YOKA男士网","ratio":"98","value":"27","value_r":"27"},{"feature":"PCHOME  ","ratio":"919","value":"27","value_r":"27"},{"feature":"优酷网","ratio":"42","value":"26","value_r":"26"},{"feature":"舜网","ratio":"203","value":"26","value_r":"26"},{"feature":"中华服装网","ratio":"545","value":"25","value_r":"25"},{"feature":"常熟零距离","ratio":"312","value":"23","value_r":"23"},{"feature":"网易   ","ratio":"592","value":"23","value_r":"23"},{"feature":"西祠胡同社区","ratio":"558","value":"20","value_r":"20"},{"feature":"VOGUE时尚网","ratio":"315","value":"19","value_r":"19"}],"period":"20140701-20140731","key":"百达翡丽"}
+﻿{
+    "data": {
+        "wordgraph": [
+             {
+                 "key": "爱彼",
+                 "period": "20150127-20150202",
+                 "property": "形容词",
+                 "features": [
+                     {
+                        
+                         "feature": "品牌",
+                         "ratio": "639",
+                         "value": "72",
+                         "value_r": "72"
+                     },
+                     {
+                     
+                         "feature": "视频",
+                         "ratio": "524",
+                         "value": "65",
+                         "value_r": "65"
+                     },
+                     {
+                     
+                         "feature": "橡树",
+                         "ratio": "878",
+                         "value": "54",
+                         "value_r": "54"
+                     },
+                     {
+                     
+                         "feature": "皇家",
+                         "ratio": "33",
+                         "value": "54",
+                         "value_r": "54"
+                     },
+                     {
+                     
+                         "feature": "梅溪",
+                         "ratio": "340",
+                         "value": "49",
+                         "value_r": "49"
+                     },
+                     {
+                     
+                         "feature": "网站",
+                         "ratio": "287",
+                         "value": "35",
+                         "value_r": "35"
+                     },
+                     {
+                        
+                         "feature": "手表",
+                         "ratio": "78",
+                         "value": "35",
+                         "value_r": "35"
+                     },
+                     {
+                     
+                         "feature": "钟表",
+                         "ratio": "849",
+                         "value": "27",
+                         "value_r": "27"
+                     },
+                     {
+                     
+                         "feature": "计划",
+                         "ratio": "367",
+                         "value": "23",
+                         "value_r": "23"
+                     },
+                     {
+                     
+                         "feature": "世界",
+                         "ratio": "488",
+                         "value": "22",
+                         "value_r": "22"
+                     },
+                     {
+                     
+                         "feature": "人物",
+                         "ratio": "743",
+                         "value": "22",
+                         "value_r": "22"
+                     },
+                     {
+                     
+                         "feature": "国际",
+                         "ratio": "659",
+                         "value": "21",
+                         "value_r": "21"
+                     },
+                     {
+                     
+                         "feature": "内容",
+                         "ratio": "844",
+                         "value": "18",
+                         "value_r": "18"
+                     },
+                     {
+                     
+                         "feature": "成就",
+                         "ratio": "77",
+                         "value": "18",
+                         "value_r": "18"
+                     },
+                     {
+                     
+                         "feature": "家族",
+                         "ratio": "959",
+                         "value": "17",
+                         "value_r": "17"
+                     },
+                     {
+                     
+                         "feature": "女皇",
+                         "ratio": "33",
+                         "value": "17",
+                         "value_r": "17"
+                     },
+                     {
+                     
+                         "feature": "工艺",
+                         "ratio": "192",
+                         "value": "17",
+                         "value_r": "17"
+                     },
+                     {
+                     
+                         "feature": "功能",
+                         "ratio": "950",
+                         "value": "16",
+                         "value_r": "16"
+                     },
+                     {
+                     
+                         "feature": "复杂",
+                         "ratio": "814",
+                         "value": "22",
+                         "value_r": "22"
+                     },
+                     {
+                     
+                         "feature": "热情",
+                         "ratio": "363",
+                         "value": "18",
+                         "value_r": "18"
+                     }
+                 ]
+             }
+        ]
+    },
+    "status": "0",
+    "message": ""
+}

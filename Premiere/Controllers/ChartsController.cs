@@ -51,7 +51,18 @@ namespace Premiere.Controllers
         public ActionResult BrandExposure_map(string title)
         {
             ViewBag.Title = title;
-            return View();
+            var model = DB.BrandSpreadMaptbl.ToList();
+            return View(model);
+        }
+
+        public ActionResult GetGraphicData(string brand_name)
+        {
+            var Content = from c in DB.BrandSpreadMaptbl
+                          where c.BrandName == brand_name
+                          select c.Content;
+
+
+            return View(Content.ToString());
         }
 
         public ActionResult GraphicData(string title)
