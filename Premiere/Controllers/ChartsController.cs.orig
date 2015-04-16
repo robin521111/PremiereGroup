@@ -52,6 +52,7 @@ namespace Premiere.Controllers
             ViewBag.Title = title;
             var model = DB.BrandSpreadMaptbl.ToList();
             return View(model);
+<<<<<<< HEAD
         }
 
         public ActionResult GetGraphicData(string brand_name)
@@ -62,6 +63,8 @@ namespace Premiere.Controllers
 
 
             return View(Content.ToString());
+=======
+>>>>>>> 3e14dc354302cbb46a1e8af12c0d81864ccdd9a2
         }
 
         public ActionResult GraphicData(string title)

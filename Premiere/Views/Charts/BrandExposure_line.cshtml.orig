@@ -1,10 +1,9 @@
-﻿@model IEnumerable<Premiere.Models.DesignSense>
-@using System.Text
-@using Newtonsoft.Json.Linq
-@using Premiere.Helper
+﻿@model  IEnumerable<Premiere.Models.BrandExposureLine>
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@using Newtonsoft.Json.Linq
+@using Premiere.Helper
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,18 +13,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <title>Premiere Group</title>
     <!-- Bootstrap Core CSS -->
     <!-- Custom CSS -->
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     @*[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]*@
-   
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]*@
 </head>
 <body>
-  <div id="wrapper">
+<div id="wrapper">
     <!-- Sidebar -->
     <div id="sidebar-wrapper">
         <div class="navbar-default sidebar" role="navigation">
@@ -33,17 +32,18 @@
                 <ul class="nav" id="side-menu">
                     
                     <li class="active">
-                      <br />
+                        @Html.IconActionLink("Charts", "图表导航", null, "fa fa-bar-chart-o fa-fw", true, null)
                         @*<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>*@
                         <ul class="nav nav-second-level">
-                            <li>
+                            <li> 
                                 @Html.IconActionLink("index", "品牌曝光度分析", null, "glyphicon glyphicon-triangle-right", new { @title = "品牌曝光度分析",@id="mutiple_level" })
-                                <ul class="nav nav-fourth-level">
+
+                                <ul class="nav nav-third-level">
                                     <li>
-                                        @Html.ActionLink("-->每日数据分析", "BrandExposure_line", new { @title = "品牌曝光度分析" }, null)
+                                        @Html.ActionLink("-->每日数据分析", "BrandExposure_line", new { @title = "品牌曝光度分析-每日数据导入" }, null)
                                     </li>
                                     <li>
-                                        @Html.ActionLink("-->每月数据分析", "BrandExposure_bubble", new { @title = "品牌曝光度分析" }, null)
+                                        @Html.ActionLink("-->每月数据分析", "BrandExposure_bubble", new { @title = "品牌曝光度分析-每月数据导入" }, null)
                                     </li>
                                 </ul>
                             </li>
@@ -79,7 +79,7 @@
     <!-- Page Content -->
     <div id="page-content-wrapper">
 
-        <div class="jumbotron" >
+        <div class="jumbotron">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
@@ -91,6 +91,31 @@
 
                         <div class="row">
                             
+                              @*   @if (Request.QueryString["title"].ToString()=="品牌曝光度分析-每月数据导入")
+                                    {
+                                     <div class="col-md-2">
+                                         <div class="dropdown">
+                                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                                                月份选取
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenuDivider">
+                                                    <li role="presentation"><button class="btn-block" id="Jan">一月</button></li>
+                                                    <li role="presentation"><button class="btn-block" id="Feb">二月</button></li>
+                                                    <li role="presentation"><button class="btn-block" id="Mar">三月</button></li>
+                                                    <li role="presentation"><button class="btn-block" id="Apr">四月</button></li>
+                                                    <li role="presentation"><button class="btn-block" id="May">五月</button></li>
+                                                    <li role="presentation"><button class="btn-block" id="Jun">六月</button></li>
+                                                    <li role="presentation"><button class="btn-block" id="Aug">七月</button></li>
+                                                    <li role="presentation"><button class="btn-block" id="Sep">八月</button></li>
+                                                    <li role="presentation"><button class="btn-block" id="Oct">九月</button></li>
+                                                    <li role="presentation"><button class="btn-block" id="Nov">十月</button></li>
+                                                    <li role="presentation"><button class="btn-block" id="Dec">十一月</button></li>
+
+                                            </ul>
+                                            </div>
+                                        </div>
+                                    }*@
                             <div class="col-md-2">
                                 <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-expanded="true">
@@ -130,7 +155,9 @@
     <!-- /#page-content-wrapper -->
 </div>
 
-
+ <!-- Bootstrap Core CSS -->
+<!-- Custom CSS -->
+<!-- MetisMenu CSS -->
 <link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />
 <link href="@Url.Content("~/Content/chart-metismenu.css")" rel="stylesheet" />
 <link href="@Url.Content("~/Content/bootstrap-theme.min.css")" rel="stylesheet" />
@@ -140,24 +167,24 @@
 <script>
     $('#side-menu').metisMenu();
 </script>
-
     <!-- /#wrapper -->
+    
     <!-- HightChart -->
-    <script src="@Url.Content("~/Scripts/HighChart/modules/exporting.js")"></script>
     <script src="@Url.Content("~/Scripts/HighChart/highcharts.js")"></script>
 
     <!-- Menu Toggle Script -->
     <script>
-
-    $("#menu-toggle").click(function(e) {
+    $("#menu-toggle").click(function (e) {
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
     });
+    $('#side-menu').metisMenu();
+
 
     $(function () {
         $('#container').highcharts({
             title: {
-                text: '',
+                text: '品牌曝光度分析',
                 x: -20 //center
             },
             subtitle: {
@@ -184,9 +211,9 @@
                 borderWidth: 0
             },
             series: [
-              
+                
             ],
-            xAxis: { categories: [] }
+            xAxis: { categories: ['2014-06-01', '2014-06-02', '2014-06-03', '2014-   06-04', '2014-06-05', '2014-06-06', '2014-06-07', '2014-06-08', '2014-06-09', '2014-06-10', '2014-06-11', '2014-06-12', '2014-06-13', '2014-06-14', '2014-06-15', '2014-06-16', '2014-06-17', '2014-06-18', '2014-06-19', '2014-06-20', '2014-06-21', '2014-06-22', '2014-06-23', '2014-06-24', '2014-06-25', '2014-06-26', '2014-06-27', '2014-06-28', '2014-06-29', '2014-06-30', '2014-07-01', '2014-07-02', '2014-07-03', '2014-07-04', '2014-07-05', '2014-07-06', '2014-07-07', '2014-07-08', '2014-07-09', '2014-07-10', '2014-07-11', '2014-07-12', '2014-07-13', '2014-07-14', '2014-07-15', '2014-07-16', '2014-07-17', '2014-07-18', '2014-07-19', '2014-07-20', '2014-07-21', '2014-07-22', '2014-07-23', '2014-07-24', '2014-07-25', '2014-07-26', '2014-07-27', '2014-07-28', '2014-07-29', '2014-07-30', '2014-07-31', '2014-08-01', '2014-08-02', '2014-08-03', '2014-08-04', '2014-08-05', '2014-08-06', '2014-08-07', '2014-08-08', '2014-08-09', '2014-08-10', '2014-08-11', '2014-08-12', '2014-08-13', '2014-08-14', '2014-08-15', '2014-08-16', '2014-08-17', '2014-08-18', '2014-08-19', '2014-08-20', '2014-08-21', '2014-08-22', '2014-08-23', '2014-08-24', '2014-08-25', '2014-08-26', '2014-08-27', '2014-08-28', '2014-08-29', '2014-08-30', '2014-08-31', '2014-09-01', '2014-09-02', '2014-09-03', '2014-09-04', '2014-09-05', '2014-09-06', '2014-09-07', '2014-09-08', '2014-09-09', '2014-09-10', '2014-09-11', '2014-09-12', '2014-09-13', '2014-09-14', '2014-09-15', '2014-09-16', '2014-09-17', '2014-09-18', '2014-09-19', '2014-09-20', '2014-09-21', '2014-09-22', '2014-09-23', '2014-09-24', '2014-09-25', '2014-09-26', '2014-09-27', '2014-09-28', '2014-09-29', '2014-09-30', '2014-10-01', '2014-10-02', '2014-10-03', '2014-10-04', '2014-10-05', '2014-10-06', '2014-10-07', '2014-10-08', '2014-10-09', '2014-10-10', '2014-10-11', '2014-10-12', '2014-10-13', '2014-10-14', '2014-10-15', '2014-10-16', '2014-10-17', '2014-10-18', '2014-10-19', '2014-10-20', '2014-10-21', '2014-10-22', '2014-10-23', '2014-10-24', '2014-10-25', '2014-10-26', '2014-10-27', '2014-10-28', '2014-10-29', '2014-10-30', '2014-10-31', '2014-11-01', '2014-11-02', '2014-11-03', '2014-11-04', '2014-11-05', '2014-11-06', '2014-11-07', '2014-11-08', '2014-11-09', '2014-11-10', '2014-11-11', '2014-11-12', '2014-11-13', '2014-11-14', '2014-11-15', '2014-11-16', '2014-11-17', '2014-11-18', '2014-11-19', '2014-11-20', '2014-11-21', '2014-11-22', '2014-11-23', '2014-11-24', '2014-11-25', '2014-11-26', '2014-11-27', '2014-11-28', '2014-11-29', '2014-11-30', '2014-12-01', '2014-12-02', '2014-12-03', '2014-12-04', '2014-12-05', '2014-12-06', '2014-12-07', '2014-12-08', '2014-12-09', '2014-12-10', '2014-12-11', '2014-12-12', '2014-12-13', '2014-12-14', '2014-12-15', '2014-12-16', '2014-12-17', '2014-12-18', '2014-12-19', '2014-12-20', '2014-12-21', '2014-12-22', '2014-12-23', '2014-12-24', '2014-12-25', '2014-12-26', '2014-12-27', '2014-12-28', '2014-12-29', '2014-12-30', '2014-12-31'] }
         });
     });
 
@@ -194,63 +221,41 @@
     $(document).ready(function () {
         @foreach (var item in Model)
 	{
-            
-            JArray obj = JArray.Parse(item.Series);
+        string[] data1;
+             JObject obj = JObject.Parse(item.Series);
             //var data = obj.Children().Value<Array>();
-            //List<string> data = obj["data"].Select(m=>(string)m).ToList();
-            //JArray data1 = obj["data"].Values<string>().ToArray();
-            //string data2 = string.Join(",",data1);
-            JObject axis = JObject.Parse(item.xAxis);
-
-            JToken category = axis["categories"];
-            JToken data = obj[0]["data"];
-            JToken name = obj[0]["name"];
-            JToken data1 =obj[1]["data"];
-            JToken name1 =obj[1]["name"]; 
-               
+             //List<string> data = obj["data"].Select(m=>(string)m).ToList();
+             var data = obj["data"].Values<JToken>().ToArray();
+            data1 = obj["data"].Values<string>().ToArray();
+            string data2 = string.Join(",",data1);
+            string name = obj["name"].Value<string>();    
            <text>
 
         $("#@item.ID").click(function () {
             var chart = $('#container').highcharts();
-            if (chart.series.length < 4) {
+            if (chart.series.length <4 ) {
                 chart.addSeries(
                     {
 
-                        data: @data,
+                        data: [@data2],
                         name: "@name"
 
                     }
-                    );
-                chart.addSeries(
-                    {
-                        data: @data1,
-                        name: "@name1"
-                    }
-                    );
-                chart.xAxis.join(
-                        {
-                            categories:@Html.Raw(category)
-
-                        }
                     );
             }
         });
 
         $("#btn_clean").click(function () {
             var chart = $('#container').highcharts();
-            if (chart.series.length) {
+            if (chart.series.length ) {
                 chart.series[0].remove();
             }
-        });
+         });
 
 
-    
-
-
-        </text>
-	}
+<<<<<<< HEAD
         //get data from server, but will be retired
-        @*        function getData() {
+       @* function getData() {
             $.get("@Url.Action("ReturnJson","Charts",new {@ID = @item.ID})", function (data, status) {
                 return @obj;
             });
@@ -258,10 +263,19 @@
         }*@
         
 
+=======
+     
+>>>>>>> 3e14dc354302cbb46a1e8af12c0d81864ccdd9a2
+        </text>
+	}
     });
 
 
-        
+  
+
+
+
+
     </script>
 </body>
 </html>

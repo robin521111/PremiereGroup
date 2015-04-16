@@ -77,7 +77,21 @@ namespace Premiere.Helper
 
         }
 
-       
+
+        public static MvcHtmlString IconActionLink(this HtmlHelper helper, string action, string text, object routeValues, string spanClass, object htmlAttributes)
+        {
+            var urlhelper = new UrlHelper(helper.ViewContext.RequestContext);
+
+            var builder = new TagBuilder("a");
+
+            builder.MergeAttribute("href", urlhelper.Action(action, routeValues));
+            builder.InnerHtml += text;
+            string spanstr = "<span class= '" + spanClass + "'>                     </span>";
+            builder.InnerHtml += spanstr;
+
+            string IconLinkHtml = builder.ToString(TagRenderMode.Normal);
+            return MvcHtmlString.Create(IconLinkHtml);
+        }
 
 
         public static MvcHtmlString ActionImage(this HtmlHelper html, string action, object routeValues, string imagePath, string alt)

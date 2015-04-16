@@ -1,29 +1,71 @@
+<<<<<<< HEAD
 ﻿@model  IEnumerable<Premiere.Models.BrandSpreadMap>
 
+=======
+﻿@using Premiere.Helper
+@using Newtonsoft.Json.Linq
 @using System.Text;
 @model  IEnumerable<Premiere.Models.BrandSpreadMap>
+>>>>>>> 3e14dc354302cbb46a1e8af12c0d81864ccdd9a2
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>Simple Sidebar - Start Bootstrap Template</title>
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
+<<<<<<< HEAD
+
+
+<script type="text/javascript">
+    window.pageStatus = false;
+    var PPval = {
+        adjust: 1422948719000 - new Date(),
+        dataStm: 1422720000000,
+        modCtrl: '',
+        hostUrl: function (u) { return u.split('/').slice(0, 3).join('/'); }(location.href),
+        baseUrl: '/',
+        routeUrl: '/',
+        staticUrl: '/static/',
+        imgsUrl: '/static/imgs/',
+        dataface: '/Interface/',
         isSnap: 1
     };
 </script>
 <script src="~/Scripts/jquery-1.8.2.js"></script>
 <link type="text/css" rel="stylesheet" href="/Content/styles.css" />
+</head>
+<body style="background-color: #ebebeb;">
+
+
+    <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-expanded="true">
+            品牌选取
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenuDivider">
+            @foreach (var item in Model)
+            {
+                <li role="presentation"><button class="btn-block" id="@item.ID">@item.BrandName</button></li>
+            }
+            <li role="presentation" class="divider"></li>
+
+
+            <li role="presentation"><button class="btn-block" id="btn_clean">清除比较数据</button></li>
+        </ul>
+    </div>
+
+=======
+<!-- Bootstrap Core CSS -->
+<link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />
+<link href="@Url.Content("~/Content/chart-metismenu.css")" rel="stylesheet" />
+<link href="@Url.Content("~/Content/bootstrap-theme.min.css")" rel="stylesheet" />
+<!-- Custom CSS -->
+<link href="@Url.Content("~/Content/simple-sidebar.css")" rel="stylesheet" />
+<!-- MetisMenu CSS -->
+<link href="@Url.Content("~/Content/plugins/metisMenu/metisMenu.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Scripts/plugins/metisMenu/metisMenu.min.js")"></script>
+
+<div id="wrapper">
+    <!-- Sidebar -->
     <div id="sidebar-wrapper">
         <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse">
@@ -141,32 +183,7 @@
 </head>
 <body style="background-color: #ebebeb;">
 
-    <!--要用到的变量-->
-    <form id="adv_schfm" class="dsn" method="get" action="/" autocomplete="off">
-        <input name="tpl" value="demand" />
-        <input name="type" value="0" />
-        <input name="area" value="0" />
-        <input name="time" value="12" />
-        <input name="word" value="" />
-    </form>
-
-    <div class="dropdown">
-        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-expanded="true">
-            品牌选取
-            <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenuDivider">
-            @foreach (var item in Model)
-            {
-                <li role="presentation"><button class="btn-block" id="@item.ID">@item.BrandName</button></li>
-            }
-            <li role="presentation" class="divider"></li>
-
-
-            <li role="presentation"><button class="btn-block" id="btn_clean">清除比较数据</button></li>
-        </ul>
-    </div>
-
+>>>>>>> 3e14dc354302cbb46a1e8af12c0d81864ccdd9a2
     <!--要用到的变量-->
     <form id="adv_schfm" class="dsn" method="get" action="/" autocomplete="off">
         <input name="tpl" value="demand" />
@@ -189,36 +206,57 @@
                         <div class="tabConts" style="display: none;"></div>
                     </div>
                     <div class="grpArea" style="margin-top: -76px;">
+<<<<<<< HEAD
                         <div class="R_paper" style="height: 480px;"></div>
+=======
+                        <div class="R_paper" style="height: 480px;" ></div>
+>>>>>>> 3e14dc354302cbb46a1e8af12c0d81864ccdd9a2
                         <div class="R_copyright" style="left: 65px; bottom: 30px;"></div>
                     </div>
                 </div>
 
                 <div class="blkUnit grpUnit" id="rs_hotWords">
+<<<<<<< HEAD
 
+=======
+                   
+>>>>>>> 3e14dc354302cbb46a1e8af12c0d81864ccdd9a2
                 </div>
 
                 <div class="ftc"></div>
             </div>
             <div id="footer">
+<<<<<<< HEAD
 
+=======
+              
+>>>>>>> 3e14dc354302cbb46a1e8af12c0d81864ccdd9a2
             </div>
 
         </div>
         <div id="lTools" class="lTools">
             <div id="lTools_c">
+<<<<<<< HEAD
 
 
 
 
 
+=======
+>>>>>>> 3e14dc354302cbb46a1e8af12c0d81864ccdd9a2
             </div>
         </div>
     </div>
 
     <style>
+<<<<<<< HEAD
         .bdshare_popup_box {
             left: auto !important;
+=======
+        .bdshare_popup_box
+        {
+            left: auto!important;
+>>>>>>> 3e14dc354302cbb46a1e8af12c0d81864ccdd9a2
             right: 10px;
         }
     </style>
@@ -228,7 +266,11 @@
     <script type="text/javascript" src="/Scripts/BaiduIndexJs/magic.js"></script>
     <script type="text/javascript" src="/Scripts/BaiduIndexJs/raphael.js"></script>
     <script type="text/javascript" src="/Scripts/BaiduIndexJs/funs.js"></script>
+<<<<<<< HEAD
     <script type="text/javascript" src="/Scripts/BaiduIndexJs/intrt.js" charset="gb2312"></script>
+=======
+    <script type="text/javascript" src="/Scripts/BaiduIndexJs/intrt.js"  charset="gb2312"></script>
+>>>>>>> 3e14dc354302cbb46a1e8af12c0d81864ccdd9a2
     <script type="text/javascript">
         BID.fnsDate.adjust = (PPval.ppt = 'PWIoNwB%2BaCYWAU8EBQBnfFEGJ3FnBTAOIQcFXQ5ABDJWN3pORyB5ICURLipyaGIEAAhWcxEFUzcLAAAIDCIRe2QBdBUdKD4RFAIrNwp%2BEUURMmhxNQhKDCMQGAkHCD0CWj4pcR80eDo1Q3kxPVAnHzI1dUQnGjoPTiJ4NHQ5ADQcKTQZEFd%2BP3ozWAcPYRMkMywRLCJKc0wxcgkGTFESHkY0URIXACRuS28NXjgfE0oBSlFwZSt5AyxtfGQwMRNzHFYmNjwiFxlTVjEhNwQ%3D', PPval.status = '0' || '0', PPval.adjust);
         if (PPval.status == '301') { BID.vVerify(); }
@@ -302,7 +344,11 @@
                 //    var data = (msg.data || {}).wordgraph || [{ key: tags[0] }, { key: tags[1] }, { key: tags[2] }, { key: tags[3] }, { key: tags[4] }];
                 //    iDemand.drawBg().setData(data[lastTab]).drawCircle(BID.getColor(lastTab)).wordgraph = data;
                 //}, { loading: T('#' + iDemand.opts.divID).parent()[0] });
+<<<<<<< HEAD
                 //注释掉 End
+=======
+                //注释掉 End 
+>>>>>>> 3e14dc354302cbb46a1e8af12c0d81864ccdd9a2
             });
 
             T(function () {
@@ -367,17 +413,28 @@
 
     <script type="text/javascript" src="/Scripts/BaiduIndexJs/h.js"></script>
     <style>
+<<<<<<< HEAD
         #bdshare a {
+=======
+        #bdshare a
+        {
+>>>>>>> 3e14dc354302cbb46a1e8af12c0d81864ccdd9a2
             padding-top: 4px;
             padding-bottom: 4px;
         }
 
+<<<<<<< HEAD
             #bdshare a.popup_more {
+=======
+            #bdshare a.popup_more
+            {
+>>>>>>> 3e14dc354302cbb46a1e8af12c0d81864ccdd9a2
                 background-position: 0px 5px;
                 width: 45px;
                 margin-right: 0;
             }
 
+<<<<<<< HEAD
         #bdshare_pop ul li {
             margin-right: -2px;
         }
@@ -409,31 +466,39 @@
     <script type="text/javascript">
         var bdShare = window.bdShare || {};
 
-        bdShare._getConfig = function (opts) {
-            opts = opts || {};
-            for (var k in bdShare._baseConfig) {
-                if (!opts[k]) { opts[k] = bdShare._baseConfig[k]; }
-            }
-            return opts;
-        };
-        bdShare._getStrData = function (opts) {
-            return T.json.stringify(bdShare._getConfig(opts));
-        };
-        bdShare._setPopData = function (strData) {//更多分享弹出框 设置data属性
-            var pop = T('#bdshare_pop');
-            if (!pop.length) {
-                pop = null;
-                setTimeout(function () { bdShare._setPopData(strData); }, 50);
-            } else {
-                pop.attr('data', strData);
-            }
-        };
-        var bds_config = bdShare._getConfig();
-        T('#rTools .bdshareBox').attr('data', bdShare._getStrData());
-        document.getElementById("bdshell_js").src = "/Scripts/BaiduIndexJs/shell_v2.js";
-    </script>
+=======
+        #bdshare_pop ul li
+        {
+            margin-right: -2px;
+        }
 
+        .bdshareBds
+        {
+            height: 30px;
+        }
 
+        .bdsPreview
+        {
+            text-align: center;
+        }
+
+            .bdsPreview .prvImg
+            {
+                width: 240px;
+            }
+
+            .bdsPreview .infLabel
+            {
+                padding: 20px 0 80px 0;
+            }
+    </style>
+
+    <div style="display: none;">
+        <form id="bdsDownLoad" method="post" action="" target="bdsDLiframe"></form>
+        <iframe name="bdsDLiframe" id="bdsDLiframe"></iframe>
+    </div>
+
+    <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=655757"></script>
     <script type="text/javascript" id="bdshell_js"></script>
     <script type="text/javascript">
         var bdShare = window.bdShare || {};
@@ -443,6 +508,7 @@
             "searchPic": "",
             "bdMini": "2"
         };
+>>>>>>> 3e14dc354302cbb46a1e8af12c0d81864ccdd9a2
         bdShare._getConfig = function (opts) {
             opts = opts || {};
             for (var k in bdShare._baseConfig) {
@@ -468,6 +534,9 @@
     </script>
 
 
+<<<<<<< HEAD
+=======
 <script>
     $('#side-menu').metisMenu();
 </script>
+>>>>>>> 3e14dc354302cbb46a1e8af12c0d81864ccdd9a2
