@@ -188,7 +188,7 @@ namespace Premiere.Services
             switch (folderName)
             {
                 case  "品牌曝光度分析-每日数据导入":
-                    var text = File.ReadAllText(path,System.Text.Encoding.Default);
+                    var text = File.ReadAllText(path,System.Text.Encoding.UTF8);
                     JObject obj = JObject.Parse(text);
                     string data = obj["series"].ToString();
                     string xAxis = obj["xAxis"].ToString();
@@ -207,38 +207,35 @@ namespace Premiere.Services
 
                     break;
                 case "品牌曝光度分析-每月数据导入":
-                    text = File.ReadAllText(path, System.Text.Encoding.Default);
+                    text = File.ReadAllText(path, System.Text.Encoding.UTF8);
                     obj = JObject.Parse(text);
                     file_name = status.name.Replace(".txt", "");
                     data = obj["series"].ToString();
-                    month = obj["month"].ToString();
                     DB.BrandExposureBubbletbl.Add(new BrandExposureBubble
                     {
                         ChartID=2,
                         BrandName=file_name,
                         Series=data,
-                        Month=month,
                         LastModified=DateTime.Now,
                         LastModifiedBy=Membership.GetUser().UserName.ToString(),
                     });
 
                     break;
                 case "品牌传播图谱":
-                    text = File.ReadAllText(path, System.Text.Encoding.Default);
+                    text = File.ReadAllText(path, System.Text.Encoding.UTF8);
                     obj = JObject.Parse(text);
                     file_name = status.name.Replace(".txt", "");
-                    string features = obj["features"].ToString();
 
                     DB.BrandSpreadMaptbl.Add(new BrandSpreadMap 
                     { 
-                        Content=features,
+                        Content=text,
                         BrandName=file_name,
                         LastModified=DateTime.Now,
                         LastModifiedBy=Membership.GetUser().UserName.ToString(),
                     });
                     break;
                 case "品牌形象分析图":
-                    text = File.ReadAllText(path, System.Text.Encoding.Default);
+                    text = File.ReadAllText(path, System.Text.Encoding.UTF8);
                     obj = JObject.Parse(text);
                     file_name = status.name.Replace(".txt", "");
                     data = obj["series"].ToString();
@@ -256,7 +253,7 @@ namespace Premiere.Services
 
                     break;
                 case "设计感与功能性分析图":
-                    text = File.ReadAllText(path, System.Text.Encoding.Default);
+                    text = File.ReadAllText(path, System.Text.Encoding.UTF8);
                     obj = JObject.Parse(text);
                     file_name = status.name.Replace(".txt", "");
                     data = obj["series"].ToString();
@@ -273,7 +270,7 @@ namespace Premiere.Services
                     });
                     break;
                 case "男女比例分析图":
-                    text = File.ReadAllText(path, System.Text.Encoding.Default);
+                    text = File.ReadAllText(path, System.Text.Encoding.UTF8);
                     obj = JObject.Parse(text);
                     file_name = status.name.Replace(".txt", "");
                     data = obj["series"].ToString();
@@ -286,7 +283,7 @@ namespace Premiere.Services
                     });
                     break;
                 case "品牌关注点分析图":
-                    text = File.ReadAllText(path, System.Text.Encoding.Default);
+                    text = File.ReadAllText(path, System.Text.Encoding.UTF8);
                     obj = JObject.Parse(text);
                     file_name = status.name.Replace(".txt", "");
                     data = obj["series"].ToString();
@@ -304,6 +301,16 @@ namespace Premiere.Services
 
                     break;
                 case "媒体关注度分析图谱":
+                    text = File.ReadAllText(path, System.Text.Encoding.UTF8);
+                    obj = JObject.Parse(text);
+                    file_name = status.name.Replace(".txt", "");
+                    DB.BrandSpreadMaptbl.Add(new BrandSpreadMap
+                    {
+                        Content = text,
+                        BrandName = file_name,
+                        LastModified = DateTime.Now,
+                        LastModifiedBy = Membership.GetUser().UserName.ToString(),
+                    });
                     break;
                 default:
                     break;

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Premiere.Models;
 using Newtonsoft.Json.Linq;
+using System.IO;
 
 namespace Premiere.Controllers
 {
@@ -33,12 +34,12 @@ namespace Premiere.Controllers
         //    return JavaScript("$('#button').click(function () { var chart = $('#container').highcharts();if (chart.series.length===1) { chart.addSeries({data: [194.1, 95.6, 54.4, 29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4]});}});});");
         //}
 
-        public JsonResult ReturnJson(int ID)
+        public string ReturnContent(int ID)
         {
-           var json = from d in DB.BrandExposureLinetbl
-                            where d.ID == ID
-                            select (string)d.Series;
-            return Json(json,JsonRequestBehavior.AllowGet);
+            var content = from d in DB.BrandSpreadMaptbl
+                       where d.ID == ID
+                       select (string)d.Content;
+            return content.FirstOrDefault().ToString();
         }
         public ActionResult BrandExposure_bubble(string title)
         {
@@ -57,7 +58,8 @@ namespace Premiere.Controllers
         public ActionResult GraphicData(string title)
         {
             ViewBag.Title = title;
-            return View();
+            var model = DB.BrandSpreadMaptbl.ToList();
+            return View(model);
         }
 
         public ActionResult BrandImage(string title)

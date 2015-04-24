@@ -14,7 +14,7 @@
 
 div.sidebar-container {
     width : 40%;
-    height : 50%;
+    height : 55%;
     position:fixed;
     background-color:#000000;
     filter: alpha(opacity=87);
@@ -116,7 +116,7 @@ ul.sidebar-menu {
 }
 
 ul.sidebar-menu li{
-    line-height:2.0em;
+    line-height:1.5em;
 }
 
 a,a:visited {
