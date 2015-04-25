@@ -63,7 +63,7 @@
                                 @Html.ActionLink("品牌关注点分析图", "BrandFocus", new { @title = "品牌关注点分析图" }, null)
                             </li>
                             <li>
-                                @Html.ActionLink("媒体关注度分析图谱", "index", new { @title = "媒体关注度分析图谱" }, null)
+                                @Html.ActionLink("媒体关注度分析图谱", "GraphicData", new { @title = "媒体关注度分析图谱" }, null)
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
@@ -99,11 +99,45 @@
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenuDivider">
-                                @foreach (var item in Model)
-                                {
-                                    <li role="presentation"><button class="btn-block" id="@item.ID">@item.BrandName</button></li>
+                                <li>
+                                    <div class="panel panel-default">
+                                      <!-- Default panel contents -->
+                                      <div class="panel-heading">当前可选品牌：</div>
+                                      <div class="panel-body">
+                                      </div>
+
+                                      <!-- Table -->
+                                      <table class="table">
+                                        <tbody>
+                                            @{
+                                                 var i = 0;
+                                            }
+                                            @foreach (var item in Model)
+                                            {
+                                               
+                                                
+                                                i++;
+                                                if (i <=9)
+                                                {
+                                                    <td><button class="label label-success" id="@item.ID">@item.BrandName</button></td>
+                                                    
+                                                }
+                                                else if (i>9)
+                                                {
+                                                    <tr></tr>
+                                                    i = 0;
+                                                } 
+                                               
+                                                 
+                                            }
+
+                                            
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                 
                                     
-                                }
+                              </li>
                                 <li role="presentation" class="divider"></li>
                                 
 
@@ -178,7 +212,7 @@
                 },
 
                 xAxis: {
-                    categories: ["材质", "风格", "相关物品"],
+                    categories: ["创新", "经典", "亲民", "奢华", "时尚", "优雅"],
                     tickmarkPlacement: 'on',
                     lineWidth: 0
                 },
@@ -191,7 +225,7 @@
 
                 tooltip: {
                     shared: true,
-                    pointFormat: '<span style="color:{series.color}">{series.name}: <b>${point.y:,.0f}</b><br/>'
+                    pointFormat: '<span style="color:{series.color}">{series.name}: <b>${point.y}</b><br/>'
                 },
 
                 legend: {
@@ -247,13 +281,7 @@
         });
 
 
-        //get data from server, but will be retired
-        @* function getData() {
-            $.get("@Url.Action("ReturnJson","Charts",new {@ID = @item.ID})", function (data, status) {
-                return @obj;
-            });
-
-        }*@
+       
 
 
         </text>

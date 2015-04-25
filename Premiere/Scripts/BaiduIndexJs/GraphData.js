@@ -1,5 +1,5 @@
-﻿{
-    "data": {
+﻿
+{"data":{"wordgraph": [{"features":[{"feature":"手表","ratio":"892","value":"2716","value_r":"2716"},{"feature":"微信","ratio":"834","value":"452","value_r":"452"},{"feature":"机芯","ratio":"940","value":"411","value_r":"411"},{"feature":"石英","ratio":"752","value":"333","value_r":"333"},{"feature":"表盘","ratio":"321","value":"291","value_r":"291"},{"feature":"机械","ratio":"466","value":"263","value_r":"263"},{"feature":"男士","ratio":"858","value":"257","value_r":"257"},{"feature":"明星","ratio":"717","value":"245","value_r":"245"},{"feature":"世界","ratio":"398","value":"212","value_r":"212"},{"feature":"表带","ratio":"572","value":"207","value_r":"207"},{"feature":"劳力","ratio":"658","value":"203","value_r":"203"},{"feature":"品牌","ratio":"781","value":"198","value_r":"198"},{"feature":"经典","ratio":"992","value":"189","value_r":"189"},{"feature":"伯爵","ratio":"868","value":"170","value_r":"170"},{"feature":"主题","ratio":"514","value":"169","value_r":"169"},{"feature":"牛皮","ratio":"807","value":"162","value_r":"162"},{"feature":"奢侈品","ratio":"217","value":"160","value_r":"160"},{"feature":"时尚","ratio":"210","value":"154","value_r":"154"},{"feature":"直径","ratio":"77","value":"153","value_r":"153"},{"feature":"皮带","ratio":"489","value":"148","value_r":"148"}],"property":"名词","period":"20140601-20140630","key":"万宝龙"}]},"status":"0","message":""}
         "wordgraph": [
              {
                  "key": "爱彼",
