@@ -146,13 +146,7 @@ namespace Premiere.Models
     //    public DateTime LastModified { get; set; }
     //}
 
-    [Table("MediaFocusMaptbl")]
-    public class MediaFocusMap
-    {
-        [Key]
-        public int ID { get; set; }
-        public int ChartID { get; set; }
-    }
+
 
    
 

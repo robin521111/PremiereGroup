@@ -226,12 +226,14 @@ namespace Premiere.Services
                     obj = JObject.Parse(text);
                     file_name = status.name.Replace(".txt", "");
                     data = obj["data"].ToString();
-
+                    if (obj["data"]["wordgraph"][0]["features"].ToString() == "[]")
+                    {
+                        break;
+                    }
                     DB.BrandSpreadMaptbl.Add(new BrandSpreadMap
                     {
                         Content=text,
                         BrandName = file_name,
-                        Content = content,
                         LastModified = DateTime.Now,
                         LastModifiedBy = Membership.GetUser().UserName.ToString()
                     });
@@ -308,7 +310,11 @@ namespace Premiere.Services
                     text = File.ReadAllText(path, System.Text.Encoding.UTF8);
                     obj = JObject.Parse(text);
                     file_name = status.name.Replace(".txt", "");
-                    DB.BrandSpreadMaptbl.Add(new BrandSpreadMap
+                    if (obj["data"]["wordgraph"][0]["features"].ToString() == "[]")
+	                    {
+                            break;
+	                    }
+                    DB.MediaFocusMaptbl.Add(new MediaFocusMap
                     {
                         Content = text,
                         BrandName = file_name,

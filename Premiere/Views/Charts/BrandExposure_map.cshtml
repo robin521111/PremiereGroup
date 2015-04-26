@@ -1,5 +1,5 @@
-﻿@model  IEnumerable<Premiere.Models.BrandSpreadMap>
-
+﻿@using Premiere.Helper
+@using Newtonsoft.Json.Linq
 @using System.Text;
 @model  IEnumerable<Premiere.Models.BrandSpreadMap>
 @{
@@ -7,34 +7,29 @@
 }
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>Simple Sidebar - Start Bootstrap Template</title>
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-        isSnap: 1
-    };
-</script>
-<script src="~/Scripts/jquery-1.8.2.js"></script>
-<link type="text/css" rel="stylesheet" href="/Content/styles.css" />
+<!-- Bootstrap Core CSS -->
+<link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />
+<link href="@Url.Content("~/Content/chart-metismenu.css")" rel="stylesheet" />
+<link href="@Url.Content("~/Content/bootstrap-theme.min.css")" rel="stylesheet" />
+<!-- Custom CSS -->
+<link href="@Url.Content("~/Content/simple-sidebar.css")" rel="stylesheet" />
+<!-- MetisMenu CSS -->
+<link href="@Url.Content("~/Content/plugins/metisMenu/metisMenu.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Scripts/plugins/metisMenu/metisMenu.min.js")"></script>
+
+<div id="wrapper">
+    <!-- Sidebar -->
     <div id="sidebar-wrapper">
         <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse">
                 <ul class="nav" id="side-menu">
-                    
+
                     <li class="active">
                         @Html.IconActionLink("Charts", "图表导航", null, "fa fa-bar-chart-o fa-fw", true, null)
                         @*<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>*@
                         <ul class="nav nav-second-level">
                             <li>
-                                @Html.IconActionLink("index", "品牌曝光度分析", null, "glyphicon glyphicon-triangle-right", new { @title = "品牌曝光度分析",@id="mutiple_level" })
+                                @Html.IconActionLink("index", "品牌曝光度分析", null, "glyphicon glyphicon-triangle-right", new { @title = "品牌曝光度分析", @id = "mutiple_level" })
                                 <ul class="nav nav-third-level">
                                     <li>
                                         @Html.ActionLink("-->每日数据分析", "BrandExposure_line", new { @title = "品牌曝光度分析-每日数据导入" }, null)
@@ -57,7 +52,7 @@
                                 @Html.ActionLink("男女比例分析图", "SexRatio", new { @title = "男女比例分析图" }, null)
                             </li>
                             <li>
-                               @Html.ActionLink("品牌关注点分析图", "BrandFocus", new { @title = "品牌关注点分析图" }, null)
+                                @Html.ActionLink("品牌关注点分析图", "BrandFocus", new { @title = "品牌关注点分析图" }, null)
                             </li>
                             <li>
                                 @Html.ActionLink("媒体关注度分析图谱", "GraphicData", new { @title = "媒体关注度分析图谱" }, null)
@@ -65,14 +60,13 @@
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
-                   
+
                 </ul>
             </div>
             <!-- /.sidebar-collapse -->
         </div>
     </div>
     <!-- /#sidebar-wrapper -->
-
     <!-- Page Content -->
     <div id="page-content-wrapper">
 
@@ -81,156 +75,125 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h3>@ViewBag.Title</h3>
-                       
-                       <br />
+
+                        <br />
                         <p>以下品牌是已成功导入数据库的品牌数据: </p>
-                       
+
 
                         <div class="row">
                             <div class="col-md-2">
                                 <div class="dropdown">
-                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-expanded="true">
-                                品牌选取
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenuDivider">
-                                  <li>
-                                    <div class="panel panel-default">
-                                      <!-- Default panel contents -->
-                                      <div class="panel-heading">当前可选品牌：</div>
-                                      <div class="panel-body">
-                                      </div>
+                                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-expanded="true">
+                                        品牌选取
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenuDivider">
+                                        <li>
+                                            <div class="panel panel-default">
+                                                <!-- Default panel contents -->
+                                                <div class="panel-heading">当前可选品牌：</div>
+                                                <div class="panel-body">
+                                                </div>
 
-                                      <!-- Table -->
-                                      <table class="table">
-                                        <tbody>
-                                            @{
-                                                 var i = 0;
-                                            }
-                                            @foreach (var item in Model)
-                                            {
-                                               
-                                                
-                                                i++;
-                                                if (i <=9)
-                                                {
-                                                    <td><button class="label label-success" id="@item.ID">@item.BrandName</button></td>
-                                                    
-                                                }
-                                                else if (i>9)
-                                                {
-                                                    <tr></tr>
-                                                    i = 0;
-                                                } 
-                                               
-                                                 
-                                            }
+                                                <!-- Table -->
+                                                <table class="table">
+                                                    <tbody>
+                                                        @{
+                                                            var i = 0;
+                                                        }
+                                                        @foreach (var item in Model)
+                                                        {
 
-                                            
-                                        </tbody>
-                                      </table>
+
+                                                            i++;
+                                                            if (i <= 9)
+                                                            {
+                                                            <td><button class="label label-success" id="@item.ID">@item.BrandName</button></td>
+
+                                                            }
+                                                            else if (i > 9)
+                                                            {
+                                                                <tr></tr>
+                                                                i = 0;
+                                                            }
+
+
+                                                        }
+
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+
+                                            </li>
+                                            <li role="presentation" class="divider"></li>
+
+
+                                        </ul>
                                     </div>
-                                 
-                                    
-                              </li>
-                                <li role="presentation" class="divider"></li>
-                                
-
-                            </ul>
-                        </div>
+                                </div>
+                                <div class="co-md-2">
+                                    <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">菜单收放</a>
+                                </div>
                             </div>
-                            <div class="co-md-2">
-                                <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">菜单收放</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div id="container" style="min-width: 210px; height: auto; margin: 0 auto">
+
+            </div>
+        </div>
+
+    <form id="adv_schfm" class="dsn" method="get" action="/" autocomplete="off" style="display:none">
+            <input name=" tpl" value="" />
+            <input name="type" value="" />
+            <input name="area" value="" />
+            <input name="time" value="" />
+            <input name="word" value="" />
+        </form>
+
+        <div class="mw1300">
+            <div id="mainWrap">
+                <div class="mainSplit" style="min-height: 700px;">
+
+                    <div class="blkUnit grpUnit intrtUnit" id="demandDemand_i">
+
+                        <div class="stmTabs tabUnit" style="position: relative; z-index: 2; overflow: hidden; padding: 0; margin: 20px 20px 0 20px;">
+                            <div class="tabTitle">
+                                <div class="tabUl" onclick="BID.tabFun()"></div>
                             </div>
+                            <div class="tabConts" style="display: none;"></div>
                         </div>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container-fluid">
-        <div id="container" style="min-width: 210px; height: auto; margin: 0 auto">
-
-        </div>
-    </div>
-
-     <form id="adv_schfm" class="dsn" method="get" action="/" autocomplete="off">
-        <input name="tpl" value="" />
-        <input name="type" value="" />
-        <input name="area" value="" />
-        <input name="time" value="" />
-        <input name="word" value="" />
-    </form>
-
-    <div class="dropdown">
-        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-expanded="true">
-            品牌选取
-            <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenuDivider">
-            @foreach (var item in Model)
-            {
-                <li role="presentation"><button class="btn-block" id="@item.ID">@item.BrandName</button></li>
-            }
-            <li role="presentation" class="divider"></li>
-
-
-            <li role="presentation"><button class="btn-block" id="btn_clean">清除比较数据</button></li>
-        </ul>
-    </div>
-
-    <!--要用到的变量-->
-    <form id="adv_schfm" class="dsn" method="get" action="/" autocomplete="off">
-        <input name="tpl" value="demand" />
-        <input name="type" value="0" />
-        <input name="area" value="0" />
-        <input name="time" value="12" />
-        <input name="word" value="" />
-    </form>
-
-    <div class="mw1300">
-        <div id="mainWrap">
-            <div class="mainSplit" style="min-height: 700px;">
-
-                <div class="blkUnit grpUnit intrtUnit" id="demandDemand_i">
-
-                    <div class="stmTabs tabUnit" style="position: relative; z-index: 2; overflow: hidden; padding: 0; margin: 20px 20px 0 20px;">
-                        <div class="tabTitle">
-                            <div class="tabUl" onclick="BID.tabFun()"></div>
+                        <div class="grpArea" style="margin-top: -76px;">
+                            <div class="R_paper" style="height: 480px;"></div>
+                            <div class="R_copyright" style="left: 65px; bottom: 30px;"></div>
                         </div>
-                        <div class="tabConts" style="display: none;"></div>
                     </div>
-                    <div class="grpArea" style="margin-top: -76px;">
-                        <div class="R_paper" style="height: 480px;"></div>
-                        <div class="R_copyright" style="left: 65px; bottom: 30px;"></div>
+
+                    <div class="blkUnit grpUnit" id="rs_hotWords">
+
                     </div>
+
+                    <div class="ftc"></div>
+                </div>
+                <div id="footer">
+
                 </div>
 
-                <div class="blkUnit grpUnit" id="rs_hotWords">
-
+            </div>
+            <div id="lTools" class="lTools">
+                <div id="lTools_c">
                 </div>
-
-                <div class="ftc"></div>
-            </div>
-            <div id="footer">
-
-            </div>
-
-        </div>
-        <div id="lTools" class="lTools">
-            <div id="lTools_c">
-
-
-
-
-
             </div>
         </div>
+
+        <!-- /#page-content-wrapper -->
     </div>
-
-    <!-- /#page-content-wrapper -->
-</div>
     <script type="text/javascript">
         window.pageStatus = false;
         var PPval = {
@@ -248,7 +211,7 @@
     </script>
 
     <!--要用到的变量-->
-   
+
     <style>
         .bdshare_popup_box {
             left: auto !important;
@@ -261,7 +224,7 @@
     <script type="text/javascript" src="@Url.Content("/Scripts/BaiduIndexJs/magic.js")"></script>
     <script type="text/javascript" src="@Url.Content("/Scripts/BaiduIndexJs/raphael.js")"></script>
     <script type="text/javascript" src="@Url.Content("/Scripts/BaiduIndexJs/funs.js")"></script>
-    <script type="text/javascript" src="@Url.Content("/Scripts/BaiduIndexJs/intrt.js")"  charset="gb2312"></script>
+    <script type="text/javascript" src="@Url.Content("/Scripts/BaiduIndexJs/intrt.js")" charset="gb2312"></script>
     <script type="text/javascript">
         BID.fnsDate.adjust = (PPval.ppt = 'PWIoNwB%2BaCYWAU8EBQBnfFEGJ3FnBTAOIQcFXQ5ABDJWN3pORyB5ICURLipyaGIEAAhWcxEFUzcLAAAIDCIRe2QBdBUdKD4RFAIrNwp%2BEUURMmhxNQhKDCMQGAkHCD0CWj4pcR80eDo1Q3kxPVAnHzI1dUQnGjoPTiJ4NHQ5ADQcKTQZEFd%2BP3ozWAcPYRMkMywRLCJKc0wxcgkGTFESHkY0URIXACRuS28NXjgfE0oBSlFwZSt5AyxtfGQwMRNzHFYmNjwiFxlTVjEhNwQ%3D', PPval.status = '0' || '0', PPval.adjust);
         if (PPval.status == '301') { BID.vVerify(); }
@@ -321,23 +284,31 @@
                     lastTab = index;
                 })(tabUl_id + '_tabClick', null, 0);
 
+
+
                 $(document).ready(function () {
-                      @foreach (var item in Model)
+                    @foreach (var item in Model)
                         {
                         <text>
-                                   $("#@item.ID").click(function () {
-                                       $.getJSON("@Url.Action("ReturnContent",new {@ID=item.ID})", function (msg) {
-                                      var tags = BID.getParams.C32().tags;
-                                      var data = (msg.data || {}).wordgraph || [{ key: tags[0] }, { key: tags[1] }, { key: tags[2] }, { key: tags[3] }, { key: tags[4] }];
-                                      iDemand.drawBg().setData(data[lastTab]).drawCircle(BID.getColor(lastTab)).wordgraph = data;
-                                  });
+                    $("#@item.ID").click(function () {
+                        $.getJSON("@Url.Action("ReturnContentForSpead", new { @ID = item.ID })", function (msg) {
+                            var tags = BID.getParams.C32().tags;
+                            var data = (msg.data || {}).wordgraph || [{ key: tags[0] }, { key: tags[1] }, { key: tags[2] }, { key: tags[3] }, { key: tags[4] }];
+                            iDemand.drawBg().setData(data[lastTab]).drawCircle(BID.getColor(lastTab)).wordgraph = data;
+                        });
 
-                              });
-                                   </text>
+                    });
+                    </text>
                         }
 
 
-                               });
+                });
+                //直接从GraphData.json中得到json数据,直接画图 Begin
+                //$.getJSON("/Scripts/BaiduIndexJs/GraphData.js", function (msg) {
+                //    var tags = BID.getParams.C32().tags;
+                //    var data = (msg.data || {}).wordgraph || [{ key: tags[0] }, { key: tags[1] }, { key: tags[2] }, { key: tags[3] }, { key: tags[4] }];
+                //    iDemand.drawBg().setData(data[lastTab]).drawCircle(BID.getColor(lastTab)).wordgraph = data;
+                //});
                 //直接从GraphData.json中得到json数据,直接画图 End
 
                 //注释掉 Begin
@@ -476,46 +447,15 @@
         T('#rTools .bdshareBox').attr('data', bdShare._getStrData());
         document.getElementById("bdshell_js").src = "/Scripts/BaiduIndexJs/shell_v2.js";
     </script>
+    <script src="@Url.Content("~/Scripts/jquery-2.0.3.min.js")"></script>
+    <script>
 
 
-    <script type="text/javascript" id="bdshell_js"></script>
-    <script type="text/javascript">
-        var bdShare = window.bdShare || {};
-        bdShare._baseConfig = {
-            "title": "分享百度指数",
-            "bdText": "我是数据科学家啦！在@百度指数，可以研究关键词搜索趋势、洞察网民兴趣和需求、监测舆情动向、定位受众特征；还可以从行业的角度，分析市场特点。让我们一起探索大数据之美吧～",
-            "searchPic": "",
-            "bdMini": "2"
-        };
-        bdShare._getConfig = function (opts) {
-            opts = opts || {};
-            for (var k in bdShare._baseConfig) {
-                if (!opts[k]) { opts[k] = bdShare._baseConfig[k]; }
-            }
-            return opts;
-        };
-        bdShare._getStrData = function (opts) {
-            return T.json.stringify(bdShare._getConfig(opts));
-        };
-        bdShare._setPopData = function (strData) {//更多分享弹出框 设置data属性
-            var pop = T('#bdshare_pop');
-            if (!pop.length) {
-                pop = null;
-                setTimeout(function () { bdShare._setPopData(strData); }, 50);
-            } else {
-                pop.attr('data', strData);
-            }
-        };
-        var bds_config = bdShare._getConfig();
-        T('#rTools .bdshareBox').attr('data', bdShare._getStrData());
-        document.getElementById("bdshell_js").src = "/Scripts/BaiduIndexJs/shell_v2.js";
     </script>
-
-
-<script>
-    $("#menu-toggle").click(function (e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-    $('#side-menu').metisMenu();
-</script>
+    <script>
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+        $('#side-menu').metisMenu();
+    </script>

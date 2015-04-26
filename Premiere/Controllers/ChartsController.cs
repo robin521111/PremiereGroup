@@ -34,13 +34,23 @@ namespace Premiere.Controllers
         //    return JavaScript("$('#button').click(function () { var chart = $('#container').highcharts();if (chart.series.length===1) { chart.addSeries({data: [194.1, 95.6, 54.4, 29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4]});}});});");
         //}
 
-        public string ReturnContent(int ID)
+        public string ReturnContentForSpead(int ID)
         {
             var content = from d in DB.BrandSpreadMaptbl
                        where d.ID == ID
                        select (string)d.Content;
             return content.FirstOrDefault().ToString();
         }
+
+        public string ReturnContentForMedia(int ID)
+        {
+            var content = from d in DB.MediaFocusMaptbl
+                          where d.ID == ID
+                          select (string)d.Content;
+            return content.FirstOrDefault().ToString();
+        }
+
+
         public ActionResult BrandExposure_bubble(string title)
         {
             ViewBag.Title = title;
@@ -57,7 +67,7 @@ namespace Premiere.Controllers
 
         public ActionResult GetGraphicData(string brand_name)
         {
-            var Content = from c in DB.BrandSpreadMaptbl
+            var Content = from c in DB.MediaFocusMaptbl
                           where c.BrandName == brand_name
                           select c.Content;
 
@@ -68,7 +78,7 @@ namespace Premiere.Controllers
         public ActionResult GraphicData(string title)
         {
             ViewBag.Title = title;
-            var model = DB.BrandSpreadMaptbl.ToList();
+            var model = DB.MediaFocusMaptbl.ToList();
             return View(model);
         }
 
