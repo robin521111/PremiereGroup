@@ -563,6 +563,7 @@
     <Content Include="Content\themes\jquery.ui.slider.css" />
     <Content Include="Content\themes\jquery.ui.tabs.css" />
     <Content Include="Content\themes\jquery.ui.theme.css" />
+    <Content Include="Images\background.gif" />
     <Content Include="Images\dark-glass\inject-bottom.png" />
     <Content Include="Images\dark-glass\inject-left.png" />
     <Content Include="Images\dark-glass\inject-right.png" />
