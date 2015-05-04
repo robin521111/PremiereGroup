@@ -156,7 +156,7 @@
             </div>
         </div>
 
-    <form id="adv_schfm" class="dsn" method="get" action="/" autocomplete="off" style="display:none">
+        <form id="adv_schfm" class="dsn" method="get" action="/" autocomplete="off" style="display:none">
         <input name="tpl" value="" />
         <input name="type" value="" />
         <input name="area" value="" />
@@ -296,7 +296,7 @@
                         {
                         <text>
                     $("#@item.ID").click(function () {
-                        $.getJSON("@Url.Action("ReturnContentForSpead", new { @ID = item.ID })", function (msg) {
+                        $.getJSON("@Url.Action("ReturnContentForSpead",new {@ID=item.ID})", function (msg) {
                             var tags = BID.getParams.C32().tags;
                             var data = (msg.data || {}).wordgraph || [{ key: tags[0] }, { key: tags[1] }, { key: tags[2] }, { key: tags[3] }, { key: tags[4] }];
                             iDemand.drawBg().setData(data[lastTab]).drawCircle(BID.getColor(lastTab)).wordgraph = data;
