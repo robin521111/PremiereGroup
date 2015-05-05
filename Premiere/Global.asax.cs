@@ -10,6 +10,7 @@ using System.Data.Entity;
 using Premiere.Models;
 using System.Text;
 using Premiere.App_Start;
+using System.Web.Security;
 
 namespace Premiere
 {
@@ -56,6 +57,9 @@ namespace Premiere
             AreaRegistration.RegisterAllAreas();
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
+            //Membership.GetUser("robin521").UnlockUser();
+            //string newpsw=Membership.GetUser("robin521").ResetPassword();
+            //Membership.GetUser("robin521").ChangePassword(newpsw, "Baidu123");
 
         }
 
