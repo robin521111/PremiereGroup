@@ -89,6 +89,7 @@ namespace Premiere.Models
         public int ID { get; set; }
         public int ChartID { get; set; }
         public string BrandName { get; set; }
+        public string Period { get; set; }
         public string Content { get; set; }
         public string LastModifiedBy { get; set; }
         public DateTime LastModified { get; set; }

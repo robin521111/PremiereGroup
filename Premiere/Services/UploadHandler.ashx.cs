@@ -230,9 +230,11 @@ namespace Premiere.Services
                     {
                         break;
                     }
+                    string period = obj["data"]["wordgraph"][0]["period"].ToString();
                     DB.BrandSpreadMaptbl.Add(new BrandSpreadMap
                     {
                         Content=text,
+                        Period=period,
                         BrandName = file_name,
                         LastModified = DateTime.Now,
                         LastModifiedBy = Membership.GetUser().UserName.ToString()
