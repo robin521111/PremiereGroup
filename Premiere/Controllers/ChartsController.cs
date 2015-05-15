@@ -34,7 +34,7 @@ namespace Premiere.Controllers
         //    return JavaScript("$('#button').click(function () { var chart = $('#container').highcharts();if (chart.series.length===1) { chart.addSeries({data: [194.1, 95.6, 54.4, 29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4]});}});});");
         //}
 
-        public string ReturnContentForSpead(int ID, int from, int to)
+        public string ReturnContentForSpead(int ID)
         {
             var content = from d in DB.BrandSpreadMaptbl
                        where d.ID == ID
@@ -42,6 +42,39 @@ namespace Premiere.Controllers
             return content.FirstOrDefault().ToString();
         }
 
+        public JsonResult DataChanged(int fromDate, int toDate)
+        {
+            var instances = (from d in DB.BrandSpreadMaptbl
+                       where (d.Period >= fromDate && d.Period <= toDate)
+                       select new { ID = d.ID, BrandName = d.BrandName, Content=d.Content }).ToList()
+                       .Select(x => new  { ID = x.ID, BrandName = x.BrandName, Content = x.Content});
+            JObject o = JObject.FromObject(new
+            {
+                chart = from p in instances
+                        select new
+                        {
+                            ID = p.ID,
+                            BrandName = p.BrandName,
+                            Content = p.Content
+                        }
+            });
+            //foreach (var item in instances)
+            //{
+            //    JObject res = new JObject(
+            //                    new JProperty("chart",
+            //                        new JObject(
+            //                            new JProperty("ID", item.ID),
+            //                            new JProperty("BrandName", item.BrandName),
+            //                            new JProperty("Content", item.Content))));
+            //}
+            //foreach (var item in ids)
+            //{
+            //    TempData.Add(item.ID.ToString(),item.BrandName);
+            //}
+
+
+            return Json(o.ToString(), JsonRequestBehavior.AllowGet);
+        }
         public string ReturnContentForMedia(int ID)
         {
             var content = from d in DB.MediaFocusMaptbl
@@ -70,8 +103,6 @@ namespace Premiere.Controllers
             var Content = from c in DB.MediaFocusMaptbl
                           where c.BrandName == brand_name
                           select c.Content;
-
-
             return View(Content.ToString());
         }
 

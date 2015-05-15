@@ -4,6 +4,7 @@
 @model  IEnumerable<Premiere.Models.BrandSpreadMap>
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.AvaliableID = "";
 }
 
 
@@ -111,26 +112,32 @@
 
                                                 <!-- Table -->
                                                 <table class="table">
-                                                    <tbody>
-                                                        @{
+                                                    <tbody id="brandtable">
+                                                       @* @{
                                                             var i = 0;
                                                         }
                                                         @foreach (var item in Model)
                                                         {
-                                                            
-                                                            i++;
-                                                            if (i <= 9)
+                                                            if (TempData.Values.Contains(item.ID))
                                                             {
-                                                            <td><button class="label label-success" id="@item.ID">@item.BrandName</button></td>
-                                                            }
-                                                            else if (i > 9)
-                                                            {
-                                                                <tr></tr>
-                                                                i = 0;
+                                                                      i++;
+                                                                if (i <= 9)
+                                                                {
+                                                                <td><button class="label label-success" id="@item.ID">@item.BrandName</button></td>
+                                                                }
+                                                                else if (i > 9)
+                                                                {
+                                                                    <tr></tr>
+                                                                    i = 0;
+                                                                }
+                                                                
                                                             }
 
+                                                            TempData.Clear();
+                                                           
 
-                                                        }
+
+                                                        }*@
 
 
                                                         </tbody>
@@ -459,6 +466,8 @@
 
 
     <script>
+
+        
         $("#menu-toggle").click(function (e) {
             e.preventDefault();
             $("#wrapper").toggleClass("toggled");
@@ -485,7 +494,33 @@
                 }
             }
         }).on('changeDate', function (e) {
-           
+            var from = $('#from-date').val();
+            var to = $('#to-date').val();
+            if (from !==to) {
+                $.ajax({
+                    type: "GET",
+                    url: "DataChanged?fromDate=" + $('#from-date').val() + "&toDate=" + $('#to-date').val(),
+                    dataType: "json"
+                })
+                    .done(function( data ) {
+                        //var legth = data.chart.length;
+
+                        var contents = $.parseJSON(data);
+                        $.each(contents, function (key, values) {
+                            $.each(values, function (k, v) {
+                                $('#brandtable').append("<td><button class='label label-success' id=" + v.ID + ">" + v.BrandName + "</button></td>");
+                                if (k>0 && k%9===0) {
+                                    $('#brandtable').append("<tr></tr>");
+                                }
+                            });
+                        });
+
+
+                 
+                    });
+                
+            }
+            
         });
         
         function splitDate() {

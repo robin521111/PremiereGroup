@@ -230,7 +230,7 @@ namespace Premiere.Services
                     {
                         break;
                     }
-                    string period = obj["data"]["wordgraph"][0]["period"].ToString();
+                    int period = Convert.ToInt32(obj["date"].ToString());
                     DB.BrandSpreadMaptbl.Add(new BrandSpreadMap
                     {
                         Content=text,
