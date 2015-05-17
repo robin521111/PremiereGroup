@@ -113,33 +113,7 @@
                                                 <!-- Table -->
                                                 <table class="table">
                                                     <tbody id="brandtable">
-                                                       @* @{
-                                                            var i = 0;
-                                                        }
-                                                        @foreach (var item in Model)
-                                                        {
-                                                            if (TempData.Values.Contains(item.ID))
-                                                            {
-                                                                      i++;
-                                                                if (i <= 9)
-                                                                {
-                                                                <td><button class="label label-success" id="@item.ID">@item.BrandName</button></td>
-                                                                }
-                                                                else if (i > 9)
-                                                                {
-                                                                    <tr></tr>
-                                                                    i = 0;
-                                                                }
-                                                                
-                                                            }
-
-                                                            TempData.Clear();
-                                                           
-
-
-                                                        }*@
-
-
+                     
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -304,22 +278,87 @@
                 })(tabUl_id + '_tabClick', null, 0);
 
                 $(document).ready(function () {
-                    @foreach (var item in Model)
+                     @foreach (var item in Model)
                     {
-                    <text>
-                $("#@item.ID").click(function () {
-                    $.getJSON("@Url.Action("ReturnContentForSpead",new {@ID=item.ID})", function (msg) {
-                        var tags = BID.getParams.C32().tags;
-                        var data = (msg.data || {}).wordgraph || [{ key: tags[0] }, { key: tags[1] }, { key: tags[2] }, { key: tags[3] }, { key: tags[4] }];
-                        iDemand.drawBg().setData(data[lastTab]).drawCircle(BID.getColor(lastTab)).wordgraph = data;
-                    });
-
-                });
-                </text>
+                        <text>
+                              $("#@item.ID").click(function () {
+                                  $.getJSON("@Url.Action("ReturnContentForSrpead", new { @ID = item.ID })", function (msg) {
+                                      var tags = BID.getParams.C32().tags;
+                                      var data = (msg.data || {}).wordgraph || [{ key: tags[0] }, { key: tags[1] }, { key: tags[2] }, { key: tags[3] }, { key: tags[4] }];
+                                      iDemand.drawBg().setData(data[lastTab]).drawCircle(BID.getColor(lastTab)).wordgraph = data;
+                                  });
+                               
+                              });
+                        </text>
                     }
 
 
                 });
+                
+                    $('.input-daterange').datepicker({
+                        format: "yyyymm",
+                        minViewMode: 1,
+                        language: "zh-CN",
+                        beforeShowMonth: function (date) {
+                            switch (date.getMonth()) {
+                                case 0:
+                                    return false;
+                                case 1:
+                                    return false;
+                                case 2:
+                                    return false;
+                                case 3:
+                                    return false;
+                                case 4:
+                                    return false;
+
+                            }
+                        }
+                    }).on('changeDate', function (e) {
+                        var from = $('#from-date').val();
+                        var to = $('#to-date').val();
+                        if (from !== to) {
+                            $.ajax({
+                                type: "GET",
+                                url: "DataChanged?fromDate=" + $('#from-date').val() + "&toDate=" + $('#to-date').val(),
+                                dataType: "json"
+                            })
+                                .done(function (data) {
+                                    //var legth = data.chart.length;
+                                    $('#brandtable').empty();
+                                    var contents = $.parseJSON(data);
+                                    $.each(contents, function (key, values) {
+                                        $.each(values, function (k, v) {
+                                            $('#brandtable').append("<td><button class='btn btn-default' id=" + v.ID + ">" + v.BrandName + "</button></td>");
+                                           
+                                            if (k % 9 === 0) {
+                                                
+                                                if (k !==0) {
+                                                    $('#brandtable').append("<tr></tr>");
+                                                }
+                                            }
+                                        });
+                                  
+                                    });
+                                      
+                                   
+                                });
+
+                        };
+
+
+                    });
+
+
+
+
+            });
+
+
+
+                   
+
+        
                 //直接从GraphData.json中得到json数据,直接画图 End
 
                 //注释掉 Begin
@@ -329,7 +368,7 @@
                 //    iDemand.drawBg().setData(data[lastTab]).drawCircle(BID.getColor(lastTab)).wordgraph = data;
                 //}, { loading: T('#' + iDemand.opts.divID).parent()[0] });
                 //注释掉 End
-            });
+           
 
             T(function () {
                 var itfc = 'Rs/getRs/';
@@ -462,6 +501,8 @@
         var bds_config = bdShare._getConfig();
         T('#rTools .bdshareBox').attr('data', bdShare._getStrData());
         document.getElementById("bdshell_js").src = "/Scripts/BaiduIndexJs/shell_v2.js";
+
+      
     </script>
 
 
@@ -473,55 +514,12 @@
             $("#wrapper").toggleClass("toggled");
         });
         $('#side-menu').metisMenu();
+        
 
-        $('.input-daterange').datepicker({
-            format: "yyyymm",
-            minViewMode: 1,
-            language: "zh-CN",
-            beforeShowMonth: function (date) {
-                switch (date.getMonth()) {
-                    case 0:
-                        return false;
-                    case 1:
-                        return false;
-                    case 2:
-                        return false;
-                    case 3:
-                        return false;
-                    case 4:
-                        return false;
-
-                }
-            }
-        }).on('changeDate', function (e) {
-            var from = $('#from-date').val();
-            var to = $('#to-date').val();
-            if (from !==to) {
-                $.ajax({
-                    type: "GET",
-                    url: "DataChanged?fromDate=" + $('#from-date').val() + "&toDate=" + $('#to-date').val(),
-                    dataType: "json"
-                })
-                    .done(function( data ) {
-                        //var legth = data.chart.length;
-
-                        var contents = $.parseJSON(data);
-                        $.each(contents, function (key, values) {
-                            $.each(values, function (k, v) {
-                                $('#brandtable').append("<td><button class='label label-success' id=" + v.ID + ">" + v.BrandName + "</button></td>");
-                                if (k>0 && k%9===0) {
-                                    $('#brandtable').append("<tr></tr>");
-                                }
-                            });
-                        });
+        
 
 
-                 
-                    });
-                
-            }
-            
-        });
+        
         
         function splitDate() {
             var from =$('#from-date').val();

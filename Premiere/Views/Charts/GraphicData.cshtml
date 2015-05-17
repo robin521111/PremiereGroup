@@ -289,7 +289,6 @@
                 })(tabUl_id + '_tabClick', null, 0);
                
 
-
                 $(document).ready(function () {
                       @foreach (var item in Model)
                         {
@@ -300,7 +299,6 @@
                                     var data = (msg.data || {}).wordgraph || [{ key: tags[0] }, { key: tags[1] }, { key: tags[2] }, { key: tags[3] }, { key: tags[4] }];
                                     iDemand.drawBg().setData(data[lastTab]).drawCircle(BID.getColor(lastTab)).wordgraph = data;
                                 });
-                               
                               });
                         </text>
                         }
