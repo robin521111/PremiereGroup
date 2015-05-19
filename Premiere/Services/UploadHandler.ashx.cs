@@ -221,7 +221,7 @@ namespace Premiere.Services
                     });
 
                     break;
-                case "品牌传播图谱":
+                case "品牌传播图谱新闻数据":
                     text = File.ReadAllText(path, System.Text.Encoding.UTF8);
                     obj = JObject.Parse(text);
                     file_name = status.name.Replace(".txt", "");
@@ -231,7 +231,7 @@ namespace Premiere.Services
                         break;
                     }
                     int period = Convert.ToInt32(obj["date"].ToString());
-                    DB.BrandSpreadMaptbl.Add(new BrandSpreadMap
+                    DB.BrandSpreadMapBlogtbl.Add(new BrandSpreadMapBlog
                     {
                         Content=text,
                         Period=period,
@@ -240,6 +240,27 @@ namespace Premiere.Services
                         LastModifiedBy = Membership.GetUser().UserName.ToString()
                     });
                     
+
+                    break;
+                case "品牌曝光度分析微博论坛数据":
+                    text = File.ReadAllText(path, System.Text.Encoding.UTF8);
+                    obj = JObject.Parse(text);
+                    file_name = status.name.Replace(".txt", "");
+                    data = obj["data"].ToString();
+                    if (obj["data"]["wordgraph"][0]["features"].ToString() == "[]")
+                    {
+                        break;
+                    }
+                    period = Convert.ToInt32(obj["date"].ToString());
+                    DB.BrandSpreadMapNewstbl.Add(new BrandSpreadMapNews
+                    {
+                        Content = text,
+                        Period = period,
+                        BrandName = file_name,
+                        LastModified = DateTime.Now,
+                        LastModifiedBy = Membership.GetUser().UserName.ToString()
+                    });
+
 
                     break;
                 case "品牌形象分析图":

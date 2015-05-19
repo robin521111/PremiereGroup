@@ -22,7 +22,15 @@
                         </ul>
                     </li>
                     <li>
-                        @Html.ActionLink("品牌传播图谱","index",new { @title = "品牌传播图谱" },null)
+                         @Html.IconActionLink("index","品牌传播图谱",null,"fa fa-bar-chart-o fa-fw",true, new { @title = "品牌传播图谱" })
+                        <ul class="nav nav-third-level">
+                            <li>
+                                 @Html.ActionLink("品牌传播图谱==>新闻", "index", new { @title = "品牌传播图谱新闻数据" }, null)
+                            </li>
+                            <li>
+                                @Html.ActionLink("品牌传播图谱==>微博论坛 ", "index", new { @title = "品牌曝光度分析微博论坛数据" }, null)
+                            </li>
+                        </ul>
                     </li>
                     <li>
                         @Html.ActionLink("品牌形象分析图","index",new { @title = "品牌形象分析图" },null)

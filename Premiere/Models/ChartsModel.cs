@@ -82,8 +82,8 @@ namespace Premiere.Models
         public DateTime LastModified { get; set; }
 
     }
-    [Table("BrandSpreadMaptbl")]
-    public class BrandSpreadMap
+    [Table("BrandSpreadMapBlogtbl")]
+    public class BrandSpreadMapBlog
     {
         [Key]
         public int ID { get; set; }
@@ -94,6 +94,21 @@ namespace Premiere.Models
         public string LastModifiedBy { get; set; }
         public DateTime LastModified { get; set; }
     }
+
+    [Table("BrandSpreadMapNewstbl")]
+    public class BrandSpreadMapNews
+    {
+        [Key]
+        public int ID { get; set; }
+        public int ChartID { get; set; }
+        public string BrandName { get; set; }
+        public int Period { get; set; }
+        public string Content { get; set; }
+        public string LastModifiedBy { get; set; }
+        public DateTime LastModified { get; set; }
+    }
+
+
 
     [Table("MediaFocusMaptbl")]
     public class MediaFocusMap

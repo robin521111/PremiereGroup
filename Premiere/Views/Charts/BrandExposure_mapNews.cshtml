@@ -1,7 +1,7 @@
 ﻿@using Premiere.Helper
 @using Newtonsoft.Json.Linq
 @using System.Text;
-@model  IEnumerable<Premiere.Models.BrandSpreadMap>
+@model  IEnumerable<Premiere.Models.BrandSpreadMapNews>
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.AvaliableID = "";
@@ -32,8 +32,9 @@
                         @Html.IconActionLink("Charts", "图表导航", null, "fa fa-bar-chart-o fa-fw", true, null)
                         @*<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>*@
                         <ul class="nav nav-second-level">
-                            <li>
-                                @Html.IconActionLink("index", "品牌曝光度分析", null, "glyphicon glyphicon-triangle-right", new { @title = "品牌曝光度分析", @id = "mutiple_level" })
+                                       <li>
+
+                                @Html.IconActionLink("index", "品牌曝光度分析", null, "glyphicon glyphicon-triangle-right", new { @title = "品牌曝光度分析",@id="mutiple_level" })
                                 <ul class="nav nav-third-level">
                                     <li>
                                         @Html.ActionLink("-->每日数据分析", "BrandExposure_line", new { @title = "品牌曝光度分析-每日数据导入" }, null)
@@ -44,7 +45,16 @@
                                 </ul>
                             </li>
                             <li>
-                                @Html.ActionLink("品牌传播图谱", "BrandExposure_map", new { @title = "品牌传播图谱" }, null)
+                                 @Html.IconActionLink("index", "品牌传播图谱", null, "glyphicon glyphicon-triangle-right", new { @title = "品牌传播图谱", @id = "mutiple_level" })
+                                 <ul class="nav nav-third-level">
+                                    <li>
+                                         @Html.ActionLink("-->论坛微博数据", "BrandExposure_mapBlog", new { @title = "品牌传播图谱(论坛微博数据)" }, null)
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("-->新闻数据", "BrandExposure_mapNews", new { @title = "品牌传播图谱(新闻数据)" }, null)
+                                    </li>
+                                </ul>
+                               
                             </li>
                             <li>
                                 @Html.ActionLink("品牌形象分析图", "BrandImage", new { @title = "品牌形象分析图" }, null)
@@ -277,24 +287,7 @@
                     lastTab = index;
                 })(tabUl_id + '_tabClick', null, 0);
 
-                $(document).ready(function () {
-                     @foreach (var item in Model)
-                    {
-                        <text>
-                              $("#@item.ID").click(function () {
-                                  $.getJSON("@Url.Action("ReturnContentForSrpead", new { @ID = item.ID })", function (msg) {
-                                      var tags = BID.getParams.C32().tags;
-                                      var data = (msg.data || {}).wordgraph || [{ key: tags[0] }, { key: tags[1] }, { key: tags[2] }, { key: tags[3] }, { key: tags[4] }];
-                                      iDemand.drawBg().setData(data[lastTab]).drawCircle(BID.getColor(lastTab)).wordgraph = data;
-                                  });
-                               
-                              });
-                        </text>
-                    }
-
-
-                });
-                
+            
                     $('.input-daterange').datepicker({
                         format: "yyyymm",
                         minViewMode: 1,
@@ -317,20 +310,32 @@
                     }).on('changeDate', function (e) {
                         var from = $('#from-date').val();
                         var to = $('#to-date').val();
+                        var table = $('#brandtable');
+                        var Url = '@Url.Action("ReturnContentForSpead")';
                         if (from !== to) {
                             $.ajax({
                                 type: "GET",
-                                url: "DataChanged?fromDate=" + $('#from-date').val() + "&toDate=" + $('#to-date').val(),
+                                url: "@Url.Action("DataChanged")",
+                                data:{fromDate:from, toDate:to},
                                 dataType: "json"
                             })
                                 .done(function (data) {
                                     //var legth = data.chart.length;
+
                                     $('#brandtable').empty();
                                     var contents = $.parseJSON(data);
                                     $.each(contents, function (key, values) {
                                         $.each(values, function (k, v) {
-                                            $('#brandtable').append("<td><button class='btn btn-default' id=" + v.ID + ">" + v.BrandName + "</button></td>");
-                                           
+                                            table.append("<td><button class='btn btn-default brand' id=" + v.ID + " data-id=" + v.ID + ">" + v.BrandName + "</button></td>");
+                                            var button = $('#'+v.ID);
+                                           button.on('click',v.ID, function () {
+                                               var id = v.ID;
+                                               $.getJSON(Url+"?ID="+id, function (msg) {
+                                                   var tags = BID.getParams.C32().tags;
+                                                   var data = (msg.data || {}).wordgraph || [{ key: tags[0] }, { key: tags[1] }, { key: tags[2] }, { key: tags[3] }, { key: tags[4] }];
+                                                   iDemand.drawBg().setData(data[lastTab]).drawCircle(BID.getColor(lastTab)).wordgraph = data;
+                                               });
+                                           });
                                             if (k % 9 === 0) {
                                                 
                                                 if (k !==0) {
@@ -350,25 +355,8 @@
                     });
 
 
-
-
             });
 
-
-
-                   
-
-        
-                //直接从GraphData.json中得到json数据,直接画图 End
-
-                //注释掉 Begin
-                //BID.dataInterface(itfc, '', function (msg) {
-                //    var tags = BID.getParams.C32().tags;
-                //    var data = (msg.data || {}).wordgraph || [{ key: tags[0] }, { key: tags[1] }, { key: tags[2] }, { key: tags[3] }, { key: tags[4] }];
-                //    iDemand.drawBg().setData(data[lastTab]).drawCircle(BID.getColor(lastTab)).wordgraph = data;
-                //}, { loading: T('#' + iDemand.opts.divID).parent()[0] });
-                //注释掉 End
-           
 
             T(function () {
                 var itfc = 'Rs/getRs/';
@@ -376,29 +364,6 @@
                 var topN = 15;
                 var contsBox = iBlock.getEl('tabConts');
 
-                //注释掉 Begin
-                //BID.dataInterface(itfc, '', function (msg) {
-                //    var tabCont = contsBox.children('.tabCont');
-                //    var data = (msg.data || {}).rs;
-                //    if (!data || !data.length) { data = [{}, {}, {}, {}, {}]; }
-                //    BID.each(data, function (jndex, datas) {
-                //        var items_rs = [], items_up = [];
-                //        BID.each(datas.rs, function (rskey, rsval) {
-                //            items_rs.push({ text: rskey, val: +rsval });
-                //        });
-                //        items_rs.sort(function (a, b) { return b.val - a.val; });
-                //        if (items_rs.length > topN) { items_rs.length = topN; }
-                //        datas.items_rs = items_rs;
-                //        BID.each(datas.up, function (upkey, upval) {
-                //            items_up.push({ text: upkey, val: +upval });
-                //        });
-                //        items_up.sort(function (a, b) { return b.val - a.val; });
-                //        if (items_up.length > topN) { items_up.length = topN; }
-                //        datas.items_up = items_up;
-                //        tabCont.eq(jndex).html(T.template(iBlock.getEl('baiduTpl')[0].id, datas));
-                //    });
-                //}, { loading: contsBox[0] });
-                //注释掉 End
             });
 
             T(function () {
@@ -423,7 +388,6 @@
                     //BID.crCarousel(T('#banner_header').show()[0], items);
                 });
             });
-
 
             BID.res2(Hti);
             BID.res2(hJG);
@@ -501,7 +465,6 @@
         var bds_config = bdShare._getConfig();
         T('#rTools .bdshareBox').attr('data', bdShare._getStrData());
         document.getElementById("bdshell_js").src = "/Scripts/BaiduIndexJs/shell_v2.js";
-
       
     </script>
 
@@ -514,12 +477,6 @@
             $("#wrapper").toggleClass("toggled");
         });
         $('#side-menu').metisMenu();
-        
-
-        
-
-
-        
         
         function splitDate() {
             var from =$('#from-date').val();

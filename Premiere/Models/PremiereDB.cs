@@ -24,7 +24,8 @@ namespace Premiere.Models
         public DbSet<BrandImage> BrandImagetbl { get; set; }
         public DbSet<DesignSense> DesignSensetbl { get; set; }
         public DbSet<SexRatio> SexRatiotbl { get; set; }
-        public DbSet<BrandSpreadMap> BrandSpreadMaptbl { get; set; }
+        public DbSet<BrandSpreadMapBlog> BrandSpreadMapBlogtbl { get; set; }
+        public DbSet<BrandSpreadMapNews> BrandSpreadMapNewstbl { get; set; }
         public DbSet<MediaFocusMap> MediaFocusMaptbl { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

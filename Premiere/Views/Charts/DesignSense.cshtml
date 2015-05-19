@@ -31,24 +31,34 @@
         <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse">
                 <ul class="nav" id="side-menu">
-                    
+
                     <li class="active">
-                      <br />
+                        @Html.IconActionLink("Charts", "图表导航", null, "fa fa-bar-chart-o fa-fw", true, null)
                         @*<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>*@
                         <ul class="nav nav-second-level">
-                            <li>
+                                       <li>
+
                                 @Html.IconActionLink("index", "品牌曝光度分析", null, "glyphicon glyphicon-triangle-right", new { @title = "品牌曝光度分析",@id="mutiple_level" })
-                                <ul class="nav nav-fourth-level">
+                                <ul class="nav nav-third-level">
                                     <li>
-                                        @Html.ActionLink("-->每日数据分析", "BrandExposure_line", new { @title = "品牌曝光度分析" }, null)
+                                        @Html.ActionLink("-->每日数据分析", "BrandExposure_line", new { @title = "品牌曝光度分析-每日数据导入" }, null)
                                     </li>
                                     <li>
-                                        @Html.ActionLink("-->每月数据分析", "BrandExposure_bubble", new { @title = "品牌曝光度分析" }, null)
+                                        @Html.ActionLink("-->每月数据分析", "BrandExposure_bubble", new { @title = "品牌曝光度分析-每月数据导入" }, null)
                                     </li>
                                 </ul>
                             </li>
                             <li>
-                                @Html.ActionLink("品牌传播图谱", "BrandExposure_map", new { @title = "品牌传播图谱" }, null)
+                                 @Html.IconActionLink("index", "品牌传播图谱", null, "glyphicon glyphicon-triangle-right", new { @title = "品牌传播图谱", @id = "mutiple_level" })
+                                 <ul class="nav nav-third-level">
+                                    <li>
+                                         @Html.ActionLink("-->论坛微博数据", "BrandExposure_mapBlog", new { @title = "品牌传播图谱(论坛微博数据)" }, null)
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("-->新闻数据", "BrandExposure_mapNews", new { @title = "品牌传播图谱(新闻数据)" }, null)
+                                    </li>
+                                </ul>
+                               
                             </li>
                             <li>
                                 @Html.ActionLink("品牌形象分析图", "BrandImage", new { @title = "品牌形象分析图" }, null)
@@ -60,7 +70,7 @@
                                 @Html.ActionLink("男女比例分析图", "SexRatio", new { @title = "男女比例分析图" }, null)
                             </li>
                             <li>
-                               @Html.ActionLink("品牌关注点分析图", "BrandFocus", new { @title = "品牌关注点分析图" }, null)
+                                @Html.ActionLink("品牌关注点分析图", "BrandFocus", new { @title = "品牌关注点分析图" }, null)
                             </li>
                             <li>
                                 @Html.ActionLink("媒体关注度分析图谱", "GraphicData", new { @title = "媒体关注度分析图谱" }, null)
@@ -68,7 +78,7 @@
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
-                   
+
                 </ul>
             </div>
             <!-- /.sidebar-collapse -->

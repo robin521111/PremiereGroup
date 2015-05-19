@@ -36,7 +36,7 @@ namespace Premiere.Controllers
 
         public string ReturnContentForSpead(int ID)
         {
-            var content = from d in DB.BrandSpreadMaptbl
+            var content = from d in DB.BrandSpreadMapBlogtbl
                        where d.ID == ID
                        select (string)d.Content;
             return content.FirstOrDefault().ToString();
@@ -44,7 +44,7 @@ namespace Premiere.Controllers
 
         public JsonResult DataChanged(int fromDate, int toDate)
         {
-            var instances = (from d in DB.BrandSpreadMaptbl
+            var instances = (from d in DB.BrandSpreadMapBlogtbl
                        where (d.Period >= fromDate && d.Period <= toDate)
                        select new { ID = d.ID, BrandName = d.BrandName, Content=d.Content }).ToList()
                        .Select(x => new  { ID = x.ID, BrandName = x.BrandName, Content = x.Content});
@@ -91,12 +91,19 @@ namespace Premiere.Controllers
             return View(model);
         }
 
-        public ActionResult BrandExposure_map(string title)
+        public ActionResult BrandExposure_mapBlog(string title)
         {
             ViewBag.Title = title;
-            var model = DB.BrandSpreadMaptbl.ToList();
+            var model = DB.BrandSpreadMapBlogtbl.ToList();
             return View(model);
         }
+        public ActionResult BrandExposure_mapNews(string title)
+        {
+            ViewBag.Title = title;
+            var model = DB.BrandSpreadMapNewstbl.ToList();
+            return View(model);
+        }
+
 
         public ActionResult GetGraphicData(string brand_name)
         {

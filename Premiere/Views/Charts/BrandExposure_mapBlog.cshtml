@@ -1,0 +1,502 @@
+﻿@using Premiere.Helper
+@using Newtonsoft.Json.Linq
+@using System.Text;
+@model  IEnumerable<Premiere.Models.BrandSpreadMapBlog>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.AvaliableID = "";
+}
+
+
+<!-- Bootstrap Core CSS -->
+<link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />
+<link href="@Url.Content("~/Content/chart-metismenu.css")" rel="stylesheet" />
+<link href="@Url.Content("~/Content/bootstrap-theme.min.css")" rel="stylesheet" />
+<!-- Custom CSS -->
+<link href="@Url.Content("~/Content/simple-sidebar.css")" rel="stylesheet" />
+<!-- MetisMenu CSS -->
+<link href="@Url.Content("~/Content/plugins/metisMenu/metisMenu.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Scripts/plugins/metisMenu/metisMenu.min.js")"></script>
+<!--Bootstrap dataPicker-->
+<script src="@Url.Content("~/Scripts/datepicker/bootstrap-datepicker.js")"></script>
+<script src="@Url.Content("~/Scripts/datepicker/bootstrap-datepicker.zh-CN.min.js")"></script>
+<link href="@Url.Content("~/Content/bootstrap-datepicker3.css")" rel="stylesheet" />
+<div id="wrapper">
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <div class="navbar-default sidebar" role="navigation">
+            <div class="sidebar-nav navbar-collapse">
+                <ul class="nav" id="side-menu">
+
+                    <li class="active">
+                        @Html.IconActionLink("Charts", "图表导航", null, "fa fa-bar-chart-o fa-fw", true, null)
+                        @*<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>*@
+                        <ul class="nav nav-second-level">
+                                       <li>
+
+                                @Html.IconActionLink("index", "品牌曝光度分析", null, "glyphicon glyphicon-triangle-right", new { @title = "品牌曝光度分析",@id="mutiple_level" })
+                                <ul class="nav nav-third-level">
+                                    <li>
+                                        @Html.ActionLink("-->每日数据分析", "BrandExposure_line", new { @title = "品牌曝光度分析-每日数据导入" }, null)
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("-->每月数据分析", "BrandExposure_bubble", new { @title = "品牌曝光度分析-每月数据导入" }, null)
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                 @Html.IconActionLink("index", "品牌传播图谱", null, "glyphicon glyphicon-triangle-right", new { @title = "品牌传播图谱", @id = "mutiple_level" })
+                                 <ul class="nav nav-third-level">
+                                    <li>
+                                         @Html.ActionLink("-->论坛微博数据", "BrandExposure_mapBlog", new { @title = "品牌传播图谱(论坛微博数据)" }, null)
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("-->新闻数据", "BrandExposure_mapNews", new { @title = "品牌传播图谱(新闻数据)" }, null)
+                                    </li>
+                                </ul>
+                               
+                            </li>
+                            <li>
+                                @Html.ActionLink("品牌形象分析图", "BrandImage", new { @title = "品牌形象分析图" }, null)
+                            </li>
+                            <li>
+                                @Html.ActionLink("设计感与功能性分析图", "DesignSense", new { @title = "设计感与功能性分析图" }, null)
+                            </li>
+                            <li>
+                                @Html.ActionLink("男女比例分析图", "SexRatio", new { @title = "男女比例分析图" }, null)
+                            </li>
+                            <li>
+                                @Html.ActionLink("品牌关注点分析图", "BrandFocus", new { @title = "品牌关注点分析图" }, null)
+                            </li>
+                            <li>
+                                @Html.ActionLink("媒体关注度分析图谱", "GraphicData", new { @title = "媒体关注度分析图谱" }, null)
+                            </li>
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
+
+                </ul>
+            </div>
+            <!-- /.sidebar-collapse -->
+        </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+        <div class="jumbotron">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h3>@ViewBag.Title</h3>
+
+                        <br />
+                        <p>以下品牌是已成功导入数据库的品牌数据: </p>
+
+                      
+                        <div class="row">
+                            
+                            <div class="col-md-3">
+                                  <div class="input-daterange input-group" id="datepicker">
+                                    
+                                    <span class="input-group-addon">请选择时间区间： </span>
+                                    <input type="text" id="from-date" class="input-md form-control" name="start" />
+                                    <span class="input-group-addon">to</span>
+                                    <input type="text" id="to-date" class="input-md form-control" name="end" />
+                                  </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                <div class="dropdown">
+                                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-expanded="true">
+                                        品牌选取
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenuDivider">
+                                        <li>
+                                            <div class="panel panel-default">
+                                                <!-- Default panel contents -->
+                                                <div class="panel-heading">当前可选品牌：</div>
+                                                <div class="panel-body">
+                                                </div>
+
+                                                <!-- Table -->
+                                                <table class="table">
+                                                    <tbody id="brandtable">
+                     
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+
+                                            </li>
+                                            <li role="presentation" class="divider"></li>
+
+
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="co-md-2">
+                                <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">菜单收放</a>
+                            </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div id="container" style="min-width: 210px; height: auto; margin: 0 auto">
+
+            </div>
+        </div>
+
+        <form id="adv_schfm" class="dsn" method="get" action="/" autocomplete="off" style="display:none">
+        <input name="tpl" value="" />
+        <input name="type" value="" />
+        <input name="area" value="" />
+        <input name="time" value="" />
+        <input name="word" value="" />
+    </form>
+
+        <div class="mw1300">
+            <div id="mainWrap">
+                <div class="mainSplit" style="min-height: 700px;">
+
+                    <div class="blkUnit grpUnit intrtUnit" id="demandDemand_i">
+
+                        <div class="stmTabs tabUnit" style="position: relative; z-index: 2; overflow: hidden; padding: 0; margin: 20px 20px 0 20px;">
+                            <div class="tabTitle">
+                                <div class="tabUl" onclick="BID.tabFun()"></div>
+                            </div>
+                            <div class="tabConts" style="display: none;"></div>
+                        </div>
+                        <div class="grpArea" style="margin-top: -76px;">
+                            <div class="R_paper" style="height: 480px;"></div>
+                            <div class="R_copyright" style="left: 65px; bottom: 30px;"></div>
+                        </div>
+                    </div>
+
+                    <div class="blkUnit grpUnit" id="rs_hotWords">
+
+                    </div>
+
+                    <div class="ftc"></div>
+                </div>
+                <div id="footer">
+
+                </div>
+
+            </div>
+            <div id="lTools" class="lTools">
+                <div id="lTools_c">
+                </div>
+            </div>
+        </div>
+
+        <!-- /#page-content-wrapper -->
+    </div>
+    <script type="text/javascript">
+        window.pageStatus = false;
+        var PPval = {
+            adjust: 1422948719000 - new Date(),
+            dataStm: 1422720000000,
+            modCtrl: '',
+            hostUrl: function (u) { return u.split('/').slice(0, 3).join('/'); }(location.href),
+            baseUrl: '/',
+            routeUrl: '/',
+            staticUrl: '/static/',
+            imgsUrl: '/static/imgs/',
+            dataface: '/Interface/',
+            isSnap: 1
+        };
+    </script>
+
+    <!--要用到的变量-->
+
+    <style>
+        .bdshare_popup_box {
+            left: auto !important;
+            right: 10px;
+        }
+    </style>
+
+
+    <script type="text/javascript" src="@Url.Content("/Scripts/BaiduIndexJs/tangram.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/Scripts/BaiduIndexJs/magic.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/Scripts/BaiduIndexJs/raphael.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/Scripts/BaiduIndexJs/funs.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/Scripts/BaiduIndexJs/intrt.js")" charset="gb2312"></script>
+    <script type="text/javascript">
+        BID.fnsDate.adjust = (PPval.ppt = 'PWIoNwB%2BaCYWAU8EBQBnfFEGJ3FnBTAOIQcFXQ5ABDJWN3pORyB5ICURLipyaGIEAAhWcxEFUzcLAAAIDCIRe2QBdBUdKD4RFAIrNwp%2BEUURMmhxNQhKDCMQGAkHCD0CWj4pcR80eDo1Q3kxPVAnHzI1dUQnGjoPTiJ4NHQ5ADQcKTQZEFd%2BP3ozWAcPYRMkMywRLCJKc0wxcgkGTFESHkY0URIXACRuS28NXjgfE0oBSlFwZSt5AyxtfGQwMRNzHFYmNjwiFxlTVjEhNwQ%3D', PPval.status = '0' || '0', PPval.adjust);
+        if (PPval.status == '301') { BID.vVerify(); }
+    </script>
+
+    <script type="text/javascript">
+        T(function () {
+            BID.res2(/\//);
+
+            BID.scroll_resize();
+
+            zPMyzZ = 'kxHZYqACPL0eM6SKE3tBYG8dSXtumowv4ddAl12FjJuMQFnm0a';
+            iVLjx = zPMyzZ.split('').reverse().join('');
+
+            T('#pas_regLink').each(function () {
+                this.href = this.href.split('&')[0] + '&u=' + encodeURIComponent(location.href);
+            });
+
+            T('#userbar a.cas_logout').each(function () {
+                this.href = this.href.split('&')[0] + '&u=' + encodeURIComponent(PPval.hostUrl + PPval.routeUrl);
+            });
+
+            GmIyP = Raphael(-500, -500, 200, 200).path('M14,30R81,50 75,89 54,51 44,56 35,27 42,30 85,98 64,89 50,20 29,99').getPointAtLength(293).alpha.toFixed(3) + iVLjx;
+
+            //BID.placehold('#schword', { cssText: 'padding:4px 10px;font-size:16px;_padding-top:8px;' });
+
+            //BID.newSuggestion('schword', {
+            //    onconfirm: function (e, o) {
+            //        var word = T.string(o.data).trim();
+            //        if (!word) { return; }
+            //        T('#schfm').submit();
+            //    }
+            //});
+
+            var Fhjc = Raphael(-500, -500, 200, 200).path('M60,44R21,72,53,72,21,06').getPointAtLength(120).alpha.toFixed(3) + iVLjx;
+            BID.crAdvPannel();
+            BID.fillAdvPannel();
+
+            hJG = Raphael(-500, -500, 200, 200).path('M27,47R52,80 88,26 45,47 64,30 69,94 33,82 67,62 98,97').getPointAtLength(154).alpha.toFixed(3) + GmIyP;
+
+            Hti = hJG + hJG.slice(0, 2);
+
+            T(function () {
+                var itfc = 'Wordgraph/getWordgraph/'; //'Wordgraph/getWordgraph/';
+                var iBlock = BID.sentimBlock('demandDemand_i').title([]).tabTils([]);
+                var tabUl_id = iBlock.getEl('tabUl')[0].id;
+                var iDemand = new BID.Demand({ divID: BID.gsid(iBlock.oBox.find('.R_paper')[0]) });
+                var lastTab = 0;
+
+                BID.evts.care('width_resize', function () {
+                    iDemand.drawBg().drawCircle();
+                }, { gt: 300 })
+                .care(tabUl_id + '_tabClick', function (index) {
+                    if (iDemand.wordgraph && iDemand.wordgraph[index]) {
+                        iDemand.setData(iDemand.wordgraph[index]).drawCircle(BID.getColor(index));
+                    }
+                    lastTab = index;
+                })(tabUl_id + '_tabClick', null, 0);
+
+            
+                    $('.input-daterange').datepicker({
+                        format: "yyyymm",
+                        minViewMode: 1,
+                        language: "zh-CN",
+                        beforeShowMonth: function (date) {
+                            switch (date.getMonth()) {
+                                case 0:
+                                    return false;
+                                case 1:
+                                    return false;
+                                case 2:
+                                    return false;
+                                case 3:
+                                    return false;
+                                case 4:
+                                    return false;
+
+                            }
+                        }
+                    }).on('changeDate', function (e) {
+                        var from = $('#from-date').val();
+                        var to = $('#to-date').val();
+                        var table = $('#brandtable');
+                        var Url = '@Url.Action("ReturnContentForSpead")';
+                        if (from !== to) {
+                            $.ajax({
+                                type: "GET",
+                                url: "@Url.Action("DataChanged")",
+                                data:{fromDate:from, toDate:to},
+                                dataType: "json"
+                            })
+                                .done(function (data) {
+                                    //var legth = data.chart.length;
+
+                                    $('#brandtable').empty();
+                                    var contents = $.parseJSON(data);
+                                    $.each(contents, function (key, values) {
+                                        $.each(values, function (k, v) {
+                                            table.append("<td><button class='btn btn-default brand' id=" + v.ID + " data-id=" + v.ID + ">" + v.BrandName + "</button></td>");
+                                            var button = $('#'+v.ID);
+                                           button.on('click',v.ID, function () {
+                                               var id = v.ID;
+                                               $.getJSON(Url+"?ID="+id, function (msg) {
+                                                   var tags = BID.getParams.C32().tags;
+                                                   var data = (msg.data || {}).wordgraph || [{ key: tags[0] }, { key: tags[1] }, { key: tags[2] }, { key: tags[3] }, { key: tags[4] }];
+                                                   iDemand.drawBg().setData(data[lastTab]).drawCircle(BID.getColor(lastTab)).wordgraph = data;
+                                               });
+                                           });
+                                            if (k % 9 === 0) {
+                                                
+                                                if (k !==0) {
+                                                    $('#brandtable').append("<tr></tr>");
+                                                }
+                                            }
+                                        });
+                                  
+                                    });
+                                      
+                                   
+                                });
+
+                        };
+
+
+                    });
+
+
+            });
+
+
+            T(function () {
+                var itfc = 'Rs/getRs/';
+                var iBlock = BID.sentimBlock('rs_hotWords').title([]).tabTils([]);
+                var topN = 15;
+                var contsBox = iBlock.getEl('tabConts');
+
+            });
+
+            T(function () {
+                BID.dataBanner('trend', '', function (data, items) {
+                    if (!data || !data.length) { return; }
+                    //BID.crCarousel(T('#banner_trend').show()[0], items);
+                });
+
+            });
+
+            T(function () {
+                BID.rTools_pos('rTools');
+            });
+
+            T(function () {
+                BID.dataBanner('header', '', function (data, items) {
+                    if (!data || !data.length) {
+                        return;
+                        var i = 10;
+                    }
+
+                    //BID.crCarousel(T('#banner_header').show()[0], items);
+                });
+            });
+
+            BID.res2(Hti);
+            BID.res2(hJG);
+        });
+    </script>
+
+    <script type="text/javascript" src="/Scripts/BaiduIndexJs/h.js"></script>
+    <style>
+        #bdshare a {
+            padding-top: 4px;
+            padding-bottom: 4px;
+        }
+
+            #bdshare a.popup_more {
+                background-position: 0px 5px;
+                width: 45px;
+                margin-right: 0;
+            }
+
+        #bdshare_pop ul li {
+            margin-right: -2px;
+        }
+
+        .bdshareBds {
+            height: 30px;
+        }
+
+        .bdsPreview {
+            text-align: center;
+        }
+
+            .bdsPreview .prvImg {
+                width: 240px;
+            }
+
+            .bdsPreview .infLabel {
+                padding: 20px 0 80px 0;
+            }
+    </style>
+
+    <div style="display: none;">
+        <form id="bdsDownLoad" method="post" action="" target="bdsDLiframe"></form>
+        <iframe name="bdsDLiframe" id="bdsDLiframe"></iframe>
+    </div>
+
+    <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=655757"></script>
+    <script type="text/javascript" id="bdshell_js"></script>
+    <script type="text/javascript">
+        var bdShare = window.bdShare || {};
+        bdShare._baseConfig = {
+            "title": "分享百度指数",
+            "bdText": "我是数据科学家啦！在@百度指数，可以研究关键词搜索趋势、洞察网民兴趣和需求、监测舆情动向、定位受众特征；还可以从行业的角度，分析市场特点。让我们一起探索大数据之美吧～",
+            "searchPic": "",
+            "bdMini": "2"
+        };
+        bdShare._getConfig = function (opts) {
+            opts = opts || {};
+            for (var k in bdShare._baseConfig) {
+                if (!opts[k]) { opts[k] = bdShare._baseConfig[k]; }
+            }
+            return opts;
+        };
+        bdShare._getStrData = function (opts) {
+            return T.json.stringify(bdShare._getConfig(opts));
+        };
+        bdShare._setPopData = function (strData) {//更多分享弹出框 设置data属性
+            var pop = T('#bdshare_pop');
+            if (!pop.length) {
+                pop = null;
+                setTimeout(function () { bdShare._setPopData(strData); }, 50);
+            } else {
+                pop.attr('data', strData);
+            }
+        };
+        var bds_config = bdShare._getConfig();
+        T('#rTools .bdshareBox').attr('data', bdShare._getStrData());
+        document.getElementById("bdshell_js").src = "/Scripts/BaiduIndexJs/shell_v2.js";
+      
+    </script>
+
+
+    <script>
+
+        
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+        $('#side-menu').metisMenu();
+        
+        function splitDate() {
+            var from =$('#from-date').val();
+            if (from!==null) {
+                var pattern = /(\d{4})(\d{2})/;
+                var str= from.replace(pattern,'$1-$2');
+                //var dt = new Date(st.replace(pattern,'$1-$2'));
+                var list= str.split('-',2);
+                var month = list[1];
+                
+            }
+            var to = $('#to-date').val();
+            if (to !== null) {
+                var pattern = /(\d{4})(\d{2})/;
+                var str = to.replace(pattern, '$1-$2');
+                //var dt = new Date(st.replace(pattern,'$1-$2'));
+                var list = str.split('-', 2);
+                var month = list[1];
+               
+            }
+
+        }
+    </script>
