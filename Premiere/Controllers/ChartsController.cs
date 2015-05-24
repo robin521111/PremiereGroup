@@ -24,17 +24,14 @@ namespace Premiere.Controllers
         }
 
 
-        /// <summary>
-        /// return back javascript code , but not used anymore
-        /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
-        //public ActionResult BrandDataAdding(BrandExposureLine model)
-        //{
-        //    return JavaScript("$('#button').click(function () { var chart = $('#container').highcharts();if (chart.series.length===1) { chart.addSeries({data: [194.1, 95.6, 54.4, 29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4]});}});});");
-        //}
 
-        public string ReturnContentForSpead(int ID)
+
+        /// <summary>
+        /// 返回图谱(blog)的数据
+        /// </summary>
+        /// <param name="ID">导入数据的ID</param>
+        /// <returns></returns>
+        public string ReturnContentForSpeadBlog(int ID)
         {
             var content = from d in DB.BrandSpreadMapBlogtbl
                        where d.ID == ID
@@ -42,36 +39,111 @@ namespace Premiere.Controllers
             return content.FirstOrDefault().ToString();
         }
 
-        public JsonResult DataChanged(int fromDate, int toDate)
+
+        public string ReturnContentForSpeadNews(int ID)
+        {
+            var content = from d in DB.BrandSpreadMapNewstbl
+                          where d.ID == ID
+                          select (string)d.Content;
+            return content.FirstOrDefault().ToString();
+        }
+
+        /// <summary>
+        /// return back date from time slot
+        /// </summary>
+        /// <param name="fromDate"></param>
+        /// <param name="toDate"></param>
+        /// <returns></returns>
+        public JsonResult DateChangedForSpreadBlog(int fromDate, int toDate)
         {
             var instances = (from d in DB.BrandSpreadMapBlogtbl
                        where (d.Period >= fromDate && d.Period <= toDate)
                        select new { ID = d.ID, BrandName = d.BrandName, Content=d.Content }).ToList()
                        .Select(x => new  { ID = x.ID, BrandName = x.BrandName, Content = x.Content});
+
+            foreach (var item in instances)
+            {
+                if (instances.Select(x=>x.BrandName).Contains(item.BrandName))
+                {
+                   JObject oTempt = JObject.FromObject( new {
+                    data=   from b in instances
+                           where b.BrandName == item.BrandName
+                           select new {content = b.Content }
+                   });
+                   string rss = oTempt["data"][0]["content"].ToString();
+                   JObject o1 = JObject.Parse(rss);
+                        
+                   JObject o2 = JObject.Parse(item.Content.ToString());
+                    o2.Merge(o1,new JsonMergeSettings {
+                    MergeArrayHandling = MergeArrayHandling.Merge
+                    });
+
+                }
+
+
+            }
+
+            
+
             JObject o = JObject.FromObject(new
             {
-                chart = from p in instances
+                chart = (from p in instances
                         select new
                         {
                             ID = p.ID,
                             BrandName = p.BrandName,
                             Content = p.Content
-                        }
+                        }).Distinct()
+                        
             });
-            //foreach (var item in instances)
-            //{
-            //    JObject res = new JObject(
-            //                    new JProperty("chart",
-            //                        new JObject(
-            //                            new JProperty("ID", item.ID),
-            //                            new JProperty("BrandName", item.BrandName),
-            //                            new JProperty("Content", item.Content))));
-            //}
-            //foreach (var item in ids)
-            //{
-            //    TempData.Add(item.ID.ToString(),item.BrandName);
-            //}
+            
+            return Json(o.ToString(), JsonRequestBehavior.AllowGet);
+        }
 
+        public JsonResult DateChangedForSpreadNews(int fromDate, int toDate)
+        {
+            
+            var instances = (from d in DB.BrandSpreadMapNewstbl
+                             where (d.Period >= fromDate && d.Period <= toDate)
+                             select new { ID = d.ID, BrandName = d.BrandName, Content = d.Content }).ToList()
+                       .Select(x => new { ID = x.ID, BrandName = x.BrandName, Content = x.Content });
+
+            foreach (var item in instances)
+            {
+                if (instances.Select(x => x.BrandName).Contains(item.BrandName))
+                {
+                    JObject oTempt = JObject.FromObject(new
+                    {
+                        data = from b in instances
+                               where b.BrandName == item.BrandName
+                               select new { content = b.Content }
+                    });
+                    string rss = oTempt["data"][0]["content"].ToString();
+                    JObject o1 = JObject.Parse(rss);
+
+                    JObject o2 = JObject.Parse(item.Content.ToString());
+                    o2.Merge(o1, new JsonMergeSettings
+                    {
+                        MergeArrayHandling = MergeArrayHandling.Merge
+                    });
+
+                }
+
+
+            }
+
+            JObject o = JObject.FromObject(new
+            {
+                chart = (from p in instances
+                         select new
+                         {
+                             
+                             BrandName = p.BrandName,
+                             ID = p.ID,
+                             Content = p.Content
+                         }).Distinct()
+
+            });
 
             return Json(o.ToString(), JsonRequestBehavior.AllowGet);
         }
@@ -82,7 +154,6 @@ namespace Premiere.Controllers
                           select (string)d.Content;
             return content.FirstOrDefault().ToString();
         }
-
 
         public ActionResult BrandExposure_bubble(string title)
         {

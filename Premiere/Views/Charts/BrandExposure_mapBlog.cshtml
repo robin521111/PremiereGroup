@@ -311,11 +311,11 @@
                         var from = $('#from-date').val();
                         var to = $('#to-date').val();
                         var table = $('#brandtable');
-                        var Url = '@Url.Action("ReturnContentForSpead")';
+                        var Url = '@Url.Action("ReturnContentForSpeadBlog")';
                         if (from !== to) {
                             $.ajax({
                                 type: "GET",
-                                url: "@Url.Action("DataChanged")",
+                                url: "@Url.Action("DateChangedForSpreadBlog")",
                                 data:{fromDate:from, toDate:to},
                                 dataType: "json"
                             })
