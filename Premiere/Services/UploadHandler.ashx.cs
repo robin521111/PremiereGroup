@@ -270,7 +270,7 @@ namespace Premiere.Services
                     data = obj["series"].ToString();
                     xAxis = obj["xAxis"].ToString();
 
-                    DB.BrandImagetbl.Add(new BrandImage
+                    DB.BrandImageBlogtbl.Add(new BrandImageBlog
                     {
                         ChartID = 3,
                         BrandName = file_name,

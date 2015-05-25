@@ -191,13 +191,19 @@ namespace Premiere.Controllers
             return View(model);
         }
 
-        public ActionResult BrandImage(string title)
+        public ActionResult BrandImageBlog(string title)
         {
             ViewBag.Title = title;
-            var model = DB.BrandImagetbl.ToList();
+            var model = DB.BrandImageBlogtbl.ToList();
             return View(model);
         }
 
+        public ActionResult BrandImageNews(string title)
+        {
+            ViewBag.Title = title;
+            var model = DB.BrandImageNewstbl.ToList();
+            return View(model);
+        }
         public ActionResult DesignSense(string title)
         {
             ViewBag.Title = title;

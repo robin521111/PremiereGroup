@@ -2,7 +2,7 @@
 @using System.Text
 @using Newtonsoft.Json.Linq
 
-@model  IEnumerable<Premiere.Models.BrandImage>
+@model  IEnumerable<Premiere.Models.BrandImageNews>
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -60,9 +60,20 @@
                                 </ul>
                                
                             </li>
-                            <li>
-                                @Html.ActionLink("品牌形象分析图", "BrandImage", new { @title = "品牌形象分析图" }, null)
+
+                              <li>
+                                    @Html.IconActionLink("index", "品牌形象分析图", null, "glyphicon glyphicon-triangle-right", new { @title = "品牌形象分析图", @id = "mutiple_level" })
+                                 <ul class="nav nav-third-level">
+                                    <li>
+                                         @Html.ActionLink("-->论坛微博数据", "BrandImageBlog", new { @title = "品牌形象分析图(论坛微博数据)" }, null)
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("-->新闻数据", "BrandImageNews", new { @title = "品牌形象分析图(新闻数据)" }, null)
+                                    </li>
+                                </ul>
+                               
                             </li>
+                           
                             <li>
                                 @Html.ActionLink("设计感与功能性分析图", "DesignSense", new { @title = "设计感与功能性分析图" }, null)
                             </li>

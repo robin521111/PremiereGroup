@@ -18,6 +18,11 @@
     padding-left: 250px;
 }
 
+circle[Attributes Style] {
+  fill: rgb(150, 210, 215);
+  stroke: rgb(255, 255, 255);
+  stroke-width: 6px;
+}
 #sidebar-wrapper {
     z-index: 1000;
     position: fixed;

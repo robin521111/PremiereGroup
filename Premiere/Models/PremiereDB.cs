@@ -21,7 +21,8 @@ namespace Premiere.Models
         public DbSet<BrandExposureLine> BrandExposureLinetbl { get; set; }
         public DbSet<BrandExposureBubble> BrandExposureBubbletbl { get; set; }
         public DbSet<BrandFocus> BrandFocustbl { get; set; }
-        public DbSet<BrandImage> BrandImagetbl { get; set; }
+        public DbSet<BrandImageBlog> BrandImageBlogtbl { get; set; }
+        public DbSet<BrandImageNews> BrandImageNewstbl { get; set; }
         public DbSet<DesignSense> DesignSensetbl { get; set; }
         public DbSet<SexRatio> SexRatiotbl { get; set; }
         public DbSet<BrandSpreadMapBlog> BrandSpreadMapBlogtbl { get; set; }

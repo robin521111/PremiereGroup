@@ -69,8 +69,22 @@ namespace Premiere.Models
         public DateTime LastModified { get; set; }
     }
 
-    [Table("BrandImagetbl")]
-    public class BrandImage
+    [Table("BrandImageBlogtbl")]
+    public class BrandImageBlog
+    {
+        [Key]
+        public int ID { get; set; }
+        public int ChartID { get; set; }
+        public string BrandName { get; set; }
+        public string Series { get; set; }
+        public string xAxis { get; set; }
+        public string LastModifiedBy { get; set; }
+        public DateTime LastModified { get; set; }
+
+    }
+
+    [Table("BrandImageNewstbl")]
+    public class BrandImageNews
     {
         [Key]
         public int ID { get; set; }

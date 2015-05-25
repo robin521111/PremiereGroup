@@ -1257,11 +1257,12 @@
     <Content Include="Views\Charts\BrandExposure_line.cshtml" />
     <Content Include="Views\Charts\BrandExposure_mapBlog.cshtml" />
     <Content Include="Views\Charts\BrandFocus.cshtml" />
-    <Content Include="Views\Charts\BrandImage.cshtml" />
+    <Content Include="Views\Charts\BrandImageBlog.cshtml" />
     <Content Include="Views\Charts\DesignSense.cshtml" />
     <Content Include="Views\Charts\GraphicData.cshtml" />
     <Content Include="Views\Charts\SexRatio.cshtml" />
     <Content Include="Views\Charts\BrandExposure_mapNews.cshtml" />
+    <Content Include="Views\Charts\BrandImageNews.cshtml" />
     <None Include="Web.Backload.Default.config" />
     <None Include="Web.Backload.xsd">
       <SubType>Designer</SubType>
