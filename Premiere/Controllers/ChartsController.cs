@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using Premiere.Models;
 using Newtonsoft.Json.Linq;
 using System.IO;
-
+using Infrustructure;
 namespace Premiere.Controllers
 {
     public class ChartsController : Controller
@@ -63,27 +63,31 @@ namespace Premiere.Controllers
 
             foreach (var item in instances)
             {
+
                 if (instances.Select(x=>x.BrandName).Contains(item.BrandName))
                 {
+                  
                    JObject oTempt = JObject.FromObject( new {
                     data=   from b in instances
-                           where b.BrandName == item.BrandName
-                           select new {content = b.Content }
+                           where b.BrandName == item.BrandName && b.ID != item.ID
+                           select  new {content = b.Content, ID = b.ID }
                    });
+
+                   var contents = oTempt["data"].Values<JToken>().ToArray();
+                   foreach (var c in contents)
+                   {
+                       
+                   }
                    string rss = oTempt["data"][0]["content"].ToString();
                    JObject o1 = JObject.Parse(rss);
-                        
+
                    JObject o2 = JObject.Parse(item.Content.ToString());
                     o2.Merge(o1,new JsonMergeSettings {
-                    MergeArrayHandling = MergeArrayHandling.Merge
+                    MergeArrayHandling = MergeArrayHandling.Union
                     });
-
                 }
 
-
             }
-
-            
 
             JObject o = JObject.FromObject(new
             {
@@ -93,7 +97,7 @@ namespace Premiere.Controllers
                             ID = p.ID,
                             BrandName = p.BrandName,
                             Content = p.Content
-                        }).Distinct()
+                        })
                         
             });
             
@@ -118,14 +122,25 @@ namespace Premiere.Controllers
                                where b.BrandName == item.BrandName
                                select new { content = b.Content }
                     });
-                    string rss = oTempt["data"][0]["content"].ToString();
-                    JObject o1 = JObject.Parse(rss);
 
-                    JObject o2 = JObject.Parse(item.Content.ToString());
-                    o2.Merge(o1, new JsonMergeSettings
+                    var contents = oTempt["data"].Values<JToken>().ToArray();
+                    foreach (var c in contents)
                     {
-                        MergeArrayHandling = MergeArrayHandling.Merge
-                    });
+                       JObject o1 = JObject.Parse(c.ToString());
+                       IEnumerable<JToken> obj1 =  o1["content"]["data"]["wordgraph"][0]["features"].Values<JToken>().ToArray();
+                       foreach (var i in obj1)
+                       {
+
+                       }
+                       JObject o2 = JObject.Parse(item.Content.ToString());
+                       o2.Merge(o1, new JsonMergeSettings
+                       {
+                           MergeArrayHandling = MergeArrayHandling.Merge
+                       });
+
+                    }
+
+
 
                 }
 
@@ -141,7 +156,7 @@ namespace Premiere.Controllers
                              BrandName = p.BrandName,
                              ID = p.ID,
                              Content = p.Content
-                         }).Distinct()
+                         })
 
             });
 

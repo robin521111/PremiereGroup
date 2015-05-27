@@ -221,7 +221,7 @@ namespace Premiere.Services
                     });
 
                     break;
-                case "品牌传播图谱新闻数据":
+                case "品牌曝光度分析微博论坛数据":
                     text = File.ReadAllText(path, System.Text.Encoding.UTF8);
                     obj = JObject.Parse(text);
                     file_name = status.name.Replace(".txt", "");
@@ -242,7 +242,7 @@ namespace Premiere.Services
                     
 
                     break;
-                case "品牌曝光度分析微博论坛数据":
+                case "品牌传播图谱新闻数据":
                     text = File.ReadAllText(path, System.Text.Encoding.UTF8);
                     obj = JObject.Parse(text);
                     file_name = status.name.Replace(".txt", "");
