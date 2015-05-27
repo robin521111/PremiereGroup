@@ -126,17 +126,22 @@ namespace Premiere.Controllers
                     var contents = oTempt["data"].Values<JToken>().ToArray();
                     foreach (var c in contents)
                     {
-                       JObject o1 = JObject.Parse(c.ToString());
-                       IEnumerable<JToken> obj1 =  o1["content"]["data"]["wordgraph"][0]["features"].Values<JToken>().ToArray();
-                       foreach (var i in obj1)
-                       {
 
-                       }
-                       JObject o2 = JObject.Parse(item.Content.ToString());
-                       o2.Merge(o1, new JsonMergeSettings
-                       {
-                           MergeArrayHandling = MergeArrayHandling.Merge
-                       });
+                        string rss = (string)c["content"];
+                        
+                        JObject t1 = JObject.Parse(rss);
+                        JArray compare_str = (JArray)t1["data"]["wordgraph"][0]["features"];
+
+                       JObject t2 = JObject.Parse(item.Content.ToString());
+                       string rss1 = item.Content.ToString();
+
+                       JObject t = (JObject)t2["content"];
+
+
+                       //o2.Merge(o1, new JsonMergeSettings
+                       //{
+                       //    MergeArrayHandling = MergeArrayHandling.Merge
+                       //});
 
                     }
 
