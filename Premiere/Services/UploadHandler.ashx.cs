@@ -263,7 +263,7 @@ namespace Premiere.Services
 
 
                     break;
-                case "品牌形象分析图":
+                case "品牌形象分析论坛微博数据":
                     text = File.ReadAllText(path, System.Text.Encoding.UTF8);
                     obj = JObject.Parse(text);
                     file_name = status.name.Replace(".txt", "");
@@ -271,6 +271,25 @@ namespace Premiere.Services
                     xAxis = obj["xAxis"].ToString();
 
                     DB.BrandImageBlogtbl.Add(new BrandImageBlog
+                    {
+                        ChartID = 3,
+                        BrandName = file_name,
+                        Series = data,
+                        xAxis = xAxis,
+                        LastModified = DateTime.Now,
+                        LastModifiedBy = Membership.GetUser().UserName.ToString(),
+                    });
+
+                    break;
+
+                case "品牌形象分析新闻数据":
+                    text = File.ReadAllText(path, System.Text.Encoding.UTF8);
+                    obj = JObject.Parse(text);
+                    file_name = status.name.Replace(".txt", "");
+                    data = obj["series"].ToString();
+                    xAxis = obj["xAxis"].ToString();
+
+                    DB.BrandImageNewstbl.Add(new BrandImageNews
                     {
                         ChartID = 3,
                         BrandName = file_name,

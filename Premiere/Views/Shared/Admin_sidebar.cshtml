@@ -32,9 +32,18 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
-                        @Html.ActionLink("品牌形象分析图","index",new { @title = "品牌形象分析图" },null)
-                    </li>
+                      <li>
+                                    @Html.IconActionLink("index", "品牌形象分析图", null, "fa fa-bar-chart-o fa-fw",true, new { @title = "品牌形象分析图"})
+                                 <ul class="nav nav-third-level">
+                                    <li>
+                                         @Html.ActionLink("品牌形象分析图==>论坛微博数据", "index", new { @title = "品牌形象分析论坛微博数据" }, null)
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("品牌形象分析图==>新闻数据", "index", new { @title = "品牌形象分析新闻数据" }, null)
+                                    </li>
+                                </ul>
+                               
+                            </li>
                     <li>
                         @Html.ActionLink("设计感与功能性分析图", "index", new { @title = "设计感与功能性分析图" }, null)
                     </li>
