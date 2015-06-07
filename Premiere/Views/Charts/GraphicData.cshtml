@@ -1,223 +1,211 @@
 @using Premiere.Helper
 @using Newtonsoft.Json.Linq
 @using System.Text;
+
 @model  IEnumerable<Premiere.Models.MediaFocusMap>
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+    
+        <!-- Bootstrap Core CSS -->
+        <link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />
+        <link href="@Url.Content("~/Content/chart-metismenu.css")" rel="stylesheet" />
+        <link href="@Url.Content("~/Content/bootstrap-theme.min.css")" rel="stylesheet" />
+        <!-- Custom CSS -->
+        <link href="@Url.Content("~/Content/simple-sidebar.css")" rel="stylesheet" />
+        <!-- MetisMenu CSS -->
+        <link href="@Url.Content("~/Content/plugins/metisMenu/metisMenu.css")" rel="stylesheet" />
+        <script src="@Url.Content("~/Scripts/plugins/metisMenu/metisMenu.min.js")"></script>
+        <!--Bootstrap dataPicker-->
+        <script src="@Url.Content("~/Scripts/datepicker/bootstrap-datepicker.js")"></script>
+        <script src="@Url.Content("~/Scripts/datepicker/bootstrap-datepicker.zh-CN.min.js")"></script>
+        <link href="@Url.Content("~/Content/bootstrap-datepicker3.css")" rel="stylesheet" />
+        <div id="wrapper">
+            <!-- Sidebar -->
+            <div id="sidebar-wrapper">
+                <div class="navbar-default sidebar" role="navigation">
+                    <div class="sidebar-nav navbar-collapse">
+                        <ul class="nav" id="side-menu">
 
-<!-- Bootstrap Core CSS -->
-<link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />
-<link href="@Url.Content("~/Content/chart-metismenu.css")" rel="stylesheet" />
-<link href="@Url.Content("~/Content/bootstrap-theme.min.css")" rel="stylesheet" />
-<!-- Custom CSS -->
-<link href="@Url.Content("~/Content/simple-sidebar.css")" rel="stylesheet" />
-<!-- MetisMenu CSS -->
-<link href="@Url.Content("~/Content/plugins/metisMenu/metisMenu.css")" rel="stylesheet" />
-<script src="@Url.Content("~/Scripts/plugins/metisMenu/metisMenu.min.js")"></script>
-
-<div id="wrapper">
-    <!-- Sidebar -->
-    <div id="sidebar-wrapper">
-        <div class="navbar-default sidebar" role="navigation">
-            <div class="sidebar-nav navbar-collapse">
-                <ul class="nav" id="side-menu">
-
-                    <li class="active">
-                        @Html.IconActionLink("Charts", "图表导航", null, "fa fa-bar-chart-o fa-fw", true, null)
-                        @*<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>*@
-                        <ul class="nav nav-second-level">
-                                       <li>
-
-                                @Html.IconActionLink("index", "品牌曝光度分析", null, "glyphicon glyphicon-triangle-right", new { @title = "品牌曝光度分析",@id="mutiple_level" })
-                                <ul class="nav nav-third-level">
+                            <li class="active">
+                                @Html.IconActionLink("Charts", "图表导航", null, "fa fa-bar-chart-o fa-fw", true, null)
+                                @*<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>*@
+                                <ul class="nav nav-second-level">
                                     <li>
-                                        @Html.ActionLink("-->每日数据分析", "BrandExposure_line", new { @title = "品牌曝光度分析-每日数据导入" }, null)
+
+                                        @Html.IconActionLink("index", "品牌曝光度分析", null, "glyphicon glyphicon-triangle-right", new { @title = "品牌曝光度分析", @id = "mutiple_level" })
+                                        <ul class="nav nav-third-level">
+                                            <li>
+                                                @Html.ActionLink("-->每日数据分析", "BrandExposure_line", new { @title = "品牌曝光度分析-每日数据导入" }, null)
+                                            </li>
+                                            <li>
+                                                @Html.ActionLink("-->每月数据分析", "BrandExposure_bubble", new { @title = "品牌曝光度分析-每月数据导入" }, null)
+                                            </li>
+                                        </ul>
                                     </li>
                                     <li>
-                                        @Html.ActionLink("-->每月数据分析", "BrandExposure_bubble", new { @title = "品牌曝光度分析-每月数据导入" }, null)
+                                        @Html.IconActionLink("index", "品牌关键字分析", null, "glyphicon glyphicon-triangle-right", new { @title = "品牌关键字分析", @id = "mutiple_level" })
+                                        <ul class="nav nav-third-level">
+                                            <li>
+                                                @Html.ActionLink("-->论坛微博数据", "BrandExposure_mapBlog", new { @title = "品牌关键字分析(论坛微博数据)" }, null)
+                                            </li>
+                                            <li>
+                                                @Html.ActionLink("-->新闻数据", "BrandExposure_mapNews", new { @title = "品牌关键字分析(新闻数据)" }, null)
+                                            </li>
+                                        </ul>
+
+                                    </li>
+
+                                    <li>
+                                        @Html.IconActionLink("index", "品牌形象分析图", null, "glyphicon glyphicon-triangle-right", new { @title = "品牌形象分析图", @id = "mutiple_level" })
+                                        <ul class="nav nav-third-level">
+                                            <li>
+                                                @Html.ActionLink("-->主动传播", "BrandImageBlog", new { @title = "品牌形象（主动传播）来源：全网数据" }, null)
+                                            </li>
+                                            <li>
+                                                @Html.ActionLink("-->用户反馈", "BrandImageNews", new { @title = "品牌形象（用户反馈）来源：微博+论坛数据" }, null)
+                                            </li>
+                                        </ul>
+
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("设计感与功能性分析图", "DesignSense", new { @title = "设计感与功能性分析图" }, null)
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("男女比例分析图", "SexRatio", new { @title = "男女比例分析图" }, null)
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("品牌关注点分析图", "BrandFocus", new { @title = "品牌关注点分析图" }, null)
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("媒体关注度分析图谱", "GraphicData", new { @title = "媒体关注度分析图谱" }, null)
                                     </li>
                                 </ul>
+                                <!-- /.nav-second-level -->
                             </li>
-                            <li>
-                                 @Html.IconActionLink("index", "品牌传播图谱", null, "glyphicon glyphicon-triangle-right", new { @title = "品牌传播图谱", @id = "mutiple_level" })
-                                 <ul class="nav nav-third-level">
-                                    <li>
-                                         @Html.ActionLink("-->论坛微博数据", "BrandExposure_mapBlog", new { @title = "品牌传播图谱(论坛微博数据)" }, null)
-                                    </li>
-                                    <li>
-                                        @Html.ActionLink("-->新闻数据", "BrandExposure_mapNews", new { @title = "品牌传播图谱(新闻数据)" }, null)
-                                    </li>
-                                </ul>
-                               
-                            </li>
-                           
-                              <li>
-                                    @Html.IconActionLink("index", "品牌形象分析图", null, "glyphicon glyphicon-triangle-right", new { @title = "品牌形象分析图", @id = "mutiple_level" })
-                                 <ul class="nav nav-third-level">
-                                    <li>
-                                         @Html.ActionLink("-->论坛微博数据", "BrandImageBlog", new { @title = "品牌形象分析(论坛微博数据)" }, null)
-                                    </li>
-                                    <li>
-                                        @Html.ActionLink("-->新闻数据", "BrandImageNews", new { @title = "品牌形象分析(新闻数据)" }, null)
-                                    </li>
-                                </ul>
-                               
-                            </li>
-                            <li>
-                                @Html.ActionLink("设计感与功能性分析图", "DesignSense", new { @title = "设计感与功能性分析图" }, null)
-                            </li>
-                            <li>
-                                @Html.ActionLink("男女比例分析图", "SexRatio", new { @title = "男女比例分析图" }, null)
-                            </li>
-                            <li>
-                                @Html.ActionLink("品牌关注点分析图", "BrandFocus", new { @title = "品牌关注点分析图" }, null)
-                            </li>
-                            <li>
-                                @Html.ActionLink("媒体关注度分析图谱", "GraphicData", new { @title = "媒体关注度分析图谱" }, null)
-                            </li>
+
                         </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
-
-                </ul>
+                    </div>
+                    <!-- /.sidebar-collapse -->
+                </div>
             </div>
-            <!-- /.sidebar-collapse -->
-        </div>
-    </div>
-    <!-- /#sidebar-wrapper -->
+            <!-- /#sidebar-wrapper -->
+            <!-- Page Content -->
+            <div id="page-content-wrapper">
 
-    <!-- Page Content -->
-    <div id="page-content-wrapper">
-
-        <div class="jumbotron">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h3>@ViewBag.Title</h3>
-                       
-                       <br />
-                        <p>以下品牌是已成功导入数据库的品牌数据: </p>
-                       
-
+                <div class="jumbotron">
+                    <div class="container-fluid">
                         <div class="row">
-                            <div class="col-md-2">
-                                <div class="dropdown">
-                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-expanded="true">
-                                品牌选取
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenuDivider">
-                                <li>
-                                    <div class="panel panel-default">
-                                      <!-- Default panel contents -->
-                                      <div class="panel-heading">当前可选品牌：</div>
-                                      <div class="panel-body">
-                                      </div>
+                            <div class="col-lg-12">
+                                <h3>@ViewBag.Title</h3>
 
-                                      <!-- Table -->
-                                      <table class="table">
-                                        <tbody>
-                                            @{
-                                                 var i = 0;
-                                            }
-                                            @foreach (var item in Model)
-                                            {
-                                               
-                                                
-                                                i++;
-                                                if (i <=9)
-                                                {
-                                                    <td><button class="label label-success" id="@item.ID">@item.BrandName</button></td>
-                                                    
-                                                }
-                                                else if (i>9)
-                                                {
-                                                    <tr></tr>
-                                                    i = 0;
-                                                } 
-                                               
-                                                 
-                                            }
+                                <br />
+                                <p>以下品牌是已成功导入数据库的品牌数据: </p>
 
-                                            
-                                        </tbody>
-                                      </table>
+
+                                <div class="row">
+
+                                    <div class="col-md-3">
+                                        <div class="input-daterange input-group" id="datepicker">
+
+                                            <span class="input-group-addon">请选择时间区间： </span>
+                                            <input type="text" id="from-date" class="input-md form-control" name="start" />
+                                            <span class="input-group-addon">to</span>
+                                            <input type="text" id="to-date" class="input-md form-control" name="end" />
+                                        </div>
                                     </div>
-                                 
-                                    
-                              </li>
-                                <li role="presentation" class="divider"></li>
-                                
 
-                            </ul>
-                        </div>
+                                    <div class="col-md-2">
+                                        <div class="dropdown">
+                                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-expanded="true">
+                                                品牌选取
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenuDivider">
+                                                <li>
+                                                    <div class="panel panel-default">
+                                                        <!-- Default panel contents -->
+                                                        <div class="panel-heading">当前可选品牌：</div>
+                                                        <div class="panel-body">
+                                                        </div>
+
+                                                        <!-- Table -->
+                                                        <table class="table">
+                                                            <tbody id="brandtable"></tbody>
+                                                        </table>
+                                                    </div>
+
+
+                                                </li>
+                                                <li role="presentation" class="divider"></li>
+
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="co-md-2">
+                                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">菜单收放</a>
+                                    </div>
+                                </div>
+
                             </div>
-                            <div class="co-md-2">
-                                <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">菜单收放</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div id="container" style="min-width: 210px; height: auto; margin: 0 auto">
+
+                </div>
+            </div>
+
+            <form id="adv_schfm" class="dsn" method="get" action="/" autocomplete="off" style="display:none">
+                <input name="tpl" value="" />
+                <input name="type" value="" />
+                <input name="area" value="" />
+                <input name="time" value="" />
+                <input name="word" value="" />
+            </form>
+
+            <div class="mw1300">
+                <div id="mainWrap">
+                    <div class="mainSplit" style="min-height: 700px;">
+
+                        <div class="blkUnit grpUnit intrtUnit" id="demandDemand_i">
+
+                            <div class="stmTabs tabUnit" style="position: relative; z-index: 2; overflow: hidden; padding: 0; margin: 20px 20px 0 20px;">
+                                <div class="tabTitle">
+                                    <div class="tabUl" onclick="BID.tabFun()"></div>
+                                </div>
+                                <div class="tabConts" style="display: none;"></div>
+                            </div>
+                            <div class="grpArea" style="margin-top: -76px;">
+                                <div class="R_paper" style="height: 480px;"></div>
+                                <div class="R_copyright" style="left: 65px; bottom: 30px;"></div>
                             </div>
                         </div>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container-fluid">
-        <div id="container" style="min-width: 210px; height: auto; margin: 0 auto">
 
-        </div>
-    </div>
+                        <div class="blkUnit grpUnit" id="rs_hotWords">
 
-    <form id="adv_schfm" class="dsn" method="get" action="/" autocomplete="off" style="display:none" style="display:none">
-        <input name="tpl" value="" />
-        <input name="type" value="" />
-        <input name="area" value="" />
-        <input name="time" value="" />
-        <input name="word" value="" />
-    </form>
-
-    <div class="mw1300">
-        <div id="mainWrap">
-            <div class="mainSplit" style="min-height: 700px;">
-
-                <div class="blkUnit grpUnit intrtUnit" id="demandDemand_i">
-
-                    <div class="stmTabs tabUnit" style="position: relative; z-index: 2; overflow: hidden; padding: 0; margin: 20px 20px 0 20px;">
-                        <div class="tabTitle">
-                            <div class="tabUl" onclick="BID.tabFun()"></div>
                         </div>
-                        <div class="tabConts" style="display: none;"></div>
+
+                        <div class="ftc"></div>
                     </div>
-                    <div class="grpArea" style="margin-top: -76px;">
-                        <div class="R_paper" style="height: 480px;" ></div>
-                        <div class="R_copyright" style="left: 65px; bottom: 30px;"></div>
+                    <div id="footer">
+
+                    </div>
+
+                </div>
+                <div id="lTools" class="lTools">
+                    <div id="lTools_c">
                     </div>
                 </div>
-
-                <div class="blkUnit grpUnit" id="rs_hotWords">
-                   
-                </div>
-
-                <div class="ftc"></div>
-            </div>
-            <div id="footer">
-              
             </div>
 
+            <!-- /#page-content-wrapper -->
         </div>
-        <div id="lTools" class="lTools">
-            <div id="lTools_c">
-            </div>
-        </div>
-    </div>
-
-
-
-    <!-- /#page-content-wrapper -->
-</div>
-    <script type="text/javascript">
+        <script type="text/javascript">
         window.pageStatus = false;
         var PPval = {
             adjust: 1422948719000 - new Date(),
@@ -231,30 +219,29 @@
             dataface: '/Interface/',
             isSnap: 1
         };
-    </script>
+        </script>
 
-    <!--要用到的变量-->
-   
-    <style>
-        .bdshare_popup_box
-        {
-            left: auto!important;
-            right: 10px;
-        }
-    </style>
+        <!--要用到的变量-->
+
+        <style>
+            .bdshare_popup_box {
+                left: auto !important;
+                right: 10px;
+            }
+        </style>
 
 
-    <script type="text/javascript" src="@Url.Content("/Scripts/BaiduIndexJs/tangram.js")"></script>
-    <script type="text/javascript" src="@Url.Content("/Scripts/BaiduIndexJs/magic.js")"></script>
-    <script type="text/javascript" src="@Url.Content("/Scripts/BaiduIndexJs/raphael.js")"></script>
-    <script type="text/javascript" src="@Url.Content("/Scripts/BaiduIndexJs/funs.js")"></script>
-    <script type="text/javascript" src="@Url.Content("/Scripts/BaiduIndexJs/intrt.js")"  charset="gb2312"></script>
-    <script type="text/javascript">
+        <script type="text/javascript" src="@Url.Content("/Scripts/BaiduIndexJs/tangram.js")"></script>
+        <script type="text/javascript" src="@Url.Content("/Scripts/BaiduIndexJs/magic.js")"></script>
+        <script type="text/javascript" src="@Url.Content("/Scripts/BaiduIndexJs/raphael.js")"></script>
+        <script type="text/javascript" src="@Url.Content("/Scripts/BaiduIndexJs/funs.js")"></script>
+        <script type="text/javascript" src="@Url.Content("/Scripts/BaiduIndexJs/intrt.js")" charset="gb2312"></script>
+        <script type="text/javascript">
         BID.fnsDate.adjust = (PPval.ppt = 'PWIoNwB%2BaCYWAU8EBQBnfFEGJ3FnBTAOIQcFXQ5ABDJWN3pORyB5ICURLipyaGIEAAhWcxEFUzcLAAAIDCIRe2QBdBUdKD4RFAIrNwp%2BEUURMmhxNQhKDCMQGAkHCD0CWj4pcR80eDo1Q3kxPVAnHzI1dUQnGjoPTiJ4NHQ5ADQcKTQZEFd%2BP3ozWAcPYRMkMywRLCJKc0wxcgkGTFESHkY0URIXACRuS28NXjgfE0oBSlFwZSt5AyxtfGQwMRNzHFYmNjwiFxlTVjEhNwQ%3D', PPval.status = '0' || '0', PPval.adjust);
         if (PPval.status == '301') { BID.vVerify(); }
-    </script>
+        </script>
 
-    <script type="text/javascript">
+        <script type="text/javascript">
         T(function () {
             BID.res2(/\//);
 
@@ -307,40 +294,77 @@
                     }
                     lastTab = index;
                 })(tabUl_id + '_tabClick', null, 0);
-               
 
-                $(document).ready(function () {
-                      @foreach (var item in Model)
-                        {
-                        <text>
-                              $("#@item.ID").click(function () {
-                               $.getJSON("@Url.Action("ReturnContentForMedia", new { @ID = item.ID })", function (msg) {
-                                    var tags = BID.getParams.C32().tags;
-                                    var data = (msg.data || {}).wordgraph || [{ key: tags[0] }, { key: tags[1] }, { key: tags[2] }, { key: tags[3] }, { key: tags[4] }];
-                                    iDemand.drawBg().setData(data[lastTab]).drawCircle(BID.getColor(lastTab)).wordgraph = data;
-                                });
-                              });
-                        </text>
+
+                    $('.input-daterange').datepicker({
+                        format: "yyyymm",
+                        minViewMode: 1,
+                        language: "zh-CN",
+                        beforeShowMonth: function (date) {
+                            switch (date.getMonth()) {
+                                case 0:
+                                    return false;
+                                case 1:
+                                    return false;
+                                case 2:
+                                    return false;
+                                case 3:
+                                    return false;
+                                case 4:
+                                    return false;
+
+                            }
                         }
+                    }).on('changeDate', function (e) {
+                        var from = $('#from-date').val();
+                        var to = $('#to-date').val();
+                        var table = $('#brandtable');
+                        var Url = '@Url.Action("ReturnContentForMediaData")';
+                        if (from !== to) {
+                            $.ajax({
+                                type: "GET",
+                                url: "@Url.Action("DateChangedForMedia")",
+                                data:{fromDate:from, toDate:to},
+                                dataType: "json"
+                            })
+                                .done(function (data) {
+                                    //var legth = data.chart.length;
+
+                                    $('#brandtable').empty();
+                                    var contents = $.parseJSON(data);
+                                    $.each(contents, function (key, values) {
+                                        $.each(values, function (k, v) {
+                                            table.append("<td><button class='btn btn-default brand' id=" + v.ID + " data-id=" + v.ID + ">" + v.BrandName + "</button></td>");
+                                            var button = $('#'+v.ID);
+                                           button.on('click',v.ID, function () {
+                                               var id = v.ID;
+                                               $.getJSON(Url+"?ID="+id, function (msg) {
+                                                   var tags = BID.getParams.C32().tags;
+                                                   var data = (msg.data || {}).wordgraph || [{ key: tags[0] }, { key: tags[1] }, { key: tags[2] }, { key: tags[3] }, { key: tags[4] }];
+                                                   iDemand.drawBg().setData(data[lastTab]).drawCircle(BID.getColor(lastTab)).wordgraph = data;
+                                               });
+                                           });
+                                            if (k % 9 === 0) {
+
+                                                if (k !==0) {
+                                                    $('#brandtable').append("<tr></tr>");
+                                                }
+                                            }
+                                        });
+
+                                    });
 
 
-                  });
-                //直接从GraphData.json中得到json数据,直接画图 Begin
-                //$.getJSON("/Scripts/BaiduIndexJs/GraphData.js", function (msg) {
-                //    var tags = BID.getParams.C32().tags;
-                //    var data = (msg.data || {}).wordgraph || [{ key: tags[0] }, { key: tags[1] }, { key: tags[2] }, { key: tags[3] }, { key: tags[4] }];
-                //    iDemand.drawBg().setData(data[lastTab]).drawCircle(BID.getColor(lastTab)).wordgraph = data;
-                //});
-                //直接从GraphData.json中得到json数据,直接画图 End
+                                });
 
-                //注释掉 Begin
-                //BID.dataInterface(itfc, '', function (msg) {
-                //    var tags = BID.getParams.C32().tags;
-                //    var data = (msg.data || {}).wordgraph || [{ key: tags[0] }, { key: tags[1] }, { key: tags[2] }, { key: tags[3] }, { key: tags[4] }];
-                //    iDemand.drawBg().setData(data[lastTab]).drawCircle(BID.getColor(lastTab)).wordgraph = data;
-                //}, { loading: T('#' + iDemand.opts.divID).parent()[0] });
-                //注释掉 End 
+                        };
+
+
+                    });
+
+
             });
+
 
             T(function () {
                 var itfc = 'Rs/getRs/';
@@ -348,29 +372,6 @@
                 var topN = 15;
                 var contsBox = iBlock.getEl('tabConts');
 
-                //注释掉 Begin
-                //BID.dataInterface(itfc, '', function (msg) {
-                //    var tabCont = contsBox.children('.tabCont');
-                //    var data = (msg.data || {}).rs;
-                //    if (!data || !data.length) { data = [{}, {}, {}, {}, {}]; }
-                //    BID.each(data, function (jndex, datas) {
-                //        var items_rs = [], items_up = [];
-                //        BID.each(datas.rs, function (rskey, rsval) {
-                //            items_rs.push({ text: rskey, val: +rsval });
-                //        });
-                //        items_rs.sort(function (a, b) { return b.val - a.val; });
-                //        if (items_rs.length > topN) { items_rs.length = topN; }
-                //        datas.items_rs = items_rs;
-                //        BID.each(datas.up, function (upkey, upval) {
-                //            items_up.push({ text: upkey, val: +upval });
-                //        });
-                //        items_up.sort(function (a, b) { return b.val - a.val; });
-                //        if (items_up.length > topN) { items_up.length = topN; }
-                //        datas.items_up = items_up;
-                //        tabCont.eq(jndex).html(T.template(iBlock.getEl('baiduTpl')[0].id, datas));
-                //    });
-                //}, { loading: contsBox[0] });
-                //注释掉 End
             });
 
             T(function () {
@@ -396,61 +397,53 @@
                 });
             });
 
-
             BID.res2(Hti);
             BID.res2(hJG);
         });
-    </script>
+        </script>
 
-    <script type="text/javascript" src="/Scripts/BaiduIndexJs/h.js"></script>
-    <style>
-        #bdshare a
-        {
-            padding-top: 4px;
-            padding-bottom: 4px;
-        }
-
-            #bdshare a.popup_more
-            {
-                background-position: 0px 5px;
-                width: 45px;
-                margin-right: 0;
+        <script type="text/javascript" src="/Scripts/BaiduIndexJs/h.js"></script>
+        <style>
+            #bdshare a {
+                padding-top: 4px;
+                padding-bottom: 4px;
             }
 
-        #bdshare_pop ul li
-        {
-            margin-right: -2px;
-        }
+                #bdshare a.popup_more {
+                    background-position: 0px 5px;
+                    width: 45px;
+                    margin-right: 0;
+                }
 
-        .bdshareBds
-        {
-            height: 30px;
-        }
-
-        .bdsPreview
-        {
-            text-align: center;
-        }
-
-            .bdsPreview .prvImg
-            {
-                width: 240px;
+            #bdshare_pop ul li {
+                margin-right: -2px;
             }
 
-            .bdsPreview .infLabel
-            {
-                padding: 20px 0 80px 0;
+            .bdshareBds {
+                height: 30px;
             }
-    </style>
 
-    <div style="display: none;">
-        <form id="bdsDownLoad" method="post" action="" target="bdsDLiframe"></form>
-        <iframe name="bdsDLiframe" id="bdsDLiframe"></iframe>
-    </div>
+            .bdsPreview {
+                text-align: center;
+            }
 
-    <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=655757"></script>
-    <script type="text/javascript" id="bdshell_js"></script>
-    <script type="text/javascript">
+                .bdsPreview .prvImg {
+                    width: 240px;
+                }
+
+                .bdsPreview .infLabel {
+                    padding: 20px 0 80px 0;
+                }
+        </style>
+
+        <div style="display: none;">
+            <form id="bdsDownLoad" method="post" action="" target="bdsDLiframe"></form>
+            <iframe name="bdsDLiframe" id="bdsDLiframe"></iframe>
+        </div>
+
+        <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=655757"></script>
+        <script type="text/javascript" id="bdshell_js"></script>
+        <script type="text/javascript">
         var bdShare = window.bdShare || {};
         bdShare._baseConfig = {
             "title": "分享百度指数",
@@ -480,11 +473,38 @@
         var bds_config = bdShare._getConfig();
         T('#rTools .bdshareBox').attr('data', bdShare._getStrData());
         document.getElementById("bdshell_js").src = "/Scripts/BaiduIndexJs/shell_v2.js";
-    </script>
-<script>
-    $("#menu-toggle").click(function (e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-    $('#side-menu').metisMenu();
-</script>
+
+        </script>
+
+
+        <script>
+
+
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+        $('#side-menu').metisMenu();
+
+        function splitDate() {
+            var from =$('#from-date').val();
+            if (from!==null) {
+                var pattern = /(\d{4})(\d{2})/;
+                var str= from.replace(pattern,'$1-$2');
+                //var dt = new Date(st.replace(pattern,'$1-$2'));
+                var list= str.split('-',2);
+                var month = list[1];
+
+            }
+            var to = $('#to-date').val();
+            if (to !== null) {
+                var pattern = /(\d{4})(\d{2})/;
+                var str = to.replace(pattern, '$1-$2');
+                //var dt = new Date(st.replace(pattern,'$1-$2'));
+                var list = str.split('-', 2);
+                var month = list[1];
+
+            }
+
+        }
+        </script>
