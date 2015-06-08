@@ -39,10 +39,27 @@ namespace Premiere.Controllers
             return content.FirstOrDefault().ToString();
         }
 
-
+        /// <summary>
+        /// return content for Spread via ID
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
         public string ReturnContentForSpeadNews(int ID)
         {
             var content = from d in DB.BrandSpreadMapNewstbl
+                          where d.ID == ID
+                          select (string)d.Content;
+            return content.FirstOrDefault().ToString();
+        }
+
+        /// <summary>
+        /// return content for Graphic via ID
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
+        public string ReturnContentForMediaData(int ID)
+        {
+            var content = from d in DB.MediaFocusMaptbl
                           where d.ID == ID
                           select (string)d.Content;
             return content.FirstOrDefault().ToString();
@@ -148,6 +165,90 @@ namespace Premiere.Controllers
                     //    }
 
                     //}
+
+                }
+
+
+
+            }
+
+            JObject o4 = JObject.FromObject(new
+            {
+                chart = (from p in obj
+                         select new
+                         {
+                             BrandName = p.BrandName,
+                             ID = p.ID,
+                             Content = p.Content
+                         })
+
+            });
+
+
+            return Json(o4.ToString(), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult DateChangedForMedia(int fromDate, int toDate)
+        {
+
+            var instances = (from d in DB.MediaFocusMaptbl
+                             where (d.Period >= fromDate && d.Period <= toDate)
+                             select new { ID = d.ID, BrandName = d.BrandName, Content = d.Content, Period = d.Period }).ToList()
+                       .Select(x => new { ID = x.ID, BrandName = x.BrandName, Content = x.Content, Period = x.Period });
+
+            //List<Premiere.Models.BrandSpreadMapNews> listNews = new List<BrandSpreadMapNews>();
+
+
+            //var charts = from p in instances select new { brandName = p.BrandName, ID = p.ID, Content = p.Content };
+
+            //var charts_data = o["data"].Values<JToken>().ToArray();
+
+            //var instance_list = instances.ToList();
+
+            var obj = instances.GroupBy(x => x.BrandName).Select(x => x.First());
+            JObject o = null;
+            JObject o3 = null;
+
+            foreach (var item in instances)
+            {
+                if (instances.Select(x => x.BrandName).Contains(item.BrandName))
+                {
+                    JObject oTempt = JObject.FromObject(new
+                    {
+                        data = from b in instances
+                               where b.BrandName == item.BrandName && item.Period != b.Period
+                               select new { content = b.Content }
+                    });
+
+                    var contents = oTempt["data"].Values<JToken>().ToArray();
+
+                    JObject o2 = JObject.Parse(item.Content.ToString());
+                    JObject compare_str2 = JObject.Parse(o2["data"]["wordgraph"][0].ToString());
+                    foreach (var c in contents)
+                    {
+                        string rss = (string)c["content"];
+                        JObject o1 = JObject.Parse(rss);
+                        JObject compare_str = JObject.Parse(o1["data"]["wordgraph"][0].ToString());
+
+                        //string rss1 = item.Content.ToString();
+                        //JObject t = (JObject)t2["content"];
+
+                        compare_str2.Merge(compare_str, new JsonMergeSettings
+                        {
+                            MergeArrayHandling = MergeArrayHandling.Concat
+                        });
+
+                        o3 = o2;
+                        o3["data"]["wordgraph"][0] = compare_str2;
+                    }
+
+                    Dictionary<string, string> distinctCharts = new Dictionary<string, string>();
+                    var distinctName = instances.GroupBy(x => x.BrandName).Select(x => x.First());
+
+
+
+
+
 
                 }
 

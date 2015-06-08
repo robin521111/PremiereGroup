@@ -242,7 +242,7 @@ namespace Premiere.Services
                     
 
                     break;
-                case "品牌传播图谱新闻数据":
+                case "品牌关键字分析新闻数据":
                     text = File.ReadAllText(path, System.Text.Encoding.UTF8);
                     obj = JObject.Parse(text);
                     file_name = status.name.Replace(".txt", "");
@@ -352,6 +352,7 @@ namespace Premiere.Services
                     text = File.ReadAllText(path, System.Text.Encoding.UTF8);
                     obj = JObject.Parse(text);
                     file_name = status.name.Replace(".txt", "");
+                    period = Convert.ToInt32(obj["date"].ToString());
                     if (obj["data"]["wordgraph"][0]["features"].ToString() == "[]")
 	                    {
                             break;
@@ -359,6 +360,7 @@ namespace Premiere.Services
                     DB.MediaFocusMaptbl.Add(new MediaFocusMap
                     {
                         Content = text,
+                        Period = period,
                         BrandName = file_name,
                         LastModified = DateTime.Now,
                         LastModifiedBy = Membership.GetUser().UserName.ToString(),
