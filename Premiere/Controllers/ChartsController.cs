@@ -56,7 +56,7 @@ namespace Premiere.Controllers
         /// <returns></returns>
         public JsonResult DateChangedForSpreadBlog(int fromDate, int toDate)
         {
-            var instances = (from d in DB.BrandSpreadMapNewstbl
+            var instances = (from d in DB.BrandSpreadMapBlogtbl
                              where (d.Period >= fromDate && d.Period <= toDate)
                              select new { ID = d.ID, BrandName = d.BrandName, Content = d.Content, Period = d.Period }).ToList()
                                   .Select(x => new { ID = x.ID, BrandName = x.BrandName, Content = x.Content, Period = x.Period });
@@ -137,10 +137,6 @@ namespace Premiere.Controllers
                     Dictionary<string, string> distinctCharts = new Dictionary<string, string>();
                     var distinctName = instances.GroupBy(x => x.BrandName).Select(x => x.First());
 
-
-
-
-
                     //if (contents.First() != null)
                     //{
                     //    foreach (var brand in distinctName.ToList())
@@ -148,25 +144,10 @@ namespace Premiere.Controllers
                     //        if (item.BrandName == brand.BrandName)
                     //        {
 
-
                     //        }
                     //    }
 
                     //}
-
-
-
-
-
-                    //foreach (var l in instance_list)
-                    //{
-                    //    if (l.BrandName == item.BrandName)
-                    //    {
-                    //        instance_list.Remove(l);
-                    //    }
-                    //}
-
-                    //instance_list.Add(new { ID = item.ID, BrandName = item.BrandName, Content = item.Content, Period = item.Period });
 
                 }
 
@@ -273,10 +254,6 @@ namespace Premiere.Controllers
 
                     Dictionary<string, string> distinctCharts = new Dictionary<string, string>();
                     var distinctName = instances.GroupBy(x => x.BrandName).Select(x => x.First());
-                    
-
-
-                    
 
                     //if (contents.First() != null)
                     //{
@@ -290,10 +267,6 @@ namespace Premiere.Controllers
                     //    }
 
                     //}
-                   
-
-                   
-
                    
                     //foreach (var l in instance_list)
                     //{
