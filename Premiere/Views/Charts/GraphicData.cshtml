@@ -287,6 +287,8 @@
 
                 BID.evts.care('width_resize', function () {
                     iDemand.drawBg().drawCircle();
+                    $("[cx='88']").attr("fill", "#6e8584");
+
                 }, { gt: 300 })
                 .care(tabUl_id + '_tabClick', function (index) {
                     if (iDemand.wordgraph && iDemand.wordgraph[index]) {
@@ -329,19 +331,20 @@
                             })
                                 .done(function (data) {
                                     //var legth = data.chart.length;
-
                                     $('#brandtable').empty();
                                     var contents = $.parseJSON(data);
                                     $.each(contents, function (key, values) {
                                         $.each(values, function (k, v) {
                                             table.append("<td><button class='btn btn-default brand' id=" + v.ID + " data-id=" + v.ID + ">" + v.BrandName + "</button></td>");
                                             var button = $('#'+v.ID);
-                                           button.on('click',v.ID, function () {
+                                            button.on('click', v.ID, function () {
                                                var id = v.ID;
                                                $.getJSON(Url+"?ID="+id, function (msg) {
                                                    var tags = BID.getParams.C32().tags;
                                                    var data = (msg.data || {}).wordgraph || [{ key: tags[0] }, { key: tags[1] }, { key: tags[2] }, { key: tags[3] }, { key: tags[4] }];
                                                    iDemand.drawBg().setData(data[lastTab]).drawCircle(BID.getColor(lastTab)).wordgraph = data;
+                                                   $("[cx='88']").attr("fill", "#6e8584");
+
                                                });
                                            });
                                             if (k % 9 === 0) {

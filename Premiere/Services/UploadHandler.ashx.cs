@@ -192,12 +192,27 @@ namespace Premiere.Services
                     JObject obj = JObject.Parse(text);
                     string data = obj["series"].ToString();
                     string xAxis = obj["xAxis"].ToString();
-                    string month = obj["month"].ToString();
-                    string file_name = status.name.Replace(".txt", "");
+                    string t_month = obj["month"].ToString();
+                    int i  = status.name.IndexOf('-', 0);
+                    string brand_name = status.name.Substring(0, i);
+                    string year = obj["month"].ToString().Substring(0, 4);
+                    string mon = "";
+                    if (obj["month"].ToString().Length == 8)
+                    {
+                        mon = obj["month"].ToString().Substring(5, 2);
+                    }
+                    else
+                    {
+                        mon = obj["month"].ToString().Substring(5, 1);
+                        mon = '0'+mon;
+                    }
+                    t_month = year + mon;
+                    int month = Convert.ToInt32(t_month);
+                    string file_name = status.name.Replace("(一个月).txt", "");
                     DB.BrandExposureLinetbl.Add(new BrandExposureLine
                     {
                         ChartID = 1,
-                        BrandName=file_name,
+                        BrandName=brand_name,
                         Series= data,
                         xAxis=xAxis,
                         Month=month,

@@ -38,7 +38,7 @@ namespace Premiere.Models
         public string BrandName { get; set; }
         public string Series { get; set; }
         public string xAxis { get; set; }
-        public string Month { get; set; }
+        public int Month { get; set; }
         public string LastModifiedBy { get; set; }
         public DateTime LastModified { get; set; }
 
