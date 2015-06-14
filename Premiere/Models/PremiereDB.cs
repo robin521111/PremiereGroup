@@ -20,7 +20,8 @@ namespace Premiere.Models
         public DbSet<ChartsModel> Chartstbl { get; set; }
         public DbSet<BrandExposureLine> BrandExposureLinetbl { get; set; }
         public DbSet<BrandExposureBubble> BrandExposureBubbletbl { get; set; }
-        public DbSet<BrandFocus> BrandFocustbl { get; set; }
+        public DbSet<BrandFocusBlog> BrandFocusBlogtbl { get; set; }
+        public DbSet<BrandFocusNews> BrandFocusNewstbl { get; set; }
         public DbSet<BrandImageBlog> BrandImageBlogtbl { get; set; }
         public DbSet<BrandImageNews> BrandImageNewstbl { get; set; }
         public DbSet<DesignSense> DesignSensetbl { get; set; }

@@ -49,18 +49,23 @@
                                 </ul>
                             </li>
                             <li>
-                                 @Html.IconActionLink("index", "品牌关键字分析", null, "glyphicon glyphicon-triangle-right", new { @title = "品牌关键字分析", @id = "mutiple_level" })
-                                 <ul class="nav nav-third-level">
+                                @Html.IconActionLink("index", "品牌传播维度分析", null, "glyphicon glyphicon-triangle-right", new { @title = "品牌传播维度分析", @id = "mutiple_level" })
+
+
+                                <ul class="nav nav-third-level">
+
                                     <li>
-                                         @Html.ActionLink("-->论坛微博数据", "BrandExposure_mapBlog", new { @title = "品牌关键字分析(论坛微博数据)" }, null)
+                                        @Html.ActionLink("--> 传播维度分析", "BrandFocus", new { @title = "传播维度分析" }, null)
                                     </li>
                                     <li>
-                                        @Html.ActionLink("-->新闻数据", "BrandExposure_mapNews", new { @title = "品牌关键字分析(新闻数据)" }, null)
+                                        @Html.ActionLink("--> 关键字 论坛微博数据", "BrandExposure_mapBlog", new { @title = "品牌关键字分析(论坛微博数据)" }, null)
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("--> 关键字 新闻数据", "BrandExposure_mapNews", new { @title = "品牌关键字分析(新闻数据)" }, null)
                                     </li>
                                 </ul>
-                               
-                            </li>
 
+                            </li>
                               <li>
                                     @Html.IconActionLink("index", "品牌形象分析图", null, "glyphicon glyphicon-triangle-right", new { @title = "品牌形象分析图", @id = "mutiple_level" })
                                  <ul class="nav nav-third-level">
@@ -74,15 +79,15 @@
                                
                             </li>
                            
-                            <li>
+                            @*<li>
                                 @Html.ActionLink("设计感与功能性分析图", "DesignSense", new { @title = "设计感与功能性分析图" }, null)
-                            </li>
+                            </li>*@
                             <li>
                                 @Html.ActionLink("男女比例分析图", "SexRatio", new { @title = "男女比例分析图" }, null)
                             </li>
-                            <li>
+                            @*<li>
                                 @Html.ActionLink("品牌关注点分析图", "BrandFocus", new { @title = "品牌关注点分析图" }, null)
-                            </li>
+                            </li>*@
                             <li>
                                 @Html.ActionLink("媒体关注度分析图谱", "GraphicData", new { @title = "媒体关注度分析图谱" }, null)
                             </li>

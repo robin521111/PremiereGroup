@@ -40,6 +40,21 @@ namespace Premiere.Controllers
         }
 
         /// <summary>
+        /// 返回关注点(blog)的数据
+        /// </summary>
+        /// <param name="ID">导入数据的ID</param>
+        /// <returns></returns>
+        public string ReturnContentForBrandFocusBlog(int ID)
+        {
+            var content = from d in DB.BrandFocusBlogtbl
+                          where d.ID == ID
+                          select (string)d.Series;
+
+            return content.FirstOrDefault().ToString();
+        }
+
+
+        /// <summary>
         /// return content for Spread via ID
         /// </summary>
         /// <param name="ID"></param>
@@ -137,6 +152,30 @@ namespace Premiere.Controllers
             return Json(o4.ToString(), JsonRequestBehavior.AllowGet);
         }
 
+
+        public JsonResult DateChangedForBrandFocusBlog(int Date)
+        {
+            var instances = (from d in DB.BrandFocusBlogtbl
+                             where d.Month == Date
+                             select new { ID = d.ID, BrandName = d.BrandName, xAxis = d.xAxis, Month = d.Month, Series = d.Series }).ToList()
+                     .Select(x => new { ID = x.ID, BrandName = x.BrandName, xAxis = x.xAxis, Month = x.Month, Series = x.Series });
+
+            var obj = instances.GroupBy(x => x.BrandName).Select(x => x.First());
+            JObject o4 = JObject.FromObject(new
+            {
+                chart = (from p in obj
+                         select new
+                         {
+                             BrandName = p.BrandName,
+                             ID = p.ID,
+                             Month = p.Month,
+                             Series = p.Series,
+                             xAxis = p.xAxis
+                         })
+            });
+
+            return Json(o4.ToString(), JsonRequestBehavior.AllowGet);
+        }
         public JsonResult DateChangedForMedia(int fromDate, int toDate)
         {
 
@@ -423,11 +462,23 @@ namespace Premiere.Controllers
             var model = DB.SexRatiotbl.ToList();
             return View(model);
         }
-        public ActionResult BrandFocus(string title)
+        public ActionResult BrandFocusBlog(string title)
         {
             ViewBag.Title = title;
-            var model = DB.BrandFocustbl.ToList();
+            var model = DB.BrandFocusBlogtbl.ToList();
             return View(model);
+        }
+
+        public ActionResult BrandFocusNews(string title)
+        {
+            ViewBag.Title = title;
+            var model = DB.BrandFocusNewstbl.ToList();
+
+            return View(model);
+        }
+        public ActionResult DemoPage()
+        {
+            return View();
         }
 
     }

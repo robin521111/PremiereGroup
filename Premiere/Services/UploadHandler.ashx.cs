@@ -345,13 +345,14 @@ namespace Premiere.Services
                          LastModifiedBy=Membership.GetUser().UserName.ToString(),
                     });
                     break;
-                case "品牌关注点分析图":
+                case "品牌关注点分析论坛微博数据":
                     text = File.ReadAllText(path, System.Text.Encoding.UTF8);
+                    
                     obj = JObject.Parse(text);
                     file_name = status.name.Replace(".txt", "");
                     data = obj["series"].ToString();
                     xAxis = obj["xAxis"].ToString();
-                    DB.BrandFocustbl.Add(new BrandFocus {
+                    DB.BrandFocusBlogtbl.Add(new BrandFocusBlog {
                         ChartID = 3,
                         BrandName = file_name,
                         Series = data,
@@ -360,8 +361,24 @@ namespace Premiere.Services
                         LastModifiedBy = Membership.GetUser().UserName.ToString(),
                     
                     });
+                    break;
 
+                case "品牌关注点分析新闻数据":
+                    text = File.ReadAllText(path, System.Text.Encoding.UTF8);
+                    obj = JObject.Parse(text);
+                    file_name = status.name.Replace(".txt", "");
+                    data = obj["series"].ToString();
+                    xAxis = obj["xAxis"].ToString();
+                    DB.BrandFocusNewstbl.Add(new BrandFocusNews
+                    {
+                        ChartID = 3,
+                        BrandName = file_name,
+                        Series = data,
+                        xAxis = xAxis,
+                        LastModified = DateTime.Now,
+                        LastModifiedBy = Membership.GetUser().UserName.ToString(),
 
+                    });
                     break;
                 case "媒体关注度分析图谱":
                     text = File.ReadAllText(path, System.Text.Encoding.UTF8);

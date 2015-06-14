@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
-
+using System.IO;
 
 namespace Infrustructure
 {
@@ -19,8 +19,10 @@ namespace Infrustructure
         }
 
 
-        public void GetImageExtention()
+        public void AddMonthDate()
         {
+            string path = System.Web.HttpContext.Current.Server.MapPath("~/123");
+            Path.GetFileName(Path.GetDirectoryName(path));
             
         }
     }

@@ -56,13 +56,29 @@ namespace Premiere.Models
         public string LastModifiedBy { get; set; }
         public DateTime LastModified { get; set; }
     }
-    [Table("BrandFocustbl")]
-    public class BrandFocus
+
+    [Table("BrandFocusNewstbl")]
+    public class BrandFocusNews
     {
         [Key]
         public int ID { get; set; }
         public int ChartID { get; set; }
         public string BrandName { get; set; }
+        public int Month { get; set; }
+        public string Series { get; set; }
+        public string xAxis { get; set; }
+        public string LastModifiedBy { get; set; }
+        public DateTime LastModified { get; set; }
+    }
+
+    [Table("BrandFocusBlogtbl")]
+    public class BrandFocusBlog
+    {
+        [Key]
+        public int ID { get; set; }
+        public int ChartID { get; set; }
+        public string BrandName { get; set; }
+        public int Month { get; set; }
         public string Series { get; set; }
         public string xAxis { get; set; }
         public string LastModifiedBy { get; set; }

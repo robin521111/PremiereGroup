@@ -44,14 +44,22 @@
                                 </ul>
                                
                             </li>
-                    <li>
+                    @*<li>
                         @Html.ActionLink("设计感与功能性分析图", "index", new { @title = "设计感与功能性分析图" }, null)
-                    </li>
+                    </li>*@
                     <li>
                         @Html.ActionLink("男女比例分析图","index",new { @title = "男女比例分析图" },null)
                     </li>
                     <li>
-                        @Html.ActionLink("品牌关注点分析图","index",new { @title = "品牌关注点分析图" },null)
+                        @Html.IconActionLink("index", "品牌关注点分析图", null, "fa fa-bar-chart-o fa-fw", true, new { @title = "品牌关注点分析图" })
+                        <ul class="nav nav-third-level">
+                            <li>
+                                @Html.ActionLink("品牌关注点分析图==>论坛微博数据", "index", new { @title = "品牌关注点分析论坛微博数据" }, null)
+                            </li>
+                            <li>
+                                @Html.ActionLink("品牌关注点分析图==>新闻数据", "index", new { @title = "品牌关注点分析新闻数据" }, null)
+                            </li>
+                        </ul>
                     </li>
                     <li>
                         @Html.ActionLink("媒体关注度分析图谱","index",new { @title = "媒体关注度分析图谱" },null)

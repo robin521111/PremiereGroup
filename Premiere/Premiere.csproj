@@ -22,7 +22,7 @@
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
-    <OldToolsVersion>4.0</OldToolsVersion>
+    <OldToolsVersion>12.0</OldToolsVersion>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -31,6 +31,8 @@
     <TargetFrameworkProfile />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <MvcProjectUpgradeChecked>true</MvcProjectUpgradeChecked>
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -1257,13 +1259,14 @@
     <Content Include="Views\Charts\BrandExposure_bubble.cshtml" />
     <Content Include="Views\Charts\BrandExposure_line.cshtml" />
     <Content Include="Views\Charts\BrandExposure_mapBlog.cshtml" />
-    <Content Include="Views\Charts\BrandFocus.cshtml" />
+    <Content Include="Views\Charts\BrandFocusBlog.cshtml" />
     <Content Include="Views\Charts\BrandImageBlog.cshtml" />
     <Content Include="Views\Charts\DesignSense.cshtml" />
     <Content Include="Views\Charts\GraphicData.cshtml" />
     <Content Include="Views\Charts\SexRatio.cshtml" />
     <Content Include="Views\Charts\BrandExposure_mapNews.cshtml" />
     <Content Include="Views\Charts\BrandImageNews.cshtml" />
+    <Content Include="Views\Charts\DemoPage.cshtml" />
     <None Include="Web.Backload.Default.config" />
     <None Include="Web.Backload.xsd">
       <SubType>Designer</SubType>
