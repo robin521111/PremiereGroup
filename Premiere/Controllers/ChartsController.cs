@@ -176,6 +176,30 @@ namespace Premiere.Controllers
 
             return Json(o4.ToString(), JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult DateChangedForBrandFocusNews(int Date)
+        {
+            var instances = (from d in DB.BrandFocusNewstbl
+                             where d.Month == Date
+                             select new { ID = d.ID, BrandName = d.BrandName, xAxis = d.xAxis, Month = d.Month, Series = d.Series }).ToList()
+                     .Select(x => new { ID = x.ID, BrandName = x.BrandName, xAxis = x.xAxis, Month = x.Month, Series = x.Series });
+
+            var obj = instances.GroupBy(x => x.BrandName).Select(x => x.First());
+            JObject o4 = JObject.FromObject(new
+            {
+                chart = (from p in obj
+                         select new
+                         {
+                             BrandName = p.BrandName,
+                             ID = p.ID,
+                             Month = p.Month,
+                             Series = p.Series,
+                             xAxis = p.xAxis
+                         })
+            });
+
+            return Json(o4.ToString(), JsonRequestBehavior.AllowGet);
+        }
         public JsonResult DateChangedForMedia(int fromDate, int toDate)
         {
 
@@ -338,60 +362,11 @@ namespace Premiere.Controllers
                          })
             });
 
-            //foreach (var item in instances)
-            //{
-            //    if (instances.Select(x => x.BrandName).Contains(item.BrandName))
-            //    {
-            //        JObject oTempt = JObject.FromObject(new
-            //        {
-            //            data = from b in instances
-            //                   where b.BrandName == item.BrandName && item.Month != b.Month
-            //                   select new { content = b }
-            //        });
-
-            //        var contents = oTempt["data"].Values<JToken>().ToArray();
-
-            //        JObject o2 = JObject.Parse(item.Content.ToString());
-            //        JObject compare_str2 = JObject.Parse(o2["data"]["wordgraph"][0].ToString());
-            //        foreach (var c in contents)
-            //        {
-            //            string rss = (string)c["content"];
-            //            JObject o1 = JObject.Parse(rss);
-            //            JObject compare_str = JObject.Parse(o1["data"]["wordgraph"][0].ToString());
-
-            //            //string rss1 = item.Content.ToString();
-            //            //JObject t = (JObject)t2["content"];
-
-            //            compare_str2.Merge(compare_str, new JsonMergeSettings
-            //            {
-            //                MergeArrayHandling = MergeArrayHandling.Concat
-            //            });
-
-            //            o3 = o2;
-            //            o3["data"]["wordgraph"][0] = compare_str2;
-
-
-            //        }
-
-            //        Dictionary<string, string> distinctCharts = new Dictionary<string, string>();
-            //        var distinctName = instances.GroupBy(x => x.BrandName).Select(x => x.First());
-
-
-            //    }
-
-            //JObject o4 = JObject.FromObject(new
-            //{
-            //    chart = (from p in obj
-            //             select new
-            //             {
-            //                 BrandName = p.BrandName,
-            //                 ID = p.ID,
-            //                 Content = p.Content
-            //             })
-            //});
 
             return Json(o4.ToString(), JsonRequestBehavior.AllowGet);
         }
+
+       
 
         public string ReturnContentForMedia(int ID)
         {
@@ -420,6 +395,7 @@ namespace Premiere.Controllers
             var model = DB.BrandSpreadMapNewstbl.ToList();
             return View(model);
         }
+
 
 
         public ActionResult GetGraphicData(string brand_name)

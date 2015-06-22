@@ -1269,6 +1269,7 @@
     <Content Include="Views\Charts\BrandExposure_mapNews.cshtml" />
     <Content Include="Views\Charts\BrandImageNews.cshtml" />
     <Content Include="Views\Charts\DemoPage.cshtml" />
+    <Content Include="Views\Charts\BrandFocusNews.cshtml" />
     <None Include="Web.Backload.Default.config" />
     <None Include="Web.Backload.xsd">
       <SubType>Designer</SubType>

@@ -61,7 +61,7 @@ namespace Premiere
 
             Infrustructure.UtilFunction util = new UtilFunction();
 
-            util.AddMonthDate();
+            //util.AddMonthDate();
             
             //Membership.GetUser("robin521").UnlockUser();
             //string newpsw=Membership.GetUser("robin521").ResetPassword();

@@ -192,18 +192,18 @@ namespace Premiere.Services
                     JObject obj = JObject.Parse(text);
                     string data = obj["series"].ToString();
                     string xAxis = obj["xAxis"].ToString();
-                    string t_month = obj["month"].ToString();
+                    string t_month = obj["date"].ToString();
                     int i  = status.name.IndexOf('-', 0);
                     string brand_name = status.name.Substring(0, i);
-                    string year = obj["month"].ToString().Substring(0, 4);
+                    string year = obj["date"].ToString().Substring(0, 4);
                     string mon = "";
-                    if (obj["month"].ToString().Length == 8)
+                    if (obj["date"].ToString().Length == 8)
                     {
-                        mon = obj["month"].ToString().Substring(5, 2);
+                        mon = obj["date"].ToString().Substring(5, 2);
                     }
                     else
                     {
-                        mon = obj["month"].ToString().Substring(5, 1);
+                        mon = obj["date"].ToString().Substring(5, 1);
                         mon = '0'+mon;
                     }
                     t_month = year + mon;
@@ -278,6 +278,29 @@ namespace Premiere.Services
 
 
                     break;
+                case "品牌关键字分析微博论坛数据":
+                    text = File.ReadAllText(path, System.Text.Encoding.UTF8);
+                    obj = JObject.Parse(text);
+                    file_name = status.name.Replace(".txt", "");
+                    data = obj["data"].ToString();
+                    if (obj["data"]["wordgraph"][0]["features"].ToString() == "[]")
+                    {
+                        break;
+                    }
+                    period = Convert.ToInt32(obj["date"].ToString());
+                    DB.BrandSpreadMapBlogtbl.Add(new BrandSpreadMapBlog
+                    {
+                        Content = text,
+                        Period = period,
+                        BrandName = file_name,
+                        LastModified = DateTime.Now,
+                        LastModifiedBy = Membership.GetUser().UserName.ToString()
+                    });
+
+
+                    break;
+
+                    
                 case "品牌形象分析论坛微博数据":
                     text = File.ReadAllText(path, System.Text.Encoding.UTF8);
                     obj = JObject.Parse(text);
@@ -347,14 +370,15 @@ namespace Premiere.Services
                     break;
                 case "品牌关注点分析论坛微博数据":
                     text = File.ReadAllText(path, System.Text.Encoding.UTF8);
-                    
                     obj = JObject.Parse(text);
                     file_name = status.name.Replace(".txt", "");
                     data = obj["series"].ToString();
                     xAxis = obj["xAxis"].ToString();
+                    month = int.Parse( obj["series"]["Month"].ToString());
                     DB.BrandFocusBlogtbl.Add(new BrandFocusBlog {
                         ChartID = 3,
                         BrandName = file_name,
+                        Month = month,
                         Series = data,
                         xAxis = xAxis,
                         LastModified = DateTime.Now,
@@ -369,10 +393,12 @@ namespace Premiere.Services
                     file_name = status.name.Replace(".txt", "");
                     data = obj["series"].ToString();
                     xAxis = obj["xAxis"].ToString();
+                    month = int.Parse(obj["series"]["Month"].ToString());
                     DB.BrandFocusNewstbl.Add(new BrandFocusNews
                     {
                         ChartID = 3,
                         BrandName = file_name,
+                        Month = month,
                         Series = data,
                         xAxis = xAxis,
                         LastModified = DateTime.Now,
