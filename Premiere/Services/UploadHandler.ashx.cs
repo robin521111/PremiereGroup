@@ -187,7 +187,7 @@ namespace Premiere.Services
         {
             switch (folderName)
             {
-                case  "品牌曝光度分析-每日数据导入":
+                case  "品牌传播曝光度分析-每日数据导入":
                     var text = File.ReadAllText(path,System.Text.Encoding.UTF8);
                     JObject obj = JObject.Parse(text);
                     string data = obj["series"].ToString();
@@ -221,7 +221,7 @@ namespace Premiere.Services
                     });
 
                     break;
-                case "品牌曝光度分析-每月数据导入":
+                case "品牌传播曝光度分析-每月数据导入":
                     text = File.ReadAllText(path, System.Text.Encoding.UTF8);
                     obj = JObject.Parse(text);
                     file_name = status.name.Replace(".txt", "");
@@ -236,7 +236,7 @@ namespace Premiere.Services
                     });
 
                     break;
-                case "品牌曝光度分析微博论坛数据":
+                case "品牌传播曝光度分析微博论坛数据":
                     text = File.ReadAllText(path, System.Text.Encoding.UTF8);
                     obj = JObject.Parse(text);
                     file_name = status.name.Replace(".txt", "");
@@ -355,7 +355,7 @@ namespace Premiere.Services
                         LastModifiedBy=Membership.GetUser().UserName.ToString(),
                     });
                     break;
-                case "男女比例分析图":
+                case "品牌用户属性分析(性别)":
                     text = File.ReadAllText(path, System.Text.Encoding.UTF8);
                     obj = JObject.Parse(text);
                     file_name = status.name.Replace(".txt", "");

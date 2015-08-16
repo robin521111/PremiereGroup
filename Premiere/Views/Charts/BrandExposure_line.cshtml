@@ -37,18 +37,35 @@
                         <ul class="nav nav-second-level">
                                        <li>
 
-                                @Html.IconActionLink("index", "品牌曝光度分析", null, "glyphicon glyphicon-triangle-right", new { @title = "品牌曝光度分析",@id="mutiple_level" })
+                                @Html.IconActionLink("index", "品牌传播曝光度分析", null, "glyphicon glyphicon-triangle-right", new { @title = "品牌传播曝光度分析",@id="mutiple_level" })
                                 <ul class="nav nav-third-level">
                                     <li>
-                                        @Html.ActionLink("-->每日数据分析", "BrandExposure_line", new { @title = "品牌曝光度分析-每日数据导入" }, null)
+                                        @Html.ActionLink("-->品牌传播趋势(曲线图)", "BrandExposure_line", new { @title = "品牌传播趋势(曲线图)" }, null)
                                     </li>
                                     <li>
-                                        @Html.ActionLink("-->每月数据分析", "BrandExposure_bubble", new { @title = "品牌曝光度分析-每月数据导入" }, null)
+                                        @Html.ActionLink("-->品牌传播趋势(气泡图)", "BrandExposure_bubble", new { @title = "品牌传播趋势(气泡图)" }, null)
                                     </li>
                                 </ul>
                             </li>
+
                             <li>
-                                 @Html.IconActionLink("index", "品牌传播维度分析", null, "glyphicon glyphicon-triangle-right", new { @title = "品牌传播维度分析", @id = "mutiple_level" })
+
+                                @Html.IconActionLink("index", "品牌传播关键字分析", null, "glyphicon glyphicon-triangle-right", new { @title = "品牌传播关键字分析", @id = "mutiple_level" })
+                                <ul class="nav nav-third-level">
+                                    <li>
+                                        @Html.ActionLink("--> 关键字 论坛微博", "BrandExposure_mapBlog", new { @title = "品牌关键字分析(论坛微博数据)" }, null)
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("--> 关键字 新闻", "BrandExposure_mapNews", new { @title = "品牌关键字分析(新闻数据)" }, null)
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("--> 媒体关注度分析图谱", "GraphicData", new { @title = "媒体关注度分析图谱" }, null)
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                 @Html.IconActionLink("index", "品牌传播多维度分析", null, "glyphicon glyphicon-triangle-right", new { @title = "品牌传播多维度分析", @id = "mutiple_level" })
                                  
 
                                 <ul class="nav nav-third-level">
@@ -59,18 +76,14 @@
                                     <li>
                                         @Html.ActionLink("--> 传播维度 新闻 ", "BrandFocusNews", new { @title = "传播维度分析(新闻数据)" }, null)
                                     </li>
-                                    <li>
-                                        @Html.ActionLink("--> 关键字 论坛微博", "BrandExposure_mapBlog", new { @title = "品牌关键字分析(论坛微博数据)" }, null)
-                                    </li>
-                                    <li>
-                                        @Html.ActionLink("--> 关键字 新闻", "BrandExposure_mapNews", new { @title = "品牌关键字分析" }, null)
-                                    </li>
+                                    
+                                    
                                 </ul>
                                
                             </li>
                            
                               <li>
-                                    @Html.IconActionLink("index", "品牌形象分析图", null, "glyphicon glyphicon-triangle-right", new { @title = "品牌形象分析图", @id = "mutiple_level" })
+                                    @Html.IconActionLink("index", "品牌形象分析", null, "glyphicon glyphicon-triangle-right", new { @title = "品牌形象分析", @id = "mutiple_level" })
                                  <ul class="nav nav-third-level">
                                     <li>
                                          @Html.ActionLink("-->主动传播", "BrandImageBlog", new { @title = "品牌形象（主动传播）来源：全网数据" }, null)
@@ -83,14 +96,12 @@
                             </li>
                             
                             <li>
-                                @Html.ActionLink("男女比例分析图", "SexRatio", new { @title = "男女比例分析图" }, null)
+                                @Html.ActionLink("品牌用户属性分析(性别)", "SexRatio", new { @title = "品牌用户属性分析(性别)" }, null)
                             </li>
                             @*<li>
                                 @Html.ActionLink("品牌关注点分析图", "BrandFocus", new { @title = "品牌关注点分析图" }, null)
                             </li>*@
-                            <li>
-                                @Html.ActionLink("媒体关注度分析图谱", "GraphicData", new { @title = "媒体关注度分析图谱" }, null)
-                            </li>
+                          
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
@@ -112,7 +123,6 @@
                         <h3>@ViewBag.Title</h3>
                        
                        <br />
-                        <p>以下品牌是已成功导入数据库的品牌数据: </p>
                        
 
                         <div class="row">
@@ -126,9 +136,10 @@
                             <div class="col-md-2">
                                 <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-expanded="true">
-                                品牌选取
+                                品牌
                                 <span class="caret"></span>
                             </button>
+
                             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenuDivider">
                                 <li>
                                     <div class="panel panel-default">
@@ -174,12 +185,13 @@
                                 <li role="presentation" class="divider"></li>
                                 
 
-                                <li role="presentation"><button class="btn-block" id="btn_clean">清除比较数据</button></li>
+                                
                             </ul>
                         </div>
                             </div>
                             <div class="co-md-2">
-                                <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">菜单收放</a>
+                                
+                                <a href="#menu-toggle" class="btn btn-default" id="btn_clean">重新选择数据</a>
                             </div>
                         </div>
                         
@@ -232,7 +244,7 @@
     $(function () {
         $('#container').highcharts({
             title: {
-                text: '品牌曝光度分析',
+                text: '品牌传播曝光度分析',
                 x: -20 //center
             },
             subtitle: {
@@ -274,15 +286,7 @@
             language: "zh-CN",
             beforeShowMonth: function (date) {
                 switch (date.getMonth()) {
-                    case 0:
-                        return false;
-                    case 1:
-                        return false;
-                    case 2:
-                        return false;
-                    case 3:
-                        return false;
-                
+           
 
                 }
             }
@@ -343,12 +347,7 @@
 
 
 
-
-
-
-
-
-        @foreach (var item in Model)
+        @*@foreach (var item in Model)
 	{
         string[] data1;
              JObject obj = JObject.Parse(item.Series);
@@ -381,7 +380,7 @@
             }
          });
         </text>
-	}
+	}*@
     });
 
 

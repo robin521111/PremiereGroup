@@ -32,20 +32,20 @@
                         @Html.IconActionLink("Charts", "图表导航", null, "fa fa-bar-chart-o fa-fw", true, null)
                         @*<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>*@
                         <ul class="nav nav-second-level">
-                                       <li>
+                            <li>
 
-                                @Html.IconActionLink("index", "品牌曝光度分析", null, "glyphicon glyphicon-triangle-right", new { @title = "品牌曝光度分析",@id="mutiple_level" })
+                                @Html.IconActionLink("index", "品牌传播曝光度分析", null, "glyphicon glyphicon-triangle-right", new { @title = "品牌传播曝光度分析", @id = "mutiple_level" })
                                 <ul class="nav nav-third-level">
                                     <li>
-                                        @Html.ActionLink("-->每日数据分析", "BrandExposure_line", new { @title = "品牌曝光度分析-每日数据导入" }, null)
+                                        @Html.ActionLink("-->品牌传播趋势(曲线图)", "BrandExposure_line", new { @title = "品牌传播趋势(曲线图)" }, null)
                                     </li>
                                     <li>
-                                        @Html.ActionLink("-->每月数据分析", "BrandExposure_bubble", new { @title = "品牌曝光度分析-每月数据导入" }, null)
+                                        @Html.ActionLink("-->品牌传播趋势(气泡图)", "BrandExposure_bubble", new { @title = "品牌传播趋势(气泡图)" }, null)
                                     </li>
                                 </ul>
                             </li>
                             <li>
-                                @Html.IconActionLink("index", "品牌传播维度分析", null, "glyphicon glyphicon-triangle-right", new { @title = "品牌传播维度分析", @id = "mutiple_level" })
+                                @Html.IconActionLink("index", "品牌传播多维度分析", null, "glyphicon glyphicon-triangle-right", new { @title = "品牌传播多维度分析", @id = "mutiple_level" })
 
                                 <ul class="nav nav-third-level">
 
@@ -59,14 +59,14 @@
                                         @Html.ActionLink("--> 关键字 论坛微博", "BrandExposure_mapBlog", new { @title = "品牌关键字分析(论坛微博数据)" }, null)
                                     </li>
                                     <li>
-                                        @Html.ActionLink("--> 关键字 新闻", "BrandExposure_mapNews", new { @title = "品牌关键字分析" }, null)
+                                        @Html.ActionLink("--> 关键字 新闻", "BrandExposure_mapNews", new { @title = "品牌关键字分析(新闻)" }, null)
                                     </li>
                                 </ul>
 
                             </li>
                            
                               <li>
-                                    @Html.IconActionLink("index", "品牌形象分析图", null, "glyphicon glyphicon-triangle-right", new { @title = "品牌形象分析图", @id = "mutiple_level" })
+                                    @Html.IconActionLink("index", "品牌形象分析", null, "glyphicon glyphicon-triangle-right", new { @title = "品牌形象分析", @id = "mutiple_level" })
                                  <ul class="nav nav-third-level">
                                     <li>
                                          @Html.ActionLink("-->主动传播", "BrandImageBlog", new { @title = "品牌形象（主动传播）来源：全网数据" }, null)
@@ -81,7 +81,7 @@
                                 @Html.ActionLink("设计感与功能性分析图", "DesignSense", new { @title = "设计感与功能性分析图" }, null)
                             </li>*@
                             <li>
-                                @Html.ActionLink("男女比例分析图", "SexRatio", new { @title = "男女比例分析图" }, null)
+                                @Html.ActionLink("品牌用户属性分析(性别)", "SexRatio", new { @title = "品牌用户属性分析(性别)" }, null)
                             </li>
                             @*<li>
                                 @Html.ActionLink("品牌关注点分析图", "BrandFocus", new { @title = "品牌关注点分析图" }, null)
@@ -109,12 +109,12 @@
                         <h3>@ViewBag.Title</h3>
 
                         <br />
-                        <p>以下品牌是已成功导入数据库的品牌数据: </p>
+                       
 
                       
                         <div class="row">
                             
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                   <div class="input-daterange input-group" id="datepicker">
                                     
                                     <span class="input-group-addon">请选择时间区间： </span>
@@ -127,7 +127,7 @@
                             <div class="col-md-2">
                                 <div class="dropdown">
                                     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-expanded="true">
-                                        品牌选取
+                                        品牌
                                         <span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenuDivider">
@@ -139,11 +139,9 @@
                                                 </div>
 
                                                 <!-- Table -->
-                                                <table class="table">
-                                                    <tbody id="brandtable">
-                     
-                                                        </tbody>
-                                                    </table>
+                                                <table class="table table-bordered">
+                                                    <tbody id="brandtable"></tbody>
+                                                </table>
                                                 </div>
 
 
@@ -155,7 +153,7 @@
                                     </div>
                                 </div>
                                 <div class="co-md-2">
-                                <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">菜单收放</a>
+                                    <a href="#menu-toggle" class="btn btn-default" id="btn_clean">重新选择数据</a>
                             </div>
                             </div>
 
@@ -314,16 +312,6 @@
                         language: "zh-CN",
                         beforeShowMonth: function (date) {
                             switch (date.getMonth()) {
-                                case 0:
-                                    return false;
-                                case 1:
-                                    return false;
-                                case 2:
-                                    return false;
-                                case 3:
-                                    return false;
-                                case 4:
-                                    return false;
 
                             }
                         }
@@ -346,7 +334,7 @@
                                     var contents = $.parseJSON(data);
                                     $.each(contents, function (key, values) {
                                         $.each(values, function (k, v) {
-                                            table.append("<td><button class='btn btn-default brand' id=" + v.ID + " data-id=" + v.ID + ">" + v.BrandName + "</button></td>");
+                                            table.append("<td><button class='btn btn-default brand btn-sm' id=" + v.ID + " data-id=" + v.ID + ">" + v.BrandName + "</button></td>");
                                             var button = $('#'+v.ID);
                                            button.on('click',v.ID, function () {
                                                var id = v.ID;

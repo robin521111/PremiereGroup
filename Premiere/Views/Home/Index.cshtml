@@ -15,9 +15,7 @@
 <div id="myCarousel" class="carousel slide" style="height:500px">
       <!-- Indicators -->
         <ol class="carousel-indicators">
-          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-          <li data-target="#myCarousel" data-slide-to="1"></li>
-          <li data-target="#myCarousel" data-slide-to="2"></li>
+          
         </ol>
 
         <!-- Wrapper for slides -->
@@ -25,22 +23,7 @@
           <div class="item active">
               <img class="center-block" src="../../Images/background.gif" alt="background" width="1197" height="620">
             @*<div class="fill" style="background-image:url(../../Images/background.gif);   display:block; margin-left:auto"></div>*@
-            <div class="carousel-caption">
-              <h1>品牌曝光度分析</h1>
-            </div>
-          </div>
-          <div class="item">
-            <div class="fill" style="background-image:url(../../Images/demo_chart2.gif);"></div>
-            <div class="carousel-caption">
-              <h1>品牌关注度分析</h1>
-            </div>
-          </div>
-          <div class="item">
-            <div class="fill" style="background-image:url(../../Images/demo_chart3.gif);"></div>
-            <div class="carousel-caption">
-              <h1>品播传播分析</h1>
-            </div>
-          </div>
+
         </div>
     <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left aria-hidden="true"></span>
@@ -58,73 +41,28 @@
 
         <div class="section">
 
-      <div class="container">
-
-        <div class="row">
-          <div class="col-lg-4 col-md-4">
-            <h3><i class="icon-ok-circle"></i> 品牌曝光度分析</h3>
-            <p>基于品牌在各大媒体和网络平台的数据曝光度分析，数据基于互联网真实结果进行分析</p>
-              <p></p>
-          </div>
-          <div class="col-lg-4 col-md-4">
-            <h3><i class="icon-pencil"></i> 品牌传播分析</h3>
-            <p>基于品牌在各大媒体和网络平台的传播度进行分析基于互联网真实结果进行分析</p>
-              <p></p>
-          </div>
-          <div class="col-lg-4 col-md-4">
-            <h3><i class="icon-folder-open-alt"></i> 品牌关注度分析</h3>
-            <p>基于品牌在各大媒体和网络平台的关注度进行分析基于互联网我的真实结果进行分析</p>
-              <p></p>
-          </div>
-        </div><!-- /.row -->
-
-      </div><!-- /.container -->
 
     </div><!-- /.section -->
   
-        <div class="section-colored text-center">
+        
 
-      <div class="container">
+      @*<div class="container">
 
-        <div class="row">
-          <div class="col-lg-12">
-              @if (Request.IsAuthenticated)
+      
+              @if (request.isauthenticated)
                 {
-                    <h2><strong>@Html.ActionLink("注册", "Register", "Account", null, null)</strong> </h2>
+                    <h2><strong>@html.actionlink("注册", "register", "account", null, null)</strong> </h2>
                 }
                 else
                 {
-                <h2><strong><a href="#myModal" id="Login" role="button" class="btn-large" data-toggle="modal">登录</a></strong><span>  </span><strong>@Html.ActionLink("注册", "Register", "Account", null, null)</strong> </h2>
               }
               
-            <p>如果需要查看详细数据请登陆帐户或进行注册，管理员用户可以在后台进行数据导入操作。</p>
-            <hr>
-          </div>
-        </div><!-- /.row -->
 
-      </div><!-- /.container -->
+      </div> /.container*@ 
 
-    </div><!-- /.section-colored -->
 
-        <div class="section">
+       
 
-      <div class="container">
-
-      
-
-      </div><!-- /.container -->
-
-    </div><!-- /.section -->
-
-        <div class="section-colored">
-
-    <div class="container">
-
-    <!-- /.row -->
-
-    </div><!-- /.container -->
-
-</div><!-- /.section-colored -->
 
 
    
